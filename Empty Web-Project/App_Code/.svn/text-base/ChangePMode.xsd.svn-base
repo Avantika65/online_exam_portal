@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ChangePMode" targetNamespace="http://tempuri.org/ChangePMode.xsd" xmlns:mstns="http://tempuri.org/ChangePMode.xsd" xmlns="http://tempuri.org/ChangePMode.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable1TableAdapter" GeneratorDataComponentClassName="DataTable1TableAdapter" Name="DataTable1" UserDataComponentName="DataTable1TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT     ChangePaymentMode.StudentID, Student_Registration.StudentName + ' ' + Student_Registration.MName + ' ' + Student_Registration.LName AS SName,
+                       ChangePaymentMode.LastPMode, Payment_Mode.PaymentMode AS LMode, ChangePaymentMode.CurrentPMode, 
+                      Payment_Mode_1.PaymentMode AS CMode, ChangePaymentMode.LastAmount, ChangePaymentMode.LastDNO, ChangePaymentMode.LastDDate, 
+                      ChangePaymentMode.CurrentDNO, ChangePaymentMode.CurrentDDate, ChangePaymentMode.Amount, ChangePaymentMode.InstituteID, 
+                      ChangePaymentMode.SessionID, ChangePaymentMode.ReceiptNo
+FROM         ChangePaymentMode INNER JOIN
+                      Student_Registration ON ChangePaymentMode.StudentID = Student_Registration.StudentID INNER JOIN
+                      Payment_Mode ON ChangePaymentMode.LastPMode = Payment_Mode.PMID INNER JOIN
+                      Payment_Mode AS Payment_Mode_1 ON ChangePaymentMode.CurrentPMode = Payment_Mode_1.PMID</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="StudentID" DataSetColumn="StudentID" />
+              <Mapping SourceColumn="SName" DataSetColumn="SName" />
+              <Mapping SourceColumn="LastPMode" DataSetColumn="LastPMode" />
+              <Mapping SourceColumn="LMode" DataSetColumn="LMode" />
+              <Mapping SourceColumn="CurrentPMode" DataSetColumn="CurrentPMode" />
+              <Mapping SourceColumn="CMode" DataSetColumn="CMode" />
+              <Mapping SourceColumn="LastAmount" DataSetColumn="LastAmount" />
+              <Mapping SourceColumn="LastDNO" DataSetColumn="LastDNO" />
+              <Mapping SourceColumn="LastDDate" DataSetColumn="LastDDate" />
+              <Mapping SourceColumn="CurrentDNO" DataSetColumn="CurrentDNO" />
+              <Mapping SourceColumn="CurrentDDate" DataSetColumn="CurrentDDate" />
+              <Mapping SourceColumn="Amount" DataSetColumn="Amount" />
+              <Mapping SourceColumn="InstituteID" DataSetColumn="InstituteID" />
+              <Mapping SourceColumn="SessionID" DataSetColumn="SessionID" />
+              <Mapping SourceColumn="ReceiptNo" DataSetColumn="ReceiptNo" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ChangePMode" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="ChangePMode" msprop:Generator_DataSetName="ChangePMode">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DataTable1" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowClassName="DataTable1Row" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_TablePropName="DataTable1" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="StudentID" msprop:Generator_UserColumnName="StudentID" msprop:Generator_ColumnPropNameInRow="StudentID" msprop:Generator_ColumnVarNameInTable="columnStudentID" msprop:Generator_ColumnPropNameInTable="StudentIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="SName" msdata:ReadOnly="true" msprop:Generator_UserColumnName="SName" msprop:Generator_ColumnPropNameInRow="SName" msprop:Generator_ColumnVarNameInTable="columnSName" msprop:Generator_ColumnPropNameInTable="SNameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="152" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LastPMode" msprop:Generator_UserColumnName="LastPMode" msprop:Generator_ColumnPropNameInRow="LastPMode" msprop:Generator_ColumnVarNameInTable="columnLastPMode" msprop:Generator_ColumnPropNameInTable="LastPModeColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="LMode" msprop:Generator_UserColumnName="LMode" msprop:Generator_ColumnPropNameInRow="LMode" msprop:Generator_ColumnVarNameInTable="columnLMode" msprop:Generator_ColumnPropNameInTable="LModeColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CurrentPMode" msprop:Generator_UserColumnName="CurrentPMode" msprop:Generator_ColumnPropNameInRow="CurrentPMode" msprop:Generator_ColumnVarNameInTable="columnCurrentPMode" msprop:Generator_ColumnPropNameInTable="CurrentPModeColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="CMode" msprop:Generator_UserColumnName="CMode" msprop:Generator_ColumnPropNameInRow="CMode" msprop:Generator_ColumnVarNameInTable="columnCMode" msprop:Generator_ColumnPropNameInTable="CModeColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LastAmount" msprop:Generator_UserColumnName="LastAmount" msprop:Generator_ColumnPropNameInRow="LastAmount" msprop:Generator_ColumnVarNameInTable="columnLastAmount" msprop:Generator_ColumnPropNameInTable="LastAmountColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="LastDNO" msprop:Generator_UserColumnName="LastDNO" msprop:Generator_ColumnPropNameInRow="LastDNO" msprop:Generator_ColumnVarNameInTable="columnLastDNO" msprop:Generator_ColumnPropNameInTable="LastDNOColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="LastDDate" msprop:Generator_UserColumnName="LastDDate" msprop:Generator_ColumnPropNameInRow="LastDDate" msprop:Generator_ColumnVarNameInTable="columnLastDDate" msprop:Generator_ColumnPropNameInTable="LastDDateColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="CurrentDNO" msprop:Generator_UserColumnName="CurrentDNO" msprop:Generator_ColumnPropNameInRow="CurrentDNO" msprop:Generator_ColumnVarNameInTable="columnCurrentDNO" msprop:Generator_ColumnPropNameInTable="CurrentDNOColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="CurrentDDate" msprop:Generator_UserColumnName="CurrentDDate" msprop:Generator_ColumnPropNameInRow="CurrentDDate" msprop:Generator_ColumnVarNameInTable="columnCurrentDDate" msprop:Generator_ColumnPropNameInTable="CurrentDDateColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Amount" msprop:Generator_UserColumnName="Amount" msprop:Generator_ColumnPropNameInRow="Amount" msprop:Generator_ColumnVarNameInTable="columnAmount" msprop:Generator_ColumnPropNameInTable="AmountColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="InstituteID" msprop:Generator_UserColumnName="InstituteID" msprop:Generator_ColumnPropNameInRow="InstituteID" msprop:Generator_ColumnVarNameInTable="columnInstituteID" msprop:Generator_ColumnPropNameInTable="InstituteIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="SessionID" msprop:Generator_UserColumnName="SessionID" msprop:Generator_ColumnPropNameInRow="SessionID" msprop:Generator_ColumnVarNameInTable="columnSessionID" msprop:Generator_ColumnPropNameInTable="SessionIDColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ReceiptNo" msprop:Generator_UserColumnName="ReceiptNo" msprop:Generator_ColumnPropNameInRow="ReceiptNo" msprop:Generator_ColumnVarNameInTable="columnReceiptNo" msprop:Generator_ColumnPropNameInTable="ReceiptNoColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

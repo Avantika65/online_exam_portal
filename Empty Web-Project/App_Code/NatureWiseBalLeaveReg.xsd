@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="NatureWiseBalLeaveReg" targetNamespace="http://tempuri.org/NatureWiseBalLeaveReg.xsd" xmlns:mstns="http://tempuri.org/NatureWiseBalLeaveReg.xsd" xmlns="http://tempuri.org/NatureWiseBalLeaveReg.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="NatureWiseBalLeaveReg" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="NatureWiseBalLeaveReg" msprop:Generator_UserDSName="NatureWiseBalLeaveReg">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_RowClassName="DataTable1Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="EmpId" msprop:Generator_ColumnVarNameInTable="columnEmpId" msprop:Generator_ColumnPropNameInRow="EmpId" msprop:Generator_ColumnPropNameInTable="EmpIdColumn" msprop:Generator_UserColumnName="EmpId" type="xs:string" minOccurs="0" />
+              <xs:element name="EmployeeName" msprop:Generator_ColumnVarNameInTable="columnEmployeeName" msprop:Generator_ColumnPropNameInRow="EmployeeName" msprop:Generator_ColumnPropNameInTable="EmployeeNameColumn" msprop:Generator_UserColumnName="EmployeeName" type="xs:string" minOccurs="0" />
+              <xs:element name="natureID" msprop:Generator_ColumnVarNameInTable="columnnatureID" msprop:Generator_ColumnPropNameInRow="natureID" msprop:Generator_ColumnPropNameInTable="natureIDColumn" msprop:Generator_UserColumnName="natureID" type="xs:string" minOccurs="0" />
+              <xs:element name="OpenLeave" msprop:Generator_ColumnVarNameInTable="columnOpenLeave" msprop:Generator_ColumnPropNameInRow="OpenLeave" msprop:Generator_ColumnPropNameInTable="OpenLeaveColumn" msprop:Generator_UserColumnName="OpenLeave" type="xs:string" minOccurs="0" />
+              <xs:element name="EarnLeave" msprop:Generator_ColumnVarNameInTable="columnEarnLeave" msprop:Generator_ColumnPropNameInRow="EarnLeave" msprop:Generator_ColumnPropNameInTable="EarnLeaveColumn" msprop:Generator_UserColumnName="EarnLeave" type="xs:string" minOccurs="0" />
+              <xs:element name="MedicalLeave" msprop:Generator_ColumnVarNameInTable="columnMedicalLeave" msprop:Generator_ColumnPropNameInRow="MedicalLeave" msprop:Generator_ColumnPropNameInTable="MedicalLeaveColumn" msprop:Generator_UserColumnName="MedicalLeave" type="xs:string" minOccurs="0" />
+              <xs:element name="Designation" msprop:Generator_ColumnVarNameInTable="columnDesignation" msprop:Generator_ColumnPropNameInRow="Designation" msprop:Generator_ColumnPropNameInTable="DesignationColumn" msprop:Generator_UserColumnName="Designation" type="xs:string" minOccurs="0" />
+              <xs:element name="MonthName" msprop:Generator_ColumnVarNameInTable="columnMonthName" msprop:Generator_ColumnPropNameInRow="MonthName" msprop:Generator_ColumnPropNameInTable="MonthNameColumn" msprop:Generator_UserColumnName="MonthName" type="xs:string" minOccurs="0" />
+              <xs:element name="YearFor" msprop:Generator_ColumnVarNameInTable="columnYearFor" msprop:Generator_ColumnPropNameInRow="YearFor" msprop:Generator_ColumnPropNameInTable="YearForColumn" msprop:Generator_UserColumnName="YearFor" type="xs:string" minOccurs="0" />
+              <xs:element name="nature" msprop:Generator_ColumnVarNameInTable="columnnature" msprop:Generator_ColumnPropNameInRow="nature" msprop:Generator_ColumnPropNameInTable="natureColumn" msprop:Generator_UserColumnName="nature" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

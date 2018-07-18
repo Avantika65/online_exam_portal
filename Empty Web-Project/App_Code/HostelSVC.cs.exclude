@@ -1,0 +1,568 @@
+﻿using System;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.ServiceModel.Activation;
+using System.ServiceModel.Web;
+using NewDAL;
+using System.Data;
+using System.Data.SqlClient;
+using System.Collections.Generic;
+
+[ServiceContract(Namespace = "")]
+[AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
+public class HostelSVC
+{
+	// To use HTTP GET, add [WebGet] attribute. (Default ResponseFormat is WebMessageFormat.Json)
+	// To create an operation that returns XML,
+	//     add [WebGet(ResponseFormat=WebMessageFormat.Xml)],
+	//     and include the following line in the operation body:
+	//         WebOperationContext.Current.OutgoingResponse.ContentType = "text/xml";
+    DBManager objDB;
+    [OperationContract]
+    public string InsertMaster_Hostel_Residense(List<HostelDM.Master_Hostel_ResidenseDM> objMHRes, Admin.AdministratorData.AuditDM audit)
+    {
+        NewDAL.DBManager objDB = new DBManager();
+        objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+        objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+        objDB.Open();
+        objDB.BeginTransaction();
+        string retv = "";
+        string f = "";
+        try
+        {
+            foreach (HostelDM.Master_Hostel_ResidenseDM objMHR in objMHRes)
+            {
+
+                objDB.CreateParameters(8);
+                objDB.AddParameters(0, "ResidenseID", objMHR.ResidenseID, DbType.Int32);
+                objDB.AddParameters(1, "ResidenseName", objMHR.ResidenseName, DbType.String);
+                objDB.AddParameters(2, "Type", objMHR.Type, DbType.String);
+                objDB.AddParameters(3, "InstituteID", objMHR.InstituteID, DbType.Int32);
+                objDB.AddParameters(4, "SessionID", objMHR.SessionID, DbType.String);
+                objDB.AddParameters(5, "UName", objMHR.UName, DbType.String);
+                objDB.AddParameters(6, "UEntDt", objMHR.UEntDt, DbType.String);
+                objDB.AddParameters(7, "flag", objMHR.flag, DbType.String);
+                objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Master_Hostel_ResidenseInsert");
+                f = objMHR.flag;
+            }
+            objDB.CreateParameters(9);
+            objDB.AddParameters(0, "ID", 0, DbType.Int32);
+            objDB.AddParameters(1, "Form_Name", audit.Form_Name, DbType.String);
+            objDB.AddParameters(2, "Action", audit.Action, DbType.String);
+            objDB.AddParameters(3, "User_ID", audit.User_ID, DbType.String);
+            objDB.AddParameters(4, "Entry_Date", audit.Entry_Date, DbType.String);
+            objDB.AddParameters(5, "Record_ID", audit.Record_ID, DbType.String);
+            objDB.AddParameters(6, "Entry_Time", audit.Entry_Time, DbType.String);
+            objDB.AddParameters(7, "InstituteID", audit.InstituteID, DbType.Int32);
+            objDB.AddParameters(8, "SessionID", audit.SessionID, DbType.String);
+            objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Audit_Insert");
+            objDB.Transaction.Commit();
+            if (f == "N")
+            {
+                retv = "Record saved.";
+            }
+            else if (f == "U")
+            {
+                retv = "Record Updated Successfully.";
+            }
+            else
+            {
+                retv = "Record deleted Successfully.";
+            }
+        }
+        catch (Exception ex)
+        {
+            objDB.Transaction.Rollback();
+            retv = "Unable to save record :-" + ex.Message.ToString();
+        }
+        finally
+        {
+
+            objDB.Connection.Close();
+            objDB.Dispose();
+        }
+        return retv;
+    }
+
+    [OperationContract]
+    public string InsertMaster_Hostel_Category(List<HostelDM.Master_Hostel_CategoryDM> objMHCat, Admin.AdministratorData.AuditDM audit)
+    {
+        NewDAL.DBManager objDB = new DBManager();
+        objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+        objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+        objDB.Open();
+        objDB.BeginTransaction();
+        string retv = "";
+        string f = "";
+        try
+        {
+            foreach (HostelDM.Master_Hostel_CategoryDM objMHC in objMHCat )
+            {
+
+            objDB.CreateParameters(8);
+            objDB.AddParameters(0, "CategoryID",objMHC.ResidenseID, DbType.Int32);
+            objDB.AddParameters(1, "ResidenseID", objMHC.ResidenseID, DbType.Int32);
+            objDB.AddParameters(2, "CategoryName", objMHC.CategoryName, DbType.String);
+            objDB.AddParameters(3, "Capacity", objMHC.Capacity, DbType.Int32);
+            objDB.AddParameters(4, "InstituteID", objMHC.InstituteID, DbType.Int32);
+            objDB.AddParameters(5, "SessionID", objMHC.SessionID, DbType.String);
+            objDB.AddParameters(6, "UName", objMHC.UName, DbType.String);
+            objDB.AddParameters(7, "UEntDt", objMHC.UEntDt, DbType.DateTime);
+            objDB.AddParameters(8, "flag", objMHC.flag, DbType.String);
+            objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Master_Hostel_CategoryInsert");
+            f=objMHC.flag;
+
+            }
+            objDB.CreateParameters(9);
+            objDB.AddParameters(0, "ID", 0, DbType.Int32);
+            objDB.AddParameters(1, "Form_Name", audit.Form_Name, DbType.String);
+            objDB.AddParameters(2, "Action", audit.Action, DbType.String);
+            objDB.AddParameters(3, "User_ID", audit.User_ID, DbType.String);
+            objDB.AddParameters(4, "Entry_Date", audit.Entry_Date, DbType.String);
+            objDB.AddParameters(5, "Record_ID", audit.Record_ID, DbType.String);
+            objDB.AddParameters(6, "Entry_Time", audit.Entry_Time, DbType.String);
+            objDB.AddParameters(7, "InstituteID", audit.InstituteID, DbType.Int32);
+            objDB.AddParameters(8, "SessionID", audit.SessionID, DbType.String);
+            objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Audit_Insert");
+            objDB.Transaction.Commit();
+            if (f == "N")
+            {
+                retv = "Record saved.";
+            }
+            else if (f == "U")
+            {
+                retv = "Record Updated Successfully.";
+            }
+            else
+            {
+                retv = "Record deleted Successfully.";
+            }
+        }
+        catch (Exception ex)
+        {
+            objDB.Transaction.Rollback();
+            retv = "Unable to save record :-" + ex.Message.ToString();
+        }
+        finally
+        {
+
+            objDB.Connection.Close();
+            objDB.Dispose();
+        }
+        return retv;
+    }
+
+
+    [OperationContract]
+    public string InsertMaster_RoomType(List<HostelDM.MasterRoomTypeDM> objMRT, Admin.AdministratorData.AuditDM audit)
+    {
+        NewDAL.DBManager objDB = new DBManager();
+        objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+        objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+        objDB.Open();
+        objDB.BeginTransaction();
+        string retv = "";
+        string f = "";
+        try
+        {
+            foreach (HostelDM.MasterRoomTypeDM objRTM in objMRT)
+            {
+                objDB.CreateParameters(7);
+                objDB.AddParameters(0, "RoomTypeID", objRTM, DbType.Int32);
+                objDB.AddParameters(1, "RoomT_N", objRTM, DbType.Int32);
+                objDB.AddParameters(2, "Hostel_ID", objRTM.Hostel_ID, DbType.Int32);
+                objDB.AddParameters(3, "Inst_ID", objRTM.Inst_ID, DbType.Int32);
+                objDB.AddParameters(4, "UName", objRTM.UName, DbType.String);
+                objDB.AddParameters(5, "UEntDt", objRTM.UEntDt, DbType.DateTime);
+                objDB.AddParameters(6, "flag", objRTM.flag, DbType.String);
+                objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Hostel_RoomType_mInsert");
+                f = objRTM.flag;   
+            }
+            objDB.CreateParameters(9);
+            objDB.AddParameters(0, "ID", 0, DbType.Int32);
+            objDB.AddParameters(1, "Form_Name", audit.Form_Name, DbType.String);
+            objDB.AddParameters(2, "Action", audit.Action, DbType.String);
+            objDB.AddParameters(3, "User_ID", audit.User_ID, DbType.String);
+            objDB.AddParameters(4, "Entry_Date", audit.Entry_Date, DbType.String);
+            objDB.AddParameters(5, "Record_ID", audit.Record_ID, DbType.String);
+            objDB.AddParameters(6, "Entry_Time", audit.Entry_Time, DbType.String);
+            objDB.AddParameters(7, "InstituteID", audit.InstituteID, DbType.Int32);
+            objDB.AddParameters(8, "SessionID", audit.SessionID, DbType.String);
+            objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Audit_Insert");
+            objDB.Transaction.Commit();
+            if (f == "N")
+            {
+                retv = "Record saved.";
+            }
+            else if (f == "U")
+            {
+                retv = "Record Updated Successfully.";
+            }
+            else
+            {
+                retv = "Record deleted Successfully.";
+            }
+        }
+        catch (Exception ex)
+        {
+            objDB.Transaction.Rollback();
+            retv = "Unable to save record :-" + ex.Message.ToString();
+        }
+        finally
+        {
+            objDB.Connection.Close();
+            objDB.Dispose();
+        }
+        return retv;
+    }
+    	// Add more operations here and mark them with [OperationContract]
+    [OperationContract]
+    public string InsertRoomT_child(List<HostelDM.MasterRoomTypeCDM> objRTChd, Admin.AdministratorData.AuditDM audit)
+    {
+        NewDAL.DBManager objDB = new DBManager();
+        objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+        objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+        objDB.Open();
+        objDB.BeginTransaction();
+        string retv = "";
+        string f = "";
+        try
+        {
+            foreach (HostelDM.MasterRoomTypeCDM objRTC in objRTChd)
+            {
+
+                objDB.CreateParameters(6);
+                objDB.AddParameters(0, "RoomTypeID", objRTC.RoomChild_ID, DbType.Int32);
+                objDB.AddParameters(1, "RoomT_N", objRTC.RoomT_Id, DbType.String);
+                objDB.AddParameters(2, "Hostel_ID", objRTC.FromDate, DbType.DateTime);
+                objDB.AddParameters(3, "Inst_ID", objRTC.Todate, DbType.DateTime);
+                objDB.AddParameters(4, "UName", objRTC.Rate, DbType.Decimal);
+                objDB.AddParameters(5, "flag", objRTC.flag, DbType.String);
+                objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Hostel_RoomT_childInsert");
+                f = objRTC.flag;
+            }
+            objDB.CreateParameters(9);
+            objDB.AddParameters(0, "ID", 0, DbType.Int32);
+            objDB.AddParameters(1, "Form_Name", audit.Form_Name, DbType.String);
+            objDB.AddParameters(2, "Action", audit.Action, DbType.String);
+            objDB.AddParameters(3, "User_ID", audit.User_ID, DbType.String);
+            objDB.AddParameters(4, "Entry_Date", audit.Entry_Date, DbType.String);
+            objDB.AddParameters(5, "Record_ID", audit.Record_ID, DbType.String);
+            objDB.AddParameters(6, "Entry_Time", audit.Entry_Time, DbType.String);
+            objDB.AddParameters(7, "InstituteID", audit.InstituteID, DbType.Int32);
+            objDB.AddParameters(8, "SessionID", audit.SessionID, DbType.String);
+            objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Audit_Insert");
+            objDB.Transaction.Commit();
+            if (f == "N")
+            {
+                retv = "Record saved.";
+            }
+            else if (f == "U")
+            {
+                retv = "Record Updated Successfully.";
+            }
+            else
+            {
+                retv = "Record deleted Successfully.";
+            }
+        }
+        catch (Exception ex)
+        {
+            objDB.Transaction.Rollback();
+            retv = "Unable to save record :-" + ex.Message.ToString();
+        }
+        finally
+        {
+            objDB.Connection.Close();
+            objDB.Dispose();
+        }
+        return retv;
+    }
+
+
+    [OperationContract]
+    public string InsertRoom_Quarter_Master(List<HostelDM.Room_Quarter_MasterDM> objRQMst, Admin.AdministratorData.AuditDM audit)
+    {
+        NewDAL.DBManager objDB = new DBManager();
+        objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+        objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+        objDB.Open();
+        objDB.BeginTransaction();
+        string retv = "";
+        string f = "";
+        try
+        {
+            foreach (HostelDM.Room_Quarter_MasterDM objRQM in objRQMst)
+            {
+                objDB.CreateParameters(18);
+                objDB.AddParameters(0, "ID", objRQM.ID, DbType.Int32);
+                objDB.AddParameters(1, "RoomQtrID", objRQM.RoomQtrID, DbType.String);
+                objDB.AddParameters(2, "ResiID", objRQM.ResiID, DbType.DateTime);
+                objDB.AddParameters(3, "Type", objRQM.Type, DbType.DateTime);
+                objDB.AddParameters(4, "Room_Qtr_No", objRQM.Room_Qtr_No, DbType.Decimal);
+                objDB.AddParameters(5, "CategoryID", objRQM.CategoryID, DbType.String);
+                objDB.AddParameters(6, "Capacity", objRQM.Capacity, DbType.String);
+                objDB.AddParameters(7, "Bed_Capacity", objRQM.Bed_Capacity, DbType.String);
+                objDB.AddParameters(8, "Alloted_Room", objRQM.Alloted_Room, DbType.String);
+                objDB.AddParameters(9, "Status", objRQM.Status, DbType.String);
+                objDB.AddParameters(10, "Remarks", objRQM.Remarks, DbType.String);
+                objDB.AddParameters(11, "InstituteID", objRQM.InstituteID, DbType.String);
+                objDB.AddParameters(12, "SessionID", objRQM.SessionID, DbType.String);
+                objDB.AddParameters(13, "UName", objRQM.UName, DbType.String);
+                objDB.AddParameters(14, "UEntDt", objRQM.UEntDt, DbType.String);
+                objDB.AddParameters(15, "RoomType", objRQM.RoomType, DbType.String);
+                objDB.AddParameters(16, "RoomTypeChild", objRQM.RoomTypeChild, DbType.String);
+                objDB.AddParameters(17, "flag", objRQM.flag, DbType.String);
+                objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Room_Quarter_MasterInsert");
+                f = objRQM.flag;
+            }
+            objDB.CreateParameters(9);
+            objDB.AddParameters(0, "ID", 0, DbType.Int32);
+            objDB.AddParameters(1, "Form_Name", audit.Form_Name, DbType.String);
+            objDB.AddParameters(2, "Action", audit.Action, DbType.String);
+            objDB.AddParameters(3, "User_ID", audit.User_ID, DbType.String);
+            objDB.AddParameters(4, "Entry_Date", audit.Entry_Date, DbType.String);
+            objDB.AddParameters(5, "Record_ID", audit.Record_ID, DbType.String);
+            objDB.AddParameters(6, "Entry_Time", audit.Entry_Time, DbType.String);
+            objDB.AddParameters(7, "InstituteID", audit.InstituteID, DbType.Int32);
+            objDB.AddParameters(8, "SessionID", audit.SessionID, DbType.String);
+            objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Audit_Insert");
+            objDB.Transaction.Commit();
+            if (f == "N")
+            {
+                retv = "Record saved.";
+            }
+            else if (f == "U")
+            {
+                retv = "Record Updated Successfully.";
+            }
+            else
+            {
+                retv = "Record deleted Successfully.";
+            }
+        }
+        catch (Exception ex)
+        {
+            objDB.Transaction.Rollback();
+            retv = "Unable to save record :-" + ex.Message.ToString();
+        }
+        finally
+        {
+            objDB.Connection.Close();
+            objDB.Dispose();
+        }
+        return retv;
+    }
+   
+   [OperationContract]
+   public string InsertMessSchedMast(List<HostelDM.MessSchedMasterDM> objMSMast, Admin.AdministratorData.AuditDM audit)
+   {
+       NewDAL.DBManager objDB = new DBManager();
+       objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+       objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+       objDB.Open();
+       objDB.BeginTransaction();
+       string retv = "";
+       string f = "";
+       try
+       {
+           foreach (HostelDM.MessSchedMasterDM objMSM in objMSMast)
+           {
+
+
+               objDB.CreateParameters(8);
+               objDB.AddParameters(0, "MessSchID", objMSM.MessSchID, DbType.Int32);
+               objDB.AddParameters(1, "MessSchDate", objMSM.MessSchDate, DbType.DateTime);
+               objDB.AddParameters(2, "ResiID", objMSM.ResiID, DbType.Int32);
+               objDB.AddParameters(3, "InstituteID", objMSM.InstituteID, DbType.Int32);
+               objDB.AddParameters(4, "SessionID", objMSM.SessionID, DbType.String);
+               objDB.AddParameters(5, "UName", objMSM.UName, DbType.String);
+               objDB.AddParameters(6, "UEntDt", objMSM.UEntDt, DbType.DateTime);
+               objDB.AddParameters(7, "flag", objMSM.flag, DbType.String);
+               objDB.ExecuteNonQuery(CommandType.StoredProcedure, "MessSchedMastInsert");
+               f = objMSM.flag;
+           }
+           objDB.CreateParameters(9);
+           objDB.AddParameters(0, "ID", 0, DbType.Int32);
+           objDB.AddParameters(1, "Form_Name", audit.Form_Name, DbType.String);
+           objDB.AddParameters(2, "Action", audit.Action, DbType.String);
+           objDB.AddParameters(3, "User_ID", audit.User_ID, DbType.String);
+           objDB.AddParameters(4, "Entry_Date", audit.Entry_Date, DbType.String);
+           objDB.AddParameters(5, "Record_ID", audit.Record_ID, DbType.String);
+           objDB.AddParameters(6, "Entry_Time", audit.Entry_Time, DbType.String);
+           objDB.AddParameters(7, "InstituteID", audit.InstituteID, DbType.Int32);
+           objDB.AddParameters(8, "SessionID", audit.SessionID, DbType.String);
+           objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Audit_Insert");
+           objDB.Transaction.Commit();
+           if (f == "N")
+           {
+               retv = "Record saved.";
+           }
+           else if (f == "U")
+           {
+               retv = "Record Updated Successfully.";
+           }
+           else
+           {
+               retv = "Record deleted Successfully.";
+           }
+       }
+       catch (Exception ex)
+       {
+           objDB.Transaction.Rollback();
+           retv = "Unable to save record :-" + ex.Message.ToString();
+       }
+       finally
+       {
+           objDB.Connection.Close();
+           objDB.Dispose();
+       }
+       return retv;
+   }
+   [OperationContract]
+   public string InsertMessSchedChd(List<HostelDM.MessSchedChdDM> objMSChd, Admin.AdministratorData.AuditDM audit)
+   {
+       NewDAL.DBManager objDB = new DBManager();
+       objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+       objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+       objDB.Open();
+       objDB.BeginTransaction();
+       string retv = "";
+       string f = "";
+       try
+       {
+           foreach (HostelDM.MessSchedChdDM objMSC in objMSChd)
+           {
+
+               objDB.CreateParameters(10);
+               objDB.AddParameters(0, "MessSchID", objMSC.MessSchID, DbType.Int32);
+               objDB.AddParameters(1, "SNo", objMSC.SNo, DbType.Int32);
+               objDB.AddParameters(2, "Schedule", objMSC.Schedule, DbType.String);
+               objDB.AddParameters(3, "FromTime", objMSC.FromTime, DbType.String);
+               objDB.AddParameters(4, "ToTime", objMSC.ToTime, DbType.String);
+               objDB.AddParameters(5, "InstituteID", objMSC.InstituteID, DbType.Int32);
+               objDB.AddParameters(6, "SessionID", objMSC.SessionID, DbType.String);
+               objDB.AddParameters(7, "UName", objMSC.UName, DbType.String);
+               objDB.AddParameters(8, "UEntDt", objMSC.UEntDt, DbType.DateTime);
+               objDB.AddParameters(9, "flag", objMSC.flag, DbType.String);
+               objDB.ExecuteNonQuery(CommandType.StoredProcedure, "MessSchedchdInsert");
+               f = objMSC.flag;
+
+           }
+           objDB.CreateParameters(9);
+           objDB.AddParameters(0, "ID", 0, DbType.Int32);
+           objDB.AddParameters(1, "Form_Name", audit.Form_Name, DbType.String);
+           objDB.AddParameters(2, "Action", audit.Action, DbType.String);
+           objDB.AddParameters(3, "User_ID", audit.User_ID, DbType.String);
+           objDB.AddParameters(4, "Entry_Date", audit.Entry_Date, DbType.String);
+           objDB.AddParameters(5, "Record_ID", audit.Record_ID, DbType.String);
+           objDB.AddParameters(6, "Entry_Time", audit.Entry_Time, DbType.String);
+           objDB.AddParameters(7, "InstituteID", audit.InstituteID, DbType.Int32);
+           objDB.AddParameters(8, "SessionID", audit.SessionID, DbType.String);
+           objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Audit_Insert");
+           objDB.Transaction.Commit();
+           if (f == "N")
+           {
+               retv = "Record saved.";
+           }
+           else if (f == "U")
+           {
+               retv = "Record Updated Successfully.";
+           }
+           else
+           {
+               retv = "Record deleted Successfully.";
+           }
+       }
+       catch (Exception ex)
+       {
+           objDB.Transaction.Rollback();
+           retv = "Unable to save record :-" + ex.Message.ToString();
+       }
+       finally
+       {
+           objDB.Connection.Close();
+           objDB.Dispose();
+       }
+       return retv;
+   }
+   
+   [OperationContract]
+   public string InsertRoomAllotMast(List<HostelDM.RoomAllotMastDM> objRAMast, Admin.AdministratorData.AuditDM audit)
+   {
+       NewDAL.DBManager objDB = new DBManager();
+       objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+       objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+       objDB.Open();
+       objDB.BeginTransaction();
+       string retv = "";
+       string f = "";
+       try
+       {
+           foreach (HostelDM.RoomAllotMastDM objRAM in objRAMast)
+           {
+
+               objDB.CreateParameters(19);
+               objDB.AddParameters(0, "AllotmentID",objRAM.AllotmentID , DbType.Int32);
+               objDB.AddParameters(1, "DocType",objRAM.DocType, DbType.String);
+               objDB.AddParameters(2, "DocNo", objRAM.DocNo, DbType.Int32);
+               objDB.AddParameters(3, "Student_Emp_ID",objRAM.Student_Emp_ID , DbType.Int32);
+               objDB.AddParameters(4, "ResiID",objRAM.ResiID, DbType.Int32);
+               objDB.AddParameters(5, "Room_Qtr_No",objRAM.Room_Qtr_No , DbType.String);
+               objDB.AddParameters(6, "RoomQtrID",objRAM.RoomQtrID, DbType.Int32);
+               objDB.AddParameters(7, "Remarks", objRAM.Remarks, DbType.String);
+               objDB.AddParameters(8, "InstituteID", objRAM.InstituteID, DbType.Int32);
+               objDB.AddParameters(9, "SessionID", objRAM.SessionID, DbType.String);
+               objDB.AddParameters(10, "UName", objRAM.UName, DbType.String);
+               objDB.AddParameters(11, "UEntDt", objRAM.UEntDt, DbType.DateTime);
+               objDB.AddParameters(12, "BedNo",objRAM.BedNo, DbType.String);
+               objDB.AddParameters(13, "Position",objRAM.Position , DbType.String);
+               objDB.AddParameters(14, "Batch",objRAM.Batch , DbType.String);
+               objDB.AddParameters(15, "periodFrom",objRAM.periodFrom, DbType.DateTime);
+                objDB.AddParameters(16, "periodTo",objRAM.periodTo , DbType.DateTime);
+                objDB.AddParameters(17, "RoomStatus",objRAM.RoomStatus, DbType.String);
+               objDB.AddParameters(18, "flag", objRAM.flag, DbType.String);
+               objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Room__Allotment_Entry_sp");
+               f = objRAM.flag;
+
+           }
+           objDB.CreateParameters(9);
+           objDB.AddParameters(0, "ID", 0, DbType.Int32);
+           objDB.AddParameters(1, "Form_Name", audit.Form_Name, DbType.String);
+           objDB.AddParameters(2, "Action", audit.Action, DbType.String);
+           objDB.AddParameters(3, "User_ID", audit.User_ID, DbType.String);
+           objDB.AddParameters(4, "Entry_Date", audit.Entry_Date, DbType.String);
+           objDB.AddParameters(5, "Record_ID", audit.Record_ID, DbType.String);
+           objDB.AddParameters(6, "Entry_Time", audit.Entry_Time, DbType.String);
+           objDB.AddParameters(7, "InstituteID", audit.InstituteID, DbType.Int32);
+           objDB.AddParameters(8, "SessionID", audit.SessionID, DbType.String);
+           objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Audit_Insert");
+           objDB.Transaction.Commit();
+           if (f == "N")
+           {
+               retv = "Record saved.";
+           }
+           else if (f == "U")
+           {
+               retv = "Record Updated Successfully.";
+           }
+           else
+           {
+               retv = "Record deleted Successfully.";
+           }
+       }
+       catch (Exception ex)
+       {
+           objDB.Transaction.Rollback();
+           retv = "Unable to save record :-" + ex.Message.ToString();
+       }
+       finally
+       {
+           objDB.Connection.Close();
+           objDB.Dispose();
+       }
+       return retv;
+   }
+
+}

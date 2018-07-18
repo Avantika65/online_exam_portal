@@ -1,0 +1,60 @@
+﻿<%@ Register Assembly="CommonClassLibrary" Namespace="CommonClassLibrary" TagPrefix="cc1" %>
+<%@ Register Assembly="GridViewPaging.Controls" Namespace="GridViewPaging.Controls"
+    TagPrefix="cc1" %>
+
+<%--
+Default skin template. The following skins are provided as examples only.
+
+1. Named control skin. The SkinId should be uniquely defined because
+   duplicate SkinId's per control type are not allowed in the same theme.
+
+<asp:GridView runat="server" SkinId="gridviewSkin" BackColor="White" >
+   <AlternatingRowStyle BackColor="Blue" />
+</asp:GridView>
+
+2. Default skin. The SkinId is not defined. Only one default 
+   control skin per control type is allowed in the same theme.
+
+<asp:Image runat="server" ImageUrl="~/images/image1.jpg" />
+--%>
+
+<asp:TextBox runat="server" CssClass="inputlogin"></asp:TextBox>
+<asp:Label runat="server" CssClass="lbl"></asp:Label>
+<asp:Checkbox runat="server" CssClass="chkBox"></asp:Checkbox>
+<asp:Radiobutton runat="server" CssClass="chkBox"></asp:Radiobutton>
+<asp:RadioButtonList runat="server" CssClass="chkBox"></asp:RadioButtonList>
+<asp:ListBox runat="server" CssClass="ListBox"></asp:ListBox>
+<asp:DropDownList runat="server" CssClass="rdgdropdown"></asp:DropDownList>
+ <asp:GridView runat="server" CssClass="paging_gridview" GridLines="both"  Width="100%">                
+<RowStyle CssClass="paging_gridview_itm" />
+<PagerStyle CssClass="paging_gridview_pgr" />
+<HeaderStyle CssClass="paging_gridview_hdr" />
+<AlternatingRowStyle CssClass="paging_gridview_aitm" />
+<SelectedRowStyle CssClass="paging_gridview_saitm"  />
+<EditRowStyle BackColor="#999999" />
+<FooterStyle CssClass="paging_gridview_Footer"/>               
+</asp:GridView>
+ 
+<cc1:GroupedGridView runat="server" CssClass="paging_gridview" GridLines="both"  Width="100%">
+               
+                <RowStyle CssClass="paging_gridview_itm" />
+                <PagerStyle CssClass="paging_gridview_pgr" />
+                <HeaderStyle CssClass="paging_gridview_hdr" />
+                <AlternatingRowStyle CssClass="paging_gridview_aitm" />
+                <SelectedRowStyle CssClass="paging_gridview_saitm"  />
+                 <EditRowStyle BackColor="#999999" />
+                 <FooterStyle CssClass="paging_gridview_Footer"/>
+    
+</cc1:GroupedGridView>   
+<cc1:PagingGridView runat="server" CssClass="paging_gridview" GridLines="both"  Width="100%">
+               
+                <RowStyle CssClass="paging_gridview_itm" />
+                <PagerStyle CssClass="paging_gridview_pgr" />
+                <HeaderStyle CssClass="paging_gridview_hdr" />
+                <AlternatingRowStyle CssClass="paging_gridview_aitm" />
+                <SelectedRowStyle CssClass="paging_gridview_saitm"  />
+                 <EditRowStyle BackColor="#999999" />
+                 <FooterStyle CssClass="paging_gridview_Footer"/>
+    
+</cc1:PagingGridView>             
+            

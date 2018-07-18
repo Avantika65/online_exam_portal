@@ -1,0 +1,461 @@
+﻿using Microsoft.VisualBasic;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Data;
+using System.Diagnostics;
+using DataAccessLayer;
+//using Class1;
+using System.Configuration;
+using System.Data.Common;
+
+namespace NewDAL
+{
+	public sealed class DBManager : DataAccessLayer.IDBManager_
+	{
+        // DBManager_' must implement 'Function ExecuteNonQuery(commandType As System.Data.CommandType, commandText As String) As Integer' for interface 'DataAccessLayer.IDBManager'.	D:\Inetpub\wwwroot\Education\App_Code\DataLayer\Class2.vb	7	20	D:\...\Education\
+
+        //Implements System.IDisposable
+
+        private IDbConnection idbConnection;
+        private IDataReader idataReader;
+        private IDbCommand idbCommand;
+        private DataProvider m_providerType;
+        private IDbTransaction idbTransaction = null;
+        private IDbDataParameter[] idbParameters = null;
+        private string strConnection;
+
+        private System.Data.DbType Dbtype;
+
+        public  DBManager()
+        {
+        }
+        public  DBManager(DataProvider providerType)
+        {
+            this.m_providerType = providerType;
+        }
+
+        public DBManager(DataProvider providerType, string connectionString)
+        {
+            this.m_providerType = providerType;
+            this.strConnection = connectionString;// ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+        }
+
+        public IDbConnection Connection
+        {
+            get { return idbConnection; }
+        }
+
+        public IDataReader DataReader
+        {
+            get { return idataReader; }
+            set { idataReader = value; }
+        }
+
+        public DataProvider ProviderType
+        {
+            get { return m_providerType; }
+            set { m_providerType = value; }
+        }
+
+        public string ConnectionString
+        {
+            get { return strConnection; }
+            set { strConnection = value; }
+        }
+
+        public IDbCommand Command
+        {
+            get { return idbCommand; }
+        }
+
+        public IDbTransaction Transaction
+        {
+            get { return idbTransaction; }
+        }
+
+        public IDbDataParameter[] Parameters
+        {
+            get { return idbParameters; }
+        }
+        public DbType DBtype
+        {
+            get { return Dbtype; }
+        }
+        //public DbType Dbtype
+        //{
+        //    get { return Dbtypeo; }
+        //}
+
+
+        public void Open()
+        {
+            idbConnection = DBManagerFactory_.GetConnection(this.m_providerType);
+            idbConnection.ConnectionString = this.ConnectionString;
+            if (idbConnection.State != ConnectionState.Open)
+            {
+                idbConnection.Open();
+            }
+            idbCommand = DBManagerFactory_.GetCommand(this.ProviderType);
+        }
+
+        public void Close()
+        {
+            if (idbConnection.State != ConnectionState.Closed)
+            {
+                idbConnection.Close();
+                this.Close();
+
+            }
+        }
+
+        //Public Sub Dispose() Implements System.IDisposable.Dispose
+        //    'GC.SupressFinalize(Me)
+        //    Me.Close()
+        //    Me.idbCommand = Nothing
+        //    Me.idbTransaction = Nothing
+        //    Me.idbConnection = Nothing
+        //End Sub
+        public void Dispose()
+        {
+            //GC.SupressFinalize(Me)
+            this.Close();
+            this.idbCommand = null;
+            this.idbTransaction = null;
+            this.idbConnection = null;
+        }
+        public void CreateParameters(int paramsCount)
+        {
+            //idbParameter = New DBManagerFactory.GetParameters(paramsCount)
+            idbParameters = DBManagerFactory_.GetParameters(ProviderType, paramsCount);
+            // DBManagerFactory.GetParameter(DataProvider.OleDb)
+        }
+        public enum DbType2
+        {
+            BigInt,
+            Binary,
+            Bool,
+            BSTR,
+            Chr,
+            Currency,
+            Datee,
+            DBDate,
+            DBTime,
+            DBTimeStamp,
+            Decimall,
+            Double1,
+            Empty,
+            Err,
+            LongVarBinary,
+            LongVarChar,
+            LongVarWChar,
+            Numeric,
+            Singl,
+            SmallInt,
+            TinyInt,
+            VarBinary,
+            VarChar,
+            VarNumeric,
+            VarWChar,
+            WChar
+        }
+        public void AddParameters(int index, string paramName, object objValue, DbType dbtype)
+        {
+            if (index < idbParameters.Length)
+            {
+                idbParameters[index].ParameterName = "@" + paramName;
+                idbParameters[index].Value = objValue;
+                idbParameters[index].DbType = dbtype;
+                //idbParameters[index].Direction = System.Data.ParameterDirection.Input;
+            }
+        }
+        public void AddParameters(int index, string paramName, object objValue, DbType dbtype, System.Data.ParameterDirection direction)
+        {
+            if (index < idbParameters.Length)
+            {
+                idbParameters[index].ParameterName = "@" + paramName;
+                idbParameters[index].Value = objValue;
+                idbParameters[index].DbType = dbtype;
+                idbParameters[index].Direction = direction;
+            }
+        }
+
+        public void BeginTransaction()
+        {
+            if (this.idbTransaction == null)
+            {
+                idbTransaction = DBManagerFactory_.GetTransaction(this.ProviderType, this.Connection);
+
+            }
+            idbCommand = DBManagerFactory_.GetCommand(this.ProviderType);
+            idbCommand.Connection = this.Connection;
+            idbCommand.Transaction = idbTransaction;
+
+        }
+
+        public void CommitTransaction()
+        {
+            if (this.idbTransaction != null)
+            {
+                this.idbTransaction.Commit();
+            }
+            idbTransaction = null;
+        }
+
+        public IDataReader ExecuteReader(CommandType commandType, string commandText)
+        {
+            this.idbCommand = DBManagerFactory_.GetCommand(this.ProviderType);
+            idbCommand.Connection = this.Connection;
+            PrepareCommand(idbCommand, this.Connection, this.Transaction, commandType, commandText, this.Parameters);
+            this.DataReader = idbCommand.ExecuteReader();
+            idbCommand.Parameters.Clear();
+            return this.DataReader;
+        }
+
+        public void CloseReader()
+        {
+            if (this.DataReader != null)
+            {
+                this.DataReader.Close();
+            }
+        }
+
+        //Implements DataAccessLayer.IDBManager.CreateParameters
+        private void AttachParameters(IDbCommand IDbCommandcommand, IDbDataParameter[] commandParameters)
+        {
+            foreach (IDbDataParameter idbParameter in commandParameters)
+            {
+                if ((idbParameter.Direction == ParameterDirection.InputOutput) && (idbParameter.Value == null))
+                {
+                    idbParameter.Value = System.DBNull.Value;
+                }
+                Command.Parameters.Add(idbParameter);
+            }
+        }
+
+        private void PrepareCommand(IDbCommand IDbCommandcommand, IDbConnection connection, IDbTransaction transaction, CommandType commandType, string commandText, IDbDataParameter[] commandParameters)
+        {
+            Command.Connection = connection;
+            Command.CommandText = commandText;
+            Command.CommandType = commandType;
+            if (transaction != null)
+            {
+                Command.Transaction = transaction;
+            }
+            if (commandParameters != null)
+            {
+                AttachParameters(Command, commandParameters);
+            }
+        }
+
+        public int ExecuteNonQuery(CommandType commandType, string commandText)
+        {
+            this.idbCommand = DBManagerFactory_.GetCommand(ProviderType);
+            PrepareCommand(idbCommand, Connection, Transaction, commandType, commandText, Parameters);
+            //try
+            //{
+                int returnValue = idbCommand.ExecuteNonQuery();
+                //idbCommand.Parameters.Clear();
+
+                return returnValue;
+
+            //}
+            //catch (Exception ex)
+            //{
+            //}
+
+        }
+        //Private Shared Function DiscoverProcedureParameterSet(ByVal connection As IDbConnection, ByVal procedureName As String, ByVal returnValueParameter As Boolean) As OleDbParameter()
+
+
+        //    OleDbCommandBuilder.DeriveParameters(sqlCmd)
+        //    If Not returnValueParameter Then
+        //        sqlCmd.Parameters.RemoveAt(0)
+        //    End If
+        //    Dim discoveredParameters As OleDbParameter() = New OleDbParameter(sqlCmd.Parameters.Count - 1) {}
+
+
+        //    sqlCmd.Parameters.CopyTo(discoveredParameters, 0)
+        //    Return discoveredParameters
+
+        //End Function
+
+        public object ExecuteScalar(CommandType commandType, string commandText)
+        {
+
+            this.idbCommand = DBManagerFactory_.GetCommand(ProviderType);
+            PrepareCommand(idbCommand, Connection, Transaction, commandType, commandText, this.Parameters);
+            object returnValue = idbCommand.ExecuteScalar();
+            //idbCommand.Parameters.Clear();
+            return returnValue;
+
+
+
+
+        }
+        public DataSet ExecuteDataSet(CommandType commandType, string commandText)
+        {
+            this.idbCommand = DBManagerFactory_.GetCommand(this.ProviderType);
+            PrepareCommand(idbCommand, this.Connection, this.Transaction, commandType, commandText, this.Parameters);
+            DbDataAdapter dataAdapter = DBManagerFactory_.GetDataAdapter(this.ProviderType);
+            dataAdapter.SelectCommand = (DbCommand)idbCommand;
+            DataSet dataSet = new DataSet();
+            dataAdapter.Fill(dataSet);
+            idbCommand.Parameters.Clear();
+            return dataSet;
+        }
+        //Public Function ExecuteDataSet(ByVal commandType As CommandType, ByVal commandText As String) As DataSet Implements DataAccessLayer.IDBManager.ExecuteDataSet
+        //    Me.idbCommand = DBManagerFactory.GetCommand(Me.ProviderType)
+        //    PrepareCommand(idbCommand, Me.Connection, Me.Transaction, commandType, commandText, Me.Parameters)
+        //    Dim dataAdapter As IDbDataAdapter = DBManagerFactory.GetDataAdapter(Me.ProviderType)
+        //    dataAdapter.SelectCommand = idbCommand
+        //    Dim dataSet As New DataSet()
+        //    dataAdapter.Fill(dataSet)
+        //    idbCommand.Parameters.Clear()
+        //    Return dataSet
+        //End Function
+
+        public DataTable ExecuteTable(CommandType commandType, string commandText)
+        {
+            idbCommand = DBManagerFactory_.GetCommand(ProviderType);
+            PrepareCommand(idbCommand, Connection, Transaction, commandType, commandText, Parameters);
+            IDbDataAdapter dataAdapter = DBManagerFactory_.GetDataAdapter(ProviderType);
+            dataAdapter.SelectCommand = idbCommand;
+            DataSet dataSet = new DataSet();
+            dataAdapter.Fill(dataSet);
+            idbCommand.Parameters.Clear();
+            DataTable dt = dataSet.Tables[0];
+            return dt;
+        }
+
+        #region IDBManager_ Members
+
+        DataProvider IDBManager_.ProviderType
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        string IDBManager_.ConnectionString
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        IDbConnection IDBManager_.Connection
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        IDbTransaction IDBManager_.Transaction
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        IDataReader IDBManager_.DataReader
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        IDbCommand IDBManager_.Command
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        IDbDataParameter[] IDBManager_.Parameters
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        DbType IDBManager_.DBtype
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        void IDBManager_.Open()
+        {
+            throw new NotImplementedException();
+        }
+
+        void IDBManager_.BeginTransaction()
+        {
+            throw new NotImplementedException();
+        }
+
+        void IDBManager_.CommitTransaction()
+        {
+            throw new NotImplementedException();
+        }
+
+        void IDBManager_.CreateParameters(int paramsCount)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IDBManager_.AddParameters(int index, string paramName, object objValue, DbType dbtype)
+        {
+            throw new NotImplementedException();
+        }
+
+        IDataReader IDBManager_.ExecuteReader(CommandType commandType, string commandText)
+        {
+            throw new NotImplementedException();
+        }
+
+        DataTable IDBManager_.ExecuteTable(CommandType commandType, string commandText)
+        {
+            throw new NotImplementedException();
+        }
+
+        DataSet IDBManager_.ExecuteDataSet(CommandType commandType, string commandText)
+        {
+            throw new NotImplementedException();
+        }
+
+        object IDBManager_.ExecuteScalar(CommandType commandType, string commandText)
+        {
+            throw new NotImplementedException();
+        }
+
+        int IDBManager_.ExecuteNonQuery(CommandType commandType, string commandText)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IDBManager_.CloseReader()
+        {
+            throw new NotImplementedException();
+        }
+
+        void IDBManager_.Close()
+        {
+            throw new NotImplementedException();
+        }
+
+        void IDBManager_.Dispose()
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+    }
+}

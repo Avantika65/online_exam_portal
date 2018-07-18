@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="CoursecompleationStatus" targetNamespace="http://tempuri.org/CoursecompleationStatus.xsd" xmlns:mstns="http://tempuri.org/CoursecompleationStatus.xsd" xmlns="http://tempuri.org/CoursecompleationStatus.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Coursecompleatiom_status_viewTableAdapter" GeneratorDataComponentClassName="Coursecompleatiom_status_viewTableAdapter" Name="Coursecompleatiom_status_view" UserDataComponentName="Coursecompleatiom_status_viewTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectName="SRMESIM.dbo.Coursecompleatiom_status_view" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT Aid, InstituteId, SessionId, CourseId, SplId, SemesterId, Batch_Id, SubjectId, TopicId, SubtopicId, FacultyId, Activitydate, Classstrength, Presentstudent, Entrydate, LectureType, Remark, Lecturedis, PPTOHP, Sitevisitid, Labdemoid, Videolectureid, OtherMetho, Flag_T_L, T_discussion, T_revision, T_Surprise, T_casestudey, T_presentation, TopicName, SubTopicName, Hour, typeee, SubjectCode, PHour, CHour FROM Coursecompleatiom_status_view</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Aid" DataSetColumn="Aid" />
+              <Mapping SourceColumn="InstituteId" DataSetColumn="InstituteId" />
+              <Mapping SourceColumn="SessionId" DataSetColumn="SessionId" />
+              <Mapping SourceColumn="CourseId" DataSetColumn="CourseId" />
+              <Mapping SourceColumn="SplId" DataSetColumn="SplId" />
+              <Mapping SourceColumn="SemesterId" DataSetColumn="SemesterId" />
+              <Mapping SourceColumn="Batch_Id" DataSetColumn="Batch_Id" />
+              <Mapping SourceColumn="SubjectId" DataSetColumn="SubjectId" />
+              <Mapping SourceColumn="TopicId" DataSetColumn="TopicId" />
+              <Mapping SourceColumn="SubtopicId" DataSetColumn="SubtopicId" />
+              <Mapping SourceColumn="FacultyId" DataSetColumn="FacultyId" />
+              <Mapping SourceColumn="Activitydate" DataSetColumn="Activitydate" />
+              <Mapping SourceColumn="Classstrength" DataSetColumn="Classstrength" />
+              <Mapping SourceColumn="Presentstudent" DataSetColumn="Presentstudent" />
+              <Mapping SourceColumn="Entrydate" DataSetColumn="Entrydate" />
+              <Mapping SourceColumn="LectureType" DataSetColumn="LectureType" />
+              <Mapping SourceColumn="Remark" DataSetColumn="Remark" />
+              <Mapping SourceColumn="Lecturedis" DataSetColumn="Lecturedis" />
+              <Mapping SourceColumn="PPTOHP" DataSetColumn="PPTOHP" />
+              <Mapping SourceColumn="Sitevisitid" DataSetColumn="Sitevisitid" />
+              <Mapping SourceColumn="Labdemoid" DataSetColumn="Labdemoid" />
+              <Mapping SourceColumn="Videolectureid" DataSetColumn="Videolectureid" />
+              <Mapping SourceColumn="OtherMetho" DataSetColumn="OtherMetho" />
+              <Mapping SourceColumn="Flag_T_L" DataSetColumn="Flag_T_L" />
+              <Mapping SourceColumn="T_discussion" DataSetColumn="T_discussion" />
+              <Mapping SourceColumn="T_revision" DataSetColumn="T_revision" />
+              <Mapping SourceColumn="T_Surprise" DataSetColumn="T_Surprise" />
+              <Mapping SourceColumn="T_casestudey" DataSetColumn="T_casestudey" />
+              <Mapping SourceColumn="T_presentation" DataSetColumn="T_presentation" />
+              <Mapping SourceColumn="TopicName" DataSetColumn="TopicName" />
+              <Mapping SourceColumn="SubTopicName" DataSetColumn="SubTopicName" />
+              <Mapping SourceColumn="Hour" DataSetColumn="Hour" />
+              <Mapping SourceColumn="typeee" DataSetColumn="typeee" />
+              <Mapping SourceColumn="SubjectCode" DataSetColumn="SubjectCode" />
+              <Mapping SourceColumn="PHour" DataSetColumn="PHour" />
+              <Mapping SourceColumn="CHour" DataSetColumn="CHour" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="CoursecompleationStatus" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="CoursecompleationStatus" msprop:Generator_UserDSName="CoursecompleationStatus">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Coursecompleatiom_status_view" msprop:Generator_TableClassName="Coursecompleatiom_status_viewDataTable" msprop:Generator_TableVarName="tableCoursecompleatiom_status_view" msprop:Generator_TablePropName="Coursecompleatiom_status_view" msprop:Generator_RowDeletingName="Coursecompleatiom_status_viewRowDeleting" msprop:Generator_UserTableName="Coursecompleatiom_status_view" msprop:Generator_RowChangingName="Coursecompleatiom_status_viewRowChanging" msprop:Generator_RowEvHandlerName="Coursecompleatiom_status_viewRowChangeEventHandler" msprop:Generator_RowDeletedName="Coursecompleatiom_status_viewRowDeleted" msprop:Generator_RowEvArgName="Coursecompleatiom_status_viewRowChangeEvent" msprop:Generator_RowChangedName="Coursecompleatiom_status_viewRowChanged" msprop:Generator_RowClassName="Coursecompleatiom_status_viewRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Aid" msprop:Generator_ColumnVarNameInTable="columnAid" msprop:Generator_ColumnPropNameInRow="Aid" msprop:Generator_ColumnPropNameInTable="AidColumn" msprop:Generator_UserColumnName="Aid" type="xs:int" />
+              <xs:element name="InstituteId" msprop:Generator_ColumnVarNameInTable="columnInstituteId" msprop:Generator_ColumnPropNameInRow="InstituteId" msprop:Generator_ColumnPropNameInTable="InstituteIdColumn" msprop:Generator_UserColumnName="InstituteId" type="xs:int" minOccurs="0" />
+              <xs:element name="SessionId" msprop:Generator_ColumnVarNameInTable="columnSessionId" msprop:Generator_ColumnPropNameInRow="SessionId" msprop:Generator_ColumnPropNameInTable="SessionIdColumn" msprop:Generator_UserColumnName="SessionId" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="25" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CourseId" msprop:Generator_ColumnVarNameInTable="columnCourseId" msprop:Generator_ColumnPropNameInRow="CourseId" msprop:Generator_ColumnPropNameInTable="CourseIdColumn" msprop:Generator_UserColumnName="CourseId" type="xs:int" minOccurs="0" />
+              <xs:element name="SplId" msprop:Generator_ColumnVarNameInTable="columnSplId" msprop:Generator_ColumnPropNameInRow="SplId" msprop:Generator_ColumnPropNameInTable="SplIdColumn" msprop:Generator_UserColumnName="SplId" type="xs:int" minOccurs="0" />
+              <xs:element name="SemesterId" msprop:Generator_ColumnVarNameInTable="columnSemesterId" msprop:Generator_ColumnPropNameInRow="SemesterId" msprop:Generator_ColumnPropNameInTable="SemesterIdColumn" msprop:Generator_UserColumnName="SemesterId" type="xs:int" minOccurs="0" />
+              <xs:element name="Batch_Id" msprop:Generator_ColumnVarNameInTable="columnBatch_Id" msprop:Generator_ColumnPropNameInRow="Batch_Id" msprop:Generator_ColumnPropNameInTable="Batch_IdColumn" msprop:Generator_UserColumnName="Batch_Id" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SubjectId" msprop:Generator_ColumnVarNameInTable="columnSubjectId" msprop:Generator_ColumnPropNameInRow="SubjectId" msprop:Generator_ColumnPropNameInTable="SubjectIdColumn" msprop:Generator_UserColumnName="SubjectId" type="xs:int" minOccurs="0" />
+              <xs:element name="TopicId" msprop:Generator_ColumnVarNameInTable="columnTopicId" msprop:Generator_ColumnPropNameInRow="TopicId" msprop:Generator_ColumnPropNameInTable="TopicIdColumn" msprop:Generator_UserColumnName="TopicId" type="xs:int" minOccurs="0" />
+              <xs:element name="SubtopicId" msprop:Generator_ColumnVarNameInTable="columnSubtopicId" msprop:Generator_ColumnPropNameInRow="SubtopicId" msprop:Generator_ColumnPropNameInTable="SubtopicIdColumn" msprop:Generator_UserColumnName="SubtopicId" type="xs:int" minOccurs="0" />
+              <xs:element name="FacultyId" msprop:Generator_ColumnVarNameInTable="columnFacultyId" msprop:Generator_ColumnPropNameInRow="FacultyId" msprop:Generator_ColumnPropNameInTable="FacultyIdColumn" msprop:Generator_UserColumnName="FacultyId" type="xs:int" minOccurs="0" />
+              <xs:element name="Activitydate" msprop:Generator_ColumnVarNameInTable="columnActivitydate" msprop:Generator_ColumnPropNameInRow="Activitydate" msprop:Generator_ColumnPropNameInTable="ActivitydateColumn" msprop:Generator_UserColumnName="Activitydate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Classstrength" msprop:Generator_ColumnVarNameInTable="columnClassstrength" msprop:Generator_ColumnPropNameInRow="Classstrength" msprop:Generator_ColumnPropNameInTable="ClassstrengthColumn" msprop:Generator_UserColumnName="Classstrength" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Presentstudent" msprop:Generator_ColumnVarNameInTable="columnPresentstudent" msprop:Generator_ColumnPropNameInRow="Presentstudent" msprop:Generator_ColumnPropNameInTable="PresentstudentColumn" msprop:Generator_UserColumnName="Presentstudent" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Entrydate" msprop:Generator_ColumnVarNameInTable="columnEntrydate" msprop:Generator_ColumnPropNameInRow="Entrydate" msprop:Generator_ColumnPropNameInTable="EntrydateColumn" msprop:Generator_UserColumnName="Entrydate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="LectureType" msprop:Generator_ColumnVarNameInTable="columnLectureType" msprop:Generator_ColumnPropNameInRow="LectureType" msprop:Generator_ColumnPropNameInTable="LectureTypeColumn" msprop:Generator_UserColumnName="LectureType" type="xs:int" minOccurs="0" />
+              <xs:element name="Remark" msprop:Generator_ColumnVarNameInTable="columnRemark" msprop:Generator_ColumnPropNameInRow="Remark" msprop:Generator_ColumnPropNameInTable="RemarkColumn" msprop:Generator_UserColumnName="Remark" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Lecturedis" msprop:Generator_ColumnVarNameInTable="columnLecturedis" msprop:Generator_ColumnPropNameInRow="Lecturedis" msprop:Generator_ColumnPropNameInTable="LecturedisColumn" msprop:Generator_UserColumnName="Lecturedis" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PPTOHP" msprop:Generator_ColumnVarNameInTable="columnPPTOHP" msprop:Generator_ColumnPropNameInRow="PPTOHP" msprop:Generator_ColumnPropNameInTable="PPTOHPColumn" msprop:Generator_UserColumnName="PPTOHP" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Sitevisitid" msprop:Generator_ColumnVarNameInTable="columnSitevisitid" msprop:Generator_ColumnPropNameInRow="Sitevisitid" msprop:Generator_ColumnPropNameInTable="SitevisitidColumn" msprop:Generator_UserColumnName="Sitevisitid" type="xs:int" minOccurs="0" />
+              <xs:element name="Labdemoid" msprop:Generator_ColumnVarNameInTable="columnLabdemoid" msprop:Generator_ColumnPropNameInRow="Labdemoid" msprop:Generator_ColumnPropNameInTable="LabdemoidColumn" msprop:Generator_UserColumnName="Labdemoid" type="xs:int" minOccurs="0" />
+              <xs:element name="Videolectureid" msprop:Generator_ColumnVarNameInTable="columnVideolectureid" msprop:Generator_ColumnPropNameInRow="Videolectureid" msprop:Generator_ColumnPropNameInTable="VideolectureidColumn" msprop:Generator_UserColumnName="Videolectureid" type="xs:int" minOccurs="0" />
+              <xs:element name="OtherMetho" msprop:Generator_ColumnVarNameInTable="columnOtherMetho" msprop:Generator_ColumnPropNameInRow="OtherMetho" msprop:Generator_ColumnPropNameInTable="OtherMethoColumn" msprop:Generator_UserColumnName="OtherMetho" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Flag_T_L" msprop:Generator_ColumnVarNameInTable="columnFlag_T_L" msprop:Generator_ColumnPropNameInRow="Flag_T_L" msprop:Generator_ColumnPropNameInTable="Flag_T_LColumn" msprop:Generator_UserColumnName="Flag_T_L" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="T_discussion" msprop:Generator_ColumnVarNameInTable="columnT_discussion" msprop:Generator_ColumnPropNameInRow="T_discussion" msprop:Generator_ColumnPropNameInTable="T_discussionColumn" msprop:Generator_UserColumnName="T_discussion" type="xs:int" minOccurs="0" />
+              <xs:element name="T_revision" msprop:Generator_ColumnVarNameInTable="columnT_revision" msprop:Generator_ColumnPropNameInRow="T_revision" msprop:Generator_ColumnPropNameInTable="T_revisionColumn" msprop:Generator_UserColumnName="T_revision" type="xs:int" minOccurs="0" />
+              <xs:element name="T_Surprise" msprop:Generator_ColumnVarNameInTable="columnT_Surprise" msprop:Generator_ColumnPropNameInRow="T_Surprise" msprop:Generator_ColumnPropNameInTable="T_SurpriseColumn" msprop:Generator_UserColumnName="T_Surprise" type="xs:int" minOccurs="0" />
+              <xs:element name="T_casestudey" msprop:Generator_ColumnVarNameInTable="columnT_casestudey" msprop:Generator_ColumnPropNameInRow="T_casestudey" msprop:Generator_ColumnPropNameInTable="T_casestudeyColumn" msprop:Generator_UserColumnName="T_casestudey" type="xs:int" minOccurs="0" />
+              <xs:element name="T_presentation" msprop:Generator_ColumnVarNameInTable="columnT_presentation" msprop:Generator_ColumnPropNameInRow="T_presentation" msprop:Generator_ColumnPropNameInTable="T_presentationColumn" msprop:Generator_UserColumnName="T_presentation" type="xs:int" minOccurs="0" />
+              <xs:element name="TopicName" msprop:Generator_ColumnVarNameInTable="columnTopicName" msprop:Generator_ColumnPropNameInRow="TopicName" msprop:Generator_ColumnPropNameInTable="TopicNameColumn" msprop:Generator_UserColumnName="TopicName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="300" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SubTopicName" msprop:Generator_ColumnVarNameInTable="columnSubTopicName" msprop:Generator_ColumnPropNameInRow="SubTopicName" msprop:Generator_ColumnPropNameInTable="SubTopicNameColumn" msprop:Generator_UserColumnName="SubTopicName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Hour" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnHour" msprop:Generator_ColumnPropNameInRow="Hour" msprop:Generator_ColumnPropNameInTable="HourColumn" msprop:Generator_UserColumnName="Hour" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="lecconducted" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnlecconducted" msprop:Generator_ColumnPropNameInRow="lecconducted" msprop:Generator_ColumnPropNameInTable="lecconductedColumn" msprop:Generator_UserColumnName="lecconducted" type="xs:int" minOccurs="0" />
+              <xs:element name="typeee" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columntypeee" msprop:Generator_ColumnPropNameInRow="typeee" msprop:Generator_ColumnPropNameInTable="typeeeColumn" msprop:Generator_UserColumnName="typeee" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="27" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SubjectCode" msprop:Generator_ColumnVarNameInTable="columnSubjectCode" msprop:Generator_ColumnPropNameInRow="SubjectCode" msprop:Generator_ColumnPropNameInTable="SubjectCodeColumn" msprop:Generator_UserColumnName="SubjectCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PHour" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnPHour" msprop:Generator_ColumnPropNameInRow="PHour" msprop:Generator_ColumnPropNameInTable="PHourColumn" msprop:Generator_UserColumnName="PHour" type="xs:int" minOccurs="0" />
+              <xs:element name="CHour" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCHour" msprop:Generator_ColumnPropNameInRow="CHour" msprop:Generator_ColumnPropNameInTable="CHourColumn" msprop:Generator_UserColumnName="CHour" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Coursecompleatiom_status_view" />
+      <xs:field xpath="mstns:Aid" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="AuditRep" targetNamespace="http://tempuri.org/AuditRep.xsd" xmlns:mstns="http://tempuri.org/AuditRep.xsd" xmlns="http://tempuri.org/AuditRep.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Audit_ReportTableAdapter" GeneratorDataComponentClassName="Audit_ReportTableAdapter" Name="Audit_Report" UserDataComponentName="Audit_ReportTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectName="Edusuite.dbo.Audit_Report" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT     Audit_Report.*
+FROM         Audit_Report</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="CollegeName" DataSetColumn="CollegeName" />
+              <Mapping SourceColumn="Location" DataSetColumn="Location" />
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="Form_Name" DataSetColumn="Form_Name" />
+              <Mapping SourceColumn="Action" DataSetColumn="Action" />
+              <Mapping SourceColumn="User_ID" DataSetColumn="User_ID" />
+              <Mapping SourceColumn="Record_ID" DataSetColumn="Record_ID" />
+              <Mapping SourceColumn="Entry_Time" DataSetColumn="Entry_Time" />
+              <Mapping SourceColumn="InstituteID" DataSetColumn="InstituteID" />
+              <Mapping SourceColumn="SessionID" DataSetColumn="SessionID" />
+              <Mapping SourceColumn="Entry_Date" DataSetColumn="Entry_Date" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="AuditRep" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="AuditRep" msprop:Generator_DataSetName="AuditRep">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Audit_Report" msprop:Generator_UserTableName="Audit_Report" msprop:Generator_RowDeletedName="Audit_ReportRowDeleted" msprop:Generator_RowChangedName="Audit_ReportRowChanged" msprop:Generator_RowClassName="Audit_ReportRow" msprop:Generator_RowChangingName="Audit_ReportRowChanging" msprop:Generator_RowEvArgName="Audit_ReportRowChangeEvent" msprop:Generator_RowEvHandlerName="Audit_ReportRowChangeEventHandler" msprop:Generator_TableClassName="Audit_ReportDataTable" msprop:Generator_TableVarName="tableAudit_Report" msprop:Generator_RowDeletingName="Audit_ReportRowDeleting" msprop:Generator_TablePropName="Audit_Report">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CollegeName" msprop:Generator_UserColumnName="CollegeName" msprop:Generator_ColumnVarNameInTable="columnCollegeName" msprop:Generator_ColumnPropNameInRow="CollegeName" msprop:Generator_ColumnPropNameInTable="CollegeNameColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Location" msprop:Generator_UserColumnName="Location" msprop:Generator_ColumnVarNameInTable="columnLocation" msprop:Generator_ColumnPropNameInRow="Location" msprop:Generator_ColumnPropNameInTable="LocationColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="300" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ID" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" type="xs:int" />
+              <xs:element name="Form_Name" msprop:Generator_UserColumnName="Form_Name" msprop:Generator_ColumnVarNameInTable="columnForm_Name" msprop:Generator_ColumnPropNameInRow="Form_Name" msprop:Generator_ColumnPropNameInTable="Form_NameColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Action" msprop:Generator_UserColumnName="Action" msprop:Generator_ColumnVarNameInTable="columnAction" msprop:Generator_ColumnPropNameInRow="Action" msprop:Generator_ColumnPropNameInTable="ActionColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="User_ID" msprop:Generator_UserColumnName="User_ID" msprop:Generator_ColumnVarNameInTable="columnUser_ID" msprop:Generator_ColumnPropNameInRow="User_ID" msprop:Generator_ColumnPropNameInTable="User_IDColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Record_ID" msprop:Generator_UserColumnName="Record_ID" msprop:Generator_ColumnVarNameInTable="columnRecord_ID" msprop:Generator_ColumnPropNameInRow="Record_ID" msprop:Generator_ColumnPropNameInTable="Record_IDColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Entry_Time" msprop:Generator_UserColumnName="Entry_Time" msprop:Generator_ColumnVarNameInTable="columnEntry_Time" msprop:Generator_ColumnPropNameInRow="Entry_Time" msprop:Generator_ColumnPropNameInTable="Entry_TimeColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="InstituteID" msprop:Generator_UserColumnName="InstituteID" msprop:Generator_ColumnVarNameInTable="columnInstituteID" msprop:Generator_ColumnPropNameInRow="InstituteID" msprop:Generator_ColumnPropNameInTable="InstituteIDColumn" type="xs:int" />
+              <xs:element name="SessionID" msprop:Generator_UserColumnName="SessionID" msprop:Generator_ColumnVarNameInTable="columnSessionID" msprop:Generator_ColumnPropNameInRow="SessionID" msprop:Generator_ColumnPropNameInTable="SessionIDColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Entry_Date" msprop:Generator_UserColumnName="Entry_Date" msprop:Generator_ColumnPropNameInRow="Entry_Date" msprop:Generator_ColumnVarNameInTable="columnEntry_Date" msprop:Generator_ColumnPropNameInTable="Entry_DateColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

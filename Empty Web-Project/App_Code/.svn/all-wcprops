@@ -1,0 +1,1631 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/Edusuite10/!svn/ver/461/Edusuite10/App_Code
+END
+Approval.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Approval.xsd
+END
+Language.cs
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/Edusuite10/!svn/ver/317/Edusuite10/App_Code/Language.cs
+END
+HR_CandPerf.xss
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/HR_CandPerf.xss
+END
+BPO_Receipt.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/Edusuite10/!svn/ver/320/Edusuite10/App_Code/BPO_Receipt.xsd
+END
+Attendence2.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Attendence2.xsd
+END
+Full_Leave.xss
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Full_Leave.xss
+END
+Subject_Cousre.xss
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/Edusuite10/!svn/ver/42/Edusuite10/App_Code/Subject_Cousre.xss
+END
+Acc_Daybook.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Acc_Daybook.xsd
+END
+Receipt_Cancel.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/Edusuite10/!svn/ver/153/Edusuite10/App_Code/Receipt_Cancel.xsd
+END
+AttendenceDM.cs
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/Edusuite10/!svn/ver/438/Edusuite10/App_Code/AttendenceDM.cs
+END
+Approval.xss
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Approval.xss
+END
+DataSet2.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/Edusuite10/!svn/ver/99/Edusuite10/App_Code/DataSet2.xsd
+END
+BPO_Receipt.xss
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/Edusuite10/!svn/ver/320/Edusuite10/App_Code/BPO_Receipt.xss
+END
+Attendence2.xss
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Attendence2.xss
+END
+Acc_Daybook.xss
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Acc_Daybook.xss
+END
+TransportSVC.cs
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/TransportSVC.cs
+END
+Receipt_Cancel.xss
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/Edusuite10/!svn/ver/153/Edusuite10/App_Code/Receipt_Cancel.xss
+END
+DsPermission.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/DsPermission.xsd
+END
+DsLegerVoucher.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/DsLegerVoucher.xsd
+END
+En_VerificattionReport.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/Edusuite10/!svn/ver/93/Edusuite10/App_Code/En_VerificattionReport.xsd
+END
+ServiceTrack.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/ServiceTrack.xsd
+END
+DataSet2.xss
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/Edusuite10/!svn/ver/99/Edusuite10/App_Code/DataSet2.xss
+END
+EntranceDM.cs
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/Edusuite10/!svn/ver/86/Edusuite10/App_Code/EntranceDM.cs
+END
+FeeStructRpt.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/Edusuite10/!svn/ver/383/Edusuite10/App_Code/FeeStructRpt.xsd
+END
+AttendanceGsummary.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/AttendanceGsummary.xsd
+END
+HTMLReportEngine.cs
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/HTMLReportEngine.cs
+END
+DsPermission.xss
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/DsPermission.xss
+END
+FacultyDM.cs
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/Edusuite10/!svn/ver/77/Edusuite10/App_Code/FacultyDM.cs
+END
+DsLegerVoucher.xss
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/DsLegerVoucher.xss
+END
+FeeHeadWiseDs.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/FeeHeadWiseDs.xsd
+END
+AssemblyInfo.cs
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/AssemblyInfo.cs
+END
+BpoSVC.cs
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/Edusuite10/!svn/ver/367/Edusuite10/App_Code/BpoSVC.cs
+END
+EducationService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/Edusuite10/!svn/ver/368/Edusuite10/App_Code/EducationService.cs
+END
+En_VerificattionReport.xss
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/Edusuite10/!svn/ver/93/Edusuite10/App_Code/En_VerificattionReport.xss
+END
+ServiceTrack.xss
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/ServiceTrack.xss
+END
+Syllabus.cs
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/Edusuite10/!svn/ver/451/Edusuite10/App_Code/Syllabus.cs
+END
+Student_Le.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Student_Le.xsd
+END
+HO.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/HO.xsd
+END
+attendanceNR.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/attendanceNR.xsd
+END
+FeeStructRpt.xss
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/Edusuite10/!svn/ver/383/Edusuite10/App_Code/FeeStructRpt.xss
+END
+ChangePMode.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/ChangePMode.xsd
+END
+AttendanceGsummary.xss
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/AttendanceGsummary.xss
+END
+FeeServices.cs
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/Edusuite10/!svn/ver/384/Edusuite10/App_Code/FeeServices.cs
+END
+PlacedStudSearch.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/PlacedStudSearch.xsd
+END
+FeeHeadWiseDs.xss
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/FeeHeadWiseDs.xss
+END
+Student_Le.xss
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Student_Le.xss
+END
+HRShortList.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/HRShortList.xsd
+END
+HO.xss
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/HO.xss
+END
+attendanceNR.xss
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/attendanceNR.xss
+END
+ChangePMode.xss
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/ChangePMode.xss
+END
+GDate.cs
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/GDate.cs
+END
+PlacedStudSearch.xss
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/PlacedStudSearch.xss
+END
+HRShortList.xss
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/HRShortList.xss
+END
+Auth_Inbox.cs
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Auth_Inbox.cs
+END
+CurrstudentList.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/CurrstudentList.xsd
+END
+DailyAttendanceDS.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/Edusuite10/!svn/ver/33/Edusuite10/App_Code/DailyAttendanceDS.xsd
+END
+Hsp_Disslip.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Hsp_Disslip.xsd
+END
+Lab_Slip.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Lab_Slip.xsd
+END
+AcademicDBM.dbml
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/AcademicDBM.dbml
+END
+TPlanner.cs
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/TPlanner.cs
+END
+Leave.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Leave.xsd
+END
+AcademicDBM.dbml.layout.exclude
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/AcademicDBM.dbml.layout.exclude
+END
+CurrstudentList.xss
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/CurrstudentList.xss
+END
+DailyAttendanceDS.xss
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/Edusuite10/!svn/ver/33/Edusuite10/App_Code/DailyAttendanceDS.xss
+END
+Hsp_Disslip.xss
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Hsp_Disslip.xss
+END
+Lab_Slip.xss
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Lab_Slip.xss
+END
+clsSendMail.cs
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/Edusuite10/!svn/ver/269/Edusuite10/App_Code/clsSendMail.cs
+END
+Academicsvc.cs
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/Edusuite10/!svn/ver/442/Edusuite10/App_Code/Academicsvc.cs
+END
+Leave.xss
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Leave.xss
+END
+FacultySVC.svc
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/FacultySVC.svc
+END
+MapUtil.cs
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/Edusuite10/!svn/ver/261/Edusuite10/App_Code/MapUtil.cs
+END
+Refund.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Refund.xsd
+END
+AccountDAL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/AccountDAL.cs
+END
+Ticketmanagmentsystem.cs
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Ticketmanagmentsystem.cs
+END
+Criteria_WiseStud.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Criteria_WiseStud.xsd
+END
+VacancyDB.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/VacancyDB.xsd
+END
+Refund.xss
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Refund.xss
+END
+DefaulterDs.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/Edusuite10/!svn/ver/145/Edusuite10/App_Code/DefaulterDs.xsd
+END
+Student_Comp.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/Edusuite10/!svn/ver/76/Edusuite10/App_Code/Student_Comp.xsd
+END
+Criteria_WiseStud.xss
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Criteria_WiseStud.xss
+END
+BpoDM.cs
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/Edusuite10/!svn/ver/320/Edusuite10/App_Code/BpoDM.cs
+END
+VacancyDB.xss
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/VacancyDB.xss
+END
+GPMovement.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/Edusuite10/!svn/ver/99/Edusuite10/App_Code/GPMovement.xsd
+END
+DefaulterDs.xss
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/Edusuite10/!svn/ver/145/Edusuite10/App_Code/DefaulterDs.xss
+END
+ChqDraft_DefaultR.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/ChqDraft_DefaultR.xsd
+END
+Student_Comp.xss
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/Edusuite10/!svn/ver/61/Edusuite10/App_Code/Student_Comp.xss
+END
+AckSlip.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/AckSlip.xsd
+END
+FacultySVC.cs
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/Edusuite10/!svn/ver/77/Edusuite10/App_Code/FacultySVC.cs
+END
+StudentFullReportDS.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/StudentFullReportDS.xsd
+END
+GPMovement.xss
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/Edusuite10/!svn/ver/99/Edusuite10/App_Code/GPMovement.xss
+END
+ChqDraft_DefaultR.xss
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/ChqDraft_DefaultR.xss
+END
+AckSlip.xss
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/AckSlip.xss
+END
+StudentFullReportDS.xss
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/StudentFullReportDS.xss
+END
+SyllabusMData.cs
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/Edusuite10/!svn/ver/374/Edusuite10/App_Code/SyllabusMData.cs
+END
+En_DispatchNo.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/Edusuite10/!svn/ver/93/Edusuite10/App_Code/En_DispatchNo.xsd
+END
+EntranceAdmit.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/EntranceAdmit.xsd
+END
+HostelSVC.cs
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/Edusuite10/!svn/ver/218/Edusuite10/App_Code/HostelSVC.cs
+END
+AA.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/AA.xsd
+END
+Acc_Vouc.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Acc_Vouc.xsd
+END
+Refund_Approval.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/Edusuite10/!svn/ver/360/Edusuite10/App_Code/Refund_Approval.xsd
+END
+PrintVoucher.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/PrintVoucher.xsd
+END
+dsDocList.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/Edusuite10/!svn/ver/320/Edusuite10/App_Code/dsDocList.xsd
+END
+RegAck.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/RegAck.xsd
+END
+FeeModeWise.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/FeeModeWise.xsd
+END
+En_DispatchNo.xss
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/Edusuite10/!svn/ver/93/Edusuite10/App_Code/En_DispatchNo.xss
+END
+EntranceAdmit.xss
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/EntranceAdmit.xss
+END
+AA.xss
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/AA.xss
+END
+Acc_Vouc.xss
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Acc_Vouc.xss
+END
+SplitterBar.cs
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/SplitterBar.cs
+END
+Refund_Approval.xss
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/Edusuite10/!svn/ver/360/Edusuite10/App_Code/Refund_Approval.xss
+END
+PrintVoucher.xss
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/PrintVoucher.xss
+END
+dsDocList.xss
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/Edusuite10/!svn/ver/320/Edusuite10/App_Code/dsDocList.xss
+END
+Users.cs
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/Edusuite10/!svn/ver/317/Edusuite10/App_Code/Users.cs
+END
+IEdumetaDataSVC.cs
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/Edusuite10/!svn/ver/23/Edusuite10/App_Code/IEdumetaDataSVC.cs
+END
+TopicM.dbml
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/TopicM.dbml
+END
+RegAck.xss
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/RegAck.xss
+END
+FeeModeWise.xss
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/FeeModeWise.xss
+END
+dsFeeCoun.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/Edusuite10/!svn/ver/320/Edusuite10/App_Code/dsFeeCoun.xsd
+END
+DataHelper.cs
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/Edusuite10/!svn/ver/61/Edusuite10/App_Code/DataHelper.cs
+END
+AdministratorData.cs
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/Edusuite10/!svn/ver/216/Edusuite10/App_Code/AdministratorData.cs
+END
+PromotionList.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/PromotionList.xsd
+END
+DSattNewReport.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/DSattNewReport.xsd
+END
+ReceiptList.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/Edusuite10/!svn/ver/126/Edusuite10/App_Code/ReceiptList.xsd
+END
+HRByActionDS.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/HRByActionDS.xsd
+END
+ODCDueDs.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/Edusuite10/!svn/ver/126/Edusuite10/App_Code/ODCDueDs.xsd
+END
+dsFeeCoun.xss
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/Edusuite10/!svn/ver/320/Edusuite10/App_Code/dsFeeCoun.xss
+END
+MasterData.designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/MasterData.designer.cs
+END
+AttendenceSVC.cs
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/Edusuite10/!svn/ver/438/Edusuite10/App_Code/AttendenceSVC.cs
+END
+chkOut.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/Edusuite10/!svn/ver/99/Edusuite10/App_Code/chkOut.xsd
+END
+SecurityDM.cs
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/Edusuite10/!svn/ver/182/Edusuite10/App_Code/SecurityDM.cs
+END
+GatePassDM.cs
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/Edusuite10/!svn/ver/110/Edusuite10/App_Code/GatePassDM.cs
+END
+PromotionList.xss
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/PromotionList.xss
+END
+DSattNewReport.xss
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/DSattNewReport.xss
+END
+StuBatchAsignRep.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/StuBatchAsignRep.xsd
+END
+ReceiptList.xss
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/Edusuite10/!svn/ver/126/Edusuite10/App_Code/ReceiptList.xss
+END
+HRByActionDS.xss
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/HRByActionDS.xss
+END
+ODCDueDs.xss
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/Edusuite10/!svn/ver/126/Edusuite10/App_Code/ODCDueDs.xss
+END
+StudentRegDS.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/StudentRegDS.xsd
+END
+chkOut.xss
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/chkOut.xss
+END
+FeeDueListDs.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/Edusuite10/!svn/ver/145/Edusuite10/App_Code/FeeDueListDs.xsd
+END
+TransportDM.cs
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/TransportDM.cs
+END
+StuBatchAsignRep.xss
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/StuBatchAsignRep.xss
+END
+StudentRegDS.xss
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/StudentRegDS.xss
+END
+Lab_A.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Lab_A.xsd
+END
+FeeDueListDs.xss
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/Edusuite10/!svn/ver/145/Edusuite10/App_Code/FeeDueListDs.xss
+END
+FeeCollectionGDS.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/Edusuite10/!svn/ver/126/Edusuite10/App_Code/FeeCollectionGDS.xsd
+END
+GateShiftReport.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/GateShiftReport.xsd
+END
+Lab_A.xss
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Lab_A.xss
+END
+RCSService.cs
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/Edusuite10/!svn/ver/244/Edusuite10/App_Code/RCSService.cs
+END
+AcademicDBM.designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/AcademicDBM.designer.cs
+END
+FeeHead.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/FeeHead.xsd
+END
+ChqDraft_DefaultS.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/ChqDraft_DefaultS.xsd
+END
+AttendenceSVC.svc
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/AttendenceSVC.svc
+END
+PortalSVC.cs
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/Edusuite10/!svn/ver/221/Edusuite10/App_Code/PortalSVC.cs
+END
+FeeCollectionGDS.xss
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/Edusuite10/!svn/ver/126/Edusuite10/App_Code/FeeCollectionGDS.xss
+END
+GateShiftReport.xss
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/GateShiftReport.xss
+END
+Week.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Week.xsd
+END
+NewDataSet.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/NewDataSet.xsd
+END
+ChqDraft_Default.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/ChqDraft_Default.xsd
+END
+FeeHead.xss
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/FeeHead.xss
+END
+L_Req.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/L_Req.xsd
+END
+ChqDraft_DefaultS.xss
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/ChqDraft_DefaultS.xss
+END
+XJsonWriter.cs
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/XJsonWriter.cs
+END
+TimeTable.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/TimeTable.xsd
+END
+LinqChat.designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/LinqChat.designer.cs
+END
+Week.xss
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Week.xss
+END
+BPO_Report.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/Edusuite10/!svn/ver/360/Edusuite10/App_Code/BPO_Report.xsd
+END
+DbConnection.cs
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/Edusuite10/!svn/ver/367/Edusuite10/App_Code/DbConnection.cs
+END
+NewDataSet.xss
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/NewDataSet.xss
+END
+ChqDraft_Default.xss
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/ChqDraft_Default.xss
+END
+GatePassSVC.svc
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/GatePassSVC.svc
+END
+SortGL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/Edusuite10/!svn/ver/261/Edusuite10/App_Code/SortGL.cs
+END
+L_Req.xss
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/L_Req.xss
+END
+AcademicDBM.dbml.exclude
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/AcademicDBM.dbml.exclude
+END
+TimeTable.xss
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/TimeTable.xss
+END
+BPO_Report.xss
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/Edusuite10/!svn/ver/360/Edusuite10/App_Code/BPO_Report.xss
+END
+Student_Details.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Student_Details.xsd
+END
+DueFee.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/DueFee.xsd
+END
+TimeTableDM.cs
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/Edusuite10/!svn/ver/374/Edusuite10/App_Code/TimeTableDM.cs
+END
+Permission.cs
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Permission.cs
+END
+TopicM.designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/TopicM.designer.cs
+END
+dsTopicReport.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/dsTopicReport.xsd
+END
+Fee_Details.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Fee_Details.xsd
+END
+Student_Details.xss
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Student_Details.xss
+END
+FeeReceipt.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/Edusuite10/!svn/ver/234/Edusuite10/App_Code/FeeReceipt.xsd
+END
+DueFee.xss
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/DueFee.xss
+END
+AcademicDBM.dbml2.designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/AcademicDBM.dbml2.designer.cs
+END
+TimeTableSVC.svc
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/TimeTableSVC.svc
+END
+dsTopicReport.xss
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/dsTopicReport.xss
+END
+MasterData.dbml.layout
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/MasterData.dbml.layout
+END
+Registrd_Stud.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Registrd_Stud.xsd
+END
+Fee_Details.xss
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Fee_Details.xss
+END
+HostelDM.cs
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/Edusuite10/!svn/ver/218/Edusuite10/App_Code/HostelDM.cs
+END
+AutoSuggestMenuDesigner.cs
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/AutoSuggestMenuDesigner.cs
+END
+PortalDM.cs
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/Edusuite10/!svn/ver/221/Edusuite10/App_Code/PortalDM.cs
+END
+GatePassSVC.cs
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/Edusuite10/!svn/ver/150/Edusuite10/App_Code/GatePassSVC.cs
+END
+FeeReceipt.xss
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/FeeReceipt.xss
+END
+StudentF.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/StudentF.xsd
+END
+Eduset.cs
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/Edusuite10/!svn/ver/317/Edusuite10/App_Code/Eduset.cs
+END
+Registrd_Stud.xss
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Registrd_Stud.xss
+END
+EdumetaDataSVC.cs
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/Edusuite10/!svn/ver/22/Edusuite10/App_Code/EdumetaDataSVC.cs
+END
+Pay_Rcv.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Pay_Rcv.xsd
+END
+Acc_Ledgr.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Acc_Ledgr.xsd
+END
+genUtility.cs
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/genUtility.cs
+END
+AutoSuggestMenu.cs
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/AutoSuggestMenu.cs
+END
+Fee_Coursewise.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Fee_Coursewise.xsd
+END
+StudentF.xss
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/StudentF.xss
+END
+AuditRep.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/AuditRep.xsd
+END
+Security.cs
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/Edusuite10/!svn/ver/293/Edusuite10/App_Code/Security.cs
+END
+Pay_Rcv.xss
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Pay_Rcv.xss
+END
+Acc_Ledgr.xss
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Acc_Ledgr.xss
+END
+dutyshift.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/dutyshift.xsd
+END
+Fee_Coursewise.xss
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Fee_Coursewise.xss
+END
+VisitorGatePass.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/Edusuite10/!svn/ver/138/Edusuite10/App_Code/VisitorGatePass.xsd
+END
+AcademicData.cs
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/Edusuite10/!svn/ver/442/Edusuite10/App_Code/AcademicData.cs
+END
+AuditRep.xss
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/AuditRep.xss
+END
+SledgerNew.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/SledgerNew.xsd
+END
+dutyshift.xss
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/dutyshift.xss
+END
+AcademicDBM.dbml.layout
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/AcademicDBM.dbml.layout
+END
+VisitorGatePass.xss
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/Edusuite10/!svn/ver/138/Edusuite10/App_Code/VisitorGatePass.xss
+END
+DataSet1.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/Edusuite10/!svn/ver/99/Edusuite10/App_Code/DataSet1.xsd
+END
+BaseClass.cs
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/Edusuite10/!svn/ver/52/Edusuite10/App_Code/BaseClass.cs
+END
+AdministratorData.svc
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/AdministratorData.svc
+END
+Appoinment.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/Edusuite10/!svn/ver/99/Edusuite10/App_Code/Appoinment.xsd
+END
+SledgerNew.xss
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/SledgerNew.xss
+END
+DayBookDS.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/DayBookDS.xsd
+END
+Functions.cs
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/Edusuite10/!svn/ver/317/Edusuite10/App_Code/Functions.cs
+END
+dsDemandNotice.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/Edusuite10/!svn/ver/320/Edusuite10/App_Code/dsDemandNotice.xsd
+END
+Leav_Allot.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Leav_Allot.xsd
+END
+EntranceSVC.cs
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/Edusuite10/!svn/ver/104/Edusuite10/App_Code/EntranceSVC.cs
+END
+AutoSuggestMenuItem.cs
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/AutoSuggestMenuItem.cs
+END
+DataSet1.xss
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/Edusuite10/!svn/ver/99/Edusuite10/App_Code/DataSet1.xss
+END
+TimeTableSVC.cs
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/Edusuite10/!svn/ver/374/Edusuite10/App_Code/TimeTableSVC.cs
+END
+Appoinment.xss
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/Edusuite10/!svn/ver/99/Edusuite10/App_Code/Appoinment.xss
+END
+PendingRep.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/PendingRep.xsd
+END
+DayBookDS.xss
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/DayBookDS.xss
+END
+LinqChat.dbml.layout
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/LinqChat.dbml.layout
+END
+dsDemandNotice.xss
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/Edusuite10/!svn/ver/320/Edusuite10/App_Code/dsDemandNotice.xss
+END
+Leav_Allot.xss
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Leav_Allot.xss
+END
+MasterData.dbml
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/MasterData.dbml
+END
+PendingRep.xss
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/PendingRep.xss
+END
+Modewise.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Modewise.xsd
+END
+AdmininstratorSet.cs
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/Edusuite10/!svn/ver/368/Edusuite10/App_Code/AdmininstratorSet.cs
+END
+LinqChat.dbml
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/LinqChat.dbml
+END
+TicketData.cs
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/TicketData.cs
+END
+DbFunctions.cs
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/Edusuite10/!svn/ver/461/Edusuite10/App_Code/DbFunctions.cs
+END
+TopicM.dbml.layout
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/TopicM.dbml.layout
+END
+AddressPrintingDS.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/Edusuite10/!svn/ver/77/Edusuite10/App_Code/AddressPrintingDS.xsd
+END
+BPOFallowup.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/Edusuite10/!svn/ver/401/Edusuite10/App_Code/BPOFallowup.xsd
+END
+Modewise.xss
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Modewise.xss
+END
+StudentAllDS.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/Edusuite10/!svn/ver/77/Edusuite10/App_Code/StudentAllDS.xsd
+END
+Std_Prformance.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Std_Prformance.xsd
+END
+AddressPrintingDS.xss
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/Edusuite10/!svn/ver/77/Edusuite10/App_Code/AddressPrintingDS.xss
+END
+BPOFallowup.xss
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/Edusuite10/!svn/ver/401/Edusuite10/App_Code/BPOFallowup.xss
+END
+FeesDM.cs
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/Edusuite10/!svn/ver/381/Edusuite10/App_Code/FeesDM.cs
+END
+LeaveDetail.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/LeaveDetail.xsd
+END
+LeaveReqst.cs
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/LeaveReqst.cs
+END
+StudentAllDS.xss
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/Edusuite10/!svn/ver/77/Edusuite10/App_Code/StudentAllDS.xss
+END
+Std_Prformance.xss
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Std_Prformance.xss
+END
+LeaveDetail.xss
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/LeaveDetail.xss
+END
+Fee_Bpo.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/Edusuite10/!svn/ver/234/Edusuite10/App_Code/Fee_Bpo.xsd
+END
+GatePassEmpDs.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/Edusuite10/!svn/ver/176/Edusuite10/App_Code/GatePassEmpDs.xsd
+END
+Acc_Group.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Acc_Group.xsd
+END
+EduMetaDataDM.cs
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/Edusuite10/!svn/ver/18/Edusuite10/App_Code/EduMetaDataDM.cs
+END
+AcademicDBM.designer.cs.exclude
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/AcademicDBM.designer.cs.exclude
+END
+HR_CandPerf.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/HR_CandPerf.xsd
+END
+Fee_Bpo.xss
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/Edusuite10/!svn/ver/234/Edusuite10/App_Code/Fee_Bpo.xss
+END
+Full_Leave.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Full_Leave.xsd
+END
+Subject_Cousre.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/Edusuite10/!svn/ver/42/Edusuite10/App_Code/Subject_Cousre.xsd
+END
+GatePassEmpDs.xss
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/Edusuite10/!svn/ver/176/Edusuite10/App_Code/GatePassEmpDs.xss
+END
+Acc_Group.xss
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/Acc_Group.xss
+END

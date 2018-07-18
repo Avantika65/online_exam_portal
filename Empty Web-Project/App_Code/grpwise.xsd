@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="openelective" targetNamespace="http://tempuri.org/openelective.xsd" xmlns:mstns="http://tempuri.org/openelective.xsd" xmlns="http://tempuri.org/openelective.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="grpwiseTableAdapter" GeneratorDataComponentClassName="grpwiseTableAdapter" Name="grpwise" UserDataComponentName="grpwiseTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectName="ESIM.dbo.avanish2" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT '' as  EgroupId,'' as   subjectcode, '' AS Batch_Name, '' AS no_of_student,SessionName,CourseYear,SubjectCat_Name,coursename FROM  avanish2 GROUP BY EgroupId, shortName,SubjectName, Batch_Name,SessionName,CourseYear,SubjectCat_Name,subjectcode,coursename</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Batch_Name" DataSetColumn="Batch_Name" />
+              <Mapping SourceColumn="no_of_student" DataSetColumn="no_of_student" />
+              <Mapping SourceColumn="EgroupId" DataSetColumn="EgroupId" />
+              <Mapping SourceColumn="subjectcode" DataSetColumn="subjectcode" />
+              <Mapping SourceColumn="SessionName" DataSetColumn="SessionName" />
+              <Mapping SourceColumn="CourseYear" DataSetColumn="CourseYear" />
+              <Mapping SourceColumn="SubjectCat_Name" DataSetColumn="SubjectCat_Name" />
+              <Mapping SourceColumn="coursename" DataSetColumn="coursename" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="openelective" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="openelective" msprop:Generator_UserDSName="openelective">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="grpwise" msprop:Generator_TableClassName="grpwiseDataTable" msprop:Generator_TableVarName="tablegrpwise" msprop:Generator_TablePropName="grpwise" msprop:Generator_RowDeletingName="grpwiseRowDeleting" msprop:Generator_UserTableName="grpwise" msprop:Generator_RowChangingName="grpwiseRowChanging" msprop:Generator_RowEvHandlerName="grpwiseRowChangeEventHandler" msprop:Generator_RowDeletedName="grpwiseRowDeleted" msprop:Generator_RowEvArgName="grpwiseRowChangeEvent" msprop:Generator_RowChangedName="grpwiseRowChanged" msprop:Generator_RowClassName="grpwiseRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Batch_Name" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnBatch_Name" msprop:Generator_ColumnPropNameInRow="Batch_Name" msprop:Generator_ColumnPropNameInTable="Batch_NameColumn" msprop:Generator_UserColumnName="Batch_Name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="no_of_student" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnno_of_student" msprop:Generator_ColumnPropNameInRow="no_of_student" msprop:Generator_ColumnPropNameInTable="no_of_studentColumn" msprop:Generator_UserColumnName="no_of_student" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EgroupId" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnEgroupId" msprop:Generator_ColumnPropNameInRow="EgroupId" msprop:Generator_ColumnPropNameInTable="EgroupIdColumn" msprop:Generator_UserColumnName="EgroupId" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="subjectcode" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnsubjectcode" msprop:Generator_ColumnPropNameInRow="subjectcode" msprop:Generator_ColumnPropNameInTable="subjectcodeColumn" msprop:Generator_UserColumnName="subjectcode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SessionName" msprop:Generator_ColumnVarNameInTable="columnSessionName" msprop:Generator_ColumnPropNameInRow="SessionName" msprop:Generator_ColumnPropNameInTable="SessionNameColumn" msprop:Generator_UserColumnName="SessionName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CourseYear" msprop:Generator_ColumnVarNameInTable="columnCourseYear" msprop:Generator_ColumnPropNameInRow="CourseYear" msprop:Generator_ColumnPropNameInTable="CourseYearColumn" msprop:Generator_UserColumnName="CourseYear">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SubjectCat_Name" msprop:Generator_ColumnVarNameInTable="columnSubjectCat_Name" msprop:Generator_ColumnPropNameInRow="SubjectCat_Name" msprop:Generator_ColumnPropNameInTable="SubjectCat_NameColumn" msprop:Generator_UserColumnName="SubjectCat_Name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="coursename" msprop:Generator_ColumnVarNameInTable="columncoursename" msprop:Generator_ColumnPropNameInRow="coursename" msprop:Generator_ColumnPropNameInTable="coursenameColumn" msprop:Generator_UserColumnName="coursename">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Subjectwisefeedback" targetNamespace="http://tempuri.org/Subjectwisefeedback.xsd" xmlns:mstns="http://tempuri.org/Subjectwisefeedback.xsd" xmlns="http://tempuri.org/Subjectwisefeedback.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Subjectwisefeedback" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="Subjectwisefeedback" msprop:Generator_UserDSName="Subjectwisefeedback">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowClassName="DataTable1Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="FeedbackParameter" msprop:Generator_ColumnVarNameInTable="columnFeedbackParameter" msprop:Generator_ColumnPropNameInRow="FeedbackParameter" msprop:Generator_ColumnPropNameInTable="FeedbackParameterColumn" msprop:Generator_UserColumnName="FeedbackParameter" type="xs:string" minOccurs="0" />
+              <xs:element name="FeedbackParamID" msprop:Generator_ColumnVarNameInTable="columnFeedbackParamID" msprop:Generator_ColumnPropNameInRow="FeedbackParamID" msprop:Generator_ColumnPropNameInTable="FeedbackParamIDColumn" msprop:Generator_UserColumnName="FeedbackParamID" type="xs:int" minOccurs="0" />
+              <xs:element name="empcode" msprop:Generator_ColumnVarNameInTable="columnempcode" msprop:Generator_ColumnPropNameInRow="empcode" msprop:Generator_ColumnPropNameInTable="empcodeColumn" msprop:Generator_UserColumnName="empcode" type="xs:string" minOccurs="0" />
+              <xs:element name="empname" msprop:Generator_ColumnVarNameInTable="columnempname" msprop:Generator_ColumnPropNameInRow="empname" msprop:Generator_ColumnPropNameInTable="empnameColumn" msprop:Generator_UserColumnName="empname" type="xs:string" minOccurs="0" />
+              <xs:element name="DepartmentName" msprop:Generator_ColumnVarNameInTable="columnDepartmentName" msprop:Generator_ColumnPropNameInRow="DepartmentName" msprop:Generator_ColumnPropNameInTable="DepartmentNameColumn" msprop:Generator_UserColumnName="DepartmentName" type="xs:string" minOccurs="0" />
+              <xs:element name="SubjectCode" msprop:Generator_ColumnVarNameInTable="columnSubjectCode" msprop:Generator_ColumnPropNameInRow="SubjectCode" msprop:Generator_ColumnPropNameInTable="SubjectCodeColumn" msprop:Generator_UserColumnName="SubjectCode" type="xs:string" minOccurs="0" />
+              <xs:element name="SubjectName" msprop:Generator_ColumnVarNameInTable="columnSubjectName" msprop:Generator_ColumnPropNameInRow="SubjectName" msprop:Generator_ColumnPropNameInTable="SubjectNameColumn" msprop:Generator_UserColumnName="SubjectName" type="xs:string" minOccurs="0" />
+              <xs:element name="Facultyid" msprop:Generator_ColumnVarNameInTable="columnFacultyid" msprop:Generator_ColumnPropNameInRow="Facultyid" msprop:Generator_ColumnPropNameInTable="FacultyidColumn" msprop:Generator_UserColumnName="Facultyid" type="xs:string" minOccurs="0" />
+              <xs:element name="Noofstudent" msprop:Generator_ColumnVarNameInTable="columnNoofstudent" msprop:Generator_ColumnPropNameInRow="Noofstudent" msprop:Generator_ColumnPropNameInTable="NoofstudentColumn" msprop:Generator_UserColumnName="Noofstudent" type="xs:int" minOccurs="0" />
+              <xs:element name="Findex" msprop:Generator_ColumnVarNameInTable="columnFindex" msprop:Generator_ColumnPropNameInRow="Findex" msprop:Generator_ColumnPropNameInTable="FindexColumn" msprop:Generator_UserColumnName="Findex" type="xs:int" minOccurs="0" />
+              <xs:element name="Remark" msprop:Generator_ColumnVarNameInTable="columnRemark" msprop:Generator_ColumnPropNameInRow="Remark" msprop:Generator_ColumnPropNameInTable="RemarkColumn" msprop:Generator_UserColumnName="Remark" type="xs:string" minOccurs="0" />
+              <xs:element name="Remarks" msprop:Generator_ColumnVarNameInTable="columnRemarks" msprop:Generator_ColumnPropNameInRow="Remarks" msprop:Generator_ColumnPropNameInTable="RemarksColumn" msprop:Generator_UserColumnName="Remarks" type="xs:string" minOccurs="0" />
+              <xs:element name="nn" msprop:Generator_ColumnVarNameInTable="columnnn" msprop:Generator_ColumnPropNameInRow="nn" msprop:Generator_ColumnPropNameInTable="nnColumn" msprop:Generator_UserColumnName="nn" type="xs:string" minOccurs="0" />
+              <xs:element name="nnn" msprop:Generator_ColumnVarNameInTable="columnnnn" msprop:Generator_ColumnPropNameInRow="nnn" msprop:Generator_ColumnPropNameInTable="nnnColumn" msprop:Generator_UserColumnName="nnn" type="xs:double" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

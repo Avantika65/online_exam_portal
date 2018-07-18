@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="chkOut" targetNamespace="http://tempuri.org/chkOut.xsd" xmlns:mstns="http://tempuri.org/chkOut.xsd" xmlns="http://tempuri.org/chkOut.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="gatechkout_vwTableAdapter" GeneratorDataComponentClassName="gatechkout_vwTableAdapter" Name="gatechkout_vw" UserDataComponentName="gatechkout_vwTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectName="EduSuite.dbo.gatechkout_vw" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT     gatechkout_vw.*
+FROM         gatechkout_vw</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="OutTime" DataSetColumn="OutTime" />
+              <Mapping SourceColumn="chkOutdate" DataSetColumn="chkOutdate" />
+              <Mapping SourceColumn="passID" DataSetColumn="passID" />
+              <Mapping SourceColumn="FirstName" DataSetColumn="Name" />
+              <Mapping SourceColumn="VehicalNo" DataSetColumn="VehicalNo" />
+              <Mapping SourceColumn="VehicalType" DataSetColumn="VehicalType" />
+              <Mapping SourceColumn="ValidTo" DataSetColumn="ValidTo" />
+              <Mapping SourceColumn="GPSID" DataSetColumn="GPSID" />
+              <Mapping SourceColumn="EnteredBY" DataSetColumn="EnteredBY" />
+              <Mapping SourceColumn="GateID" DataSetColumn="GateID" />
+              <Mapping SourceColumn="GPSTime" DataSetColumn="GPSTime" />
+              <Mapping SourceColumn="GPSDate" DataSetColumn="GPSDate" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="chkOut" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="chkOut" msprop:Generator_UserDSName="chkOut">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="gatechkout_vw" msprop:Generator_TableClassName="gatechkout_vwDataTable" msprop:Generator_RowEvArgName="gatechkout_vwRowChangeEvent" msprop:Generator_TableVarName="tablegatechkout_vw" msprop:Generator_TablePropName="gatechkout_vw" msprop:Generator_RowDeletingName="gatechkout_vwRowDeleting" msprop:Generator_UserTableName="gatechkout_vw" msprop:Generator_RowChangingName="gatechkout_vwRowChanging" msprop:Generator_RowDeletedName="gatechkout_vwRowDeleted" msprop:Generator_RowChangedName="gatechkout_vwRowChanged" msprop:Generator_RowEvHandlerName="gatechkout_vwRowChangeEventHandler" msprop:Generator_RowClassName="gatechkout_vwRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="OutTime" msprop:Generator_ColumnVarNameInTable="columnOutTime" msprop:Generator_ColumnPropNameInRow="OutTime" msprop:Generator_ColumnPropNameInTable="OutTimeColumn" msprop:Generator_UserColumnName="OutTime" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="chkOutdate" msprop:Generator_ColumnVarNameInTable="columnchkOutdate" msprop:Generator_ColumnPropNameInRow="chkOutdate" msprop:Generator_ColumnPropNameInTable="chkOutdateColumn" msprop:Generator_UserColumnName="chkOutdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="passID" msprop:Generator_ColumnVarNameInTable="columnpassID" msprop:Generator_ColumnPropNameInRow="passID" msprop:Generator_ColumnPropNameInTable="passIDColumn" msprop:Generator_UserColumnName="passID" type="xs:int" minOccurs="0" />
+              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="VehicalNo" msprop:Generator_ColumnVarNameInTable="columnVehicalNo" msprop:Generator_ColumnPropNameInRow="VehicalNo" msprop:Generator_ColumnPropNameInTable="VehicalNoColumn" msprop:Generator_UserColumnName="VehicalNo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="VehicalType" msprop:Generator_ColumnVarNameInTable="columnVehicalType" msprop:Generator_ColumnPropNameInRow="VehicalType" msprop:Generator_ColumnPropNameInTable="VehicalTypeColumn" msprop:Generator_UserColumnName="VehicalType">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ValidTo" msprop:Generator_ColumnVarNameInTable="columnValidTo" msprop:Generator_ColumnPropNameInRow="ValidTo" msprop:Generator_ColumnPropNameInTable="ValidToColumn" msprop:Generator_UserColumnName="ValidTo" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="GPSID" msprop:Generator_ColumnVarNameInTable="columnGPSID" msprop:Generator_ColumnPropNameInRow="GPSID" msprop:Generator_ColumnPropNameInTable="GPSIDColumn" msprop:Generator_UserColumnName="GPSID" type="xs:int" minOccurs="0" />
+              <xs:element name="EnteredBY" msprop:Generator_ColumnVarNameInTable="columnEnteredBY" msprop:Generator_ColumnPropNameInRow="EnteredBY" msprop:Generator_ColumnPropNameInTable="EnteredBYColumn" msprop:Generator_UserColumnName="EnteredBY" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="GateID" msprop:Generator_ColumnVarNameInTable="columnGateID" msprop:Generator_ColumnPropNameInRow="GateID" msprop:Generator_ColumnPropNameInTable="GateIDColumn" msprop:Generator_UserColumnName="GateID" type="xs:int" />
+              <xs:element name="GPSTime" msprop:Generator_ColumnVarNameInTable="columnGPSTime" msprop:Generator_ColumnPropNameInRow="GPSTime" msprop:Generator_ColumnPropNameInTable="GPSTimeColumn" msprop:Generator_UserColumnName="GPSTime">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="GPSDate" msprop:Generator_ColumnVarNameInTable="columnGPSDate" msprop:Generator_ColumnPropNameInRow="GPSDate" msprop:Generator_ColumnPropNameInTable="GPSDateColumn" msprop:Generator_UserColumnName="GPSDate" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="PF" targetNamespace="http://tempuri.org/PF.xsd" xmlns:mstns="http://tempuri.org/PF.xsd" xmlns="http://tempuri.org/PF.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="PFTableAdapter" GeneratorDataComponentClassName="PFTableAdapter" Name="PF" UserDataComponentName="PFTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT DISTINCT 
+                      dbo.Employee_Master.empCode, dbo.Employee_Master.empName + ' ' + dbo.Employee_Master.lastName AS empname, dbo.Employee_Master.empId, 
+                      dbo.Employee_Master.InstituteID,
+                          (SELECT     Amt
+                            FROM          dbo.WagetypereportView
+                            WHERE      (dbo.Employee_Master.empId = empID) AND (dbo.Employee_Master.InstituteID = dbo.Employee_Master.InstituteID) AND (Wage_Type = 'Basic')) 
+                      AS Basic,
+                          (SELECT     Amt
+                            FROM          dbo.WagetypereportView AS WagetypereportView_1
+                            WHERE      (dbo.Employee_Master.empId = empID) AND (dbo.Employee_Master.InstituteID = dbo.Employee_Master.InstituteID) AND (Wage_Type = 'Coll.Con.in PF')) 
+                      AS Employer,
+                          (SELECT     Amt
+                            FROM          dbo.WagetypereportView AS WagetypereportView_2
+                            WHERE      (dbo.Employee_Master.empId = empID) AND (dbo.Employee_Master.InstituteID = dbo.Employee_Master.InstituteID) AND (Wage_Type = 'PF')) 
+                      AS Employee,
+                          (SELECT     Amt
+                            FROM          dbo.WagetypereportView AS WagetypereportView_3
+                            WHERE      (dbo.Employee_Master.empId = empID) AND (dbo.Employee_Master.InstituteID = dbo.Employee_Master.InstituteID) AND (Wage_Type = 'ESI')) AS ESI, 
+                      WagetypereportView_4.pfNo, WagetypereportView_4.esiNo
+FROM         dbo.Employee_Master INNER JOIN
+                      dbo.PaySalWage ON dbo.Employee_Master.empId = dbo.PaySalWage.empID INNER JOIN
+                      dbo.WagetypereportView AS WagetypereportView_4 ON dbo.PaySalWage.empID = WagetypereportView_4.empID AND 
+                      dbo.Employee_Master.InstituteID = WagetypereportView_4.InstituteID</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="empCode" DataSetColumn="empCode" />
+              <Mapping SourceColumn="empname" DataSetColumn="empname" />
+              <Mapping SourceColumn="empId" DataSetColumn="empId" />
+              <Mapping SourceColumn="InstituteID" DataSetColumn="InstituteID" />
+              <Mapping SourceColumn="Basic" DataSetColumn="Basic" />
+              <Mapping SourceColumn="Employer" DataSetColumn="Employer" />
+              <Mapping SourceColumn="Employee" DataSetColumn="Employee" />
+              <Mapping SourceColumn="ESI" DataSetColumn="ESI" />
+              <Mapping SourceColumn="pfNo" DataSetColumn="pfNo" />
+              <Mapping SourceColumn="esiNo" DataSetColumn="esiNo" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="PF" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="PF" msprop:Generator_UserDSName="PF">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="PF" msprop:Generator_TableClassName="PFDataTable" msprop:Generator_TableVarName="tablePF" msprop:Generator_TablePropName="_PF" msprop:Generator_RowDeletingName="PFRowDeleting" msprop:Generator_UserTableName="PF" msprop:Generator_RowChangingName="PFRowChanging" msprop:Generator_RowEvHandlerName="PFRowChangeEventHandler" msprop:Generator_RowDeletedName="PFRowDeleted" msprop:Generator_RowEvArgName="PFRowChangeEvent" msprop:Generator_RowChangedName="PFRowChanged" msprop:Generator_RowClassName="PFRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="empCode" msprop:Generator_ColumnVarNameInTable="columnempCode" msprop:Generator_ColumnPropNameInRow="empCode" msprop:Generator_ColumnPropNameInTable="empCodeColumn" msprop:Generator_UserColumnName="empCode">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="empname" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnempname" msprop:Generator_ColumnPropNameInRow="empname" msprop:Generator_ColumnPropNameInTable="empnameColumn" msprop:Generator_UserColumnName="empname" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="101" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="empId" msprop:Generator_ColumnVarNameInTable="columnempId" msprop:Generator_ColumnPropNameInRow="empId" msprop:Generator_ColumnPropNameInTable="empIdColumn" msprop:Generator_UserColumnName="empId" type="xs:int" />
+              <xs:element name="InstituteID" msprop:Generator_ColumnVarNameInTable="columnInstituteID" msprop:Generator_ColumnPropNameInRow="InstituteID" msprop:Generator_ColumnPropNameInTable="InstituteIDColumn" msprop:Generator_UserColumnName="InstituteID" type="xs:int" minOccurs="0" />
+              <xs:element name="Basic" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnBasic" msprop:Generator_ColumnPropNameInRow="Basic" msprop:Generator_ColumnPropNameInTable="BasicColumn" msprop:Generator_UserColumnName="Basic" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Employer" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnEmployer" msprop:Generator_ColumnPropNameInRow="Employer" msprop:Generator_ColumnPropNameInTable="EmployerColumn" msprop:Generator_UserColumnName="Employer" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Employee" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnEmployee" msprop:Generator_ColumnPropNameInRow="Employee" msprop:Generator_ColumnPropNameInTable="EmployeeColumn" msprop:Generator_UserColumnName="Employee" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ESI" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnESI" msprop:Generator_ColumnPropNameInRow="ESI" msprop:Generator_ColumnPropNameInTable="ESIColumn" msprop:Generator_UserColumnName="ESI" type="xs:decimal" minOccurs="0" />
+              <xs:element name="pfNo" msprop:Generator_ColumnVarNameInTable="columnpfNo" msprop:Generator_ColumnPropNameInRow="pfNo" msprop:Generator_ColumnPropNameInTable="pfNoColumn" msprop:Generator_UserColumnName="pfNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="esiNo" msprop:Generator_ColumnVarNameInTable="columnesiNo" msprop:Generator_ColumnPropNameInRow="esiNo" msprop:Generator_ColumnPropNameInTable="esiNoColumn" msprop:Generator_UserColumnName="esiNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Designation" msprop:Generator_ColumnVarNameInTable="columnDesignation" msprop:Generator_ColumnPropNameInRow="Designation" msprop:Generator_ColumnPropNameInTable="DesignationColumn" msprop:Generator_UserColumnName="Designation" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Leav_Allot" targetNamespace="http://tempuri.org/Leav_Allot.xsd" xmlns:mstns="http://tempuri.org/Leav_Allot.xsd" xmlns="http://tempuri.org/Leav_Allot.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Leav_AllotTableAdapter" GeneratorDataComponentClassName="Leav_AllotTableAdapter" Name="Leav_Allot" UserDataComponentName="Leav_AllotTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT     *
+FROM         Leav_Allot</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="leave" DataSetColumn="leave" />
+              <Mapping SourceColumn="InstituteID" DataSetColumn="InstituteID" />
+              <Mapping SourceColumn="SessionID" DataSetColumn="SessionID" />
+              <Mapping SourceColumn="deptid" DataSetColumn="deptid" />
+              <Mapping SourceColumn="empId" DataSetColumn="empId" />
+              <Mapping SourceColumn="leaveID" DataSetColumn="leaveID" />
+              <Mapping SourceColumn="empCode" DataSetColumn="empCode" />
+              <Mapping SourceColumn="name" DataSetColumn="name" />
+              <Mapping SourceColumn="lname" DataSetColumn="lname" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Leav_Allot" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="Leav_Allot" msprop:Generator_DataSetName="Leav_Allot">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Leav_Allot" msprop:Generator_UserTableName="Leav_Allot" msprop:Generator_RowDeletedName="Leav_AllotRowDeleted" msprop:Generator_RowChangedName="Leav_AllotRowChanged" msprop:Generator_RowClassName="Leav_AllotRow" msprop:Generator_RowChangingName="Leav_AllotRowChanging" msprop:Generator_RowEvArgName="Leav_AllotRowChangeEvent" msprop:Generator_RowEvHandlerName="Leav_AllotRowChangeEventHandler" msprop:Generator_TableClassName="Leav_AllotDataTable" msprop:Generator_TableVarName="tableLeav_Allot" msprop:Generator_RowDeletingName="Leav_AllotRowDeleting" msprop:Generator_TablePropName="_Leav_Allot">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="leave" msprop:Generator_UserColumnName="leave" msprop:Generator_ColumnPropNameInRow="leave" msprop:Generator_ColumnVarNameInTable="columnleave" msprop:Generator_ColumnPropNameInTable="leaveColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="InstituteID" msprop:Generator_UserColumnName="InstituteID" msprop:Generator_ColumnPropNameInRow="InstituteID" msprop:Generator_ColumnVarNameInTable="columnInstituteID" msprop:Generator_ColumnPropNameInTable="InstituteIDColumn" type="xs:int" />
+              <xs:element name="SessionID" msprop:Generator_UserColumnName="SessionID" msprop:Generator_ColumnPropNameInRow="SessionID" msprop:Generator_ColumnVarNameInTable="columnSessionID" msprop:Generator_ColumnPropNameInTable="SessionIDColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="deptid" msprop:Generator_UserColumnName="deptid" msprop:Generator_ColumnPropNameInRow="deptid" msprop:Generator_ColumnVarNameInTable="columndeptid" msprop:Generator_ColumnPropNameInTable="deptidColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="empId" msprop:Generator_UserColumnName="empId" msprop:Generator_ColumnPropNameInRow="empId" msprop:Generator_ColumnVarNameInTable="columnempId" msprop:Generator_ColumnPropNameInTable="empIdColumn" type="xs:int" />
+              <xs:element name="leaveID" msprop:Generator_UserColumnName="leaveID" msprop:Generator_ColumnPropNameInRow="leaveID" msprop:Generator_ColumnVarNameInTable="columnleaveID" msprop:Generator_ColumnPropNameInTable="leaveIDColumn" type="xs:int" />
+              <xs:element name="empCode" msprop:Generator_UserColumnName="empCode" msprop:Generator_ColumnVarNameInTable="columnempCode" msprop:Generator_ColumnPropNameInRow="empCode" msprop:Generator_ColumnPropNameInTable="empCodeColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="name" msdata:ReadOnly="true" msprop:Generator_UserColumnName="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="101" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="lname" msdata:ReadOnly="true" msprop:Generator_UserColumnName="lname" msprop:Generator_ColumnPropNameInRow="lname" msprop:Generator_ColumnVarNameInTable="columnlname" msprop:Generator_ColumnPropNameInTable="lnameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="62" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Leav_Allot" />
+      <xs:field xpath="mstns:leaveID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

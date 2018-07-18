@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="TransSummaryCours" targetNamespace="http://tempuri.org/TransSummaryCours.xsd" xmlns:mstns="http://tempuri.org/TransSummaryCours.xsd" xmlns="http://tempuri.org/TransSummaryCours.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TransSummaryVWTableAdapter" GeneratorDataComponentClassName="TransSummaryVWTableAdapter" Name="TransSummaryVW" UserDataComponentName="TransSummaryVWTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectName="Edu.dbo.TransSummaryVW" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT SName, FeeID, FeeHeadName, TotalAmount, StudentName, Payment, CourseSession, Sid, SessionID, CourseName, shortName FROM TransSummaryVW</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="SName" DataSetColumn="SName" />
+              <Mapping SourceColumn="FeeID" DataSetColumn="FeeID" />
+              <Mapping SourceColumn="FeeHeadName" DataSetColumn="FeeHeadName" />
+              <Mapping SourceColumn="TotalAmount" DataSetColumn="TotalAmount" />
+              <Mapping SourceColumn="StudentName" DataSetColumn="StudentName" />
+              <Mapping SourceColumn="Payment" DataSetColumn="Payment" />
+              <Mapping SourceColumn="CourseSession" DataSetColumn="CourseSession" />
+              <Mapping SourceColumn="Sid" DataSetColumn="Sid" />
+              <Mapping SourceColumn="SessionID" DataSetColumn="SessionID" />
+              <Mapping SourceColumn="CourseName" DataSetColumn="CourseName" />
+              <Mapping SourceColumn="shortName" DataSetColumn="shortName" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="TransSummaryCours" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="TransSummaryCours" msprop:Generator_UserDSName="TransSummaryCours">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="TransSummaryVW" msprop:Generator_TableClassName="TransSummaryVWDataTable" msprop:Generator_TableVarName="tableTransSummaryVW" msprop:Generator_TablePropName="TransSummaryVW" msprop:Generator_RowDeletingName="TransSummaryVWRowDeleting" msprop:Generator_UserTableName="TransSummaryVW" msprop:Generator_RowChangingName="TransSummaryVWRowChanging" msprop:Generator_RowEvHandlerName="TransSummaryVWRowChangeEventHandler" msprop:Generator_RowDeletedName="TransSummaryVWRowDeleted" msprop:Generator_RowEvArgName="TransSummaryVWRowChangeEvent" msprop:Generator_RowChangedName="TransSummaryVWRowChanged" msprop:Generator_RowClassName="TransSummaryVWRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SName" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSName" msprop:Generator_ColumnPropNameInRow="SName" msprop:Generator_ColumnPropNameInTable="SNameColumn" msprop:Generator_UserColumnName="SName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FeeID" msprop:Generator_ColumnVarNameInTable="columnFeeID" msprop:Generator_ColumnPropNameInRow="FeeID" msprop:Generator_ColumnPropNameInTable="FeeIDColumn" msprop:Generator_UserColumnName="FeeID" type="xs:int" minOccurs="0" />
+              <xs:element name="FeeHeadName" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnFeeHeadName" msprop:Generator_ColumnPropNameInRow="FeeHeadName" msprop:Generator_ColumnPropNameInTable="FeeHeadNameColumn" msprop:Generator_UserColumnName="FeeHeadName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="56" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TotalAmount" msprop:Generator_ColumnVarNameInTable="columnTotalAmount" msprop:Generator_ColumnPropNameInRow="TotalAmount" msprop:Generator_ColumnPropNameInTable="TotalAmountColumn" msprop:Generator_UserColumnName="TotalAmount" type="xs:decimal" minOccurs="0" />
+              <xs:element name="StudentName" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnStudentName" msprop:Generator_ColumnPropNameInRow="StudentName" msprop:Generator_ColumnPropNameInTable="StudentNameColumn" msprop:Generator_UserColumnName="StudentName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Payment" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnPayment" msprop:Generator_ColumnPropNameInRow="Payment" msprop:Generator_ColumnPropNameInTable="PaymentColumn" msprop:Generator_UserColumnName="Payment" type="xs:int" minOccurs="0" />
+              <xs:element name="CourseSession" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCourseSession" msprop:Generator_ColumnPropNameInRow="CourseSession" msprop:Generator_ColumnPropNameInTable="CourseSessionColumn" msprop:Generator_UserColumnName="CourseSession" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="61" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Sid" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSid" msprop:Generator_ColumnPropNameInRow="Sid" msprop:Generator_ColumnPropNameInTable="SidColumn" msprop:Generator_UserColumnName="Sid" type="xs:int" minOccurs="0" />
+              <xs:element name="SessionID" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSessionID" msprop:Generator_ColumnPropNameInRow="SessionID" msprop:Generator_ColumnPropNameInTable="SessionIDColumn" msprop:Generator_UserColumnName="SessionID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CourseName" msprop:Generator_ColumnVarNameInTable="columnCourseName" msprop:Generator_ColumnPropNameInRow="CourseName" msprop:Generator_ColumnPropNameInTable="CourseNameColumn" msprop:Generator_UserColumnName="CourseName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="shortName" msprop:Generator_ColumnVarNameInTable="columnshortName" msprop:Generator_ColumnPropNameInRow="shortName" msprop:Generator_ColumnPropNameInTable="shortNameColumn" msprop:Generator_UserColumnName="shortName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TotalBalance" msprop:Generator_ColumnVarNameInTable="columnTotalBalance" msprop:Generator_ColumnPropNameInRow="TotalBalance" msprop:Generator_ColumnPropNameInTable="TotalBalanceColumn" msprop:Generator_UserColumnName="TotalBalance" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CourseYear" msprop:Generator_ColumnVarNameInTable="columnCourseYear" msprop:Generator_ColumnPropNameInRow="CourseYear" msprop:Generator_ColumnPropNameInTable="CourseYearColumn" msprop:Generator_UserColumnName="CourseYear" type="xs:string" minOccurs="0" />
+              <xs:element name="TotalDue" msprop:Generator_ColumnVarNameInTable="columnTotalDue" msprop:Generator_ColumnPropNameInRow="TotalDue" msprop:Generator_ColumnPropNameInTable="TotalDueColumn" msprop:Generator_UserColumnName="TotalDue" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

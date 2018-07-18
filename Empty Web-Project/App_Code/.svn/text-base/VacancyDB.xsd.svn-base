@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="VacancyDB" targetNamespace="http://tempuri.org/VacancyDB.xsd" xmlns:mstns="http://tempuri.org/VacancyDB.xsd" xmlns="http://tempuri.org/VacancyDB.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" GeneratorFunctionsComponentClassName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" UserFunctionsComponentName="QueriesTableAdapter" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Add_Vac_viewTableAdapter" GeneratorDataComponentClassName="Add_Vac_viewTableAdapter" Name="Add_Vac_view" UserDataComponentName="Add_Vac_viewTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectName="FeesManagement.dbo.Add_Vac_view" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT     jobId, jobCode, title, deptId, desigId, payStruct, minAge, maxAge, tExp, responsibility, tVacancy, aDate, lDate, percentage, qualId, Designation, 
+                      DepartmentName, InstituteID, SessionID, UserID, UEDate
+FROM         Add_Vac_view</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="jobId" DataSetColumn="jobId" />
+              <Mapping SourceColumn="jobCode" DataSetColumn="jobCode" />
+              <Mapping SourceColumn="title" DataSetColumn="title" />
+              <Mapping SourceColumn="deptId" DataSetColumn="deptId" />
+              <Mapping SourceColumn="desigId" DataSetColumn="desigId" />
+              <Mapping SourceColumn="payStruct" DataSetColumn="payStruct" />
+              <Mapping SourceColumn="minAge" DataSetColumn="minAge" />
+              <Mapping SourceColumn="maxAge" DataSetColumn="maxAge" />
+              <Mapping SourceColumn="tExp" DataSetColumn="tExp" />
+              <Mapping SourceColumn="responsibility" DataSetColumn="responsibility" />
+              <Mapping SourceColumn="tVacancy" DataSetColumn="tVacancy" />
+              <Mapping SourceColumn="aDate" DataSetColumn="aDate" />
+              <Mapping SourceColumn="lDate" DataSetColumn="lDate" />
+              <Mapping SourceColumn="percentage" DataSetColumn="percentage" />
+              <Mapping SourceColumn="qualId" DataSetColumn="qualId" />
+              <Mapping SourceColumn="Designation" DataSetColumn="Designation" />
+              <Mapping SourceColumn="DepartmentName" DataSetColumn="DepartmentName" />
+              <Mapping SourceColumn="InstituteID" DataSetColumn="InstituteID" />
+              <Mapping SourceColumn="SessionID" DataSetColumn="SessionID" />
+              <Mapping SourceColumn="UserID" DataSetColumn="UserID" />
+              <Mapping SourceColumn="UEDate" DataSetColumn="UEDate" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="VacancyDB" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="VacancyDB" msprop:Generator_DataSetName="VacancyDB">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Add_Vac_view" msprop:Generator_UserTableName="Add_Vac_view" msprop:Generator_RowDeletedName="Add_Vac_viewRowDeleted" msprop:Generator_TableClassName="Add_Vac_viewDataTable" msprop:Generator_RowChangedName="Add_Vac_viewRowChanged" msprop:Generator_RowClassName="Add_Vac_viewRow" msprop:Generator_RowChangingName="Add_Vac_viewRowChanging" msprop:Generator_RowEvArgName="Add_Vac_viewRowChangeEvent" msprop:Generator_RowEvHandlerName="Add_Vac_viewRowChangeEventHandler" msprop:Generator_TablePropName="Add_Vac_view" msprop:Generator_TableVarName="tableAdd_Vac_view" msprop:Generator_RowDeletingName="Add_Vac_viewRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="jobId" msprop:Generator_UserColumnName="jobId" msprop:Generator_ColumnPropNameInRow="jobId" msprop:Generator_ColumnVarNameInTable="columnjobId" msprop:Generator_ColumnPropNameInTable="jobIdColumn" type="xs:int" />
+              <xs:element name="jobCode" msprop:Generator_UserColumnName="jobCode" msprop:Generator_ColumnPropNameInRow="jobCode" msprop:Generator_ColumnVarNameInTable="columnjobCode" msprop:Generator_ColumnPropNameInTable="jobCodeColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="title" msprop:Generator_UserColumnName="title" msprop:Generator_ColumnPropNameInRow="title" msprop:Generator_ColumnVarNameInTable="columntitle" msprop:Generator_ColumnPropNameInTable="titleColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="deptId" msprop:Generator_UserColumnName="deptId" msprop:Generator_ColumnPropNameInRow="deptId" msprop:Generator_ColumnVarNameInTable="columndeptId" msprop:Generator_ColumnPropNameInTable="deptIdColumn" type="xs:int" />
+              <xs:element name="desigId" msprop:Generator_UserColumnName="desigId" msprop:Generator_ColumnPropNameInRow="desigId" msprop:Generator_ColumnVarNameInTable="columndesigId" msprop:Generator_ColumnPropNameInTable="desigIdColumn" type="xs:int" />
+              <xs:element name="payStruct" msprop:Generator_UserColumnName="payStruct" msprop:Generator_ColumnPropNameInRow="payStruct" msprop:Generator_ColumnVarNameInTable="columnpayStruct" msprop:Generator_ColumnPropNameInTable="payStructColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="minAge" msprop:Generator_UserColumnName="minAge" msprop:Generator_ColumnPropNameInRow="minAge" msprop:Generator_ColumnVarNameInTable="columnminAge" msprop:Generator_ColumnPropNameInTable="minAgeColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="maxAge" msprop:Generator_UserColumnName="maxAge" msprop:Generator_ColumnPropNameInRow="maxAge" msprop:Generator_ColumnVarNameInTable="columnmaxAge" msprop:Generator_ColumnPropNameInTable="maxAgeColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="tExp" msprop:Generator_UserColumnName="tExp" msprop:Generator_ColumnPropNameInRow="tExp" msprop:Generator_ColumnVarNameInTable="columntExp" msprop:Generator_ColumnPropNameInTable="tExpColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="responsibility" msprop:Generator_UserColumnName="responsibility" msprop:Generator_ColumnPropNameInRow="responsibility" msprop:Generator_ColumnVarNameInTable="columnresponsibility" msprop:Generator_ColumnPropNameInTable="responsibilityColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="tVacancy" msprop:Generator_UserColumnName="tVacancy" msprop:Generator_ColumnPropNameInRow="tVacancy" msprop:Generator_ColumnVarNameInTable="columntVacancy" msprop:Generator_ColumnPropNameInTable="tVacancyColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="aDate" msprop:Generator_UserColumnName="aDate" msprop:Generator_ColumnPropNameInRow="aDate" msprop:Generator_ColumnVarNameInTable="columnaDate" msprop:Generator_ColumnPropNameInTable="aDateColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="lDate" msprop:Generator_UserColumnName="lDate" msprop:Generator_ColumnPropNameInRow="lDate" msprop:Generator_ColumnVarNameInTable="columnlDate" msprop:Generator_ColumnPropNameInTable="lDateColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="percentage" msprop:Generator_UserColumnName="percentage" msprop:Generator_ColumnPropNameInRow="percentage" msprop:Generator_ColumnVarNameInTable="columnpercentage" msprop:Generator_ColumnPropNameInTable="percentageColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="qualId" msprop:Generator_UserColumnName="qualId" msprop:Generator_ColumnPropNameInRow="qualId" msprop:Generator_ColumnVarNameInTable="columnqualId" msprop:Generator_ColumnPropNameInTable="qualIdColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Designation" msprop:Generator_UserColumnName="Designation" msprop:Generator_ColumnPropNameInRow="Designation" msprop:Generator_ColumnVarNameInTable="columnDesignation" msprop:Generator_ColumnPropNameInTable="DesignationColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DepartmentName" msprop:Generator_UserColumnName="DepartmentName" msprop:Generator_ColumnPropNameInRow="DepartmentName" msprop:Generator_ColumnVarNameInTable="columnDepartmentName" msprop:Generator_ColumnPropNameInTable="DepartmentNameColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="InstituteID" msprop:Generator_UserColumnName="InstituteID" msprop:Generator_ColumnPropNameInRow="InstituteID" msprop:Generator_ColumnVarNameInTable="columnInstituteID" msprop:Generator_ColumnPropNameInTable="InstituteIDColumn" type="xs:int" />
+              <xs:element name="SessionID" msprop:Generator_UserColumnName="SessionID" msprop:Generator_ColumnPropNameInRow="SessionID" msprop:Generator_ColumnVarNameInTable="columnSessionID" msprop:Generator_ColumnPropNameInTable="SessionIDColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="UserID" msprop:Generator_UserColumnName="UserID" msprop:Generator_ColumnPropNameInRow="UserID" msprop:Generator_ColumnVarNameInTable="columnUserID" msprop:Generator_ColumnPropNameInTable="UserIDColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="UEDate" msprop:Generator_UserColumnName="UEDate" msprop:Generator_ColumnPropNameInRow="UEDate" msprop:Generator_ColumnVarNameInTable="columnUEDate" msprop:Generator_ColumnPropNameInTable="UEDateColumn" type="xs:dateTime" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

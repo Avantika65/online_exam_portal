@@ -1,0 +1,1609 @@
+﻿using System;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.ServiceModel.Activation;
+using System.ServiceModel.Web;
+using NewDAL;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data;
+
+[ServiceContract(Namespace = "",CallbackContract=typeof(IAcademic),ConfigurationName="Service")]
+public interface IAcademic
+{
+    [OperationContract(IsOneWay=false)]
+    string InsertDepartment(Academic.AcademicData.DepartmentDM ry);
+    [OperationContract(IsOneWay = false)]
+    string InsertCourse(Academic.AcademicData.CourseDM ry, List<Academic.AcademicData.CourseChildDM> coursechild, Admin.AdministratorData.AuditDM audit);
+
+}
+[AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
+[ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple)]
+public class Academicsvc : IAcademic
+{
+    [OperationContract(IsOneWay = false)]
+     public string InsertDepartment(Academic.AcademicData.DepartmentDM ry)
+    {
+        NewDAL.DBManager objDB = new DBManager();
+        objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+        objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+        objDB.Open();
+        objDB.BeginTransaction();
+        string retv = "";
+        string f = "";
+        try
+        {
+            objDB.CreateParameters(6);
+            objDB.AddParameters(0, "DepartmentID", ry.DepartmentID, DbType.Int32);
+            objDB.AddParameters(1, "DepartmentName", ry.DepartmentName, DbType.String);
+            objDB.AddParameters(2, "ShortName", ry.ShortName, DbType.String);
+            objDB.AddParameters(3, "Active", ry.Active, DbType.String);
+            objDB.AddParameters(4, "InstituteID", ry.InstituteID, DbType.Int32);
+            objDB.AddParameters(5, "flag", ry.Flag, DbType.String);
+            objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Department_Insert");
+            objDB.Transaction.Commit();
+            if (ry.Flag == "N")
+            {
+                retv = "Record saved.";
+            }
+            else if (ry.Flag == "U")
+            {
+                retv = "Record Updated Successfully.";
+            }
+            else
+            {
+                retv = "Record deleted Successfully.";
+            }
+        }
+        catch (Exception ex)
+        {
+            objDB.Transaction.Rollback();
+            retv = "Unable to save record :-" + ex.Message.ToString();
+        }
+        finally
+        {
+
+            objDB.Connection.Close();
+            objDB.Dispose();
+        }
+        return retv;
+    }
+
+    [OperationContract(IsOneWay = false)]
+    public string InsertCourse(Academic.AcademicData.CourseDM ry,List<Academic.AcademicData.CourseChildDM> coursechild,Admin.AdministratorData.AuditDM audit)
+    {
+        NewDAL.DBManager objDB = new DBManager();
+        objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+        objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+        objDB.Open();
+        objDB.BeginTransaction();
+        string retv = "";
+        string f = "";
+        try
+        {
+            objDB.CreateParameters(15);
+            objDB.AddParameters(0, "CourseId", ry.CourseId, DbType.Int32);
+            objDB.AddParameters(1, "CourseName", ry.CourseName, DbType.String);
+            objDB.AddParameters(2, "ShortName", ry.ShortName, DbType.String);
+            objDB.AddParameters(3, "CourseNature", ry.CourseNature, DbType.String);
+            objDB.AddParameters(4, "CourseDuration", ry.CourseDuration, DbType.Int32);
+            objDB.AddParameters(5, "SpecialisationID", ry.SpecialisationID, DbType.String);
+            objDB.AddParameters(6, "InstituteID", ry.InstituteID, DbType.Int32);
+            objDB.AddParameters(7, "Active", ry.Active, DbType.String);
+            objDB.AddParameters(8, "Type", ry.Type, DbType.String);
+            objDB.AddParameters(9, "DepartmentID", ry.DepartmentID, DbType.Int32);
+            objDB.AddParameters(10, "flag", ry.Flag, DbType.String);
+            objDB.AddParameters(11, "NOS", ry.NOS, DbType.Int32);
+            objDB.AddParameters(12, "EXS", ry.EXS, DbType.Int32);
+            objDB.AddParameters(13, "Category", ry.Category, DbType.String);
+            objDB.AddParameters(14, "EGroupID", ry.Isgroup, DbType.Int32 );
+            objDB.ExecuteNonQuery(CommandType.StoredProcedure, "CourseMaster");
+            foreach (Academic.AcademicData.CourseChildDM chm in coursechild)
+            {
+                objDB.CreateParameters(6);
+                objDB.AddParameters(0, "CourseId", chm.CourseID, DbType.Int32);
+                objDB.AddParameters(1, "CastCategory", chm.CastCategory, DbType.String);
+                objDB.AddParameters(2, "Max_Age", chm.Max_Age, DbType.Int32);
+                objDB.AddParameters(3, "Min_Age", chm.Min_Age, DbType.Int32);
+                objDB.AddParameters(4, "Min_Per", chm.Min_Per, DbType.Int32);
+                objDB.AddParameters(5, "flag", chm.Flag, DbType.String);
+                objDB.ExecuteNonQuery(CommandType.StoredProcedure, "CourseChild");
+            }
+            objDB.CreateParameters(9);
+            objDB.AddParameters(0, "ID", 0, DbType.Int32);
+            objDB.AddParameters(1, "Form_Name", audit.Form_Name, DbType.String);
+            objDB.AddParameters(2, "Action", audit.Action, DbType.String);
+            objDB.AddParameters(3, "User_ID", audit.User_ID, DbType.String);
+            objDB.AddParameters(4, "Entry_Date", audit.Entry_Date, DbType.String);
+            objDB.AddParameters(5, "Record_ID", audit.Record_ID, DbType.String);
+            objDB.AddParameters(6, "Entry_Time", audit.Entry_Time, DbType.String);
+            objDB.AddParameters(7, "InstituteID", audit.InstituteID, DbType.Int32);
+            objDB.AddParameters(8, "SessionID", audit.SessionID, DbType.String);
+            objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Audit_Insert");
+            objDB.Transaction.Commit();
+            if (ry.Flag == "N")
+            {
+                retv = "Record saved.";
+            }
+            else if (ry.Flag == "U")
+            {
+                retv = "Record Updated Successfully.";
+            }
+            else
+            {
+                retv = "Record deleted Successfully.";
+            }
+        }
+        catch (Exception ex)
+        {
+            objDB.Transaction.Rollback();
+            retv = "Unable to save record :-" + ex.Message.ToString();
+        }
+        finally
+        {
+
+            objDB.Connection.Close();
+            objDB.Dispose();
+        }
+        return retv;
+    }
+
+    [OperationContract(IsOneWay = false)]
+    public string InsertCourseDel(Academic.AcademicData.CourseDelDM ry, Admin.AdministratorData.AuditDM audit)
+    {
+        NewDAL.DBManager objDB = new DBManager();
+        objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+        objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+        objDB.Open();
+        objDB.BeginTransaction();
+        string retv = "";
+        string f = "";
+        try
+        {
+            objDB.CreateParameters(1);
+            objDB.AddParameters(0, "CourseID", ry.CourseID, DbType.Int32);
+            objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Course_Delete");
+
+            //foreach (Academic.AcademicData.CourseChildDM chm in coursechild)
+            //{
+            //    objDB.CreateParameters(1);
+            //    objDB.AddParameters(0, "CourseId", ry.CourseId, DbType.Int32);
+            //    objDB.ExecuteNonQuery(CommandType.StoredProcedure, "CourseChild");
+            //}
+
+            objDB.CreateParameters(9);
+            objDB.AddParameters(0, "ID", 0, DbType.Int32);
+            objDB.AddParameters(1, "Form_Name", audit.Form_Name, DbType.String);
+            objDB.AddParameters(2, "Action", audit.Action, DbType.String);
+            objDB.AddParameters(3, "User_ID", audit.User_ID, DbType.String);
+            objDB.AddParameters(4, "Entry_Date", audit.Entry_Date, DbType.String);
+            objDB.AddParameters(5, "Record_ID", audit.Record_ID, DbType.String);
+            objDB.AddParameters(6, "Entry_Time", audit.Entry_Time, DbType.String);
+            objDB.AddParameters(7, "InstituteID", audit.InstituteID, DbType.Int32);
+            objDB.AddParameters(8, "SessionID", audit.SessionID, DbType.String);
+            objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Audit_Insert");
+            objDB.Transaction.Commit();
+
+            retv = "Record Deleted.";
+        }
+
+        catch (Exception ex)
+        {
+            objDB.Transaction.Rollback();
+            retv = "Unable to save record :-" + ex.Message.ToString();
+        }
+        finally
+        {
+
+            objDB.Connection.Close();
+            objDB.Dispose();
+        }
+        return retv;
+    }
+
+
+    [OperationContract(IsOneWay = false)]
+    public string InsertWeekDel(Academic.AcademicData.WeekDelDM ry, Admin.AdministratorData.AuditDM audit)
+    {
+        NewDAL.DBManager objDB = new DBManager();
+        objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+        objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+        objDB.Open();
+        objDB.BeginTransaction();
+        string retv = "";
+        string f = "";
+        try
+        {
+            objDB.CreateParameters(4);
+            objDB.AddParameters(0, "CourseID", ry.CourseID, DbType.Int32);
+            objDB.AddParameters(1, "semid", ry.semid, DbType.Int32);
+            objDB.AddParameters(2, "SessionYr", ry.SessionYr, DbType.String);
+            objDB.AddParameters(3, "Inst_ID", ry.Inst_ID, DbType.Int32);
+            objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Week_Delete");
+
+            //foreach (Academic.AcademicData.CourseChildDM chm in coursechild)
+            //{
+            //    objDB.CreateParameters(1);
+            //    objDB.AddParameters(0, "CourseId", ry.CourseId, DbType.Int32);
+            //    objDB.ExecuteNonQuery(CommandType.StoredProcedure, "CourseChild");
+            //}
+
+            objDB.CreateParameters(9);
+            objDB.AddParameters(0, "ID", 0, DbType.Int32);
+            objDB.AddParameters(1, "Form_Name", audit.Form_Name, DbType.String);
+            objDB.AddParameters(2, "Action", audit.Action, DbType.String);
+            objDB.AddParameters(3, "User_ID", audit.User_ID, DbType.String);
+            objDB.AddParameters(4, "Entry_Date", audit.Entry_Date, DbType.String);
+            objDB.AddParameters(5, "Record_ID", audit.Record_ID, DbType.String);
+            objDB.AddParameters(6, "Entry_Time", audit.Entry_Time, DbType.String);
+            objDB.AddParameters(7, "InstituteID", audit.InstituteID, DbType.Int32);
+            objDB.AddParameters(8, "SessionID", audit.SessionID, DbType.String);
+            objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Audit_Insert");
+            objDB.Transaction.Commit();
+
+            retv = "Record Deleted.";
+        }
+
+        catch (Exception ex)
+        {
+            objDB.Transaction.Rollback();
+            retv = "Unable to save record :-" + ex.Message.ToString();
+        }
+        finally
+        {
+
+            objDB.Connection.Close();
+            objDB.Dispose();
+        }
+        return retv;
+    }
+
+
+    [OperationContract(IsOneWay = false)]
+    public string InsertCourseDept(List<Academic.AcademicData.CourseDeptMapDM> DeptM,  Admin.AdministratorData.AuditDM audit)
+    {
+        NewDAL.DBManager objDB = new DBManager();
+        objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+        objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+        objDB.Open();
+        objDB.BeginTransaction();
+        string retv = "";
+        string f = "";
+        try
+        {
+            foreach (Academic.AcademicData.CourseDeptMapDM ry in DeptM)
+            {
+                objDB.CreateParameters(6);
+                objDB.AddParameters(0, "ID", ry.ID, DbType.Int32);
+                objDB.AddParameters(1, "InstituteID", ry.InstituteID, DbType.String);
+                objDB.AddParameters(2, "DepartmentID", ry.DepartmentID, DbType.String);
+                objDB.AddParameters(3, "CourseID", ry.CourseID, DbType.String);
+                objDB.AddParameters(4, "status", ry.Status, DbType.Int32);
+                objDB.AddParameters(5, "flag", ry.flag, DbType.String);
+                objDB.ExecuteNonQuery(CommandType.StoredProcedure, "DeptCoursMap_sp");
+                f = ry.flag;
+            }
+            objDB.CreateParameters(9);
+            objDB.AddParameters(0, "ID", 0, DbType.Int32);
+            objDB.AddParameters(1, "Form_Name", audit.Form_Name, DbType.String);
+            objDB.AddParameters(2, "Action", audit.Action, DbType.String);
+            objDB.AddParameters(3, "User_ID", audit.User_ID, DbType.String);
+            objDB.AddParameters(4, "Entry_Date", audit.Entry_Date, DbType.String);
+            objDB.AddParameters(5, "Record_ID", audit.Record_ID, DbType.String);
+            objDB.AddParameters(6, "Entry_Time", audit.Entry_Time, DbType.String);
+            objDB.AddParameters(7, "InstituteID", audit.InstituteID, DbType.Int32);
+            objDB.AddParameters(8, "SessionID", audit.SessionID, DbType.String);
+            objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Audit_Insert");
+            objDB.Transaction.Commit();
+            if (f  == "N")
+            {
+                retv = "Record saved.";
+            }
+            else if (f == "U")
+            {
+                retv = "Record Updated Successfully.";
+            }
+            else
+            {
+                retv = "Record deleted Successfully.";
+            }
+        }
+        catch (Exception ex)
+        {
+            objDB.Transaction.Rollback();
+            retv = "Unable to save record :-" + ex.Message.ToString();
+        }
+        finally
+        {
+
+            objDB.Connection.Close();
+            objDB.Dispose();
+        }
+        return retv;
+    }
+
+    [OperationContract(IsOneWay = false)]
+    public string InsertWeek(List<Academic.AcademicData.WeekDM> WeekM, Admin.AdministratorData.AuditDM audit)
+    {
+        NewDAL.DBManager objDB = new DBManager();
+        objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+        objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+        objDB.Open();
+        objDB.BeginTransaction();
+        string retv = "";
+        string f = "";
+        try
+        {
+            foreach (Academic.AcademicData.WeekDM ry in WeekM)
+            {
+                objDB.CreateParameters(11);
+                objDB.AddParameters(0, "WeekID", ry.WeekID, DbType.Int32);
+                objDB.AddParameters(1, "StartDate", ry.StartDate, DbType.DateTime);
+                objDB.AddParameters(2, "EndDate", ry.EndDate, DbType.DateTime);
+                objDB.AddParameters(3, "WeekName", ry.WeekName, DbType.String);
+                objDB.AddParameters(4, "SessionYear", ry.SessionYear, DbType.String);
+                objDB.AddParameters(5, "Active", ry.Active, DbType.String);
+                objDB.AddParameters(6, "Inst_ID", ry.Inst_ID, DbType.Int32);
+                objDB.AddParameters(7, "CourseId", ry.CourseId, DbType.Int32);
+                objDB.AddParameters(8, "semid", ry.semid, DbType.Int32);
+                objDB.AddParameters(9, "YearID", ry.YearID, DbType.Int32);
+                objDB.AddParameters(10, "flag", ry.Flag , DbType.String);
+                objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Week_Insert");
+                f = ry.Flag ;
+            }
+            objDB.CreateParameters(9);
+            objDB.AddParameters(0, "ID", 0, DbType.Int32);
+            objDB.AddParameters(1, "Form_Name", audit.Form_Name, DbType.String);
+            objDB.AddParameters(2, "Action", audit.Action, DbType.String);
+            objDB.AddParameters(3, "User_ID", audit.User_ID, DbType.String);
+            objDB.AddParameters(4, "Entry_Date", audit.Entry_Date, DbType.String);
+            objDB.AddParameters(5, "Record_ID", audit.Record_ID, DbType.String);
+            objDB.AddParameters(6, "Entry_Time", audit.Entry_Time, DbType.String);
+            objDB.AddParameters(7, "InstituteID", audit.InstituteID, DbType.Int32);
+            objDB.AddParameters(8, "SessionID", audit.SessionID, DbType.String);
+            objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Audit_Insert");
+            objDB.Transaction.Commit();
+            if (f == "N")
+            {
+                retv = "Record saved.";
+            }
+            else if (f == "U")
+            {
+                retv = "Record Updated Successfully.";
+            }
+            else
+            {
+                retv = "Record deleted Successfully.";
+            }
+        }
+        catch (Exception ex)
+        {
+            objDB.Transaction.Rollback();
+            retv = "Unable to save record :-" + ex.Message.ToString();
+        }
+        finally
+        {
+
+            objDB.Connection.Close();
+            objDB.Dispose();
+        }
+        return retv;
+    }
+
+    [OperationContract(IsOneWay = false)]
+    public string InsertFaculty( Academic.AcademicData.FacultyDM FacultyM, Admin.AdministratorData.AuditDM audit)
+    {
+        NewDAL.DBManager objDB = new DBManager();
+        objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+        objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+        objDB.Open();
+        objDB.BeginTransaction();
+        string retv = "";
+        string f = "";
+        try
+        {
+         
+                objDB.CreateParameters(24);
+                objDB.AddParameters(0, "FacultyID", FacultyM.FacultyID, DbType.Int32);
+                objDB.AddParameters(1, "Salutation", FacultyM.Salutation, DbType.String);
+                objDB.AddParameters(2, "FirstName", FacultyM.FirstName, DbType.String);
+                objDB.AddParameters(3, "MiddleName", FacultyM.MiddleName, DbType.String);
+                objDB.AddParameters(4, "LastName", FacultyM.LastName, DbType.String);
+                objDB.AddParameters(5, "Password", FacultyM.Password, DbType.String);
+                objDB.AddParameters(6, "DepartmentID", FacultyM.DepartmentID, DbType.Int32);
+                objDB.AddParameters(7, "Designation", FacultyM.Designation, DbType.Int32);
+                objDB.AddParameters(8, "BirthDate", FacultyM.BirthDate, DbType.DateTime);
+                objDB.AddParameters(9, "Address", FacultyM.Address, DbType.String);
+                objDB.AddParameters(10, "City", FacultyM.City, DbType.Int32);
+
+                objDB.AddParameters(11, "State", FacultyM.State, DbType.Int32);
+                objDB.AddParameters(12, "Country", FacultyM.Country, DbType.Int32);
+                objDB.AddParameters(13, "EmailID", FacultyM.EmailID, DbType.String);
+                objDB.AddParameters(14, "Phone", FacultyM.Phone, DbType.String);
+                objDB.AddParameters(15, "Mobile", FacultyM.Mobile, DbType.String);
+                objDB.AddParameters(16, "Active", FacultyM.Active, DbType.String);
+
+                objDB.AddParameters(17, "Councellor", FacultyM.Councellor, DbType.String);
+                objDB.AddParameters(18, "InstituteID", FacultyM.InstituteID, DbType.Int32);
+                objDB.AddParameters(19, "SessionID", FacultyM.SessionID, DbType.String);
+                objDB.AddParameters(20, "UName", FacultyM.UName, DbType.String);
+                objDB.AddParameters(21, "UEntDt", FacultyM.UEntDt, DbType.DateTime);
+                objDB.AddParameters(22, "Photo", FacultyM.Photo, DbType.Binary);
+                objDB.AddParameters(23, "Flag", FacultyM.Flag, DbType.String);
+                objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Faculty_Insert");
+                f = FacultyM.Flag;
+ 
+            objDB.CreateParameters(9);
+            objDB.AddParameters(0, "ID", 0, DbType.Int32);
+            objDB.AddParameters(1, "Form_Name", audit.Form_Name, DbType.String);
+            objDB.AddParameters(2, "Action", audit.Action, DbType.String);
+            objDB.AddParameters(3, "User_ID", audit.User_ID, DbType.String);
+            objDB.AddParameters(4, "Entry_Date", audit.Entry_Date, DbType.String);
+            objDB.AddParameters(5, "Record_ID", audit.Record_ID, DbType.String);
+            objDB.AddParameters(6, "Entry_Time", audit.Entry_Time, DbType.String);
+            objDB.AddParameters(7, "InstituteID", audit.InstituteID, DbType.Int32);
+            objDB.AddParameters(8, "SessionID", audit.SessionID, DbType.String);
+            objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Audit_Insert");
+            objDB.Transaction.Commit();
+            if (f == "N")
+            {
+                retv = "Record saved.";
+            }
+            else if (f == "U")
+            {
+                retv = "Record Updated Successfully.";
+            }
+            else
+            {
+                retv = "Record deleted Successfully.";
+            }
+        }
+        catch (Exception ex)
+        {
+            objDB.Transaction.Rollback();
+            retv = "Unable to save record :-" + ex.Message.ToString();
+        }
+        finally
+        {
+
+            objDB.Connection.Close();
+            objDB.Dispose();
+        }
+        return retv;
+    }
+
+
+    //[OperationContract(IsOneWay = false)]
+    //public string InsertStudentDetail(Academic.AcademicData.StudentRegistrationDM StudentM, List<Academic.AcademicData.StudentRegistrationDetailDM> studentDM, Academic.AcademicData.StudentStatusDM objSM, List<Academic.AcademicData.StudentPQuaificationDM> SQDM, List<Academic.AcademicData.StudentDocumentDM> SDDM, Admin.AdministratorData.AuditDM audit)
+    //{
+    //    NewDAL.DBManager objDB = new DBManager();
+    //    objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+    //    objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+    //    objDB.Open();
+    //    objDB.BeginTransaction();
+    //    string retv = "";
+    //    string f = "";
+    //    try
+    //    {
+
+    //        objDB.CreateParameters(69);
+    //        objDB.AddParameters(0, "StudentID", StudentM.StudentID, DbType.Int32);
+    //        objDB.AddParameters(1, "ProspectusDocID", StudentM.ProspectusDocID, DbType.String);
+    //        objDB.AddParameters(2, "EnquiryDocID", StudentM.EnquiryDocID, DbType.String);
+    //        objDB.AddParameters(3, "RegistrationNo", StudentM.RegistrationNo, DbType.String);
+    //        objDB.AddParameters(4, "RegistrationDate", StudentM.RegistrationDate, DbType.String);
+    //        objDB.AddParameters(5, "SessionCode", StudentM.SessionCode, DbType.String);
+    //        objDB.AddParameters(6, "CourseCode", StudentM.CourseCode, DbType.String);
+    //        objDB.AddParameters(7, "StudentNamePrefix", StudentM.StudentNamePrefix, DbType.String);
+    //        objDB.AddParameters(8, "StudentName", StudentM.StudentName, DbType.String);
+    //        objDB.AddParameters(9, "ID_Student", StudentM.ID_Student, DbType.String);
+    //        objDB.AddParameters(10, "ImagePath", StudentM.ImagePath, DbType.Binary);
+    //        objDB.AddParameters(11, "IdentityMark", StudentM.IdentityMark, DbType.String);
+    //        objDB.AddParameters(12, "FatherNamePrefix", StudentM.FatherNamePrefix, DbType.String);
+    //        objDB.AddParameters(13, "FatherName", StudentM.FatherName, DbType.String);
+    //        objDB.AddParameters(14, "ParentOccCode", StudentM.ParentOccCode, DbType.String);
+    //        objDB.AddParameters(15, "MotherNamePrefix", StudentM.MotherNamePrefix, DbType.String);
+    //        objDB.AddParameters(16, "MotherName", StudentM.MotherName, DbType.String);
+    //        objDB.AddParameters(17, "DOB", StudentM.DOB, DbType.String);
+    //        objDB.AddParameters(18, "Category", StudentM.Category, DbType.String);
+    //        objDB.AddParameters(19, "Sex", StudentM.Sex, DbType.String);
+    //        objDB.AddParameters(20, "ReligionCode", StudentM.ReligionCode, DbType.String);
+    //        objDB.AddParameters(21, "NationalityCode", StudentM.NationalityCode, DbType.String);
+    //        objDB.AddParameters(22, "GuardianNamePrefix", StudentM.GuardianNamePrefix, DbType.String);
+    //        objDB.AddParameters(23, "GuardianName", StudentM.GuardianName, DbType.String);
+    //        objDB.AddParameters(24, "GuardianOccCode", StudentM.GuardianOccCode, DbType.String);
+    //        objDB.AddParameters(25, "StudentRelation", StudentM.StudentRelation, DbType.String);
+    //        objDB.AddParameters(26, "AnnualIncome", StudentM.AnnualIncome, DbType.Decimal);
+    //        objDB.AddParameters(27, "UniversityCode", StudentM.UniversityCode, DbType.String);
+    //        objDB.AddParameters(28, "DocumentCode", StudentM.DocumentCode, DbType.Int32);
+    //        objDB.AddParameters(29, "LAdd1", StudentM.LAdd1, DbType.String);
+    //        objDB.AddParameters(30, "LAdd2", StudentM.LAdd2, DbType.String);
+    //        objDB.AddParameters(31, "LAdd3", StudentM.LAdd3, DbType.String);
+    //        objDB.AddParameters(32, "LCityCode", StudentM.LCityCode, DbType.Int32);
+    //        objDB.AddParameters(33, "LPinCode", StudentM.LPinCode, DbType.String);
+    //        objDB.AddParameters(34, "LPhoneNo", StudentM.LPhoneNo, DbType.String);
+    //        objDB.AddParameters(35, "LMobileNo", StudentM.LMobileNo, DbType.String);
+    //        objDB.AddParameters(36, "EMail", StudentM.EMail, DbType.String);
+    //        objDB.AddParameters(37, "PAdd1", StudentM.PAdd1, DbType.String);
+    //        objDB.AddParameters(38, "PAdd2", StudentM.PAdd2, DbType.String);
+    //        objDB.AddParameters(39, "PAdd3", StudentM.PAdd3, DbType.String);
+    //        objDB.AddParameters(40, "PCityCode", StudentM.PCityCode, DbType.Int32);
+    //        objDB.AddParameters(41, "PPinCode", StudentM.PPinCode, DbType.String);
+    //        objDB.AddParameters(42, "PPhoneNo", StudentM.PPhoneNo, DbType.String);
+    //        objDB.AddParameters(43, "PMobileNo", StudentM.PMobileNo, DbType.String);
+    //        objDB.AddParameters(44, "CAdd1", StudentM.CAdd1, DbType.String);
+    //        objDB.AddParameters(45, "CAdd2", StudentM.CAdd2, DbType.String);
+    //        objDB.AddParameters(46, "CAdd3", StudentM.CAdd3, DbType.String);
+    //        objDB.AddParameters(47, "CCityCode", StudentM.CCityCode, DbType.Int32);
+    //        objDB.AddParameters(48, "CPinCode", StudentM.CPinCode, DbType.String);
+    //        objDB.AddParameters(49, "CPhoneNo", StudentM.CPhoneNo, DbType.String);
+    //        objDB.AddParameters(50, "CMobileNo", StudentM.CMobileNo, DbType.String);
+    //        objDB.AddParameters(51, "ModeCode", StudentM.ModeCode, DbType.String);
+    //        objDB.AddParameters(52, "BloodGroup", StudentM.BloodGroup, DbType.String);
+    //        objDB.AddParameters(53, "UName", StudentM.UName, DbType.String);
+    //        objDB.AddParameters(54, "UEntDt", StudentM.UEntDt, DbType.DateTime);
+    //        objDB.AddParameters(55, "RollNo", StudentM.RollNo, DbType.String);
+    //        objDB.AddParameters(56, "BatchCode", StudentM.BatchCode, DbType.String);
+    //        objDB.AddParameters(57, "CourseDescCode", StudentM.CourseDescCode, DbType.String);
+    //        objDB.AddParameters(58, "EnrollmentNo", StudentM.EnrollmentNo, DbType.String);
+    //        objDB.AddParameters(59, "PassOutDate", StudentM.PassOutDate, DbType.String);
+    //        objDB.AddParameters(60, "InstituteID", StudentM.InstituteID, DbType.Int32);
+    //        objDB.AddParameters(61, "SessionID", StudentM.SessionID, DbType.String);
+    //        objDB.AddParameters(62, "MName", StudentM.MName, DbType.String);
+    //        objDB.AddParameters(63, "LName", StudentM.LName, DbType.String);
+    //        objDB.AddParameters(64, "CCategory", StudentM.CCategory, DbType.String);
+    //        objDB.AddParameters(65, "Status", StudentM.Status, DbType.String);
+    //        objDB.AddParameters(66, "Barcode", StudentM.Barcode, DbType.String);
+    //        objDB.AddParameters(67, "flag", StudentM.flag, DbType.String);
+    //        objDB.AddParameters(68, "StudentIDreturn", "xxxxxxxxxx", DbType.String, ParameterDirection.Output);
+    //        f = StudentM.flag;
+    //        objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Stu_Reg_Insert");
+    //        Int32 sid = 0;// Int32.Parse(objDB.Parameters[68].Value.ToString());
+    //        if (StudentM.flag == "U")
+    //        {
+    //            sid = StudentM.StudentID;
+    //        }
+    //        else
+    //        {
+    //            sid =  Int32.Parse(objDB.Parameters[68].Value.ToString());
+    //        }
+    //        if (StudentM.flag == "N")
+    //        {
+    //            objDB.CreateParameters(14);
+    //            objDB.AddParameters(0, "StudentID", sid, DbType.Int32);
+    //            objDB.AddParameters(1, "Batch", objSM.Batch, DbType.String);
+    //            objDB.AddParameters(2, "Session", objSM.Session, DbType.String);
+    //            objDB.AddParameters(3, "YearID", objSM.YearID, DbType.String);
+    //            objDB.AddParameters(4, "SemesterID", objSM.SemesterID, DbType.Int32);
+    //            objDB.AddParameters(5, "EnrollmentNo", objSM.EnrollmentNo, DbType.String);
+    //            objDB.AddParameters(6, "RollNo", objSM.RollNo, DbType.String);
+    //            objDB.AddParameters(7, "Status", objSM.Status, DbType.String);
+    //            objDB.AddParameters(8, "IsFeeDeposited", objSM.IsFeeDeposited, DbType.Int32);
+    //            objDB.AddParameters(9, "IsFeePaid", objSM.IsFeePaid, DbType.Int32);
+    //            objDB.AddParameters(10, "IsCardIssued", objSM.IsCardIssued, DbType.Int32);
+    //            objDB.AddParameters(11, "IsCourseChange", objSM.IsCourseChange, DbType.Int32);
+    //            objDB.AddParameters(12, "ExamRollNo", objSM.ExamRollNo, DbType.Int32);
+    //            objDB.AddParameters(13, "flag", objSM.flag, DbType.String);
+    //            objDB.ExecuteNonQuery(CommandType.StoredProcedure, "StudentDetail_Insert");
+    //        }
+    //        foreach (Academic.AcademicData.StudentRegistrationDetailDM std in studentDM)
+           
+    //        {
+    //            objDB.CreateParameters(22);
+    //            objDB.AddParameters(0, "DocID", sid, DbType.Int32);
+    //            objDB.AddParameters(1, "SrNo", std.SrNo, DbType.Int32);
+    //            objDB.AddParameters(2, "FeeHeadCode", std.FeeHeadCode, DbType.String);
+    //            objDB.AddParameters(3, "TotalFeeAmount", std.TotalFeeAmount, DbType.Decimal);
+    //            objDB.AddParameters(4, "BreakoffTime", std.BreakoffTime, DbType.String);
+    //            objDB.AddParameters(5, "Amount", std.Amount, DbType.Decimal);
+    //            objDB.AddParameters(6, "UName", std.UName, DbType.String);
+    //            objDB.AddParameters(7, "UEntDt", std.UEntDt, DbType.DateTime);
+    //            objDB.AddParameters(8, "DueDate", std.DueDate, DbType.DateTime);
+    //            objDB.AddParameters(9, "PaidAmount", std.PaidAmount, DbType.Decimal);
+    //            objDB.AddParameters(10, "BalAmount", std.BalAmount, DbType.Decimal);
+    //            objDB.AddParameters(11, "ReFund", std.ReFund, DbType.Decimal);
+    //            objDB.AddParameters(12, "CourseID", std.CourseID, DbType.Int32);
+    //            objDB.AddParameters(13, "SID", std.SID, DbType.Int32);
+    //            objDB.AddParameters(14, "YearID", std.SID, DbType.String);
+    //            objDB.AddParameters(15, "Session", std.Session, DbType.String);
+    //            objDB.AddParameters(16, "Inst_ID", std.Inst_ID, DbType.Int32);
+    //            objDB.AddParameters(17, "Status", std.Status, DbType.String);
+    //            objDB.AddParameters(18, "ODC_Charge", std.ODC_Charge, DbType.Decimal);
+    //            objDB.AddParameters(19, "fromdate", std.fromdate, DbType.DateTime);
+    //            objDB.AddParameters(20, "flag", std.flag, DbType.String);
+    //            objDB.AddParameters(21, "Feesubid", std.FeesubID, DbType.Int32);
+    //            objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Stu_Reg_D_Insert");
+    //        }
+    //        foreach (Academic.AcademicData.StudentPQuaificationDM std in SQDM)
+    //        {
+    //            objDB.CreateParameters(8);
+    //            objDB.AddParameters(0, "StudentID", sid, DbType.Int32);
+    //            objDB.AddParameters(1, "QualificationID", std.QualificationID, DbType.Int32);
+    //            objDB.AddParameters(2, "Passing_Year", std.Passing_Year, DbType.Int32);
+    //            objDB.AddParameters(3, "Board", std.Board, DbType.String);
+    //            objDB.AddParameters(4, "Max_Mark", std.Max_Mark, DbType.String);
+    //            objDB.AddParameters(5, "Min_Mark", std.Min_Mark, DbType.String);
+    //            objDB.AddParameters(6, "Division", std.Division, DbType.String);
+    //            objDB.AddParameters(7, "flag", std.flag, DbType.String);
+    //            objDB.ExecuteNonQuery(CommandType.StoredProcedure, "StudentQ_Insert");
+    //        }
+    //        foreach (Academic.AcademicData.StudentDocumentDM std in SDDM)
+    //        {
+    //            objDB.CreateParameters(11);
+    //            objDB.AddParameters(0, "StudentID", sid, DbType.Int32);
+    //            objDB.AddParameters(1, "DocumentID", std.DocumentID, DbType.Int32);
+    //            objDB.AddParameters(2, "Passing_Year", std.Passing_Year, DbType.Int32);
+    //            objDB.AddParameters(3, "Is_Original", std.Is_Original, DbType.String);
+    //            objDB.AddParameters(4, "Is_Submitted", std.Is_Submitted, DbType.String);
+    //            objDB.AddParameters(5, "Issued_By", std.Issued_By, DbType.String);
+    //            objDB.AddParameters(6, "Verified_By", std.Verified_By, DbType.String);
+    //            objDB.AddParameters(7, "Remark", std.Remark, DbType.String);
+    //            objDB.AddParameters(8, "DocSerial", std.DocSerial, DbType.String);
+    //            objDB.AddParameters(9, "Percentage", std.Percentage, DbType.String);
+    //            objDB.AddParameters(10, "flag", std.flag, DbType.String);
+    //            objDB.ExecuteNonQuery(CommandType.StoredProcedure, "StudentDocument_Insert");
+    //        }
+    //        objDB.CreateParameters(9);
+    //        objDB.AddParameters(0, "ID", 0, DbType.Int32);
+    //        objDB.AddParameters(1, "Form_Name", audit.Form_Name, DbType.String);
+    //        objDB.AddParameters(2, "Action", audit.Action, DbType.String);
+    //        objDB.AddParameters(3, "User_ID", audit.User_ID, DbType.String);
+    //        objDB.AddParameters(4, "Entry_Date", audit.Entry_Date, DbType.String);
+    //        objDB.AddParameters(5, "Record_ID", audit.Record_ID, DbType.String);
+    //        objDB.AddParameters(6, "Entry_Time", audit.Entry_Time, DbType.String);
+    //        objDB.AddParameters(7, "InstituteID", audit.InstituteID, DbType.Int32);
+    //        objDB.AddParameters(8, "SessionID", audit.SessionID, DbType.String);
+    //        objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Audit_Insert");
+
+            
+    //        objDB.Transaction.Commit();
+    //        if (f == "N")
+    //        {
+    //            retv = "Record saved.";
+    //        }
+    //        else if (f == "U")
+    //        {
+    //            retv = "Record Updated Successfully.";
+    //        }
+    //        else
+    //        {
+    //            retv = "Record deleted Successfully.";
+    //        }
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        objDB.Transaction.Rollback();
+    //        retv = "Unable to save record :-" + ex.Message.ToString();
+    //    }
+    //    finally
+    //    {
+
+    //        objDB.Connection.Close();
+    //        objDB.Dispose();
+    //    }
+    //    return retv;
+    //}
+
+
+    [OperationContract(IsOneWay = false)]
+    public string InsertStudentDetail(Academic.AcademicData.StudentRegistrationDM StudentM, List<Academic.AcademicData.StudentRegistrationDetailDM> studentDM, Academic.AcademicData.StudentStatusDM objSM, List<Academic.AcademicData.StudentPQuaificationDM> SQDM, List<Academic.AcademicData.StudentDocumentDM> SDDM, Admin.AdministratorData.AuditDM audit)
+    {
+        NewDAL.DBManager objDB = new DBManager();
+        objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+        objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+        objDB.Open();
+        objDB.BeginTransaction();
+        string retv = "";
+        string f = "";
+        try
+        {
+
+            objDB.CreateParameters(69);
+            objDB.AddParameters(0, "StudentID", StudentM.StudentID, DbType.Int32);
+            objDB.AddParameters(1, "ProspectusDocID", StudentM.ProspectusDocID, DbType.String);
+            objDB.AddParameters(2, "EnquiryDocID", StudentM.EnquiryDocID, DbType.String);
+            objDB.AddParameters(3, "RegistrationNo", StudentM.RegistrationNo, DbType.String);
+            objDB.AddParameters(4, "RegistrationDate", StudentM.RegistrationDate, DbType.String);
+            objDB.AddParameters(5, "SessionCode", StudentM.SessionCode, DbType.String);
+            objDB.AddParameters(6, "CourseCode", StudentM.CourseCode, DbType.String);
+            objDB.AddParameters(7, "StudentNamePrefix", StudentM.StudentNamePrefix, DbType.String);
+            objDB.AddParameters(8, "StudentName", StudentM.StudentName, DbType.String);
+            objDB.AddParameters(9, "ID_Student", StudentM.ID_Student, DbType.String);
+            objDB.AddParameters(10, "ImagePath", StudentM.ImagePath, DbType.Binary);
+            objDB.AddParameters(11, "IdentityMark", StudentM.IdentityMark, DbType.String);
+            objDB.AddParameters(12, "FatherNamePrefix", StudentM.FatherNamePrefix, DbType.String);
+            objDB.AddParameters(13, "FatherName", StudentM.FatherName, DbType.String);
+            objDB.AddParameters(14, "ParentOccCode", StudentM.ParentOccCode, DbType.String);
+            objDB.AddParameters(15, "MotherNamePrefix", StudentM.MotherNamePrefix, DbType.String);
+            objDB.AddParameters(16, "MotherName", StudentM.MotherName, DbType.String);
+            objDB.AddParameters(17, "DOB", StudentM.DOB, DbType.String);
+            objDB.AddParameters(18, "Category", StudentM.Category, DbType.String);
+            objDB.AddParameters(19, "Sex", StudentM.Sex, DbType.String);
+            objDB.AddParameters(20, "ReligionCode", StudentM.ReligionCode, DbType.String);
+            objDB.AddParameters(21, "NationalityCode", StudentM.NationalityCode, DbType.String);
+            objDB.AddParameters(22, "GuardianNamePrefix", StudentM.GuardianNamePrefix, DbType.String);
+            objDB.AddParameters(23, "GuardianName", StudentM.GuardianName, DbType.String);
+            objDB.AddParameters(24, "GuardianOccCode", StudentM.GuardianOccCode, DbType.String);
+            objDB.AddParameters(25, "StudentRelation", StudentM.StudentRelation, DbType.String);
+            objDB.AddParameters(26, "AnnualIncome", StudentM.AnnualIncome, DbType.Decimal);
+            objDB.AddParameters(27, "UniversityCode", StudentM.UniversityCode, DbType.String);
+            objDB.AddParameters(28, "DocumentCode", StudentM.DocumentCode, DbType.Int32);
+            objDB.AddParameters(29, "LAdd1", StudentM.LAdd1, DbType.String);
+            objDB.AddParameters(30, "LAdd2", StudentM.LAdd2, DbType.String);
+            objDB.AddParameters(31, "LAdd3", StudentM.LAdd3, DbType.String);
+            objDB.AddParameters(32, "LCityCode", StudentM.LCityCode, DbType.Int32);
+            objDB.AddParameters(33, "LPinCode", StudentM.LPinCode, DbType.String);
+            objDB.AddParameters(34, "LPhoneNo", StudentM.LPhoneNo, DbType.String);
+            objDB.AddParameters(35, "LMobileNo", StudentM.LMobileNo, DbType.String);
+            objDB.AddParameters(36, "EMail", StudentM.EMail, DbType.String);
+            objDB.AddParameters(37, "PAdd1", StudentM.PAdd1, DbType.String);
+            objDB.AddParameters(38, "PAdd2", StudentM.PAdd2, DbType.String);
+            objDB.AddParameters(39, "PAdd3", StudentM.PAdd3, DbType.String);
+            objDB.AddParameters(40, "PCityCode", StudentM.PCityCode, DbType.Int32);
+            objDB.AddParameters(41, "PPinCode", StudentM.PPinCode, DbType.String);
+            objDB.AddParameters(42, "PPhoneNo", StudentM.PPhoneNo, DbType.String);
+            objDB.AddParameters(43, "PMobileNo", StudentM.PMobileNo, DbType.String);
+            objDB.AddParameters(44, "CAdd1", StudentM.CAdd1, DbType.String);
+            objDB.AddParameters(45, "CAdd2", StudentM.CAdd2, DbType.String);
+            objDB.AddParameters(46, "CAdd3", StudentM.CAdd3, DbType.String);
+            objDB.AddParameters(47, "CCityCode", StudentM.CCityCode, DbType.Int32);
+            objDB.AddParameters(48, "CPinCode", StudentM.CPinCode, DbType.String);
+            objDB.AddParameters(49, "CPhoneNo", StudentM.CPhoneNo, DbType.String);
+            objDB.AddParameters(50, "CMobileNo", StudentM.CMobileNo, DbType.String);
+            objDB.AddParameters(51, "ModeCode", StudentM.ModeCode, DbType.String);
+            objDB.AddParameters(52, "BloodGroup", StudentM.BloodGroup, DbType.String);
+            objDB.AddParameters(53, "UName", StudentM.UName, DbType.String);
+            objDB.AddParameters(54, "UEntDt", StudentM.UEntDt, DbType.DateTime);
+            objDB.AddParameters(55, "RollNo", StudentM.RollNo, DbType.String);
+            objDB.AddParameters(56, "BatchCode", StudentM.BatchCode, DbType.String);
+            objDB.AddParameters(57, "CourseDescCode", StudentM.CourseDescCode, DbType.String);
+            objDB.AddParameters(58, "EnrollmentNo", StudentM.EnrollmentNo, DbType.String);
+            objDB.AddParameters(59, "PassOutDate", StudentM.PassOutDate, DbType.String);
+            objDB.AddParameters(60, "InstituteID", StudentM.InstituteID, DbType.Int32);
+            objDB.AddParameters(61, "SessionID", StudentM.SessionID, DbType.String);
+            objDB.AddParameters(62, "MName", StudentM.MName, DbType.String);
+            objDB.AddParameters(63, "LName", StudentM.LName, DbType.String);
+            objDB.AddParameters(64, "CCategory", StudentM.CCategory, DbType.String);
+            objDB.AddParameters(65, "Status", StudentM.Status, DbType.String);
+            objDB.AddParameters(66, "Barcode", StudentM.Barcode, DbType.String);
+            objDB.AddParameters(67, "flag", StudentM.flag, DbType.String);
+            objDB.AddParameters(68, "StudentIDreturn", "xxxxxxxxxx", DbType.String, ParameterDirection.Output);
+            f = StudentM.flag;
+            objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Stu_Reg_Insert");
+            Int32 sid = 0;// Int32.Parse(objDB.Parameters[68].Value.ToString());
+            if (StudentM.flag == "U")
+            {
+                sid = StudentM.StudentID;
+            }
+            else
+            {
+                sid = Int32.Parse(objDB.Parameters[68].Value.ToString());
+            }
+            if (StudentM.flag == "N")
+            {
+                objDB.CreateParameters(16);
+                objDB.AddParameters(0, "StudentID", sid, DbType.Int32);
+                objDB.AddParameters(1, "Batch", objSM.Batch, DbType.String);
+                objDB.AddParameters(2, "Session", objSM.Session, DbType.String);
+                objDB.AddParameters(3, "YearID", objSM.YearID, DbType.String);
+                objDB.AddParameters(4, "SemesterID", objSM.SemesterID, DbType.Int32);
+                objDB.AddParameters(5, "EnrollmentNo", objSM.EnrollmentNo, DbType.String);
+                objDB.AddParameters(6, "RollNo", objSM.RollNo, DbType.String);
+                objDB.AddParameters(7, "Status", objSM.Status, DbType.String);
+                objDB.AddParameters(8, "IsFeeDeposited", objSM.IsFeeDeposited, DbType.Int32);
+                objDB.AddParameters(9, "IsFeePaid", objSM.IsFeePaid, DbType.Int32);
+                objDB.AddParameters(10, "IsCardIssued", objSM.IsCardIssued, DbType.Int32);
+                objDB.AddParameters(11, "IsCourseChange", objSM.IsCourseChange, DbType.Int32);
+                objDB.AddParameters(12, "ExamRollNo", objSM.ExamRollNo, DbType.Int32);
+                objDB.AddParameters(13, "flag", objSM.flag, DbType.String);
+                objDB.AddParameters(14, "CourseID", objSM.CourseID, DbType.Int32);
+                objDB.AddParameters(15, "CCategory", objSM.CCategory, DbType.String);
+                objDB.ExecuteNonQuery(CommandType.StoredProcedure, "StudentDetail_Insert");
+            }
+            foreach (Academic.AcademicData.StudentRegistrationDetailDM std in studentDM)
+            {
+                objDB.CreateParameters(24);
+                objDB.AddParameters(0, "DocID", sid, DbType.Int32);
+                objDB.AddParameters(1, "SrNo", std.SrNo, DbType.Int32);
+                objDB.AddParameters(2, "FeeHeadCode", std.FeeHeadCode, DbType.String);
+                objDB.AddParameters(3, "TotalFeeAmount", std.TotalFeeAmount, DbType.Decimal);
+                objDB.AddParameters(4, "BreakoffTime", std.BreakoffTime, DbType.String);
+                objDB.AddParameters(5, "Amount", std.Amount, DbType.Decimal);
+                objDB.AddParameters(6, "UName", std.UName, DbType.String);
+                objDB.AddParameters(7, "UEntDt", std.UEntDt, DbType.DateTime);
+                objDB.AddParameters(8, "DueDate", std.DueDate, DbType.DateTime);
+                objDB.AddParameters(9, "PaidAmount", std.PaidAmount, DbType.Decimal);
+                objDB.AddParameters(10, "BalAmount", std.BalAmount, DbType.Decimal);
+                objDB.AddParameters(11, "ReFund", std.ReFund, DbType.Decimal);
+                objDB.AddParameters(12, "CourseID", std.CourseID, DbType.Int32);
+                objDB.AddParameters(13, "SID", std.SID, DbType.Int32);
+                objDB.AddParameters(14, "YearID", std.SID, DbType.String);
+                objDB.AddParameters(15, "Session", std.Session, DbType.String);
+                objDB.AddParameters(16, "Inst_ID", std.Inst_ID, DbType.Int32);
+                objDB.AddParameters(17, "Status", std.Status, DbType.String);
+                objDB.AddParameters(18, "ODC_Charge", std.ODC_Charge, DbType.Decimal);
+                objDB.AddParameters(19, "fromdate", std.fromdate, DbType.DateTime);
+                objDB.AddParameters(20, "flag", std.flag, DbType.String);
+                objDB.AddParameters(21, "Feesubid", std.FeesubID, DbType.Int32);
+                objDB.AddParameters(22, "CCategory", std.CCategory, DbType.String);
+                objDB.AddParameters(23, "Batch", std.Batch, DbType.String);
+                objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Stu_Reg_D_Insert");
+            }
+            foreach (Academic.AcademicData.StudentPQuaificationDM std in SQDM)
+            {
+                objDB.CreateParameters(8);
+                objDB.AddParameters(0, "StudentID", sid, DbType.Int32);
+                objDB.AddParameters(1, "QualificationID", std.QualificationID, DbType.Int32);
+                objDB.AddParameters(2, "Passing_Year", std.Passing_Year, DbType.Int32);
+                objDB.AddParameters(3, "Board", std.Board, DbType.String);
+                objDB.AddParameters(4, "Max_Mark", std.Max_Mark, DbType.String);
+                objDB.AddParameters(5, "Min_Mark", std.Min_Mark, DbType.String);
+                objDB.AddParameters(6, "Division", std.Division, DbType.String);
+                objDB.AddParameters(7, "flag", std.flag, DbType.String);
+                objDB.ExecuteNonQuery(CommandType.StoredProcedure, "StudentQ_Insert");
+            }
+            foreach (Academic.AcademicData.StudentDocumentDM std in SDDM)
+            {
+                objDB.CreateParameters(11);
+                objDB.AddParameters(0, "StudentID", sid, DbType.Int32);
+                objDB.AddParameters(1, "DocumentID", std.DocumentID, DbType.Int32);
+                objDB.AddParameters(2, "Passing_Year", std.Passing_Year, DbType.Int32);
+                objDB.AddParameters(3, "Is_Original", std.Is_Original, DbType.String);
+                objDB.AddParameters(4, "Is_Submitted", std.Is_Submitted, DbType.String);
+                objDB.AddParameters(5, "Issued_By", std.Issued_By, DbType.String);
+                objDB.AddParameters(6, "Verified_By", std.Verified_By, DbType.String);
+                objDB.AddParameters(7, "Remark", std.Remark, DbType.String);
+                objDB.AddParameters(8, "DocSerial", std.DocSerial, DbType.String);
+                objDB.AddParameters(9, "Percentage", std.Percentage, DbType.String);
+                objDB.AddParameters(10, "flag", std.flag, DbType.String);
+                objDB.ExecuteNonQuery(CommandType.StoredProcedure, "StudentDocument_Insert");
+            }
+            objDB.CreateParameters(9);
+            objDB.AddParameters(0, "ID", 0, DbType.Int32);
+            objDB.AddParameters(1, "Form_Name", audit.Form_Name, DbType.String);
+            objDB.AddParameters(2, "Action", audit.Action, DbType.String);
+            objDB.AddParameters(3, "User_ID", audit.User_ID, DbType.String);
+            objDB.AddParameters(4, "Entry_Date", audit.Entry_Date, DbType.String);
+            objDB.AddParameters(5, "Record_ID", audit.Record_ID, DbType.String);
+            objDB.AddParameters(6, "Entry_Time", audit.Entry_Time, DbType.String);
+            objDB.AddParameters(7, "InstituteID", audit.InstituteID, DbType.Int32);
+            objDB.AddParameters(8, "SessionID", audit.SessionID, DbType.String);
+            objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Audit_Insert");
+
+
+            objDB.Transaction.Commit();
+            if (f == "N")
+            {
+                retv = "Record saved.";
+            }
+            else if (f == "U")
+            {
+                retv = "Record Updated Successfully.";
+            }
+            else
+            {
+                retv = "Record deleted Successfully.";
+            }
+        }
+        catch (Exception ex)
+        {
+            objDB.Transaction.Rollback();
+            retv = "Unable to save record :-" + ex.Message.ToString();
+        }
+        finally
+        {
+
+            objDB.Connection.Close();
+            objDB.Dispose();
+        }
+        return retv;
+    }
+
+   [OperationContract]
+    public Academic.AcademicData.SessionDateDM FillSessionDatesBySem(Int32 SemesterID)
+    {
+        NewDAL.DBManager objDB = new DBManager();
+        objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+        objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+        objDB.Open();
+        objDB.CreateParameters(1);
+        objDB.AddParameters(0, "SemesterID", SemesterID, DbType.Int32);
+        IDataReader dr = (IDataReader)objDB.ExecuteReader(CommandType.StoredProcedure, "GetSessionDatesBySemesterID");
+        var item = new Academic.AcademicData.SessionDateDM();
+        if (dr.Read())
+        {
+
+            item.StartDate = Education.DataHelper.GetDateTime(dr, "StartDate");
+            item.EndDate = Education.DataHelper.GetDateTime(dr, "EndDate");
+
+        }
+        objDB.DataReader.Close();
+        objDB.Connection.Close();
+        return item;
+    }
+
+
+   [OperationContract]
+   public List<Academic.AcademicData.WeekGrd> FillWeekGrd(int InstituteID, string SessionYear, int CourseID, int flag)
+   {
+       NewDAL.DBManager objDB = new DBManager();
+       objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+       objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+       objDB.Open();
+       objDB.CreateParameters(4);
+       objDB.AddParameters(0, "InstituteID", InstituteID, DbType.Int32);
+       objDB.AddParameters(1, "SessionYear", SessionYear, DbType.String);
+       objDB.AddParameters(2, "CourseID", CourseID, DbType.Int32);
+       objDB.AddParameters(3, "flag", flag, DbType.Int32);
+
+       IDataReader dr = (IDataReader)objDB.ExecuteReader(CommandType.StoredProcedure, "Week_Select");
+       var listOfWeek = new List<Academic.AcademicData.WeekGrd>();
+       try
+       {
+           while (dr.Read())
+           {
+               var item = new Academic.AcademicData.WeekGrd();
+               item.CourseName = Education.DataHelper.GetString(dr, "CourseName");
+               item.CourseYear = Education.DataHelper.GetString(dr, "CourseYear");
+               item.CourseId = Education.DataHelper.GetInt(dr, "CourseId");
+               item.SStartDate = Education.DataHelper.GetDateTime(dr, "SStartDate");
+               item.SEndDate = Education.DataHelper.GetDateTime(dr, "SEndDate");
+               item.semid = Education.DataHelper.GetInt(dr, "semid");
+               item.SessionYear = Education.DataHelper.GetString(dr, "SessionYear");
+               item.WeekID = Education.DataHelper.GetInt(dr, "WeekID");
+               item.WeekName = Education.DataHelper.GetString(dr, "WeekName");
+               item.WStartDate = Education.DataHelper.GetDateTime(dr, "WStartDate");
+               item.WEndDate = Education.DataHelper.GetDateTime(dr, "WEndDate");
+               item.Active = Education.DataHelper.GetString(dr, "Active");
+               listOfWeek.Add(item);
+           }
+       }
+       finally
+       {
+           objDB.Connection.Close();
+           objDB.Dispose();
+       }
+       return listOfWeek;
+   }
+
+
+   public class FillMinAge : List<Academic.AcademicData.GetMinimumAge>
+   {
+   }
+   public FillMinAge GetAgeForAdmission(int courseID, string CCategory)
+   {
+       NewDAL.DBManager objDB = new DBManager();
+       objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+       objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+       objDB.Open();
+       objDB.CreateParameters(2);
+       objDB.AddParameters(0, "courseID", courseID, DbType.Int32);
+       objDB.AddParameters(1, "CCategory", CCategory, DbType.String);
+       IDataReader dr = (IDataReader)objDB.ExecuteReader(CommandType.StoredProcedure, "GetMinimumAgeForAdmission");
+       var retval = new FillMinAge();
+       if (dr.Read())
+       {
+           var item = new Academic.AcademicData.GetMinimumAge();
+           item.min_age = Education.DataHelper.GetInt(dr, "min_age");
+           item.Max_Age = Education.DataHelper.GetInt(dr, "Max_Age");
+           retval.Add(item);
+       }
+       return retval;
+   }
+   public class FillCityByID : Academic.AcademicData.GetCity
+   {
+   }
+   public FillCityByID GetCity(int cityID)
+   {
+       NewDAL.DBManager objDB = new DBManager();
+       objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+       objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+       objDB.Open();
+       objDB.CreateParameters(1);
+       objDB.AddParameters(0, "CityID", cityID, DbType.Int32);
+       IDataReader dr = (IDataReader)objDB.ExecuteReader(CommandType.StoredProcedure, "GetCityDetailByID");
+       var item = new FillCityByID();
+       if (dr.Read())
+       {
+           item.CityID = Education.DataHelper.GetInt(dr, "CityID");
+           item.CountryName = Education.DataHelper.GetString(dr, "CountryName");
+           item.StateName = Education.DataHelper.GetString(dr, "StateName");
+         }
+       return item ;
+   }
+
+   public class FillStudentDoc : List<Academic.AcademicData.StudentDocumentDM>
+   {
+   }
+   public FillStudentDoc GetStudentDoc(int studentID)
+   {
+       NewDAL.DBManager objDB = new DBManager();
+       objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+       objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+       objDB.Open();
+       objDB.CreateParameters(1);
+       objDB.AddParameters(0, "studentID", studentID, DbType.Int32);
+       IDataReader dr = (IDataReader)objDB.ExecuteReader(CommandType.StoredProcedure, "GetDocumentDetailByStudentID");
+       var FillSDoc = new FillStudentDoc();
+       while (dr.Read())
+       {
+           var item = new Academic.AcademicData.StudentDocumentDM();
+           item.DocumentID = Education.DataHelper.GetInt(dr, "DocumentID");
+           item.PassingYr = Education.DataHelper.GetInt(dr, "Passing_Year");
+           item.Is_Original = Education.DataHelper.GetString(dr, "Is_Original");
+           item.Is_Submitted = Education.DataHelper.GetString(dr, "Is_Submitted");
+           item.Issued_By = Education.DataHelper.GetString(dr, "Issued_By");
+           item.Remark = Education.DataHelper.GetString(dr, "Remark");
+           item.flag = Education.DataHelper.GetString(dr, "flag");
+           item.Doc_Serial = Education.DataHelper.GetString(dr, "Doc_Serial");
+           item.Percentage = Education.DataHelper.GetString(dr, "Percentage");
+           item.Doc_Category = Education.DataHelper.GetString(dr, "Doc_Category");
+           item.Document_Name = Education.DataHelper.GetString(dr, "Document_Name");
+           FillSDoc.Add(item);
+       }
+       return FillSDoc;
+   }
+   
+    //-------------------------------------------------------------------------------------------------
+
+   public class FillStudentP : List<Academic.AcademicData.StudentP>
+   {
+   }
+   [OperationContract]
+   public FillStudentP FillStudentPChk(string Sessn, int sid, int flag)
+   {
+       NewDAL.DBManager objDB = new DBManager();
+       objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+       objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+       objDB.Open();
+       objDB.CreateParameters(3);
+       objDB.AddParameters(0, "Session", Sessn, DbType.String);
+       objDB.AddParameters(1, "SemesterID", sid, DbType.Int32);
+       objDB.AddParameters(2, "flag", flag, DbType.Int32);
+
+       IDataReader dr = (IDataReader)objDB.ExecuteReader(CommandType.StoredProcedure, "Student_Promotion_Select");
+       FillStudentP listOfStudent = new FillStudentP();
+       while (dr.Read())
+       {
+           var item = new Academic.AcademicData.StudentP();
+           item.SName = Education.DataHelper.GetString(dr, "SName");
+           item.StudentID = Education.DataHelper.GetInt(dr, "StudentID");
+           listOfStudent.Add(item);
+       }
+       objDB.DataReader.Close();
+       objDB.Connection.Close();
+       objDB = null;
+       return listOfStudent;
+   }
+
+
+   public class FillStudentPGrd : List<Academic.AcademicData.StudentPGrd>
+   {
+   }
+   [OperationContract]
+   public FillStudentPGrd FillStudentGrd(int flag)
+   {
+       NewDAL.DBManager objDB = new DBManager();
+       objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+       objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+       objDB.Open();
+       objDB.CreateParameters(1);
+       objDB.AddParameters(0, "flag", flag, DbType.Int32);
+
+       IDataReader dr = (IDataReader)objDB.ExecuteReader(CommandType.StoredProcedure, "Student_Promotion_Select");
+       //var listOfStudent = new List<Academic.AcademicData.StudentPGrd>();
+       FillStudentPGrd listOfStudent = new FillStudentPGrd();
+       while (dr.Read())
+       {
+           var item = new Academic.AcademicData.StudentPGrd();
+           item.StudentID = Education.DataHelper.GetInt(dr, "StudentID");
+           item.ID_Student = Education.DataHelper.GetString(dr, "ID_Student");
+           item.SName = Education.DataHelper.GetString(dr, "SName");
+           item.SessionFrom = Education.DataHelper.GetString(dr, "SessionFrom");
+           item.YrSemFrom = Education.DataHelper.GetString(dr, "YrSemFrom");
+           item.SessionTo = Education.DataHelper.GetString(dr, "SessionTo");
+           item.YrSemTo = Education.DataHelper.GetString(dr, "YrSemTo");
+           listOfStudent.Add(item);
+       }
+       objDB.DataReader.Close();
+       objDB.Connection.Close();
+       objDB = null;
+       return listOfStudent;
+       //try
+       //{
+       //    while (dr != null)
+       //    {
+       //        var item = new Academic.AcademicData.StudentPGrd();
+       //        item.StudentID = Education.DataHelper.GetInt(dr, "StudentID");
+       //        item.IDStudent = Education.DataHelper.GetString(dr, "IDStudent");
+       //        item.SName = Education.DataHelper.GetString(dr, "SName");
+       //        item.Session = Education.DataHelper.GetString(dr, "Session");
+       //        item.YrSem = Education.DataHelper.GetString(dr, "YrSem");
+       //        listOfStudent.Add(item);
+       //        listOfStudent.Add(item);
+       //    }
+       //}
+       //finally
+       //{
+       //    objDB.Connection.Close();
+       //    objDB.Dispose();
+       //}
+       //return listOfStudent;
+
+   }
+
+   public class FillAddressLabel : List<Academic.AcademicData.AddressLabelPrintDM>
+   {
+   }
+   [OperationContract]
+   public DataTable  FillAddressForLabelPrint(int flag,int StudentID,int LabelType,int CourseID)
+   {
+       NewDAL.DBManager objDB = new DBManager();
+       objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+       objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+       objDB.Open();
+       objDB.CreateParameters(4);
+       objDB.AddParameters(0, "CourseID", CourseID, DbType.Int32);
+       objDB.AddParameters(1, "StudentID", StudentID, DbType.Int32);
+       objDB.AddParameters(2, "flag", flag, DbType.Int32);
+       objDB.AddParameters(3, "LabelType", LabelType, DbType.Int32);
+       DataTable dt = new DataTable();
+       try
+       {
+           dt = objDB.ExecuteTable(CommandType.StoredProcedure, "AddressLabelPrinting");
+       }
+       finally
+       {
+           objDB.Connection.Close();
+           objDB = null;
+       }
+       return dt;
+    }
+
+   //[OperationContract]
+   //public string InsertStudentPromotion(List<Academic.AcademicData.StudentPInsert> objSP,List<Academic.AcademicData.StudentPromotionRegDetailDM> studentDM, Admin.AdministratorData.AuditDM audit)
+   //{
+   //    NewDAL.DBManager objDB = new DBManager();
+   //    objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+   //    objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+   //    objDB.Open();
+   //    objDB.BeginTransaction();
+   //    string retv = "";
+   //    string f = "";
+   //    try
+   //    {
+   //        foreach (Academic.AcademicData.StudentPInsert sp in objSP)
+   //        {
+
+   //            objDB.CreateParameters(21);
+   //            objDB.AddParameters(0, "ID", sp.ID, DbType.Int32);
+   //            objDB.AddParameters(1, "InstituteID", sp.InstituteID, DbType.Int32);
+   //            objDB.AddParameters(2, "StudentID", sp.StudentID, DbType.Int32);
+   //            objDB.AddParameters(3, "CourseID", sp.CourseID, DbType.Int32);
+   //            objDB.AddParameters(4, "Batch", sp.Batch, DbType.String);
+   //            objDB.AddParameters(5, "SessionC", sp.SessionC, DbType.String);
+   //            objDB.AddParameters(6, "SessionFrom", sp.SessionFrom, DbType.String);
+   //            objDB.AddParameters(7, "YearFrom", sp.YearFrom, DbType.Int32);
+   //            objDB.AddParameters(8, "SemFrom", sp.SemFrom, DbType.Int32);
+   //            objDB.AddParameters(9, "SessionTo", sp.SessionTo, DbType.String);
+   //            objDB.AddParameters(10, "YearTo", sp.YearTo, DbType.Int32);
+   //            objDB.AddParameters(11, "SemTo", sp.SemTo, DbType.Int32);
+   //            objDB.AddParameters(12, "StatusU", sp.StatusU, DbType.String);
+   //            objDB.AddParameters(13, "StatusI", sp.StatusI, DbType.String);
+   //            objDB.AddParameters(14, "EnrollmentNo", sp.EnrollmentNo, DbType.String);
+   //            objDB.AddParameters(15, "RollNo", sp.RollNo, DbType.String);
+   //            objDB.AddParameters(16, "IsFeeDeposited", sp.IsFeeDeposited, DbType.Int32);
+   //            objDB.AddParameters(17, "IsFeePaid", sp.IsFeePaid, DbType.Int32);
+   //            objDB.AddParameters(18, "IsCardIssued", sp.IsCardIssued, DbType.Int32);
+   //            objDB.AddParameters(19, "IsCourseChange", sp.IsCourseChange, DbType.Int32);
+   //            objDB.AddParameters(20, "ExamRollNo", sp.ExamRollNo, DbType.String);
+   //            objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Student_Promotion_Insert");
+
+
+   //            foreach (Academic.AcademicData.StudentPromotionRegDetailDM sreg in studentDM)
+   //            {
+   //                objDB.CreateParameters(23);
+   //                objDB.AddParameters(0, "DocID", sreg.DocID, DbType.Int32);
+   //                objDB.AddParameters(1, "SrNo", sreg.SrNo, DbType.Int32);
+   //                objDB.AddParameters(2, "FeeHeadCode", sreg.FeeHeadCode, DbType.Int32);
+   //                objDB.AddParameters(3, "TotalFeeAmount", sreg.TotalFeeAmount, DbType.Decimal);
+   //                objDB.AddParameters(4, "BreakoffTime", sreg.BreakoffTime, DbType.String);
+   //                objDB.AddParameters(5, "Amount", sreg.Amount, DbType.Decimal);
+   //                objDB.AddParameters(6, "UName", sreg.UName, DbType.String);
+   //                objDB.AddParameters(7, "UEntDt", sreg.UEntDt, DbType.DateTime);
+   //                objDB.AddParameters(8, "DueDate", sreg.DueDate, DbType.DateTime);
+   //                objDB.AddParameters(9, "PaidAmount", sreg.PaidAmount, DbType.Decimal);
+   //                objDB.AddParameters(10, "BalAmount", sreg.BalAmount, DbType.Decimal);
+   //                objDB.AddParameters(11, "ReFund", sreg.ReFund, DbType.Int32);
+   //                objDB.AddParameters(12, "CourseID", sreg.CourseID, DbType.Int32);
+   //                objDB.AddParameters(13, "SemFrom", sreg.SemFrom, DbType.Int32);
+   //                objDB.AddParameters(14, "SemTo", sreg.SemTo, DbType.Int32);
+   //                objDB.AddParameters(15, "SessionFrom", sreg.SessionFrom, DbType.String);
+   //                objDB.AddParameters(16, "SessionTo", sreg.SessionTo, DbType.String);
+   //                objDB.AddParameters(17, "Inst_ID", sreg.Inst_ID, DbType.Int32);
+   //                objDB.AddParameters(18, "StatusU", sreg.StatusU, DbType.String);
+   //                objDB.AddParameters(19, "StatusI", sreg.StatusI, DbType.String);
+   //                objDB.AddParameters(20, "ODC_Charge", sreg.ODC_Charge, DbType.Decimal);
+   //                objDB.AddParameters(21, "fromdate", sreg.fromdate, DbType.DateTime);
+   //                objDB.AddParameters(22, "FeesubID", sreg.FeesubID, DbType.Int32);
+   //                objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Student_Promotion_RegDetail");
+   //            }
+
+   //        }
+
+
+   //        objDB.CreateParameters(9);
+   //        objDB.AddParameters(0, "ID", 0, DbType.Int32);
+   //        objDB.AddParameters(1, "Form_Name", audit.Form_Name, DbType.String);
+   //        objDB.AddParameters(2, "Action", audit.Action, DbType.String);
+   //        objDB.AddParameters(3, "User_ID", audit.User_ID, DbType.String);
+   //        objDB.AddParameters(4, "Entry_Date", audit.Entry_Date, DbType.String);
+   //        objDB.AddParameters(5, "Record_ID", audit.Record_ID, DbType.String);
+   //        objDB.AddParameters(6, "Entry_Time", audit.Entry_Time, DbType.String);
+   //        objDB.AddParameters(7, "InstituteID", audit.InstituteID, DbType.Int32);
+   //        objDB.AddParameters(8, "SessionID", audit.SessionID, DbType.String);
+   //        objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Audit_Insert");
+   //        objDB.Transaction.Commit();
+
+   //        retv = "Record saved.";
+   //    }
+   //    catch (Exception ex)
+   //    {
+   //        objDB.Transaction.Rollback();
+   //        retv = "Unable to save record :-" + ex.Message.ToString();
+   //    }
+   //    finally
+   //    {
+
+   //        objDB.Connection.Close();
+   //        objDB.Dispose();
+   //    }
+   //    return retv;
+   //}
+
+
+
+   [OperationContract]
+   public string InsertStudentPromotion(List<Academic.AcademicData.StudentPInsert> objSP, List<Academic.AcademicData.StudentPromotionRegDetailDM> studentDM, Admin.AdministratorData.AuditDM audit)
+   {
+       NewDAL.DBManager objDB = new DBManager();
+       objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+       objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+       objDB.Open();
+       objDB.BeginTransaction();
+       string retv = "";
+       string f = "";
+       try
+       {
+           foreach (Academic.AcademicData.StudentPInsert sp in objSP)
+           {
+
+               objDB.CreateParameters(22);
+               objDB.AddParameters(0, "ID", sp.ID, DbType.Int32);
+               objDB.AddParameters(1, "InstituteID", sp.InstituteID, DbType.Int32);
+               objDB.AddParameters(2, "StudentID", sp.StudentID, DbType.Int32);
+               objDB.AddParameters(3, "CourseID", sp.CourseID, DbType.Int32);
+               objDB.AddParameters(4, "Batch", sp.Batch, DbType.String);
+               objDB.AddParameters(5, "SessionC", sp.SessionC, DbType.String);
+               objDB.AddParameters(6, "SessionFrom", sp.SessionFrom, DbType.String);
+               objDB.AddParameters(7, "YearFrom", sp.YearFrom, DbType.Int32);
+               objDB.AddParameters(8, "SemFrom", sp.SemFrom, DbType.Int32);
+               objDB.AddParameters(9, "SessionTo", sp.SessionTo, DbType.String);
+               objDB.AddParameters(10, "YearTo", sp.YearTo, DbType.Int32);
+               objDB.AddParameters(11, "SemTo", sp.SemTo, DbType.Int32);
+               objDB.AddParameters(12, "StatusU", sp.StatusU, DbType.String);
+               objDB.AddParameters(13, "StatusI", sp.StatusI, DbType.String);
+               objDB.AddParameters(14, "EnrollmentNo", sp.EnrollmentNo, DbType.String);
+               objDB.AddParameters(15, "RollNo", sp.RollNo, DbType.String);
+               objDB.AddParameters(16, "IsFeeDeposited", sp.IsFeeDeposited, DbType.Int32);
+               objDB.AddParameters(17, "IsFeePaid", sp.IsFeePaid, DbType.Int32);
+               objDB.AddParameters(18, "IsCardIssued", sp.IsCardIssued, DbType.Int32);
+               objDB.AddParameters(19, "IsCourseChange", sp.IsCourseChange, DbType.Int32);
+               objDB.AddParameters(20, "ExamRollNo", sp.ExamRollNo, DbType.String);
+               objDB.AddParameters(21, "CCategory", sp.CCategory, DbType.String);
+               objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Student_Promotion_Insert");
+
+
+               foreach (Academic.AcademicData.StudentPromotionRegDetailDM sreg in studentDM)
+               {
+                   objDB.CreateParameters(26);
+                   objDB.AddParameters(0, "DocID", sreg.DocID, DbType.Int32);
+                   objDB.AddParameters(1, "SrNo", sreg.SrNo, DbType.Int32);
+                   objDB.AddParameters(2, "FeeHeadCode", sreg.FeeHeadCode, DbType.Int32);
+                   objDB.AddParameters(3, "TotalFeeAmount", sreg.TotalFeeAmount, DbType.Decimal);
+                   objDB.AddParameters(4, "BreakoffTime", sreg.BreakoffTime, DbType.String);
+                   objDB.AddParameters(5, "Amount", sreg.Amount, DbType.Decimal);
+                   objDB.AddParameters(6, "UName", sreg.UName, DbType.String);
+                   objDB.AddParameters(7, "UEntDt", sreg.UEntDt, DbType.DateTime);
+                   objDB.AddParameters(8, "DueDate", sreg.DueDate, DbType.DateTime);
+                   objDB.AddParameters(9, "PaidAmount", sreg.PaidAmount, DbType.Decimal);
+                   objDB.AddParameters(10, "BalAmount", sreg.BalAmount, DbType.Decimal);
+                   objDB.AddParameters(11, "ReFund", sreg.ReFund, DbType.Int32);
+                   objDB.AddParameters(12, "CourseID", sreg.CourseID, DbType.Int32);
+                   objDB.AddParameters(13, "SemFrom", sreg.SemFrom, DbType.Int32);
+                   objDB.AddParameters(14, "SemTo", sreg.SemTo, DbType.Int32);
+                   objDB.AddParameters(15, "SessionFrom", sreg.SessionFrom, DbType.String);
+                   objDB.AddParameters(16, "SessionTo", sreg.SessionTo, DbType.String);
+                   objDB.AddParameters(17, "Inst_ID", sreg.Inst_ID, DbType.Int32);
+                   objDB.AddParameters(18, "StatusU", sreg.StatusU, DbType.String);
+                   objDB.AddParameters(19, "StatusI", sreg.StatusI, DbType.String);
+                   objDB.AddParameters(20, "ODC_Charge", sreg.ODC_Charge, DbType.Decimal);
+                   objDB.AddParameters(21, "fromdate", sreg.fromdate, DbType.DateTime);
+                   objDB.AddParameters(22, "FeesubID", sreg.FeesubID, DbType.Int32);
+                   objDB.AddParameters(23, "YearTo", sreg.YearTo, DbType.Int32);
+                   objDB.AddParameters(24, "CCategory", sreg.CCategory, DbType.String);
+                   objDB.AddParameters(25, "Batch", sreg.Batch, DbType.String);
+                   objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Student_Promotion_RegDetail");
+               }
+
+           }
+
+
+           objDB.CreateParameters(9);
+           objDB.AddParameters(0, "ID", 0, DbType.Int32);
+           objDB.AddParameters(1, "Form_Name", audit.Form_Name, DbType.String);
+           objDB.AddParameters(2, "Action", audit.Action, DbType.String);
+           objDB.AddParameters(3, "User_ID", audit.User_ID, DbType.String);
+           objDB.AddParameters(4, "Entry_Date", audit.Entry_Date, DbType.String);
+           objDB.AddParameters(5, "Record_ID", audit.Record_ID, DbType.String);
+           objDB.AddParameters(6, "Entry_Time", audit.Entry_Time, DbType.String);
+           objDB.AddParameters(7, "InstituteID", audit.InstituteID, DbType.Int32);
+           objDB.AddParameters(8, "SessionID", audit.SessionID, DbType.String);
+           objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Audit_Insert");
+           objDB.Transaction.Commit();
+
+           retv = "Record saved.";
+       }
+       catch (Exception ex)
+       {
+           objDB.Transaction.Rollback();
+           retv = "Unable to save record :-" + ex.Message.ToString();
+       }
+       finally
+       {
+
+           objDB.Connection.Close();
+           objDB.Dispose();
+       }
+       return retv;
+   }
+
+
+
+   //public class FillStudentPromotionGrd : List<Academic.AcademicData.StudentPromotionGrd>
+   //{
+   //}
+   //[OperationContract]
+   //public FillStudentPromotionGrd FillStudentPrGrd(int flag)
+   //{
+   //    NewDAL.DBManager objDB = new DBManager();
+   //    objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+   //    objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+   //    objDB.Open();
+   //    objDB.CreateParameters(1);
+   //    objDB.AddParameters(0, "flag", flag, DbType.Int32);
+
+   //    IDataReader dr = (IDataReader)objDB.ExecuteReader(CommandType.StoredProcedure, "Student_Promotion_Select");
+   //    //var listOfStudent = new List<Academic.AcademicData.StudentPGrd>();
+   //    FillStudentPromotionGrd listOfStudent = new FillStudentPromotionGrd();
+   //    while (dr.Read())
+   //    {
+   //        var item = new Academic.AcademicData.StudentPromotionGrd();
+   //        item.StudentID = Education.DataHelper.GetInt(dr, "StudentID");
+   //        item.ID_Student = Education.DataHelper.GetString(dr, "ID_Student");
+   //        item.SName = Education.DataHelper.GetString(dr, "SName");
+   //        item.SessionFrom = Education.DataHelper.GetString(dr, "SessionFrom");
+   //        item.YrSemFrom = Education.DataHelper.GetString(dr, "YrSemFrom");
+   //        item.SessionTo = Education.DataHelper.GetString(dr, "SessionTo");
+   //        item.YrSemTo = Education.DataHelper.GetString(dr, "YrSemTo");
+   //        listOfStudent.Add(item);
+   //    }
+   //    objDB.DataReader.Close();
+   //    objDB.Connection.Close();
+   //    objDB = null;
+   //    return listOfStudent;
+   //}
+
+
+
+   public class FillStudentPromotionGrd : List<Academic.AcademicData.StudentPromotionGrd>
+   {
+   }
+   [OperationContract]
+   public FillStudentPromotionGrd FillStudentPrGrd(int instid, int flag)
+   {
+       NewDAL.DBManager objDB = new DBManager();
+       objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+       objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+       objDB.Open();
+       objDB.CreateParameters(2);
+       objDB.AddParameters(0, "InstituteID", instid, DbType.Int32);
+       objDB.AddParameters(1, "flag", flag, DbType.Int32);
+
+       IDataReader dr = (IDataReader)objDB.ExecuteReader(CommandType.StoredProcedure, "Student_Promotion_Select");
+       //var listOfStudent = new List<Academic.AcademicData.StudentPGrd>();
+       FillStudentPromotionGrd listOfStudent = new FillStudentPromotionGrd();
+       while (dr.Read())
+       {
+           var item = new Academic.AcademicData.StudentPromotionGrd();
+           item.StudentID = Education.DataHelper.GetInt(dr, "StudentID");
+           item.ID_Student = Education.DataHelper.GetString(dr, "ID_Student");
+           item.SName = Education.DataHelper.GetString(dr, "SName");
+           item.SessionFrom = Education.DataHelper.GetString(dr, "SessionFrom");
+           item.YrSemFrom = Education.DataHelper.GetString(dr, "YrSemFrom");
+           item.SessionTo = Education.DataHelper.GetString(dr, "SessionTo");
+           item.YrSemTo = Education.DataHelper.GetString(dr, "YrSemTo");
+           listOfStudent.Add(item);
+       }
+       objDB.DataReader.Close();
+       objDB.Connection.Close();
+       objDB = null;
+       return listOfStudent;
+   }
+
+
+
+
+   //public class FillStudentPromotionChk : List<Academic.AcademicData.StudentPromotionList>
+   //{
+   //}
+   //[OperationContract]
+   //public FillStudentPromotionChk FillStudentPListChk(string Sessn, int sid, int flag)
+   //{
+   //    NewDAL.DBManager objDB = new DBManager();
+   //    objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+   //    objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+   //    objDB.Open();
+   //    objDB.CreateParameters(3);
+   //    objDB.AddParameters(0, "Session", Sessn, DbType.String);
+   //    objDB.AddParameters(1, "SemesterID", sid, DbType.Int32);
+   //    objDB.AddParameters(2, "flag", flag, DbType.Int32);
+
+   //    IDataReader dr = (IDataReader)objDB.ExecuteReader(CommandType.StoredProcedure, "Student_Promotion_Select");
+   //    FillStudentPromotionChk listOfStudent = new FillStudentPromotionChk();
+   //    while (dr.Read())
+   //    {
+   //        var item = new Academic.AcademicData.StudentPromotionList();
+   //        item.SName = Education.DataHelper.GetString(dr, "SName");
+   //        item.StudentID = Education.DataHelper.GetInt(dr, "StudentID");
+   //        listOfStudent.Add(item);
+   //    }
+   //    objDB.DataReader.Close();
+   //    objDB.Connection.Close();
+   //    objDB = null;
+   //    return listOfStudent;
+   //}
+
+
+   public class FillStudentPromotionChk : List<Academic.AcademicData.StudentPromotionList>
+   {
+   }
+   [OperationContract]
+   public FillStudentPromotionChk FillStudentPListChk(string Sessn, int sid, int flag)
+   {
+       NewDAL.DBManager objDB = new DBManager();
+       objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+       objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+       objDB.Open();
+       objDB.CreateParameters(3);
+       objDB.AddParameters(0, "Session", Sessn, DbType.String);
+       objDB.AddParameters(1, "SemesterID", sid, DbType.Int32);
+       objDB.AddParameters(2, "flag", flag, DbType.Int32);
+
+       IDataReader dr = (IDataReader)objDB.ExecuteReader(CommandType.StoredProcedure, "Student_Promotion_Select");
+       FillStudentPromotionChk listOfStudent = new FillStudentPromotionChk();
+       while (dr.Read())
+       {
+           var item = new Academic.AcademicData.StudentPromotionList();
+           item.SName = Education.DataHelper.GetString(dr, "SName");
+           item.StudentID = Education.DataHelper.GetInt(dr, "StudentID");
+           item.ID_Student = Education.DataHelper.GetString(dr, "ID_Student");
+           listOfStudent.Add(item);
+       }
+       objDB.DataReader.Close();
+       objDB.Connection.Close();
+       objDB = null;
+       return listOfStudent;
+   }
+
+
+   public DataTable FillStudentPromotionRegDetail(int Course, string Category, string Ccategory, string sid, string batch,int inst, int flag)
+   {
+       NewDAL.DBManager objDB = new DBManager();
+       objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+       objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+       objDB.Open();
+       objDB.CreateParameters(7);
+       objDB.AddParameters(0, "CourseCode", Course, DbType.Int32);
+       objDB.AddParameters(1, "Category", Category, DbType.String);
+       objDB.AddParameters(2, "Ccategory", Ccategory, DbType.String);
+       objDB.AddParameters(3, "cid", sid, DbType.String);
+       objDB.AddParameters(4, "batch", batch, DbType.String);
+       objDB.AddParameters(5, "InstituteID", inst, DbType.Int32);
+       objDB.AddParameters(6, "flag", flag, DbType.Int32);
+       DataTable dt = new DataTable();
+       try
+       {
+           dt = objDB.ExecuteTable(CommandType.StoredProcedure, "Student_Promotion_Select");
+       }
+       finally
+       {
+           objDB.Connection.Close();
+           objDB.Dispose();
+       }
+       return dt;
+   }
+
+
+
+   public DataTable FillStudentPromotionReg(int StudentID, int flag)
+   {
+       NewDAL.DBManager objDB = new DBManager();
+       objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+       objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+       objDB.Open();
+       objDB.CreateParameters(2);
+       objDB.AddParameters(0, "StudentID", StudentID, DbType.Int32);
+       objDB.AddParameters(1, "flag", flag, DbType.Int32);
+       DataTable dt = new DataTable();
+       try
+       {
+           dt = objDB.ExecuteTable(CommandType.StoredProcedure, "Student_Promotion_Select");
+       }
+       finally
+       {
+           objDB.Connection.Close();
+           objDB.Dispose();
+       }
+       return dt;
+   }
+
+
+   [OperationContract]
+   public string WeekUpdate(Academic.AcademicData.WeekUpdateDM objWk, Admin.AdministratorData.AuditDM audit)
+   {
+       NewDAL.DBManager objDB = new DBManager();
+       objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+       objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+       objDB.Open();
+       objDB.BeginTransaction();
+       string retv = "";
+       try
+       {
+           objDB.CreateParameters(2);
+           objDB.AddParameters(0, "WeekID", objWk.WeekID, DbType.Int32);
+           objDB.AddParameters(1, "Active", objWk.Active, DbType.String);
+           objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Week_Update");
+           objDB.CreateParameters(9);
+           objDB.AddParameters(0, "ID", 0, DbType.Int32);
+           objDB.AddParameters(1, "Form_Name", audit.Form_Name, DbType.String);
+           objDB.AddParameters(2, "Action", audit.Action, DbType.String);
+           objDB.AddParameters(3, "User_ID", audit.User_ID, DbType.String);
+           objDB.AddParameters(4, "Entry_Date", audit.Entry_Date, DbType.String);
+           objDB.AddParameters(5, "Record_ID", audit.Record_ID, DbType.String);
+           objDB.AddParameters(6, "Entry_Time", audit.Entry_Time, DbType.String);
+           objDB.AddParameters(7, "InstituteID", audit.InstituteID, DbType.Int32);
+           objDB.AddParameters(8, "SessionID", audit.SessionID, DbType.String);
+           objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Audit_Insert");
+           objDB.Transaction.Commit();
+           //if (objFDM.Flag == 1)
+           //{
+           retv = "Record Saved.";
+
+       }
+       catch (Exception ex)
+       {
+           objDB.Transaction.Rollback();
+           retv = "Unable to save record :-" + ex.Message.ToString();
+       }
+       finally
+       {
+           objDB.Connection.Close();
+           objDB.Dispose();
+       }
+       return retv;
+   }
+
+}
+ 

@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="HRByActionDS" targetNamespace="http://tempuri.org/HRByActionDS.xsd" xmlns:mstns="http://tempuri.org/HRByActionDS.xsd" xmlns="http://tempuri.org/HRByActionDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="HR_Action_VTableAdapter" GeneratorDataComponentClassName="HR_Action_VTableAdapter" Name="HR_Action_V" UserDataComponentName="HR_Action_VTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectName="FeesManagement.dbo.HR_Action_V" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT     Candidate, candId, title, catId, Status, deptId, desigId, DepartmentName, Designation, InstituteID, SessionID
+FROM         HR_Action_V</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Candidate" DataSetColumn="Candidate" />
+              <Mapping SourceColumn="candId" DataSetColumn="candId" />
+              <Mapping SourceColumn="title" DataSetColumn="title" />
+              <Mapping SourceColumn="catId" DataSetColumn="catId" />
+              <Mapping SourceColumn="Status" DataSetColumn="Status" />
+              <Mapping SourceColumn="deptId" DataSetColumn="deptId" />
+              <Mapping SourceColumn="desigId" DataSetColumn="desigId" />
+              <Mapping SourceColumn="DepartmentName" DataSetColumn="DepartmentName" />
+              <Mapping SourceColumn="Designation" DataSetColumn="Designation" />
+              <Mapping SourceColumn="InstituteID" DataSetColumn="InstituteID" />
+              <Mapping SourceColumn="SessionID" DataSetColumn="SessionID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="HRByActionDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="HRByActionDS" msprop:Generator_DataSetName="HRByActionDS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="HR_Action_V" msprop:Generator_UserTableName="HR_Action_V" msprop:Generator_RowDeletedName="HR_Action_VRowDeleted" msprop:Generator_TableClassName="HR_Action_VDataTable" msprop:Generator_RowChangedName="HR_Action_VRowChanged" msprop:Generator_RowClassName="HR_Action_VRow" msprop:Generator_RowChangingName="HR_Action_VRowChanging" msprop:Generator_RowEvArgName="HR_Action_VRowChangeEvent" msprop:Generator_RowEvHandlerName="HR_Action_VRowChangeEventHandler" msprop:Generator_TablePropName="HR_Action_V" msprop:Generator_TableVarName="tableHR_Action_V" msprop:Generator_RowDeletingName="HR_Action_VRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Candidate" msdata:ReadOnly="true" msprop:Generator_UserColumnName="Candidate" msprop:Generator_ColumnPropNameInRow="Candidate" msprop:Generator_ColumnVarNameInTable="columnCandidate" msprop:Generator_ColumnPropNameInTable="CandidateColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="137" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="candId" msprop:Generator_UserColumnName="candId" msprop:Generator_ColumnPropNameInRow="candId" msprop:Generator_ColumnVarNameInTable="columncandId" msprop:Generator_ColumnPropNameInTable="candIdColumn" type="xs:int" />
+              <xs:element name="title" msprop:Generator_UserColumnName="title" msprop:Generator_ColumnPropNameInRow="title" msprop:Generator_ColumnVarNameInTable="columntitle" msprop:Generator_ColumnPropNameInTable="titleColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="catId" msprop:Generator_UserColumnName="catId" msprop:Generator_ColumnPropNameInRow="catId" msprop:Generator_ColumnVarNameInTable="columncatId" msprop:Generator_ColumnPropNameInTable="catIdColumn" type="xs:int" />
+              <xs:element name="Status" msdata:ReadOnly="true" msprop:Generator_UserColumnName="Status" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInTable="StatusColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="deptId" msprop:Generator_UserColumnName="deptId" msprop:Generator_ColumnPropNameInRow="deptId" msprop:Generator_ColumnVarNameInTable="columndeptId" msprop:Generator_ColumnPropNameInTable="deptIdColumn" type="xs:int" />
+              <xs:element name="desigId" msprop:Generator_UserColumnName="desigId" msprop:Generator_ColumnPropNameInRow="desigId" msprop:Generator_ColumnVarNameInTable="columndesigId" msprop:Generator_ColumnPropNameInTable="desigIdColumn" type="xs:int" />
+              <xs:element name="DepartmentName" msprop:Generator_UserColumnName="DepartmentName" msprop:Generator_ColumnPropNameInRow="DepartmentName" msprop:Generator_ColumnVarNameInTable="columnDepartmentName" msprop:Generator_ColumnPropNameInTable="DepartmentNameColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Designation" msprop:Generator_UserColumnName="Designation" msprop:Generator_ColumnPropNameInRow="Designation" msprop:Generator_ColumnVarNameInTable="columnDesignation" msprop:Generator_ColumnPropNameInTable="DesignationColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="InstituteID" msprop:Generator_UserColumnName="InstituteID" msprop:Generator_ColumnPropNameInRow="InstituteID" msprop:Generator_ColumnVarNameInTable="columnInstituteID" msprop:Generator_ColumnPropNameInTable="InstituteIDColumn" type="xs:int" />
+              <xs:element name="SessionID" msprop:Generator_UserColumnName="SessionID" msprop:Generator_ColumnPropNameInRow="SessionID" msprop:Generator_ColumnVarNameInTable="columnSessionID" msprop:Generator_ColumnPropNameInTable="SessionIDColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

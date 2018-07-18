@@ -1,0 +1,84 @@
+/* Fixes issue here http://code.google.com/p/jcrop/issues/detail?id=1 */
+.jcrop-holder { text-align: left; }
+
+.jcrop-vline, .jcrop-hline
+{
+	font-size: 0;
+	position: absolute;
+	background: white url('Jcrop.gif') top left repeat;
+}
+.jcrop-vline { height: 100%; width: 1px !important; }
+.jcrop-hline { width: 100%; height: 1px !important; }
+.jcrop-handle {
+	font-size: 1px;
+	width: 7px !important;
+	height: 7px !important;
+	border: 1px #eee solid;
+	background-color: #333;
+	*width: 9px;
+	*height: 9px;
+}
+
+.jcrop-tracker { width: 100%; height: 100%; }
+
+.custom .jcrop-vline,
+.custom .jcrop-hline
+{
+	background: yellow;
+}
+.custom .jcrop-handle
+{
+	border-color: black;
+	background-color: #C7BB00;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+.popup 
+        {
+         border: solid 1px #333;
+        font-family: Tahoma;
+        font-size: 12px;
+        display: none;
+        position:fixed;
+        overflow:auto;
+        width: 68%;
+        height:60%;
+        background-color:White;
+        left:3%;
+        margin-right:0%;
+        margin-bottom:0%;
+        top:4%;
+        scrollbar-face-color: White;
+        scrollbar-track-color: #5395D1;
+        scrollbar-arrow-color: #5395D1;
+         
+        }
+        .popuptitle 
+        {  
+            
+        height: 15px; z-index:-1;
+        background: #5395D1;
+        font-weight: bold;
+        padding: 5px;
+        color:#133f61;
+        text-align:right;
+        }
+        .popupbody {
+        background:White;
+        padding: 5px;
+        }
+        .bkDiv
+        {
+           display: none;
+            position:absolute;
+            overflow:auto;
+            width:100%;
+            height:100%;
+            background-color:Gray;
+            align:Left;
+            filter: alpha(opacity=50);
+            -moz-opacity:0.5;
+	        -khtml-opacity: 0.5;
+	        opacity: 0.5;
+           }
+        #popup1 { top: 0%; left: 50%; }

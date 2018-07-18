@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="En_VerificattionReport" targetNamespace="http://tempuri.org/En_VerificattionReport.xsd" xmlns:mstns="http://tempuri.org/En_VerificattionReport.xsd" xmlns="http://tempuri.org/En_VerificattionReport.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Verification_ReportTableAdapter" GeneratorDataComponentClassName="Verification_ReportTableAdapter" Name="Verification_Report" UserDataComponentName="Verification_ReportTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectName="EduSuite.dbo.Verification_Report" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        SName, onlineID, status, Paymentstatus, remark, remarkedby
+FROM            Verification_Report</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="SName" DataSetColumn="SName" />
+              <Mapping SourceColumn="onlineID" DataSetColumn="onlineID" />
+              <Mapping SourceColumn="status" DataSetColumn="status" />
+              <Mapping SourceColumn="Paymentstatus" DataSetColumn="Paymentstatus" />
+              <Mapping SourceColumn="remark" DataSetColumn="remark" />
+              <Mapping SourceColumn="remarkedby" DataSetColumn="remarkedby" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="En_VerificattionReport" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="En_VerificattionReport" msprop:Generator_DataSetName="En_VerificattionReport">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Verification_Report" msprop:Generator_TableClassName="Verification_ReportDataTable" msprop:Generator_TableVarName="tableVerification_Report" msprop:Generator_TablePropName="Verification_Report" msprop:Generator_RowDeletingName="Verification_ReportRowDeleting" msprop:Generator_UserTableName="Verification_Report" msprop:Generator_RowChangingName="Verification_ReportRowChanging" msprop:Generator_RowEvHandlerName="Verification_ReportRowChangeEventHandler" msprop:Generator_RowDeletedName="Verification_ReportRowDeleted" msprop:Generator_RowEvArgName="Verification_ReportRowChangeEvent" msprop:Generator_RowChangedName="Verification_ReportRowChanged" msprop:Generator_RowClassName="Verification_ReportRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SName" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSName" msprop:Generator_ColumnPropNameInRow="SName" msprop:Generator_ColumnPropNameInTable="SNameColumn" msprop:Generator_UserColumnName="SName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="153" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="onlineID" msprop:Generator_ColumnVarNameInTable="columnonlineID" msprop:Generator_ColumnPropNameInRow="onlineID" msprop:Generator_ColumnPropNameInTable="onlineIDColumn" msprop:Generator_UserColumnName="onlineID" type="xs:int" />
+              <xs:element name="status" msprop:Generator_ColumnVarNameInTable="columnstatus" msprop:Generator_ColumnPropNameInRow="status" msprop:Generator_ColumnPropNameInTable="statusColumn" msprop:Generator_UserColumnName="status">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Paymentstatus" msprop:Generator_ColumnVarNameInTable="columnPaymentstatus" msprop:Generator_ColumnPropNameInRow="Paymentstatus" msprop:Generator_ColumnPropNameInTable="PaymentstatusColumn" msprop:Generator_UserColumnName="Paymentstatus">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="remark" msprop:Generator_ColumnVarNameInTable="columnremark" msprop:Generator_ColumnPropNameInRow="remark" msprop:Generator_ColumnPropNameInTable="remarkColumn" msprop:Generator_UserColumnName="remark">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="remarkedby" msprop:Generator_ColumnVarNameInTable="columnremarkedby" msprop:Generator_ColumnPropNameInRow="remarkedby" msprop:Generator_ColumnPropNameInTable="remarkedbyColumn" msprop:Generator_UserColumnName="remarkedby">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

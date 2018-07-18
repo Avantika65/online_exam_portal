@@ -1,0 +1,340 @@
+﻿using System;
+using System.Collections;
+using System.Configuration;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Xml.Linq;
+using System.Security.Cryptography;
+using System.Data.SqlClient;
+using NewDAL;
+using System.IO;
+
+public partial class userPermission_ApplicationSettings : BaseClass
+{
+    DbFunctions objbus=new DbFunctions();    
+    //Administrator objAdmin;
+    DBManager Objdal;
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (CheckAuthontication() != true)
+        {
+            Response.Redirect("../logout.aspx");
+        }
+        if (!IsPostBack)
+        {
+            txtinst.Focus();
+            if (Session["instID"] != null)
+            {
+                objbus = new DbFunctions();
+                byte[] imgbin = { 1, 1, 0, 0, 1, 0, 0, 0 };
+                ViewState["_id_inst"] = Session["instID"].ToString();// "_id"; 
+                ViewState["_inst_logo"]= imgbin;
+               // objbus.FillDropdownlist(DDlAcd_Session, "Session_Name", "Id_Session", "select Id_Session,Session_Name from acd_session where InstId='"+Session["instId"].ToString()+"'", "---Session---");
+                objbus.FillDropdownlist(ddlInst_Type, "Type", "Type_ID", "select Type, Type_ID from CompanyType", "---Select---");
+                objbus.FillDropdownlist(ddlnature, "Natute_Type", "Nature_ID", "Select Nature_Type,Nature_ID from Institute_Nature_Type", "---Select---");
+                FillInstInfo();
+               // FillProxyInfo();
+               // Fill_ApplicationSettings();
+            }
+            if (Request.QueryString["p"] != null)
+            {
+                perm = Request.QueryString["p"].ToString();
+                controlPerm(BtnSave, BtnSave, BtnSave, perm);
+            }
+            
+        }
+    }
+    protected void FillInstInfo()
+    {
+        DBManager Objdal = new DBManager();
+        objbus = new DbFunctions();
+        AdmininstratorSet objSearch = new AdmininstratorSet();
+        var aps = objSearch.searchCustomers(Session["instId"].ToString());
+       
+        string RetSuccess=string.Empty;
+        try
+        {
+            ViewState["_id_inst"] = aps[0].CollegeID;
+                txtinst.Text = aps[0].CollegeName;
+                txtinstshort.Text = aps[0].ShortName;
+                txtaddress.Text = aps[0].Location;
+                txtphone1.Text = aps[0].Phone1;
+                txtphone2.Text = aps[0].Phone2;
+                txtfax.Text = aps[0].Fax;
+                txtmobile.Text = aps[0].Mobile;
+                txtemail1.Text = aps[0].EmailID1;
+                txtemail2.Text = aps[0].Email2;
+                txturl.Text = aps[0].Website;
+                txtdesc.Text = aps[0].Description;
+               // DDlAcd_Session.SelectedIndex = DDlAcd_Session.Items.IndexOf(DDlAcd_Session.Items.FindByText(Objdal.DataReader["Acd_Session"].ToString()));
+                
+                try
+                {
+                    ViewState["_inst_logo"] = (byte[])aps[0].InstLogo;
+                    ImgInst.ImageUrl = "~/Handler2.ashx?inst_id=" + ViewState["_id_inst"].ToString();
+                }
+                catch { }
+
+                BtnSave.Text = "Update";
+                
+ 
+            
+        }
+        catch
+        {
+            objbus.MsgBox("Problem in loading institute information", this);
+            return;
+        }
+        finally 
+        { 
+ 
+        }
+    }
+    protected void btnupload_Click(object sender, EventArgs e)
+    {
+        try 
+        {
+            string ext = uploadlogo.PostedFile.FileName.Substring(uploadlogo.PostedFile.FileName.LastIndexOf(".") + 1);
+
+            if ((ext.ToLower().Equals("png"))||(ext.ToLower().Equals("gif")) || (ext.ToLower().Equals("jpeg")) || (ext.ToLower().Equals("jpe")) || (ext.ToLower().Equals("bmp")) || (ext.ToLower().Equals("jpg")))
+            {
+                //ImgInst.ImageUrl = uploadlogo.PostedFile.FileName.ToString();
+                byte[] imgbin = { 1, 1, 0, 0, 1, 0, 0, 0 };
+                Stream imgStream = uploadlogo.PostedFile.InputStream;
+                int imglen = uploadlogo.PostedFile.ContentLength;
+                imgbin = new byte[imglen + 1];
+                Int32 n = imgStream.Read(imgbin, 0, imglen);
+
+                ViewState["_inst_logo"] = imgbin;
+
+                Session["pic"] = imgbin;
+                ImgInst.ImageUrl = "~//picture.aspx";
+            }
+            else
+            { 
+            
+            }
+        }
+        catch { }
+        finally { }
+    }
+    protected void BtnSave_Click(object sender, EventArgs e)
+    {
+        string flag = string.Empty, Issuccess = string.Empty;
+        flag = (BtnSave.Text.Trim() == "Save" ? "N" : "U");
+        Admin.AdministratorData.CollegeDM InsertCollege = new Admin.AdministratorData.CollegeDM();
+        InsertCollege.CollegeID = Int32.Parse(ViewState["_id_inst"].ToString());
+        InsertCollege.CollegeName = txtinst.Text;
+        InsertCollege.ShortName = txtinstshort.Text;
+        InsertCollege.Location = txtaddress.Text;
+        InsertCollege.Phone1 = txtphone1.Text;
+        InsertCollege.Phone2 = txtphone2.Text;
+        InsertCollege.Phone3 = "0";
+        InsertCollege.Fax = txtfax.Text;
+        InsertCollege.Mobile = txtmobile.Text;
+        InsertCollege.EmailID1 = txtemail1.Text;
+        InsertCollege.EmailID2 = txtemail2.Text;
+        InsertCollege.WebSite = txturl.Text;
+        InsertCollege.PrincipalName = "";
+        InsertCollege.Description = txtdesc.Text;
+        InsertCollege.Inst_Type = Convert.ToInt32(ddlInst_Type.SelectedValue);
+        InsertCollege.Inst_Nature = Convert.ToInt32(ddlnature.SelectedValue);
+        InsertCollege.Affiliation_No = 
+        InsertCollege.flag = flag;
+        if (chkAutoPPSNO.Checked == true)
+        {
+            InsertCollege.Auto_PPSNO = "True";
+        }
+        else
+        {
+            InsertCollege.Auto_PPSNO = "False";
+        }
+        if (chkAutoRECNO.Checked == true)
+        {
+            InsertCollege.Auto_RECNO = "True";
+        }
+        else
+        {
+            InsertCollege.Auto_RECNO = "False";
+        }
+        if (ViewState["_inst_logo"] != null)
+        {
+            InsertCollege.InstLogo = (byte[])ViewState["_inst_logo"];
+        }
+        AdmininstratorSet obj = new AdmininstratorSet();
+        Admin.AdministratorData.AuditDM audit1 = new Admin.AdministratorData.AuditDM();
+        audit1.ID = 0;
+        audit1.Form_Name = Context.Request.QueryString["title"].ToString();
+        audit1.Action = flag;
+        audit1.User_ID = HttpContext.Current.Session["U_name"].ToString();
+        audit1.Entry_Date =Convert.ToString( DateTime.Now.Date.ToString("dd-MMM-yyyy"));
+        audit1.Record_ID = ViewState["_id_inst"].ToString();
+        audit1.Entry_Time = Convert.ToString(DateTime.Now.TimeOfDay.ToString());
+        audit1.InstituteID =Convert.ToInt32( Session["instID"].ToString());
+        audit1.SessionID = Session["sesnid"].ToString();
+        string result = obj.InsertCollege(InsertCollege,audit1);
+        objbus.MsgBox1(result, UpdatePanel1);
+    }
+    protected void btnSubmit_Click(object sender, EventArgs e)
+    {
+        byte[] salt = null;
+
+        salt = objbus.CreateSalt(8);
+        string strSalt = Convert.ToBase64String(salt);
+        string strPassword = null;
+        strPassword = objbus.encrypt(txtUserPwd.Text, salt);
+        strPassword = strPassword.Replace("'", "''");
+        Admin.AdministratorData.CollegeDM InsertCollege = new Admin.AdministratorData.CollegeDM();
+        InsertCollege.CollegeID = Int32.Parse(ViewState["_id_inst"].ToString());
+        InsertCollege.ProxyAddress = txtServer.Text;
+        InsertCollege.ProxyUser = txtUserID.Text;
+        InsertCollege.ProxyPwd = strPassword;
+        InsertCollege.Salt = strSalt;
+        InsertCollege.IsMailActive = Boolean.Parse(ddlActiveMail.SelectedValue.Trim());
+        InsertCollege.flag = "P";
+        AdmininstratorSet obj = new AdmininstratorSet();
+        Admin.AdministratorData.AuditDM audit = new Admin.AdministratorData.AuditDM();
+        string result = obj.InsertCollege(InsertCollege,audit);
+        objbus.MsgBox1(result, UpdatePanel1);
+    }
+    protected void FillProxyInfo()
+    {
+        Objdal = new DBManager();
+        objbus = new DbFunctions();
+        try
+        {
+            Objdal = ReturnDALConString();
+            Objdal.ExecuteReader(CommandType.Text, "Select ProxyAddress,ProxyUser,IsMailActive From College Where CollegeID='" + Session["instid"].ToString() + "'");
+            if (Objdal.DataReader.Read())
+            {
+                txtServer.Text = Objdal.DataReader["ProxyAddress"].ToString();
+                txtUserID.Text = Objdal.DataReader["ProxyUser"].ToString();
+                ddlActiveMail.SelectedIndex = ddlActiveMail.Items.IndexOf(ddlActiveMail.Items.FindByValue(Objdal.DataReader["IsMailActive"].ToString()));
+                Objdal.DataReader.Close();
+            }
+        }
+        catch (Exception ex)
+        {
+            lblmsg.Visible = true;
+            lblmsg.InnerText = ex.Message;
+        }
+        finally
+        {
+            Objdal.Close();
+            Objdal.Dispose();
+        }
+    }
+    #region Application Lavel General settings
+    protected void btnUp_Click(object sender, EventArgs e)
+    {
+        ////objbus = new DbFunctions();
+        ////objbus.moveup(lbxFlds);
+    }
+    protected void btnDwn_Click(object sender, EventArgs e)
+    {
+        ////objbus = new DbFunctions();
+        ////objbus.movedown(lbxFlds);
+    }
+ 
+    private void Fill_ApplicationSettings()
+    {
+        Objdal = new DBManager();
+        objbus = new DbFunctions();
+        try
+        {
+            Objdal = ReturnDALConString();
+            Objdal.ExecuteReader(CommandType.Text, "Select IsAutoGen_MemId,MemIdGenTag,IsLog From College Where CollegeID='" + Session["instid"].ToString() + "'");
+            if (Objdal.DataReader.Read())
+            {
+                int Flds_Length = 0;
+                //ddlautoId.SelectedIndex = ddlautoId.Items.IndexOf(ddlautoId.Items.FindByValue(Objdal.DataReader["IsAutoGen_MemId"].ToString()));
+                chkMemIdGen.Checked =Convert.ToBoolean(Objdal.DataReader["IsAutoGen_MemId"].ToString());
+                if (chkMemIdGen.Checked)
+                {
+                    FldsetMemid.Style.Add("display", "block");
+                    Flds_Length= Objdal.DataReader["MemIdGenTag"].ToString().Length/2;
+                    for (int i = 0; i <=( Flds_Length); i++)
+                    {
+                           
+                        //lbxFlds.SelectedIndex = lbxFlds.Items.IndexOf(lbxFlds.Items.FindByValue((Objdal.DataReader["MemIdGenTag"].ToString()).Split(',').GetValue(i).ToString()));
+                        lbxFlds.Items[lbxFlds.Items.IndexOf(lbxFlds.Items.FindByValue((Objdal.DataReader["MemIdGenTag"].ToString()).Split(',').GetValue(i).ToString()))].Selected = true;
+ 
+                    }
+                }
+                chkLog.Checked = Convert.ToBoolean(Objdal.DataReader["IsLog"].ToString());
+                Objdal.DataReader.Close();
+            }
+        }
+        catch (Exception ex)
+        {
+            lblmsg.Visible = true;
+            lblmsg.InnerText = ex.Message;
+        }
+        finally
+        {
+            Objdal.Close();
+            Objdal.Dispose();
+        }
+    }
+    private string substring(string p, int p_2, int p_3)
+    {
+        throw new NotImplementedException();
+    }
+    protected void BtnAppSettings_Click(object sender, EventArgs e)
+    {
+        //Objdal = new DBManager();
+        //objbus = new DbFunctions();
+        //objAdmin = new Administrator();
+        //try 
+        //{
+        //    string RetSuccess = string.Empty;
+        //    string MemIdFields = string.Empty;
+        //    for (int i = 0; i <lbxFlds.Items.Count; i++)
+        //    {
+        //        if (lbxFlds.Items[i].Selected)
+        //        {
+        //            if (MemIdFields != string.Empty)
+        //            {
+        //                MemIdFields = MemIdFields + "," + lbxFlds.Items[i].Value.ToString();
+        //            }
+        //            else
+        //            {
+        //                MemIdFields = lbxFlds.Items[i].Value.ToString();
+        //            }
+        //        }
+        //    }
+        //    Objdal = ReturnDALConString();
+        //    objAdmin.App_Settings_Save(Int32.Parse(ViewState["_id_inst"].ToString()), Convert.ToBoolean(chkMemIdGen.Checked.ToString()), MemIdFields, chkLog.Checked, ref RetSuccess, Objdal);
+        //    if (RetSuccess == "1")
+        //    {
+        //        objbus.MessageBox("Application Settings Saved", this);
+        //        //--------------------------------------------------------Svae into Log Table-----------------------------------------------------------
+        //        if (Convert.ToBoolean(objbus.Save_LogDetail(Int32.Parse(Session["instid"].ToString()), 0, Context.Request.QueryString["title"].ToString(), "College", Int32.Parse(ViewState["_id_inst"].ToString()), txtinst.Text.Trim(), "U", Int32.Parse(Session["uid"].ToString()), Objdal)) == true)
+        //        {
+        //            //refresh();
+        //        } 
+        //    }
+        //    if (RetSuccess == "0")
+        //    {
+        //        objbus.MessageBox("Application Settings are not Saved", this);
+        //    }
+        //}
+        //catch (Exception ex)
+        //{
+        //    lblmsg.Visible = true;
+        //    lblmsg.InnerText = ex.Message;
+        //}
+        //finally
+        //{
+        //    Objdal.Close();
+        //    Objdal.Dispose();
+        //}
+    }
+    #endregion
+}

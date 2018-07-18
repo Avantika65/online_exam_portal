@@ -1,0 +1,269 @@
+﻿using System;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.Data;
+using System.Configuration;
+using System.Linq;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Xml.Linq;
+
+/// <summary>
+/// Summary description for HostelDM
+/// </summary>
+public class HostelDM
+{
+
+    [Serializable]
+    [DataContract]
+    public class Master_Hostel_ResidenseDM
+    {
+        [DataMember]
+        public int ResidenseID { get; set; }
+        [DataMember]
+        public string ResidenseName { get; set; }
+        [DataMember]
+        public string Type { get; set; }
+        [DataMember]
+        public int InstituteID { get; set; }
+        [DataMember]
+        public string SessionID { get; set; }
+        [DataMember]
+        public string UName { get; set; }
+        [DataMember]
+        public DateTime UEntDt { get; set; }
+        [DataMember]
+        public string flag { get; set; }
+        //
+        // TODO: Add constructor logic here
+        //
+    }
+
+    [Serializable]
+    [DataContract]
+    public class Master_Hostel_CategoryDM
+    {
+        [DataMember]
+        public int CategoryID { get; set; }
+        [DataMember]
+        public int ResidenseID { get; set; }
+        [DataMember]
+        public string CategoryName { get; set; }
+        [DataMember]
+        public int Capacity { get; set; }
+        [DataMember]
+        public int InstituteID { get; set; }
+        [DataMember]
+        public string SessionID { get; set; }
+        [DataMember]
+        public string UName { get; set; }
+        [DataMember]
+        public DateTime UEntDt { get; set; }
+        [DataMember]
+        public string flag { get; set; }
+        //
+        // TODO: Add constructor logic here
+        //
+    }
+
+
+    [Serializable]
+    [DataContract]
+    public class MasterRoomTypeDM
+    {
+       
+        [DataMember]
+        public int RoomTypeID { get; set; }
+        [DataMember]
+        public string RoomT_N { get; set; }
+        [DataMember]
+        public int Hostel_ID { get; set; }
+        [DataMember]
+        public string Inst_ID { get; set; }
+        [DataMember]
+        public string UName { get; set; }
+        [DataMember]
+        public DateTime UEntDt { get; set; }
+        [DataMember]
+        public string flag { get; set; }
+        //
+        // TODO: Add constructor logic here
+        //
+    }
+    [Serializable]
+    [DataContract]
+    public class MasterRoomTypeCDM
+    {
+
+        [DataMember]
+        public int RoomChild_ID { get; set; }
+        [DataMember]
+        public string RoomT_Id { get; set; }
+        [DataMember]
+        public DateTime FromDate { get; set; }
+        [DataMember]
+        public DateTime Todate { get; set; }
+        [DataMember]
+        public decimal Rate { get; set; }
+        [DataMember]
+        public string flag { get; set; }
+              
+        //
+        // TODO: Add constructor logic here
+        //
+    }
+    [Serializable]
+    [DataContract]
+    public class Room_Quarter_MasterDM
+    {
+                      
+           [DataMember]
+        public int ID { get; set; }
+        [DataMember]
+        public string RoomQtrID { get; set; }
+        [DataMember]
+        public string ResiID { get; set; }
+        [DataMember]
+        public string Type { get; set; }
+        [DataMember]
+        public string Room_Qtr_No { get; set; }
+        [DataMember]
+        public string CategoryID { get; set; }
+        [DataMember]
+        public string Capacity { get; set; }
+        [DataMember]
+        public DateTime Bed_Capacity { get; set; }
+        [DataMember]
+        public DateTime Alloted_Room { get; set; }
+        [DataMember]
+        public DateTime Status { get; set; }
+        [DataMember]
+        public DateTime Remarks { get; set; }
+        [DataMember]
+        public DateTime InstituteID { get; set; }
+        [DataMember]
+        public DateTime SessionID { get; set; }
+        [DataMember]
+        public DateTime UName { get; set; }
+        [DataMember]
+        public DateTime UEntDt { get; set; }
+        [DataMember]
+        public decimal RoomType { get; set; }
+        [DataMember]
+        public decimal RoomTypeChild { get; set; }
+        [DataMember]
+        public string flag { get; set; }
+
+    }
+    [Serializable]
+    [DataContract]
+    public class MessSchedMasterDM
+    {
+        
+        [DataMember]
+        public int MessSchID { get; set; }
+        [DataMember]
+        public DateTime MessSchDate { get; set; }
+        [DataMember]
+        public int ResiID { get; set; }
+        [DataMember]
+        public int InstituteID { get; set; }
+        [DataMember]
+        public string SessionID { get; set; }
+        [DataMember]
+        public string UName { get; set; }
+        [DataMember]
+        public DateTime UEntDt { get; set; }
+        [DataMember]
+        public string flag { get; set; }
+        //
+        // TODO: Add constructor logic here
+        //
+    }
+
+    [Serializable]
+    [DataContract]
+    public class MessSchedChdDM
+    {
+
+        [DataMember]
+        public int MessSchID { get; set; }
+        [DataMember]
+        public DateTime SNo { get; set; }
+        [DataMember]
+        public int Schedule { get; set; }
+        [DataMember]
+        public string FromTime { get; set; }
+        [DataMember]
+        public string ToTime { get; set; }
+        [DataMember]
+        public int InstituteID { get; set; }
+        [DataMember]
+        public string SessionID { get; set; }
+        [DataMember]
+        public string UName { get; set; }
+        [DataMember]
+        public DateTime UEntDt { get; set; }
+        [DataMember]
+        public string flag { get; set; }
+        //
+        // TODO: Add constructor logic here
+        //
+    }
+
+    [Serializable]
+    [DataContract]
+    public class RoomAllotMastDM
+    {
+
+        [DataMember]
+        public int AllotmentID { get; set; }
+        [DataMember]
+        public string DocType { get; set; }
+        [DataMember]
+        public int DocNo { get; set; }
+        [DataMember]
+        public int Student_Emp_ID { get; set; }
+        [DataMember]
+        public int ResiID { get; set; }
+        [DataMember]
+        public string Room_Qtr_No { get; set; }
+        [DataMember]
+        public int RoomQtrID { get; set; }
+        [DataMember]
+        public string Remarks { get; set; }
+        [DataMember]
+        public int InstituteID { get; set; }
+        [DataMember]
+        public string SessionID { get; set; }
+        [DataMember]
+        public string UName { get; set; }
+        [DataMember]
+        public DateTime UEntDt { get; set; }
+        [DataMember]
+        public string BedNo { get; set; }
+        [DataMember]
+        public string Position { get; set; }
+        [DataMember]
+        public string Batch { get; set; }
+        [DataMember]
+        public DateTime periodFrom { get; set; }
+        [DataMember]
+        public DateTime periodTo { get; set; }
+        [DataMember]
+        public string RoomStatus { get; set; }
+        [DataMember]
+        public string flag { get; set; }
+        //
+        // TODO: Add constructor logic here
+        //
+    }
+    public HostelDM()
+	{	
+    }
+
+}

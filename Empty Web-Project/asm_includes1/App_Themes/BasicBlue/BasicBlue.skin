@@ -1,0 +1,69 @@
+﻿<%@ Register Assembly="CommonClassLibrary" Namespace="CommonClassLibrary" TagPrefix="cc1" %>
+<%@ Register Assembly="GridViewPaging.Controls" Namespace="GridViewPaging.Controls"
+    TagPrefix="cc1" %>
+<%--
+Default skin template. The following skins are provided as examples only.
+
+1. Named control skin. The SkinId should be uniquely defined because
+   duplicate SkinId's per control type are not allowed in the same theme.
+
+<asp:GridView runat="server" SkinId="gridviewSkin" BackColor="White" >
+   <AlternatingRowStyle BackColor="Blue" />
+</asp:GridView>
+
+2. Default skin. The SkinId is not defined. Only one default 
+   control skin per control type is allowed in the same theme.
+
+<asp:Image runat="server" ImageUrl="~/images/image1.jpg" />
+--%>
+<%--<asp:TextBox  runat="server" onblur="this.className='blur'" onfocus="this.className='focus'" CssClass="rdginputbox"></asp:TextBox>--%>
+<asp:TextBox runat="server" CssClass="rdginputbox"></asp:TextBox>
+<asp:TextBox skinid="R"  runat="server" onblur="this.className='blur'" onfocus="this.className='focus'" CssClass="rdginputboxR"></asp:TextBox>
+<asp:TextBox skinid="C"  runat="server" onblur="this.className='blur'" onfocus="this.className='focus'" CssClass="rdginputboxC"></asp:TextBox>
+ <asp:DropDownList runat="server" CssClass="rdgdropdown"></asp:DropDownList>
+<asp:Label runat="server" CssClass="labelText"></asp:Label>
+<asp:Button runat="server" CssClass="btn-primary" skinid="Submit"/>
+<asp:Button runat="server" CssClass="btn-inverse" skinid="Reset"/>
+<asp:Button runat="server" CssClass="btn-danger" skinid="Delete"/>
+<asp:LinkButton  runat="server" CssClass="bsbutton blue" skinid="Submit"></asp:LinkButton>
+<asp:LinkButton  runat="server" CssClass="sbtn bsgray" skinid="Reset"></asp:LinkButton>
+<asp:LinkButton  runat="server" CssClass="bsbutton red" skinid="Delete"></asp:LinkButton>
+<asp:RadioButton runat="server" CssClass="chk"></asp:RadioButton>
+<asp:CheckBox runat="server" CssClass="chk" />
+   <asp:ListBox  CssClass="rdgdropdown" runat="server"></asp:ListBox>
+ 
+  
+<asp:GridView runat="server" CssClass="paging_gridview" GridLines="both"  Width="100%">                
+<RowStyle CssClass="paging_gridview_itm" />
+<PagerStyle CssClass="paging_gridview_pgr" />
+<HeaderStyle CssClass="paging_gridview_hdr" />
+<AlternatingRowStyle CssClass="paging_gridview_aitm" />
+<SelectedRowStyle CssClass="paging_gridview_saitm"  />
+<EditRowStyle BackColor="#999999" />
+<FooterStyle CssClass="paging_gridview_Footer"/>               
+</asp:GridView>
+ 
+<cc1:GroupedGridView runat="server" CssClass="paging_gridview" GridLines="both"  Width="100%">
+               
+                <RowStyle CssClass="paging_gridview_itm" />
+                <PagerStyle CssClass="paging_gridview_pgr" />
+                <HeaderStyle CssClass="paging_gridview_hdr" />
+                <AlternatingRowStyle CssClass="paging_gridview_aitm" />
+                <SelectedRowStyle CssClass="paging_gridview_saitm"  />
+                 <EditRowStyle BackColor="#999999" />
+                 <FooterStyle CssClass="paging_gridview_Footer"/>
+    
+</cc1:GroupedGridView>   
+<cc1:PagingGridView runat="server" CssClass="paging_gridview" GridLines="both"  Width="100%">
+               
+                <RowStyle CssClass="paging_gridview_itm" />
+                <PagerStyle CssClass="paging_gridview_pgr" />
+                <HeaderStyle CssClass="paging_gridview_hdr" />
+                <AlternatingRowStyle CssClass="paging_gridview_aitm" />
+                <SelectedRowStyle CssClass="paging_gridview_saitm"  />
+                 <EditRowStyle BackColor="#999999" />
+                 <FooterStyle CssClass="paging_gridview_Footer"/>
+    
+</cc1:PagingGridView>             
+            
+   

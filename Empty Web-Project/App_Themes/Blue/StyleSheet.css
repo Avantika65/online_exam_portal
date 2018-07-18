@@ -1,0 +1,406 @@
+﻿body {	
+	width:100%;
+	PADDING-BOTTOM: 0px; 
+	
+	margin-top:0%;
+	margin-left:0%; 
+	margin-right:0%;
+	margin-bottom:0%;
+	
+	PADDING-LEFT: 0%; 
+	PADDING-RIGHT: 0%;
+	FONT-SIZE: .80em;
+	PADDING-TOP: 0%;
+	font-family:Arial;
+	 background-color:#96B6D6;
+	height:100%;
+	
+	SCROLLBAR-ARROW-COLOR: #ffffff; 
+	SCROLLBAR-FACE-COLOR: #58a0c2; 
+	SCROLLBAR-3DLIGHT-COLOR: #83d4fa; 
+	SCROLLBAR-HIGHLIGHT-COLOR: #ffffff; 
+	SCROLLBAR-SHADOW-COLOR: #ffffff; 
+	SCROLLBAR-DARKSHADOW-COLOR: #83d4fa; 
+	SCROLLBAR-BASE-COLOR: #83d4fa; 
+}
+form {	
+    width:100%;
+	PADDING-BOTTOM: 0px; 
+	MARGIN: 0px; 
+	PADDING-LEFT: 0px; 
+	PADDING-RIGHT: 0px; 
+	PADDING-TOP: 0px;
+	height:100%;
+}
+.table
+{
+    border: 1px solid #006699; 
+    width: 80%; 
+    background-color:#ffffff;
+ }
+ span
+ { font-size:.80em;
+  }
+.hand{BACKGROUND-REPEAT: no-repeat; background-image: url('images/bg_hand_img.gif');}
+.buttons {
+	border: 1px solid #0a3c72;
+	TEXT-ALIGN: center; 
+	cursor:hand;	
+	BACKGROUND-COLOR: #248cbe;
+	FONT-FAMILY: verdana; 	
+	COLOR: #ffffff; 	
+	FONT-SIZE: 11px; 	
+	VERTICAL-ALIGN: top; 	
+	FONT-WEIGHT: bold; 	
+	TEXT-DECORATION: none;
+	width: 37px;
+	height: 19px;
+	
+}
+.logintxt {
+	POSITION: relative; FONT-FAMILY: verdana; HEIGHT: 16px; 
+COLOR: #00589f;  FONT-SIZE: 11px; font-weight:bold;
+}
+.inputlogin {
+	border: 1px solid #00589f;
+	TEXT-ALIGN: left; 	
+	BACKGROUND-POSITION: left center; 
+	HEIGHT: 16px; 
+	COLOR: #336699;	
+	width: 230px;
+}
+.inertxt {
+	
+	TEXT-ALIGN: left; 	
+	font-size:x-small;
+	BACKGROUND-COLOR:White;  
+    COLOR: Black; 
+}
+.lbl
+{
+    TEXT-ALIGN: left;
+    BACKGROUND-COLOR: #ffffff;  
+    COLOR: #336699; 
+    FONT-SIZE: 8pt;
+    font-family:Arial; 
+    }
+.ddl 
+{
+  border: 1px solid #248cbe;
+	padding: 2px 5px;
+	TEXT-ALIGN: left; 	
+	BACKGROUND-POSITION: left center; 	
+	COLOR: #336699; 	
+	FONT-SIZE: 7pt; 	
+	FONT-WEIGHT: bold; 	
+	margin-right: 24px;
+}  
+.txtBox {
+	border: 1px solid #248cbe;
+	COLOR: #336699;
+	padding: 2px 2px;
+	TEXT-ALIGN: left; 	
+	BACKGROUND-POSITION: left center; 	
+	HEIGHT: 13px;	
+	FONT-SIZE: 7pt; 	
+	FONT-WEIGHT: bold; 	
+	font-family:verdana;
+	margin-left: 0px;
+}
+.rdgrow {border: 1px solid #00589f;
+  TEXT-ALIGN: left;BACKGROUND-COLOR: #ffffff;  COLOR: #336699; FONT-SIZE: .90em;font-family:verdana ;font-weight:bold;
+}
+.rdgrow1 {
+	TEXT-ALIGN: left; BACKGROUND-COLOR: #ffffff;  COLOR: #336699; FONT-SIZE: .90em;font-family:verdana ;font-weight:bold;
+}
+.star
+{
+	color :Red;
+	 font-size:9px;
+}
+.rdgdropdown {
+	border: 1px solid #00589f;
+	padding: 2px 5px;
+	TEXT-ALIGN: left; 	
+	BACKGROUND-POSITION: left center; 	
+	COLOR: #000066; 	
+	FONT-SIZE: 7pt; 	
+	FONT-WEIGHT: bold; 	
+	margin-right: 24px;
+}
+.rdgLogin {
+	border: 1px solid #00589f;
+	padding: 2px 5px;
+	TEXT-ALIGN: left; 	
+	BACKGROUND-POSITION: left center; 	
+	COLOR: #336699; 	
+	FONT-SIZE: 7pt; 	
+		
+	margin-right: 24px;
+}
+.txtBoxLg {
+	border: 1px solid #248cbe;
+	COLOR: #336699;
+	padding: 2px 2px;
+	TEXT-ALIGN: left; 	
+	BACKGROUND-POSITION: left center; 	
+	HEIGHT: 18px;	
+	FONT-SIZE: 7pt; 	
+	FONT-WEIGHT: bold; 	
+	font-family:verdana;
+	margin-left: 0px;
+}
+.buttonsLg {
+	border: 1px solid #0a3c72;
+	TEXT-ALIGN: center; 
+	cursor:hand;	
+	BACKGROUND-COLOR: #248cbe;
+	FONT-FAMILY: verdana; 	
+	COLOR: #ffffff; 	
+	FONT-SIZE: 11px; 	
+	VERTICAL-ALIGN: top; 	
+	FONT-WEIGHT: bold; 	
+	TEXT-DECORATION: none;
+	width: 50px;
+	height: 19px;
+}
+.header {
+	TEXT-ALIGN: center; 	
+	FONT-FAMILY: Arial,verdana; 
+	WHITE-SPACE: nowrap; 
+	COLOR:White ; 
+	FONT-SIZE: 12px; 
+	FONT-WEIGHT: bold; 
+	TEXT-DECORATION: none;
+	background: #00589f url('images/grd_head.gif') repeat-x top;
+	padding: 2px 2px;
+}
+.Subheader {
+	background-color: #336699;
+	 color: #FFFFFF; 
+	 font-weight:bold;
+	  font-style: italic;
+	  
+}
+ .clmn_pdd
+		{
+			padding-left:5px; 
+		}	
+a:link { 
+color:#00589f; 
+}
+a:visited { 
+color: #0A3C72;
+}
+a:active { 
+color: #00589f;
+}
+a:hover { 
+color: #00679f; 
+}	
+
+.lnk:link { 
+color:#00589f;
+text-decoration:none;
+}
+.lnk:visited { 
+color: #0A3C72;
+}
+.lnk:active { 
+color: #00589f;
+}
+.lnk:hover { 
+color: red;
+}	
+
+.marquee {
+	BORDER-BOTTOM: #00589f 1px solid; BORDER-LEFT: #00589f 1px solid; BACKGROUND-COLOR: #ffffff; COLOR: #00589f; FONT-SIZE: 11px; BORDER-TOP: #00589f 1px solid; FONT-WEIGHT: bold; BORDER-RIGHT: #00589f 1px solid
+}
+.Subheader {
+	background-color: #00589f;
+	 color: #FFFFFF; 
+	 font-weight:bold;
+	  font-style: italic;
+	  
+}
+.reportheader {
+	background-color: #00589f;
+	 color: #FFFFFF; 
+	 font-weight:bold;
+	 font-size:12px;
+	  font-style: italic;
+	  text-align:center;
+	  
+}
+/*-----Grid CSS------*/
+.mGrid { width: 100%; background-color: #fff; margin: 2px 0 1px 0; border: solid 1px #525252;font:verdana; border-collapse:collapse;text-align:left;font-size: 0.9em; }
+    .mGrid td { padding: 2px; border: solid 1px #c1c1c1; color: black; font:verdana; font-size: 0.9em;text-align:left }
+    .mGrid th { padding: 2px 2px; color: #fff; background: #00589f url('images/grd_head.gif') repeat-x top;font:verdana; border-left: solid 1px #525252; font-size: 0.9em; text-align:left}
+    .mGrid tr:hover{background-color: #B7D6EC;}
+    
+.mGrid .alt { background: #fcfcfc url(grd_alt.png) repeat-x top;color:Gray;font:verdana;font-size: 0.9em;text-align:left  }
+.mGrid .pgr {background: #424242 url(grd_pgr.png) repeat-x top; font:verdana;}
+    .mGrid .pgr table { margin: 2px 0; }
+    .mGrid .pgr td { border-width: 0; padding: 0 2px; border-left: solid 1px #666; font-weight:normal; text-align:left; color: #fff; line-height: 12px;text-align:left }   
+    .mGrid .pgr a { color: #666; text-decoration: none; }
+    .mGrid .pgr a:hover { color: #000; text-decoration: none; }
+    /*-----------------------*/
+/*-------------ASMCSS---------------*/
+.asmMenu 
+{
+	position: absolute;	
+	z-index: 5;
+	 text-align:left;
+	border: 1px solid lightblue;
+	background: #ffffff;
+	 padding-left:1px;
+	 padding-top:0px;
+	 padding-bottom:3px;
+ 	white-space: nowrap; 
+ 	overflow:visible; 
+}
+	
+				
+.asmMenuItem, .asmSelMenuItem
+{			
+	color: blue;
+	background: #ffffff;
+	cursor: hand;
+	cursor: pointer;
+	background: lightblue;
+	white-space: nowrap;
+	font-family: Arial, Verdana, helvetica, 'sans serif';
+	font-size: 9pt;
+}
+
+
+.asmSearchBox
+{			
+    border: 1px solid #00589f;
+	TEXT-ALIGN: left; 	
+	BACKGROUND-POSITION: left center; 
+	HEIGHT: 17px; 
+	COLOR: #336699;			
+	width: 230px;
+	 
+	 padding-left:15px;
+	background: url('images/Search.jpeg') no-repeat  left;
+}
+/*----------Left Menu----------------*/
+
+div.sdmenu {
+	width: 100%;
+	font-family: Arial;
+	font-size: 8pt;
+	padding-bottom: 5px;
+	background: url('images/bottom.gif') no-repeat  right bottom;
+	color: #fff;
+}
+div.sdmenu div {
+	background: url('images/grd_head.gif') repeat-x;
+	overflow: hidden;
+}
+div.sdmenu div.collapsed {
+	height: 20px;
+}
+div.sdmenu div span {
+	display: block;
+	padding: 5px 25px;
+	font-weight: bold;
+	color: white;
+	background: url('images/expanded.gif') no-repeat 10px center;
+	cursor: default;
+	border-bottom: 1px solid #ddd;
+}
+div.sdmenu div.collapsed span {
+	background-image: url('images/collapsed.gif');
+}
+div.sdmenu div a {
+	padding: 5px 10px;
+	background: #eee;
+	display: block;
+	border-bottom: 1px solid #ddd;
+	color: #066;
+	text-decoration:none;
+}
+div.sdmenu div a.current {
+	background : #ccc;
+}
+div.sdmenu div a:hover {
+	background : #066 url('images/linkarrow.gif') no-repeat right center;
+	color: #fff;
+	text-decoration: none;
+}
+.updateProgress
+{
+	position: absolute;
+	background-color: #fff;
+	filter: alpha(opacity=70);
+	MozOpacity: 0.7;
+	opacity: 0.7;
+	padding: 0px;
+	margin: 0px;
+}
+.ProgressMsg
+{
+    text-align:center;
+    height:100%; 
+    margin-top:10%;    
+    font-weight:bold;
+    color:#006699;
+ }
+ 
+ .spanTXT
+ {
+     font-family:Arial;
+     font-size:8pt; 
+     font-weight:bold; 
+     color:Black;     
+ }
+ 
+  .fieldset
+ {
+      border:solid .02em #133f61; 
+      height:100%;
+ }
+ 
+ .legend
+ { 
+     font-family:Arial;
+     font-size:8pt;
+     font-weight:bold;
+     color:#3C7BFF;
+ }
+ 
+ a:hover
+ {
+  font-weight:bold;
+ }
+
+ .Abrv
+        {
+            font-family:Arial;
+            font-size: 9pt;
+            color:Gray; 
+            font-weight:normal;	
+        }
+        
+        .chkBox
+        {
+            font-family : Arial;
+            font-size:.99em;
+            color:#3C7BFF;
+            }
+            
+         .Search
+        {
+           margin-right:0px;	
+        }
+        .DivSearch
+        {
+            width:300px; top: 40px; left: 95%;	
+        } 
+        .ListBox
+        {
+            border:solid 1px #00589f;
+        }

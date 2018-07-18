@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="buspasscombined" targetNamespace="http://tempuri.org/buspasscombined.xsd" xmlns:mstns="http://tempuri.org/buspasscombined.xsd" xmlns="http://tempuri.org/buspasscombined.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ashish4TableAdapter" GeneratorDataComponentClassName="ashish4TableAdapter" Name="ashish4" UserDataComponentName="ashish4TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectName="ESIM.dbo.ashish4" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        ashish4.*
+FROM            ashish4</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="MemberName" DataSetColumn="MemberName" />
+              <Mapping SourceColumn="RegNo" DataSetColumn="RegNo" />
+              <Mapping SourceColumn="RollNo" DataSetColumn="RollNo" />
+              <Mapping SourceColumn="Contact" DataSetColumn="Contact" />
+              <Mapping SourceColumn="Route_Name" DataSetColumn="Route_Name" />
+              <Mapping SourceColumn="Engine_No" DataSetColumn="Engine_No" />
+              <Mapping SourceColumn="Vehical_No" DataSetColumn="Vehical_No" />
+              <Mapping SourceColumn="PIssueTo" DataSetColumn="PIssueTo" />
+              <Mapping SourceColumn="BPassID" DataSetColumn="BPassID" />
+              <Mapping SourceColumn="Vehical_ID" DataSetColumn="Vehical_ID" />
+              <Mapping SourceColumn="Status" DataSetColumn="Status" />
+              <Mapping SourceColumn="nature" DataSetColumn="nature" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="buspasscombined" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="buspasscombined" msprop:Generator_UserDSName="buspasscombined">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ashish4" msprop:Generator_TableClassName="ashish4DataTable" msprop:Generator_TableVarName="tableashish4" msprop:Generator_TablePropName="ashish4" msprop:Generator_RowDeletingName="ashish4RowDeleting" msprop:Generator_UserTableName="ashish4" msprop:Generator_RowChangingName="ashish4RowChanging" msprop:Generator_RowEvHandlerName="ashish4RowChangeEventHandler" msprop:Generator_RowDeletedName="ashish4RowDeleted" msprop:Generator_RowEvArgName="ashish4RowChangeEvent" msprop:Generator_RowChangedName="ashish4RowChanged" msprop:Generator_RowClassName="ashish4Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="MemberName" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnMemberName" msprop:Generator_ColumnPropNameInRow="MemberName" msprop:Generator_ColumnPropNameInTable="MemberNameColumn" msprop:Generator_UserColumnName="MemberName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RegNo" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnRegNo" msprop:Generator_ColumnPropNameInRow="RegNo" msprop:Generator_ColumnPropNameInTable="RegNoColumn" msprop:Generator_UserColumnName="RegNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RollNo" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnRollNo" msprop:Generator_ColumnPropNameInRow="RollNo" msprop:Generator_ColumnPropNameInTable="RollNoColumn" msprop:Generator_UserColumnName="RollNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Contact" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnContact" msprop:Generator_ColumnPropNameInRow="Contact" msprop:Generator_ColumnPropNameInTable="ContactColumn" msprop:Generator_UserColumnName="Contact" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Route_Name" msprop:Generator_ColumnVarNameInTable="columnRoute_Name" msprop:Generator_ColumnPropNameInRow="Route_Name" msprop:Generator_ColumnPropNameInTable="Route_NameColumn" msprop:Generator_UserColumnName="Route_Name">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Engine_No" msprop:Generator_ColumnVarNameInTable="columnEngine_No" msprop:Generator_ColumnPropNameInRow="Engine_No" msprop:Generator_ColumnPropNameInTable="Engine_NoColumn" msprop:Generator_UserColumnName="Engine_No">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Vehical_No" msprop:Generator_ColumnVarNameInTable="columnVehical_No" msprop:Generator_ColumnPropNameInRow="Vehical_No" msprop:Generator_ColumnPropNameInTable="Vehical_NoColumn" msprop:Generator_UserColumnName="Vehical_No">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PIssueTo" msprop:Generator_ColumnVarNameInTable="columnPIssueTo" msprop:Generator_ColumnPropNameInRow="PIssueTo" msprop:Generator_ColumnPropNameInTable="PIssueToColumn" msprop:Generator_UserColumnName="PIssueTo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BPassID" msprop:Generator_ColumnVarNameInTable="columnBPassID" msprop:Generator_ColumnPropNameInRow="BPassID" msprop:Generator_ColumnPropNameInTable="BPassIDColumn" msprop:Generator_UserColumnName="BPassID" type="xs:int" />
+              <xs:element name="Vehical_ID" msprop:Generator_ColumnVarNameInTable="columnVehical_ID" msprop:Generator_ColumnPropNameInRow="Vehical_ID" msprop:Generator_ColumnPropNameInTable="Vehical_IDColumn" msprop:Generator_UserColumnName="Vehical_ID" type="xs:int" />
+              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="nature" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnnature" msprop:Generator_ColumnPropNameInRow="nature" msprop:Generator_ColumnPropNameInTable="natureColumn" msprop:Generator_UserColumnName="nature" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

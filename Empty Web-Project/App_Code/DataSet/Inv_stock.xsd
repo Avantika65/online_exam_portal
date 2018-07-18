@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="stock" targetNamespace="http://tempuri.org/stock.xsd" xmlns:mstns="http://tempuri.org/stock.xsd" xmlns="http://tempuri.org/stock.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="stock_vwTableAdapter" GeneratorDataComponentClassName="stock_vwTableAdapter" Name="stock_vw" UserDataComponentName="stock_vwTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectName="SRM.dbo.stock_vw" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Indent_Code, IndentDate, Qty, DeliveredQty, IssueQty, InstID, Ctrl_Id, Issue_Type, Prod_Code, Prod_Name, Stock_Bal, Cost_Price, List_Price
+FROM            stock_vw</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Indent_Code" DataSetColumn="Indent_Code" />
+              <Mapping SourceColumn="IndentDate" DataSetColumn="IndentDate" />
+              <Mapping SourceColumn="Qty" DataSetColumn="Qty" />
+              <Mapping SourceColumn="DeliveredQty" DataSetColumn="DeliveredQty" />
+              <Mapping SourceColumn="IssueQty" DataSetColumn="IssueQty" />
+              <Mapping SourceColumn="InstID" DataSetColumn="InstID" />
+              <Mapping SourceColumn="Ctrl_Id" DataSetColumn="Ctrl_Id" />
+              <Mapping SourceColumn="Issue_Type" DataSetColumn="Issue_Type" />
+              <Mapping SourceColumn="Prod_Code" DataSetColumn="Prod_Code" />
+              <Mapping SourceColumn="Prod_Name" DataSetColumn="Prod_Name" />
+              <Mapping SourceColumn="Stock_Bal" DataSetColumn="Stock_Bal" />
+              <Mapping SourceColumn="Cost_Price" DataSetColumn="Cost_Price" />
+              <Mapping SourceColumn="List_Price" DataSetColumn="List_Price" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="stock" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="stock" msprop:Generator_UserDSName="stock">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="stock_vw" msprop:Generator_TableClassName="stock_vwDataTable" msprop:Generator_TableVarName="tablestock_vw" msprop:Generator_TablePropName="stock_vw" msprop:Generator_RowDeletingName="stock_vwRowDeleting" msprop:Generator_UserTableName="stock_vw" msprop:Generator_RowChangingName="stock_vwRowChanging" msprop:Generator_RowEvHandlerName="stock_vwRowChangeEventHandler" msprop:Generator_RowDeletedName="stock_vwRowDeleted" msprop:Generator_RowEvArgName="stock_vwRowChangeEvent" msprop:Generator_RowChangedName="stock_vwRowChanged" msprop:Generator_RowClassName="stock_vwRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Indent_Code" msprop:Generator_ColumnVarNameInTable="columnIndent_Code" msprop:Generator_ColumnPropNameInRow="Indent_Code" msprop:Generator_ColumnPropNameInTable="Indent_CodeColumn" msprop:Generator_UserColumnName="Indent_Code" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="25" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IndentDate" msprop:Generator_ColumnVarNameInTable="columnIndentDate" msprop:Generator_ColumnPropNameInRow="IndentDate" msprop:Generator_ColumnPropNameInTable="IndentDateColumn" msprop:Generator_UserColumnName="IndentDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Qty" msprop:Generator_ColumnVarNameInTable="columnQty" msprop:Generator_ColumnPropNameInRow="Qty" msprop:Generator_ColumnPropNameInTable="QtyColumn" msprop:Generator_UserColumnName="Qty" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DeliveredQty" msprop:Generator_ColumnVarNameInTable="columnDeliveredQty" msprop:Generator_ColumnPropNameInRow="DeliveredQty" msprop:Generator_ColumnPropNameInTable="DeliveredQtyColumn" msprop:Generator_UserColumnName="DeliveredQty" type="xs:decimal" minOccurs="0" />
+              <xs:element name="IssueQty" msprop:Generator_ColumnVarNameInTable="columnIssueQty" msprop:Generator_ColumnPropNameInRow="IssueQty" msprop:Generator_ColumnPropNameInTable="IssueQtyColumn" msprop:Generator_UserColumnName="IssueQty" type="xs:decimal" minOccurs="0" />
+              <xs:element name="InstID" msprop:Generator_ColumnVarNameInTable="columnInstID" msprop:Generator_ColumnPropNameInRow="InstID" msprop:Generator_ColumnPropNameInTable="InstIDColumn" msprop:Generator_UserColumnName="InstID" type="xs:int" />
+              <xs:element name="Ctrl_Id" msprop:Generator_ColumnVarNameInTable="columnCtrl_Id" msprop:Generator_ColumnPropNameInRow="Ctrl_Id" msprop:Generator_ColumnPropNameInTable="Ctrl_IdColumn" msprop:Generator_UserColumnName="Ctrl_Id" type="xs:int" minOccurs="0" />
+              <xs:element name="Issue_Type" msprop:Generator_ColumnVarNameInTable="columnIssue_Type" msprop:Generator_ColumnPropNameInRow="Issue_Type" msprop:Generator_ColumnPropNameInTable="Issue_TypeColumn" msprop:Generator_UserColumnName="Issue_Type" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Prod_Code" msprop:Generator_ColumnVarNameInTable="columnProd_Code" msprop:Generator_ColumnPropNameInRow="Prod_Code" msprop:Generator_ColumnPropNameInTable="Prod_CodeColumn" msprop:Generator_UserColumnName="Prod_Code" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Prod_Name" msprop:Generator_ColumnVarNameInTable="columnProd_Name" msprop:Generator_ColumnPropNameInRow="Prod_Name" msprop:Generator_ColumnPropNameInTable="Prod_NameColumn" msprop:Generator_UserColumnName="Prod_Name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Stock_Bal" msprop:Generator_ColumnVarNameInTable="columnStock_Bal" msprop:Generator_ColumnPropNameInRow="Stock_Bal" msprop:Generator_ColumnPropNameInTable="Stock_BalColumn" msprop:Generator_UserColumnName="Stock_Bal" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Cost_Price" msprop:Generator_ColumnVarNameInTable="columnCost_Price" msprop:Generator_ColumnPropNameInRow="Cost_Price" msprop:Generator_ColumnPropNameInTable="Cost_PriceColumn" msprop:Generator_UserColumnName="Cost_Price" type="xs:decimal" minOccurs="0" />
+              <xs:element name="List_Price" msprop:Generator_ColumnVarNameInTable="columnList_Price" msprop:Generator_ColumnPropNameInRow="List_Price" msprop:Generator_ColumnPropNameInTable="List_PriceColumn" msprop:Generator_UserColumnName="List_Price" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Issue_Qty" msprop:Generator_ColumnVarNameInTable="columnIssue_Qty" msprop:Generator_ColumnPropNameInRow="Issue_Qty" msprop:Generator_ColumnPropNameInTable="Issue_QtyColumn" msprop:Generator_UserColumnName="Issue_Qty" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

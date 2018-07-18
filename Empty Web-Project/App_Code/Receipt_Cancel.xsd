@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Receipt_Cancel" targetNamespace="http://tempuri.org/Receipt_Cancel.xsd" xmlns:mstns="http://tempuri.org/Receipt_Cancel.xsd" xmlns="http://tempuri.org/Receipt_Cancel.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Receipt_Cancel_VwTableAdapter" GeneratorDataComponentClassName="Receipt_Cancel_VwTableAdapter" Name="Receipt_Cancel_Vw" UserDataComponentName="Receipt_Cancel_VwTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectName="EDU04April.dbo.Receipt_Cancel_Vw" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Receipt_Cancel_Vw.*
+FROM            Receipt_Cancel_Vw</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="RCNO" DataSetColumn="RCNO" />
+              <Mapping SourceColumn="PrNo" DataSetColumn="PrNo" />
+              <Mapping SourceColumn="Session" DataSetColumn="Session" />
+              <Mapping SourceColumn="U_Name" DataSetColumn="U_Name" />
+              <Mapping SourceColumn="Cancel_Date" DataSetColumn="Cancel_Date" />
+              <Mapping SourceColumn="Cancel_Amount" DataSetColumn="Cancel_Amount" />
+              <Mapping SourceColumn="Cancel_Charge" DataSetColumn="Cancel_Charge" />
+              <Mapping SourceColumn="StudentID" DataSetColumn="StudentID" />
+              <Mapping SourceColumn="PaymentID" DataSetColumn="PaymentID" />
+              <Mapping SourceColumn="Amount" DataSetColumn="Amount" />
+              <Mapping SourceColumn="PaymentMode" DataSetColumn="PaymentMode" />
+              <Mapping SourceColumn="StudentName" DataSetColumn="StudentName" />
+              <Mapping SourceColumn="MName" DataSetColumn="MName" />
+              <Mapping SourceColumn="LName" DataSetColumn="LName" />
+              <Mapping SourceColumn="FeeHeadName" DataSetColumn="FeeHeadName" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Receipt_Cancel" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="Receipt_Cancel" msprop:Generator_UserDSName="Receipt_Cancel">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Receipt_Cancel_Vw" msprop:Generator_TableClassName="Receipt_Cancel_VwDataTable" msprop:Generator_TableVarName="tableReceipt_Cancel_Vw" msprop:Generator_TablePropName="Receipt_Cancel_Vw" msprop:Generator_RowDeletingName="Receipt_Cancel_VwRowDeleting" msprop:Generator_UserTableName="Receipt_Cancel_Vw" msprop:Generator_RowChangingName="Receipt_Cancel_VwRowChanging" msprop:Generator_RowEvHandlerName="Receipt_Cancel_VwRowChangeEventHandler" msprop:Generator_RowDeletedName="Receipt_Cancel_VwRowDeleted" msprop:Generator_RowEvArgName="Receipt_Cancel_VwRowChangeEvent" msprop:Generator_RowChangedName="Receipt_Cancel_VwRowChanged" msprop:Generator_RowClassName="Receipt_Cancel_VwRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RCNO" msprop:Generator_ColumnVarNameInTable="columnRCNO" msprop:Generator_ColumnPropNameInRow="RCNO" msprop:Generator_ColumnPropNameInTable="RCNOColumn" msprop:Generator_UserColumnName="RCNO" type="xs:int" />
+              <xs:element name="PrNo" msprop:Generator_ColumnVarNameInTable="columnPrNo" msprop:Generator_ColumnPropNameInRow="PrNo" msprop:Generator_ColumnPropNameInTable="PrNoColumn" msprop:Generator_UserColumnName="PrNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Session" msprop:Generator_ColumnVarNameInTable="columnSession" msprop:Generator_ColumnPropNameInRow="Session" msprop:Generator_ColumnPropNameInTable="SessionColumn" msprop:Generator_UserColumnName="Session" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="U_Name" msprop:Generator_ColumnVarNameInTable="columnU_Name" msprop:Generator_ColumnPropNameInRow="U_Name" msprop:Generator_ColumnPropNameInTable="U_NameColumn" msprop:Generator_UserColumnName="U_Name">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Cancel_Date" msprop:Generator_ColumnVarNameInTable="columnCancel_Date" msprop:Generator_ColumnPropNameInRow="Cancel_Date" msprop:Generator_ColumnPropNameInTable="Cancel_DateColumn" msprop:Generator_UserColumnName="Cancel_Date" type="xs:dateTime" />
+              <xs:element name="Cancel_Amount" msprop:Generator_ColumnVarNameInTable="columnCancel_Amount" msprop:Generator_ColumnPropNameInRow="Cancel_Amount" msprop:Generator_ColumnPropNameInTable="Cancel_AmountColumn" msprop:Generator_UserColumnName="Cancel_Amount" type="xs:decimal" />
+              <xs:element name="Cancel_Charge" msprop:Generator_ColumnVarNameInTable="columnCancel_Charge" msprop:Generator_ColumnPropNameInRow="Cancel_Charge" msprop:Generator_ColumnPropNameInTable="Cancel_ChargeColumn" msprop:Generator_UserColumnName="Cancel_Charge" type="xs:decimal" />
+              <xs:element name="StudentID" msprop:Generator_ColumnVarNameInTable="columnStudentID" msprop:Generator_ColumnPropNameInRow="StudentID" msprop:Generator_ColumnPropNameInTable="StudentIDColumn" msprop:Generator_UserColumnName="StudentID" type="xs:int" />
+              <xs:element name="PaymentID" msprop:Generator_ColumnVarNameInTable="columnPaymentID" msprop:Generator_ColumnPropNameInRow="PaymentID" msprop:Generator_ColumnPropNameInTable="PaymentIDColumn" msprop:Generator_UserColumnName="PaymentID" type="xs:int" />
+              <xs:element name="Amount" msprop:Generator_ColumnVarNameInTable="columnAmount" msprop:Generator_ColumnPropNameInRow="Amount" msprop:Generator_ColumnPropNameInTable="AmountColumn" msprop:Generator_UserColumnName="Amount" type="xs:decimal" />
+              <xs:element name="PaymentMode" msprop:Generator_ColumnVarNameInTable="columnPaymentMode" msprop:Generator_ColumnPropNameInRow="PaymentMode" msprop:Generator_ColumnPropNameInTable="PaymentModeColumn" msprop:Generator_UserColumnName="PaymentMode">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="StudentName" msprop:Generator_ColumnVarNameInTable="columnStudentName" msprop:Generator_ColumnPropNameInRow="StudentName" msprop:Generator_ColumnPropNameInTable="StudentNameColumn" msprop:Generator_UserColumnName="StudentName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MName" msprop:Generator_ColumnVarNameInTable="columnMName" msprop:Generator_ColumnPropNameInRow="MName" msprop:Generator_ColumnPropNameInTable="MNameColumn" msprop:Generator_UserColumnName="MName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LName" msprop:Generator_ColumnVarNameInTable="columnLName" msprop:Generator_ColumnPropNameInRow="LName" msprop:Generator_ColumnPropNameInTable="LNameColumn" msprop:Generator_UserColumnName="LName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FeeHeadName" msprop:Generator_ColumnVarNameInTable="columnFeeHeadName" msprop:Generator_ColumnPropNameInRow="FeeHeadName" msprop:Generator_ColumnPropNameInTable="FeeHeadNameColumn" msprop:Generator_UserColumnName="FeeHeadName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

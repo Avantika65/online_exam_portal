@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Acc_Daybook" targetNamespace="http://tempuri.org/Acc_Daybook.xsd" xmlns:mstns="http://tempuri.org/Acc_Daybook.xsd" xmlns="http://tempuri.org/Acc_Daybook.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DbookTableAdapter" GeneratorDataComponentClassName="DbookTableAdapter" Name="Dbook" UserDataComponentName="DbookTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectName="FeesManagement.dbo.Dbook" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT     Dbook.*
+FROM         Dbook</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="vid" DataSetColumn="vid" />
+              <Mapping SourceColumn="vcdate" DataSetColumn="vcdate" />
+              <Mapping SourceColumn="LedgerName" DataSetColumn="LedgerName" />
+              <Mapping SourceColumn="vname" DataSetColumn="vname" />
+              <Mapping SourceColumn="vno" DataSetColumn="vno" />
+              <Mapping SourceColumn="Dbt" DataSetColumn="Dbt" />
+              <Mapping SourceColumn="Crdt" DataSetColumn="Crdt" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Acc_Daybook" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="Acc_Daybook" msprop:Generator_DataSetName="Acc_Daybook">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Dbook" msprop:Generator_UserTableName="Dbook" msprop:Generator_RowDeletedName="DbookRowDeleted" msprop:Generator_TableClassName="DbookDataTable" msprop:Generator_RowChangedName="DbookRowChanged" msprop:Generator_RowClassName="DbookRow" msprop:Generator_RowChangingName="DbookRowChanging" msprop:Generator_RowEvArgName="DbookRowChangeEvent" msprop:Generator_RowEvHandlerName="DbookRowChangeEventHandler" msprop:Generator_TablePropName="Dbook" msprop:Generator_TableVarName="tableDbook" msprop:Generator_RowDeletingName="DbookRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="vid" msprop:Generator_UserColumnName="vid" msprop:Generator_ColumnPropNameInRow="vid" msprop:Generator_ColumnVarNameInTable="columnvid" msprop:Generator_ColumnPropNameInTable="vidColumn" type="xs:int" />
+              <xs:element name="vcdate" msprop:Generator_UserColumnName="vcdate" msprop:Generator_ColumnPropNameInRow="vcdate" msprop:Generator_ColumnVarNameInTable="columnvcdate" msprop:Generator_ColumnPropNameInTable="vcdateColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="LedgerName" msprop:Generator_UserColumnName="LedgerName" msprop:Generator_ColumnPropNameInRow="LedgerName" msprop:Generator_ColumnVarNameInTable="columnLedgerName" msprop:Generator_ColumnPropNameInTable="LedgerNameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="vname" msprop:Generator_UserColumnName="vname" msprop:Generator_ColumnPropNameInRow="vname" msprop:Generator_ColumnVarNameInTable="columnvname" msprop:Generator_ColumnPropNameInTable="vnameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="vno" msprop:Generator_UserColumnName="vno" msprop:Generator_ColumnPropNameInRow="vno" msprop:Generator_ColumnVarNameInTable="columnvno" msprop:Generator_ColumnPropNameInTable="vnoColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Dbt" msprop:Generator_UserColumnName="Dbt" msprop:Generator_ColumnPropNameInRow="Dbt" msprop:Generator_ColumnVarNameInTable="columnDbt" msprop:Generator_ColumnPropNameInTable="DbtColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Crdt" msprop:Generator_UserColumnName="Crdt" msprop:Generator_ColumnPropNameInRow="Crdt" msprop:Generator_ColumnVarNameInTable="columnCrdt" msprop:Generator_ColumnPropNameInTable="CrdtColumn" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

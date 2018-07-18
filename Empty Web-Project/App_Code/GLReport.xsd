@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="GLReport" targetNamespace="http://tempuri.org/GLReport.xsd" xmlns:mstns="http://tempuri.org/GLReport.xsd" xmlns="http://tempuri.org/GLReport.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="GLReport" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="GLReport" msprop:Generator_UserDSName="GLReport">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="GLReprt" msprop:Generator_TableClassName="GLReprtDataTable" msprop:Generator_TableVarName="tableGLReprt" msprop:Generator_TablePropName="GLReprt" msprop:Generator_RowDeletingName="GLReprtRowDeleting" msprop:Generator_RowChangingName="GLReprtRowChanging" msprop:Generator_RowEvHandlerName="GLReprtRowChangeEventHandler" msprop:Generator_RowDeletedName="GLReprtRowDeleted" msprop:Generator_UserTableName="GLReprt" msprop:Generator_RowChangedName="GLReprtRowChanged" msprop:Generator_RowEvArgName="GLReprtRowChangeEvent" msprop:Generator_RowClassName="GLReprtRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="StudentID" msprop:Generator_ColumnVarNameInTable="columnStudentID" msprop:Generator_ColumnPropNameInRow="StudentID" msprop:Generator_ColumnPropNameInTable="StudentIDColumn" msprop:Generator_UserColumnName="StudentID" type="xs:string" minOccurs="0" />
+              <xs:element name="StudentName" msprop:Generator_ColumnVarNameInTable="columnStudentName" msprop:Generator_ColumnPropNameInRow="StudentName" msprop:Generator_ColumnPropNameInTable="StudentNameColumn" msprop:Generator_UserColumnName="StudentName" type="xs:string" minOccurs="0" />
+              <xs:element name="regno" msprop:Generator_ColumnVarNameInTable="columnregno" msprop:Generator_ColumnPropNameInRow="regno" msprop:Generator_ColumnPropNameInTable="regnoColumn" msprop:Generator_UserColumnName="regno" type="xs:string" minOccurs="0" />
+              <xs:element name="RollNo" msprop:Generator_ColumnVarNameInTable="columnRollNo" msprop:Generator_ColumnPropNameInRow="RollNo" msprop:Generator_ColumnPropNameInTable="RollNoColumn" msprop:Generator_UserColumnName="RollNo" type="xs:string" minOccurs="0" />
+              <xs:element name="opening_Bal" msprop:Generator_ColumnVarNameInTable="columnopening_Bal" msprop:Generator_ColumnPropNameInRow="opening_Bal" msprop:Generator_ColumnPropNameInTable="opening_BalColumn" msprop:Generator_UserColumnName="opening_Bal" type="xs:string" minOccurs="0" />
+              <xs:element name="DebitAmt" msprop:Generator_ColumnVarNameInTable="columnDebitAmt" msprop:Generator_ColumnPropNameInRow="DebitAmt" msprop:Generator_ColumnPropNameInTable="DebitAmtColumn" msprop:Generator_UserColumnName="DebitAmt" type="xs:string" minOccurs="0" />
+              <xs:element name="CreditAmt" msprop:Generator_ColumnVarNameInTable="columnCreditAmt" msprop:Generator_ColumnPropNameInRow="CreditAmt" msprop:Generator_ColumnPropNameInTable="CreditAmtColumn" msprop:Generator_UserColumnName="CreditAmt" type="xs:string" minOccurs="0" />
+              <xs:element name="NetBalance" msprop:Generator_ColumnVarNameInTable="columnNetBalance" msprop:Generator_ColumnPropNameInRow="NetBalance" msprop:Generator_ColumnPropNameInTable="NetBalanceColumn" msprop:Generator_UserColumnName="NetBalance" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

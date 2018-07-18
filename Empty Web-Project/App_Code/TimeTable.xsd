@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="TimeTable" targetNamespace="http://tempuri.org/TimeTable.xsd" xmlns:mstns="http://tempuri.org/TimeTable.xsd" xmlns="http://tempuri.org/TimeTable.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="TimeTable" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="TimeTable" msprop:Generator_DataSetName="TimeTable">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DataTable1" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowClassName="DataTable1Row" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_TablePropName="DataTable1" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Day" msprop:Generator_UserColumnName="Day" msprop:Generator_ColumnPropNameInRow="Day" msprop:Generator_ColumnVarNameInTable="columnDay" msprop:Generator_ColumnPropNameInTable="DayColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Date" msprop:Generator_UserColumnName="Date" msprop:Generator_ColumnPropNameInRow="Date" msprop:Generator_ColumnVarNameInTable="columnDate" msprop:Generator_ColumnPropNameInTable="DateColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="_x0031_stPeriod" msprop:Generator_UserColumnName="1stPeriod" msprop:Generator_ColumnPropNameInRow="_1stPeriod" msprop:Generator_ColumnVarNameInTable="column1stPeriod" msprop:Generator_ColumnPropNameInTable="_1stPeriodColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="_x0032_ndPeriod" msprop:Generator_UserColumnName="2ndPeriod" msprop:Generator_ColumnPropNameInRow="_2ndPeriod" msprop:Generator_ColumnVarNameInTable="column2ndPeriod" msprop:Generator_ColumnPropNameInTable="_2ndPeriodColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="_x0033_rdPeriod" msprop:Generator_UserColumnName="3rdPeriod" msprop:Generator_ColumnPropNameInRow="_3rdPeriod" msprop:Generator_ColumnVarNameInTable="column3rdPeriod" msprop:Generator_ColumnPropNameInTable="_3rdPeriodColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="_x0034_thPeriod" msprop:Generator_UserColumnName="4thPeriod" msprop:Generator_ColumnPropNameInRow="_4thPeriod" msprop:Generator_ColumnVarNameInTable="column4thPeriod" msprop:Generator_ColumnPropNameInTable="_4thPeriodColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="_x0035_thPeriod" msprop:Generator_UserColumnName="5thPeriod" msprop:Generator_ColumnPropNameInRow="_5thPeriod" msprop:Generator_ColumnVarNameInTable="column5thPeriod" msprop:Generator_ColumnPropNameInTable="_5thPeriodColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="_x0036_thPeriod" msprop:Generator_UserColumnName="6thPeriod" msprop:Generator_ColumnPropNameInRow="_6thPeriod" msprop:Generator_ColumnVarNameInTable="column6thPeriod" msprop:Generator_ColumnPropNameInTable="_6thPeriodColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="_x0037_thPeriod" msprop:Generator_UserColumnName="7thPeriod" msprop:Generator_ColumnPropNameInRow="_7thPeriod" msprop:Generator_ColumnVarNameInTable="column7thPeriod" msprop:Generator_ColumnPropNameInTable="_7thPeriodColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

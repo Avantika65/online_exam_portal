@@ -1,0 +1,295 @@
+﻿using System;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+/// <summary>
+/// Summary description for TimeTableDM
+/// </summary>
+public class TimeTableDM
+{
+    [Serializable]
+    [DataContract]
+    public class PeriodtemplateDM
+    {
+        [DataMember]
+        public int TempID { get; set; }
+        [DataMember]
+        public int TemplateID { get; set; }
+        [DataMember]
+        public int Period { get; set; }
+        [DataMember]
+        public string Time { get; set; }
+        [DataMember]
+        public string Session { get; set; }
+        [DataMember]
+        public string Shortname { get; set; }
+        [DataMember]
+        public int Inst_ID { get; set; }
+        [DataMember]
+        public int duration { get; set; }
+        [DataMember]
+        public string Courseid { get; set; }
+        [DataMember]
+        public string CP { get; set; }
+        [DataMember]
+        public string TR { get; set; }
+        [DataMember]
+        public string Proj { get; set; }
+        [DataMember]
+        public string Flag { get; set; }
+        [DataMember]
+        public string Period_Type { get; set; }
+        [DataMember]
+        public int Period_TypeID { get; set; }
+    }
+    [Serializable]
+    [DataContract]
+    public class PeriodtempchildDM
+    {
+        [DataMember]
+        public int ID { get; set; }
+        [DataMember]
+        public int TemplateID { get; set; }
+        [DataMember]
+        public string Day { get; set; }
+        [DataMember]
+        public DateTime Date { get; set; }
+        [DataMember]
+        public int Inst_ID { get; set; }
+        [DataMember]
+        public string Session { get; set; }
+        [DataMember]
+        public int WeekID { get; set; }
+        [DataMember]
+        public int Courseid { get; set; }
+        [DataMember]
+        public int Semester { get; set; }
+        [DataMember]
+        public string Flag { get; set; }
+
+    }
+
+    [Serializable]
+    [DataContract]
+    public class PeriodMaster
+    {
+        [DataMember]
+        public int PeriodID { get; set; }
+
+        [DataMember]
+        public string Period_Type { get; set; }
+
+        [DataMember]
+        public string Pshort_name { get; set; }
+
+
+        [DataMember]
+        public string Category { get; set; }
+
+        [DataMember]
+        public int Status { get; set; }
+
+        [DataMember]
+        public string Flag { get; set; }
+
+
+    }
+
+    [Serializable]
+    [DataContract]
+    public class PeriodsDM
+    {
+        [DataMember]
+        public int PeriodID { get; set; }
+        [DataMember]
+        public int WeekID { get; set; }
+        [DataMember]
+        public string CourseID { get; set; }
+        [DataMember]
+        public int SubjectID { get; set; }
+        [DataMember]
+        public int TopicID { get; set; }
+        [DataMember]
+        public int SubTopicID { get; set; }
+        [DataMember]
+        public int FacultyID { get; set; }
+        [DataMember]
+        public string Semester { get; set; }
+        [DataMember]
+        public int Hour { get; set; }
+        [DataMember]
+        public string PeriodTime { get; set; }
+        [DataMember]
+        public DateTime PeriodDate { get; set; }
+        [DataMember]
+        public string PeriodType { get; set; }
+        [DataMember]
+        public string Batch { get; set; }
+        [DataMember]
+        public string Suspend { get; set; }
+        [DataMember]
+        public string SuspendReason { get; set; }
+        [DataMember]
+        public int InstituteID { get; set; }
+        [DataMember]
+        public string SessionID { get; set; }
+        [DataMember]
+        public string UName { get; set; }
+        [DataMember]
+        public DateTime UEntDt { get; set; }
+        [DataMember]
+        public string venue { get; set; }
+        [DataMember]
+        public string Day { get; set; }
+        [DataMember]
+        public string PeriodName { get; set; }
+        [DataMember]
+        public int Flag { get; set; }
+        [DataMember]
+        public int EnteredFrom { get; set; }
+
+
+    }
+    [Serializable]
+    [DataContract]
+    public class TemplateDM
+    {
+        [DataMember]
+        public int Template_ID { get; set; }
+        [DataMember]
+        public string Template_Name { get; set; }
+        [DataMember]
+        public string TShort_Name { get; set; }
+        [DataMember]
+        public string Status { get; set; }
+        [DataMember]
+        public int InstituteID { get; set; }
+        [DataMember]
+        public string flag { get; set; }
+
+   }
+    [Serializable]
+    [DataContract]
+    public class HolidayDM
+    {
+        [DataMember]
+        public int LeaveID { get; set; }
+        [DataMember]
+        public string LeaveName { get; set; }
+        [DataMember]
+        public string Day { get; set; }
+        [DataMember]
+        public string DayName { get; set; }
+        [DataMember]
+        public string Month { get; set; }
+        [DataMember]
+        public string Year { get; set; }
+        [DataMember]
+        public DateTime Date { get; set; }
+        [DataMember]
+        public string Type { get; set; }
+        [DataMember]
+        public string Description { get; set; }
+        [DataMember]
+        public int instituteID { get; set; }
+        [DataMember]
+        public string sessionID { get; set; }
+        [DataMember]
+        public int Flag { get; set; }
+        [DataMember]
+        public string YearID { get; set; }
+        [DataMember]
+        public int SemesterID { get; set; }
+        [DataMember]
+        public string Aflag { get; set; }
+        //  
+    }
+    [Serializable]
+    [DataContract]
+    public class VenuFillForTT
+    {
+        [DataMember]
+        public int venue_id { get; set; }
+        [DataMember]
+        public string Venue_name { get; set; }
+
+    }
+
+    [Serializable]
+    [DataContract]
+    public class SessionDates
+    {
+        [DataMember]
+        public DateTime startdate { get; set; }
+        [DataMember]
+        public DateTime enddate { get; set; }
+
+    }
+    [Serializable]
+    [DataContract]
+    public class WeekFill : BaseEntity
+    {
+        public WeekFill()
+        {
+        }
+        [DataMember]
+        public int weekID { get; set; }
+        [DataMember]
+        public string WeekName { get; set; }
+
+
+    }
+    [Serializable]
+    [DataContract]
+    public class WeekDayFill : BaseEntity
+    {
+        public WeekDayFill()
+        {
+        }
+        [DataMember]
+        public int Day { get; set; }
+        [DataMember]
+        public DateTime Date { get; set; }
+
+
+    }
+    [Serializable]
+    [DataContract]
+    public class FacultyFill : BaseEntity
+    {
+        public FacultyFill()
+        {
+        }
+        [DataMember]
+        public int FacultyID { get; set; }
+        [DataMember]
+        public string Name { get; set; }
+
+
+    }
+    public class FillTempName
+    {
+        [DataMember]
+        public int Template_ID { get; set; }
+        [DataMember]
+        public string Template_Name { get; set; }
+        [DataMember]
+        public int flag { get; set; }
+
+    }
+    
+    [Serializable]
+    [DataContract]
+    public class FillWeekForPeriodTemplate
+    {
+        [DataMember]
+        public string  WeekName { get; set; }
+        [DataMember]
+        public DateTime WeekDate { get; set; }
+        [DataMember]
+        public string  Day { get; set; }
+        [DataMember]
+        public bool Status { get; set; }
+        [DataMember]
+        public string Template_Name { get; set; }
+    }
+}

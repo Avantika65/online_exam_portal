@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="HostelRepDS" targetNamespace="http://tempuri.org/HostelRepDS.xsd" xmlns:mstns="http://tempuri.org/HostelRepDS.xsd" xmlns="http://tempuri.org/HostelRepDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Alloted_St_RptTableAdapter" GeneratorDataComponentClassName="Alloted_St_RptTableAdapter" Name="Alloted_St_Rpt" UserDataComponentName="Alloted_St_RptTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectName="Hostel.dbo.Alloted_St_Rpt" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT     Alloted_St_Rpt.*
+FROM         Alloted_St_Rpt</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Student_Emp_ID" DataSetColumn="Student_Emp_ID" />
+              <Mapping SourceColumn="StName" DataSetColumn="StName" />
+              <Mapping SourceColumn="ResiID" DataSetColumn="ResiID" />
+              <Mapping SourceColumn="ResidenseName" DataSetColumn="ResidenseName" />
+              <Mapping SourceColumn="periodFrom" DataSetColumn="periodFrom" />
+              <Mapping SourceColumn="periodTo" DataSetColumn="periodTo" />
+              <Mapping SourceColumn="PaidAmount" DataSetColumn="PaidAmount" />
+              <Mapping SourceColumn="AllotmentID" DataSetColumn="AllotmentID" />
+              <Mapping SourceColumn="Room_Qtr_No" DataSetColumn="Room_Qtr_No" />
+              <Mapping SourceColumn="IsPaid" DataSetColumn="IsPaid" />
+              <Mapping SourceColumn="rateFromDate" DataSetColumn="rateFromDate" />
+              <Mapping SourceColumn="rateToDate" DataSetColumn="rateToDate" />
+              <Mapping SourceColumn="Rate" DataSetColumn="Rate" />
+              <Mapping SourceColumn="RoomTypeID" DataSetColumn="RoomTypeID" />
+              <Mapping SourceColumn="FromDate" DataSetColumn="FromDate" />
+              <Mapping SourceColumn="Todate" DataSetColumn="Todate" />
+              <Mapping SourceColumn="Status" DataSetColumn="Status" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="HostelRepDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="HostelRepDS" msprop:Generator_DataSetName="HostelRepDS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Alloted_St_Rpt" msprop:Generator_UserTableName="Alloted_St_Rpt" msprop:Generator_RowDeletedName="Alloted_St_RptRowDeleted" msprop:Generator_TableClassName="Alloted_St_RptDataTable" msprop:Generator_RowChangedName="Alloted_St_RptRowChanged" msprop:Generator_RowClassName="Alloted_St_RptRow" msprop:Generator_RowChangingName="Alloted_St_RptRowChanging" msprop:Generator_RowEvArgName="Alloted_St_RptRowChangeEvent" msprop:Generator_RowEvHandlerName="Alloted_St_RptRowChangeEventHandler" msprop:Generator_TablePropName="Alloted_St_Rpt" msprop:Generator_TableVarName="tableAlloted_St_Rpt" msprop:Generator_RowDeletingName="Alloted_St_RptRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Student_Emp_ID" msprop:Generator_UserColumnName="Student_Emp_ID" msprop:Generator_ColumnPropNameInRow="Student_Emp_ID" msprop:Generator_ColumnVarNameInTable="columnStudent_Emp_ID" msprop:Generator_ColumnPropNameInTable="Student_Emp_IDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="StName" msdata:ReadOnly="true" msprop:Generator_UserColumnName="StName" msprop:Generator_ColumnPropNameInRow="StName" msprop:Generator_ColumnVarNameInTable="columnStName" msprop:Generator_ColumnPropNameInTable="StNameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="153" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ResiID" msdata:ReadOnly="true" msprop:Generator_UserColumnName="ResiID" msprop:Generator_ColumnPropNameInRow="ResiID" msprop:Generator_ColumnVarNameInTable="columnResiID" msprop:Generator_ColumnPropNameInTable="ResiIDColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ResidenseName" msprop:Generator_UserColumnName="ResidenseName" msprop:Generator_ColumnPropNameInRow="ResidenseName" msprop:Generator_ColumnVarNameInTable="columnResidenseName" msprop:Generator_ColumnPropNameInTable="ResidenseNameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="periodFrom" msprop:Generator_UserColumnName="periodFrom" msprop:Generator_ColumnPropNameInRow="periodFrom" msprop:Generator_ColumnVarNameInTable="columnperiodFrom" msprop:Generator_ColumnPropNameInTable="periodFromColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="periodTo" msprop:Generator_UserColumnName="periodTo" msprop:Generator_ColumnPropNameInRow="periodTo" msprop:Generator_ColumnVarNameInTable="columnperiodTo" msprop:Generator_ColumnPropNameInTable="periodToColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="PaidAmount" msprop:Generator_UserColumnName="PaidAmount" msprop:Generator_ColumnPropNameInRow="PaidAmount" msprop:Generator_ColumnVarNameInTable="columnPaidAmount" msprop:Generator_ColumnPropNameInTable="PaidAmountColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="AllotmentID" msprop:Generator_UserColumnName="AllotmentID" msprop:Generator_ColumnPropNameInRow="AllotmentID" msprop:Generator_ColumnVarNameInTable="columnAllotmentID" msprop:Generator_ColumnPropNameInTable="AllotmentIDColumn" type="xs:int" />
+              <xs:element name="Room_Qtr_No" msprop:Generator_UserColumnName="Room_Qtr_No" msprop:Generator_ColumnPropNameInRow="Room_Qtr_No" msprop:Generator_ColumnVarNameInTable="columnRoom_Qtr_No" msprop:Generator_ColumnPropNameInTable="Room_Qtr_NoColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="25" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IsPaid" msprop:Generator_UserColumnName="IsPaid" msprop:Generator_ColumnPropNameInRow="IsPaid" msprop:Generator_ColumnVarNameInTable="columnIsPaid" msprop:Generator_ColumnPropNameInTable="IsPaidColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="rateFromDate" msprop:Generator_UserColumnName="rateFromDate" msprop:Generator_ColumnPropNameInRow="rateFromDate" msprop:Generator_ColumnVarNameInTable="columnrateFromDate" msprop:Generator_ColumnPropNameInTable="rateFromDateColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="rateToDate" msprop:Generator_UserColumnName="rateToDate" msprop:Generator_ColumnPropNameInRow="rateToDate" msprop:Generator_ColumnVarNameInTable="columnrateToDate" msprop:Generator_ColumnPropNameInTable="rateToDateColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Rate" msprop:Generator_UserColumnName="Rate" msprop:Generator_ColumnPropNameInRow="Rate" msprop:Generator_ColumnVarNameInTable="columnRate" msprop:Generator_ColumnPropNameInTable="RateColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="RoomTypeID" msprop:Generator_UserColumnName="RoomTypeID" msprop:Generator_ColumnPropNameInRow="RoomTypeID" msprop:Generator_ColumnVarNameInTable="columnRoomTypeID" msprop:Generator_ColumnPropNameInTable="RoomTypeIDColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FromDate" msprop:Generator_UserColumnName="FromDate" msprop:Generator_ColumnPropNameInRow="FromDate" msprop:Generator_ColumnVarNameInTable="columnFromDate" msprop:Generator_ColumnPropNameInTable="FromDateColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Todate" msprop:Generator_UserColumnName="Todate" msprop:Generator_ColumnPropNameInRow="Todate" msprop:Generator_ColumnVarNameInTable="columnTodate" msprop:Generator_ColumnPropNameInTable="TodateColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Status" msdata:ReadOnly="true" msprop:Generator_UserColumnName="Status" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInTable="StatusColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

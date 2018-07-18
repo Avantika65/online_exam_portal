@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="EmpInOutStatus" targetNamespace="http://tempuri.org/EmpInOutStatus.xsd" xmlns:mstns="http://tempuri.org/EmpInOutStatus.xsd" xmlns="http://tempuri.org/EmpInOutStatus.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="EmpInOutStatus" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="EmpInOutStatus" msprop:Generator_DataSetName="EmpInOutStatus">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_RowClassName="DataTable1Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="EmpName" msprop:Generator_ColumnVarNameInTable="columnEmpName" msprop:Generator_ColumnPropNameInRow="EmpName" msprop:Generator_ColumnPropNameInTable="EmpNameColumn" msprop:Generator_UserColumnName="EmpName" type="xs:string" minOccurs="0" />
+              <xs:element name="DepartmentName" msprop:Generator_ColumnVarNameInTable="columnDepartmentName" msprop:Generator_ColumnPropNameInRow="DepartmentName" msprop:Generator_ColumnPropNameInTable="DepartmentNameColumn" msprop:Generator_UserColumnName="DepartmentName" type="xs:string" minOccurs="0" />
+              <xs:element name="ADate" msprop:Generator_ColumnVarNameInTable="columnADate" msprop:Generator_ColumnPropNameInRow="ADate" msprop:Generator_ColumnPropNameInTable="ADateColumn" msprop:Generator_UserColumnName="ADate" type="xs:string" minOccurs="0" />
+              <xs:element name="ADay" msprop:Generator_ColumnVarNameInTable="columnADay" msprop:Generator_ColumnPropNameInRow="ADay" msprop:Generator_ColumnPropNameInTable="ADayColumn" msprop:Generator_UserColumnName="ADay" type="xs:string" minOccurs="0" />
+              <xs:element name="InTime" msprop:Generator_ColumnVarNameInTable="columnInTime" msprop:Generator_ColumnPropNameInRow="InTime" msprop:Generator_ColumnPropNameInTable="InTimeColumn" msprop:Generator_UserColumnName="InTime" type="xs:string" minOccurs="0" />
+              <xs:element name="OutTime" msprop:Generator_ColumnVarNameInTable="columnOutTime" msprop:Generator_ColumnPropNameInRow="OutTime" msprop:Generator_ColumnPropNameInTable="OutTimeColumn" msprop:Generator_UserColumnName="OutTime" type="xs:string" minOccurs="0" />
+              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

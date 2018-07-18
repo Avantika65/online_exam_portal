@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DailyAttendanceDS" targetNamespace="http://tempuri.org/DailyAttendanceDS.xsd" xmlns:mstns="http://tempuri.org/DailyAttendanceDS.xsd" xmlns="http://tempuri.org/DailyAttendanceDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Attendance_PrintNewTableAdapter" GeneratorDataComponentClassName="Attendance_PrintNewTableAdapter" Name="Attendance_PrintNew" UserDataComponentName="Attendance_PrintNewTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectName="GGG.dbo.Attendance_PrintNew" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Attendance_PrintNew.*
+FROM            Attendance_PrintNew</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="StudentID" DataSetColumn="StudentID" />
+              <Mapping SourceColumn="StudentName" DataSetColumn="StudentName" />
+              <Mapping SourceColumn="ID_Student" DataSetColumn="ID_Student" />
+              <Mapping SourceColumn="EnrollmentNo" DataSetColumn="EnrollmentNo" />
+              <Mapping SourceColumn="RollNo" DataSetColumn="RollNo" />
+              <Mapping SourceColumn="CourseYear" DataSetColumn="CourseYear" />
+              <Mapping SourceColumn="Session" DataSetColumn="Session" />
+              <Mapping SourceColumn="SemesterID" DataSetColumn="SemesterID" />
+              <Mapping SourceColumn="Status" DataSetColumn="Status" />
+              <Mapping SourceColumn="Batch_Name" DataSetColumn="Batch_Name" />
+              <Mapping SourceColumn="Period_Type" DataSetColumn="Period_Type" />
+              <Mapping SourceColumn="DateA" DataSetColumn="DateA" />
+              <Mapping SourceColumn="Present" DataSetColumn="Present" />
+              <Mapping SourceColumn="Absent" DataSetColumn="Absent" />
+              <Mapping SourceColumn="TicketNo" DataSetColumn="TicketNo" />
+              <Mapping SourceColumn="CourseName" DataSetColumn="CourseName" />
+              <Mapping SourceColumn="Year" DataSetColumn="Year" />
+              <Mapping SourceColumn="CollegeName" DataSetColumn="CollegeName" />
+              <Mapping SourceColumn="Location" DataSetColumn="Location" />
+              <Mapping SourceColumn="Phone1" DataSetColumn="Phone1" />
+              <Mapping SourceColumn="Phone2" DataSetColumn="Phone2" />
+              <Mapping SourceColumn="Phone3" DataSetColumn="Phone3" />
+              <Mapping SourceColumn="EmailID1" DataSetColumn="EmailID1" />
+              <Mapping SourceColumn="EmailID2" DataSetColumn="EmailID2" />
+              <Mapping SourceColumn="CourseID" DataSetColumn="CourseID" />
+              <Mapping SourceColumn="PeriodID" DataSetColumn="PeriodID" />
+              <Mapping SourceColumn="FName" DataSetColumn="FName" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DailyAttendanceDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="DailyAttendanceDS" msprop:Generator_UserDSName="DailyAttendanceDS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Attendance_PrintNew" msprop:Generator_TableClassName="Attendance_PrintNewDataTable" msprop:Generator_TableVarName="tableAttendance_PrintNew" msprop:Generator_TablePropName="Attendance_PrintNew" msprop:Generator_RowDeletingName="Attendance_PrintNewRowDeleting" msprop:Generator_UserTableName="Attendance_PrintNew" msprop:Generator_RowChangingName="Attendance_PrintNewRowChanging" msprop:Generator_RowEvHandlerName="Attendance_PrintNewRowChangeEventHandler" msprop:Generator_RowDeletedName="Attendance_PrintNewRowDeleted" msprop:Generator_RowEvArgName="Attendance_PrintNewRowChangeEvent" msprop:Generator_RowChangedName="Attendance_PrintNewRowChanged" msprop:Generator_RowClassName="Attendance_PrintNewRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="StudentID" msprop:Generator_ColumnVarNameInTable="columnStudentID" msprop:Generator_ColumnPropNameInRow="StudentID" msprop:Generator_ColumnPropNameInTable="StudentIDColumn" msprop:Generator_UserColumnName="StudentID" type="xs:int" />
+              <xs:element name="StudentName" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnStudentName" msprop:Generator_ColumnPropNameInRow="StudentName" msprop:Generator_ColumnPropNameInTable="StudentNameColumn" msprop:Generator_UserColumnName="StudentName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="152" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ID_Student" msprop:Generator_ColumnVarNameInTable="columnID_Student" msprop:Generator_ColumnPropNameInRow="ID_Student" msprop:Generator_ColumnPropNameInTable="ID_StudentColumn" msprop:Generator_UserColumnName="ID_Student" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EnrollmentNo" msprop:Generator_ColumnVarNameInTable="columnEnrollmentNo" msprop:Generator_ColumnPropNameInRow="EnrollmentNo" msprop:Generator_ColumnPropNameInTable="EnrollmentNoColumn" msprop:Generator_UserColumnName="EnrollmentNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RollNo" msprop:Generator_ColumnVarNameInTable="columnRollNo" msprop:Generator_ColumnPropNameInRow="RollNo" msprop:Generator_ColumnPropNameInTable="RollNoColumn" msprop:Generator_UserColumnName="RollNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CourseYear" msprop:Generator_ColumnVarNameInTable="columnCourseYear" msprop:Generator_ColumnPropNameInRow="CourseYear" msprop:Generator_ColumnPropNameInTable="CourseYearColumn" msprop:Generator_UserColumnName="CourseYear">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Session" msprop:Generator_ColumnVarNameInTable="columnSession" msprop:Generator_ColumnPropNameInRow="Session" msprop:Generator_ColumnPropNameInTable="SessionColumn" msprop:Generator_UserColumnName="Session">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SemesterID" msprop:Generator_ColumnVarNameInTable="columnSemesterID" msprop:Generator_ColumnPropNameInRow="SemesterID" msprop:Generator_ColumnPropNameInTable="SemesterIDColumn" msprop:Generator_UserColumnName="SemesterID" type="xs:int" />
+              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Batch_Name" msprop:Generator_ColumnVarNameInTable="columnBatch_Name" msprop:Generator_ColumnPropNameInRow="Batch_Name" msprop:Generator_ColumnPropNameInTable="Batch_NameColumn" msprop:Generator_UserColumnName="Batch_Name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Period_Type" msprop:Generator_ColumnVarNameInTable="columnPeriod_Type" msprop:Generator_ColumnPropNameInRow="Period_Type" msprop:Generator_ColumnPropNameInTable="Period_TypeColumn" msprop:Generator_UserColumnName="Period_Type">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DateA" msprop:Generator_ColumnVarNameInTable="columnDateA" msprop:Generator_ColumnPropNameInRow="DateA" msprop:Generator_ColumnPropNameInTable="DateAColumn" msprop:Generator_UserColumnName="DateA" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Present" msprop:Generator_ColumnVarNameInTable="columnPresent" msprop:Generator_ColumnPropNameInRow="Present" msprop:Generator_ColumnPropNameInTable="PresentColumn" msprop:Generator_UserColumnName="Present" type="xs:int" minOccurs="0" />
+              <xs:element name="Absent" msprop:Generator_ColumnVarNameInTable="columnAbsent" msprop:Generator_ColumnPropNameInRow="Absent" msprop:Generator_ColumnPropNameInTable="AbsentColumn" msprop:Generator_UserColumnName="Absent" type="xs:int" minOccurs="0" />
+              <xs:element name="TicketNo" msprop:Generator_ColumnVarNameInTable="columnTicketNo" msprop:Generator_ColumnPropNameInRow="TicketNo" msprop:Generator_ColumnPropNameInTable="TicketNoColumn" msprop:Generator_UserColumnName="TicketNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CourseName" msprop:Generator_ColumnVarNameInTable="columnCourseName" msprop:Generator_ColumnPropNameInRow="CourseName" msprop:Generator_ColumnPropNameInTable="CourseNameColumn" msprop:Generator_UserColumnName="CourseName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Year" msprop:Generator_ColumnVarNameInTable="columnYear" msprop:Generator_ColumnPropNameInRow="Year" msprop:Generator_ColumnPropNameInTable="YearColumn" msprop:Generator_UserColumnName="Year" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CollegeName" msprop:Generator_ColumnVarNameInTable="columnCollegeName" msprop:Generator_ColumnPropNameInRow="CollegeName" msprop:Generator_ColumnPropNameInTable="CollegeNameColumn" msprop:Generator_UserColumnName="CollegeName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Location" msprop:Generator_ColumnVarNameInTable="columnLocation" msprop:Generator_ColumnPropNameInRow="Location" msprop:Generator_ColumnPropNameInTable="LocationColumn" msprop:Generator_UserColumnName="Location">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="350" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Phone1" msprop:Generator_ColumnVarNameInTable="columnPhone1" msprop:Generator_ColumnPropNameInRow="Phone1" msprop:Generator_ColumnPropNameInTable="Phone1Column" msprop:Generator_UserColumnName="Phone1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Phone2" msprop:Generator_ColumnVarNameInTable="columnPhone2" msprop:Generator_ColumnPropNameInRow="Phone2" msprop:Generator_ColumnPropNameInTable="Phone2Column" msprop:Generator_UserColumnName="Phone2" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Phone3" msprop:Generator_ColumnVarNameInTable="columnPhone3" msprop:Generator_ColumnPropNameInRow="Phone3" msprop:Generator_ColumnPropNameInTable="Phone3Column" msprop:Generator_UserColumnName="Phone3" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EmailID1" msprop:Generator_ColumnVarNameInTable="columnEmailID1" msprop:Generator_ColumnPropNameInRow="EmailID1" msprop:Generator_ColumnPropNameInTable="EmailID1Column" msprop:Generator_UserColumnName="EmailID1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EmailID2" msprop:Generator_ColumnVarNameInTable="columnEmailID2" msprop:Generator_ColumnPropNameInRow="EmailID2" msprop:Generator_ColumnPropNameInTable="EmailID2Column" msprop:Generator_UserColumnName="EmailID2" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CourseID" msprop:Generator_ColumnVarNameInTable="columnCourseID" msprop:Generator_ColumnPropNameInRow="CourseID" msprop:Generator_ColumnPropNameInTable="CourseIDColumn" msprop:Generator_UserColumnName="CourseID" type="xs:int" minOccurs="0" />
+              <xs:element name="PeriodID" msprop:Generator_ColumnVarNameInTable="columnPeriodID" msprop:Generator_ColumnPropNameInRow="PeriodID" msprop:Generator_ColumnPropNameInTable="PeriodIDColumn" msprop:Generator_UserColumnName="PeriodID" type="xs:int" />
+              <xs:element name="FName" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnFName" msprop:Generator_ColumnPropNameInRow="FName" msprop:Generator_ColumnPropNameInTable="FNameColumn" msprop:Generator_UserColumnName="FName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="152" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Attendance_PrintNew" />
+      <xs:field xpath="mstns:StudentID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

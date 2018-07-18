@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="FeeStructRpt" targetNamespace="http://tempuri.org/FeeStructRpt.xsd" xmlns:mstns="http://tempuri.org/FeeStructRpt.xsd" xmlns="http://tempuri.org/FeeStructRpt.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="FeeStuctureRpt_VwTableAdapter" GeneratorDataComponentClassName="FeeStuctureRpt_VwTableAdapter" Name="FeeStuctureRpt_Vw" UserDataComponentName="FeeStuctureRpt_VwTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectName="BPOLive2011.dbo.FeeStuctureRpt_Vw" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        CourseName, FeeHeadName, Nature, CCategoryName, Category, FeeClass, TotalAmount, BreakoffTime, Amount, LastDate, InstituteID, SessionID, batch, 
+                         YrSem
+FROM            FeeStuctureRpt_Vw</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="CourseName" DataSetColumn="CourseName" />
+              <Mapping SourceColumn="FeeHeadName" DataSetColumn="FeeHeadName" />
+              <Mapping SourceColumn="Nature" DataSetColumn="Nature" />
+              <Mapping SourceColumn="CCategoryName" DataSetColumn="CCategoryName" />
+              <Mapping SourceColumn="Category" DataSetColumn="Category" />
+              <Mapping SourceColumn="FeeClass" DataSetColumn="FeeClass" />
+              <Mapping SourceColumn="TotalAmount" DataSetColumn="TotalAmount" />
+              <Mapping SourceColumn="BreakoffTime" DataSetColumn="BreakoffTime" />
+              <Mapping SourceColumn="Amount" DataSetColumn="Amount" />
+              <Mapping SourceColumn="LastDate" DataSetColumn="LastDate" />
+              <Mapping SourceColumn="InstituteID" DataSetColumn="InstituteID" />
+              <Mapping SourceColumn="SessionID" DataSetColumn="SessionID" />
+              <Mapping SourceColumn="batch" DataSetColumn="batch" />
+              <Mapping SourceColumn="YrSem" DataSetColumn="YrSem" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="FeeStructRpt" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="FeeStructRpt" msprop:Generator_UserDSName="FeeStructRpt">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="FeeStuctureRpt_Vw" msprop:Generator_TableClassName="FeeStuctureRpt_VwDataTable" msprop:Generator_TableVarName="tableFeeStuctureRpt_Vw" msprop:Generator_TablePropName="FeeStuctureRpt_Vw" msprop:Generator_RowDeletingName="FeeStuctureRpt_VwRowDeleting" msprop:Generator_UserTableName="FeeStuctureRpt_Vw" msprop:Generator_RowChangingName="FeeStuctureRpt_VwRowChanging" msprop:Generator_RowEvHandlerName="FeeStuctureRpt_VwRowChangeEventHandler" msprop:Generator_RowDeletedName="FeeStuctureRpt_VwRowDeleted" msprop:Generator_RowEvArgName="FeeStuctureRpt_VwRowChangeEvent" msprop:Generator_RowChangedName="FeeStuctureRpt_VwRowChanged" msprop:Generator_RowClassName="FeeStuctureRpt_VwRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CourseName" msprop:Generator_ColumnVarNameInTable="columnCourseName" msprop:Generator_ColumnPropNameInRow="CourseName" msprop:Generator_ColumnPropNameInTable="CourseNameColumn" msprop:Generator_UserColumnName="CourseName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FeeHeadName" msprop:Generator_ColumnVarNameInTable="columnFeeHeadName" msprop:Generator_ColumnPropNameInRow="FeeHeadName" msprop:Generator_ColumnPropNameInTable="FeeHeadNameColumn" msprop:Generator_UserColumnName="FeeHeadName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Nature" msprop:Generator_ColumnVarNameInTable="columnNature" msprop:Generator_ColumnPropNameInRow="Nature" msprop:Generator_ColumnPropNameInTable="NatureColumn" msprop:Generator_UserColumnName="Nature">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CCategoryName" msprop:Generator_ColumnVarNameInTable="columnCCategoryName" msprop:Generator_ColumnPropNameInRow="CCategoryName" msprop:Generator_ColumnPropNameInTable="CCategoryNameColumn" msprop:Generator_UserColumnName="CCategoryName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Category" msprop:Generator_ColumnVarNameInTable="columnCategory" msprop:Generator_ColumnPropNameInRow="Category" msprop:Generator_ColumnPropNameInTable="CategoryColumn" msprop:Generator_UserColumnName="Category" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FeeClass" msprop:Generator_ColumnVarNameInTable="columnFeeClass" msprop:Generator_ColumnPropNameInRow="FeeClass" msprop:Generator_ColumnPropNameInTable="FeeClassColumn" msprop:Generator_UserColumnName="FeeClass" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TotalAmount" msprop:Generator_ColumnVarNameInTable="columnTotalAmount" msprop:Generator_ColumnPropNameInRow="TotalAmount" msprop:Generator_ColumnPropNameInTable="TotalAmountColumn" msprop:Generator_UserColumnName="TotalAmount" type="xs:decimal" minOccurs="0" />
+              <xs:element name="BreakoffTime" msprop:Generator_ColumnVarNameInTable="columnBreakoffTime" msprop:Generator_ColumnPropNameInRow="BreakoffTime" msprop:Generator_ColumnPropNameInTable="BreakoffTimeColumn" msprop:Generator_UserColumnName="BreakoffTime" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Amount" msprop:Generator_ColumnVarNameInTable="columnAmount" msprop:Generator_ColumnPropNameInRow="Amount" msprop:Generator_ColumnPropNameInTable="AmountColumn" msprop:Generator_UserColumnName="Amount" type="xs:decimal" minOccurs="0" />
+              <xs:element name="LastDate" msprop:Generator_ColumnVarNameInTable="columnLastDate" msprop:Generator_ColumnPropNameInRow="LastDate" msprop:Generator_ColumnPropNameInTable="LastDateColumn" msprop:Generator_UserColumnName="LastDate" type="xs:dateTime" />
+              <xs:element name="InstituteID" msprop:Generator_ColumnVarNameInTable="columnInstituteID" msprop:Generator_ColumnPropNameInRow="InstituteID" msprop:Generator_ColumnPropNameInTable="InstituteIDColumn" msprop:Generator_UserColumnName="InstituteID" type="xs:int" minOccurs="0" />
+              <xs:element name="SessionID" msprop:Generator_ColumnVarNameInTable="columnSessionID" msprop:Generator_ColumnPropNameInRow="SessionID" msprop:Generator_ColumnPropNameInTable="SessionIDColumn" msprop:Generator_UserColumnName="SessionID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="batch" msprop:Generator_ColumnVarNameInTable="columnbatch" msprop:Generator_ColumnPropNameInRow="batch" msprop:Generator_ColumnPropNameInTable="batchColumn" msprop:Generator_UserColumnName="batch" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="YrSem" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnYrSem" msprop:Generator_ColumnPropNameInRow="YrSem" msprop:Generator_ColumnPropNameInTable="YrSemColumn" msprop:Generator_UserColumnName="YrSem" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="52" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CollegeName" msprop:Generator_ColumnVarNameInTable="columnCollegeName" msprop:Generator_ColumnPropNameInRow="CollegeName" msprop:Generator_ColumnPropNameInTable="CollegeNameColumn" msprop:Generator_UserColumnName="CollegeName" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

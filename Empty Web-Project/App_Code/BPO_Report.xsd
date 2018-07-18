@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="BPO_Report" targetNamespace="http://tempuri.org/BPO_Report.xsd" xmlns:mstns="http://tempuri.org/BPO_Report.xsd" xmlns="http://tempuri.org/BPO_Report.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Bpo_vwTableAdapter" GeneratorDataComponentClassName="Bpo_vwTableAdapter" Name="Bpo_vw" UserDataComponentName="Bpo_vwTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectName="bpoliveNoida.dbo.Bpo_vw" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT     Earlier_Ref, DateApplied, Name, Mno, Course, Forward_To, Email, Next_Date, Ndate, Mode_Info, Remark,city
+FROM         Bpo_vw</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Earlier_Ref" DataSetColumn="Earlier_Ref" />
+              <Mapping SourceColumn="DateApplied" DataSetColumn="DateApplied" />
+              <Mapping SourceColumn="Name" DataSetColumn="Name" />
+              <Mapping SourceColumn="Mno" DataSetColumn="Mno" />
+              <Mapping SourceColumn="Course" DataSetColumn="Course" />
+              <Mapping SourceColumn="Forward_To" DataSetColumn="Forward_To" />
+              <Mapping SourceColumn="Email" DataSetColumn="Email" />
+              <Mapping SourceColumn="Next_Date" DataSetColumn="Next_Date" />
+              <Mapping SourceColumn="Ndate" DataSetColumn="Ndate" />
+              <Mapping SourceColumn="Mode_Info" DataSetColumn="Mode_Info" />
+              <Mapping SourceColumn="Remark" DataSetColumn="Remark" />
+              <Mapping SourceColumn="city" DataSetColumn="city" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="BPO_Report" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="BPO_Report" msprop:Generator_UserDSName="BPO_Report">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Bpo_vw" msprop:Generator_UserTableName="Bpo_vw" msprop:Generator_RowEvArgName="Bpo_vwRowChangeEvent" msprop:Generator_TableVarName="tableBpo_vw" msprop:Generator_TablePropName="Bpo_vw" msprop:Generator_RowDeletingName="Bpo_vwRowDeleting" msprop:Generator_RowChangingName="Bpo_vwRowChanging" msprop:Generator_RowDeletedName="Bpo_vwRowDeleted" msprop:Generator_TableClassName="Bpo_vwDataTable" msprop:Generator_RowChangedName="Bpo_vwRowChanged" msprop:Generator_RowEvHandlerName="Bpo_vwRowChangeEventHandler" msprop:Generator_RowClassName="Bpo_vwRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Earlier_Ref" msprop:Generator_ColumnVarNameInTable="columnEarlier_Ref" msprop:Generator_ColumnPropNameInRow="Earlier_Ref" msprop:Generator_ColumnPropNameInTable="Earlier_RefColumn" msprop:Generator_UserColumnName="Earlier_Ref" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DateApplied" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDateApplied" msprop:Generator_ColumnPropNameInRow="DateApplied" msprop:Generator_ColumnPropNameInTable="DateAppliedColumn" msprop:Generator_UserColumnName="DateApplied" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Name" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="152" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Mno" msprop:Generator_ColumnVarNameInTable="columnMno" msprop:Generator_ColumnPropNameInRow="Mno" msprop:Generator_ColumnPropNameInTable="MnoColumn" msprop:Generator_UserColumnName="Mno" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Course" msprop:Generator_ColumnVarNameInTable="columnCourse" msprop:Generator_ColumnPropNameInRow="Course" msprop:Generator_ColumnPropNameInTable="CourseColumn" msprop:Generator_UserColumnName="Course">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Forward_To" msprop:Generator_ColumnVarNameInTable="columnForward_To" msprop:Generator_ColumnPropNameInRow="Forward_To" msprop:Generator_ColumnPropNameInTable="Forward_ToColumn" msprop:Generator_UserColumnName="Forward_To" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Email" msprop:Generator_ColumnVarNameInTable="columnEmail" msprop:Generator_ColumnPropNameInRow="Email" msprop:Generator_ColumnPropNameInTable="EmailColumn" msprop:Generator_UserColumnName="Email" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Next_Date" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnNext_Date" msprop:Generator_ColumnPropNameInRow="Next_Date" msprop:Generator_ColumnPropNameInTable="Next_DateColumn" msprop:Generator_UserColumnName="Next_Date" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Ndate" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnNdate" msprop:Generator_ColumnPropNameInRow="Ndate" msprop:Generator_ColumnPropNameInTable="NdateColumn" msprop:Generator_UserColumnName="Ndate" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Mode_Info" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnMode_Info" msprop:Generator_ColumnPropNameInRow="Mode_Info" msprop:Generator_ColumnPropNameInTable="Mode_InfoColumn" msprop:Generator_UserColumnName="Mode_Info" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Remark" msprop:Generator_ColumnVarNameInTable="columnRemark" msprop:Generator_ColumnPropNameInRow="Remark" msprop:Generator_ColumnPropNameInTable="RemarkColumn" msprop:Generator_UserColumnName="Remark" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ForwardPerson" msprop:Generator_ColumnVarNameInTable="columnForwardPerson" msprop:Generator_ColumnPropNameInRow="ForwardPerson" msprop:Generator_ColumnPropNameInTable="ForwardPersonColumn" msprop:Generator_UserColumnName="ForwardPerson" type="xs:string" minOccurs="0" />
+              <xs:element name="city" msprop:Generator_ColumnVarNameInTable="columncity" msprop:Generator_ColumnPropNameInRow="city" msprop:Generator_ColumnPropNameInTable="cityColumn" msprop:Generator_UserColumnName="city">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

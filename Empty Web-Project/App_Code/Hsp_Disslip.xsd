@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Hsp_Disslip" targetNamespace="http://tempuri.org/Hsp_Disslip.xsd" xmlns:mstns="http://tempuri.org/Hsp_Disslip.xsd" xmlns="http://tempuri.org/Hsp_Disslip.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Hsp_Disslip" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="Hsp_Disslip" msprop:Generator_DataSetName="Hsp_Disslip">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Lab_Dt" msprop:Generator_UserTableName="Lab_Dt" msprop:Generator_RowDeletedName="Lab_DtRowDeleted" msprop:Generator_RowChangedName="Lab_DtRowChanged" msprop:Generator_RowClassName="Lab_DtRow" msprop:Generator_RowChangingName="Lab_DtRowChanging" msprop:Generator_RowEvArgName="Lab_DtRowChangeEvent" msprop:Generator_RowEvHandlerName="Lab_DtRowChangeEventHandler" msprop:Generator_TableClassName="Lab_DtDataTable" msprop:Generator_TableVarName="tableLab_Dt" msprop:Generator_RowDeletingName="Lab_DtRowDeleting" msprop:Generator_TablePropName="Lab_Dt">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Lab_Dt" msprop:Generator_UserColumnName="Lab_Dt" msprop:Generator_ColumnVarNameInTable="columnLab_Dt" msprop:Generator_ColumnPropNameInRow="Lab_Dt" msprop:Generator_ColumnPropNameInTable="Lab_DtColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Lab_id" msprop:Generator_UserColumnName="Lab_id" msprop:Generator_ColumnVarNameInTable="columnLab_id" msprop:Generator_ColumnPropNameInRow="Lab_id" msprop:Generator_ColumnPropNameInTable="Lab_idColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="BLCh_N" msprop:Generator_UserColumnName="BLCh_N" msprop:Generator_ColumnVarNameInTable="columnBLCh_N" msprop:Generator_ColumnPropNameInRow="BLCh_N" msprop:Generator_ColumnPropNameInTable="BLCh_NColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Group_Chrg_Nm" msprop:Generator_UserColumnName="Group_Chrg_Nm" msprop:Generator_ColumnVarNameInTable="columnGroup_Chrg_Nm" msprop:Generator_ColumnPropNameInRow="Group_Chrg_Nm" msprop:Generator_ColumnPropNameInTable="Group_Chrg_NmColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="BLCh_Typ" msprop:Generator_UserColumnName="BLCh_Typ" msprop:Generator_ColumnVarNameInTable="columnBLCh_Typ" msprop:Generator_ColumnPropNameInRow="BLCh_Typ" msprop:Generator_ColumnPropNameInTable="BLCh_TypColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Test_N" msprop:Generator_UserColumnName="Test_N" msprop:Generator_ColumnVarNameInTable="columnTest_N" msprop:Generator_ColumnPropNameInRow="Test_N" msprop:Generator_ColumnPropNameInTable="Test_NColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Rate" msprop:Generator_UserColumnName="Rate" msprop:Generator_ColumnVarNameInTable="columnRate" msprop:Generator_ColumnPropNameInRow="Rate" msprop:Generator_ColumnPropNameInTable="RateColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Unit" msprop:Generator_UserColumnName="Unit" msprop:Generator_ColumnVarNameInTable="columnUnit" msprop:Generator_ColumnPropNameInRow="Unit" msprop:Generator_ColumnPropNameInTable="UnitColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Net_Amt" msprop:Generator_UserColumnName="Net_Amt" msprop:Generator_ColumnVarNameInTable="columnNet_Amt" msprop:Generator_ColumnPropNameInRow="Net_Amt" msprop:Generator_ColumnPropNameInTable="Net_AmtColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Chargable" msprop:Generator_UserColumnName="Chargable" msprop:Generator_ColumnVarNameInTable="columnChargable" msprop:Generator_ColumnPropNameInRow="Chargable" msprop:Generator_ColumnPropNameInTable="ChargableColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Status" msprop:Generator_UserColumnName="Status" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInTable="StatusColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Bill_Dt" msprop:Generator_UserTableName="Bill_Dt" msprop:Generator_RowDeletedName="Bill_DtRowDeleted" msprop:Generator_RowChangedName="Bill_DtRowChanged" msprop:Generator_RowClassName="Bill_DtRow" msprop:Generator_RowChangingName="Bill_DtRowChanging" msprop:Generator_RowEvArgName="Bill_DtRowChangeEvent" msprop:Generator_RowEvHandlerName="Bill_DtRowChangeEventHandler" msprop:Generator_TableClassName="Bill_DtDataTable" msprop:Generator_TableVarName="tableBill_Dt" msprop:Generator_RowDeletingName="Bill_DtRowDeleting" msprop:Generator_TablePropName="Bill_Dt">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Bill_Dt" msprop:Generator_UserColumnName="Bill_Dt" msprop:Generator_ColumnVarNameInTable="columnBill_Dt" msprop:Generator_ColumnPropNameInRow="Bill_Dt" msprop:Generator_ColumnPropNameInTable="Bill_DtColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Bill_No" msprop:Generator_UserColumnName="Bill_No" msprop:Generator_ColumnVarNameInTable="columnBill_No" msprop:Generator_ColumnPropNameInRow="Bill_No" msprop:Generator_ColumnPropNameInTable="Bill_NoColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="BLCh_N" msprop:Generator_UserColumnName="BLCh_N" msprop:Generator_ColumnVarNameInTable="columnBLCh_N" msprop:Generator_ColumnPropNameInRow="BLCh_N" msprop:Generator_ColumnPropNameInTable="BLCh_NColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Group_Chrg_Nm" msprop:Generator_UserColumnName="Group_Chrg_Nm" msprop:Generator_ColumnVarNameInTable="columnGroup_Chrg_Nm" msprop:Generator_ColumnPropNameInRow="Group_Chrg_Nm" msprop:Generator_ColumnPropNameInTable="Group_Chrg_NmColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="BLCh_Typ" msprop:Generator_UserColumnName="BLCh_Typ" msprop:Generator_ColumnVarNameInTable="columnBLCh_Typ" msprop:Generator_ColumnPropNameInRow="BLCh_Typ" msprop:Generator_ColumnPropNameInTable="BLCh_TypColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Unit_Price" msprop:Generator_UserColumnName="Unit_Price" msprop:Generator_ColumnVarNameInTable="columnUnit_Price" msprop:Generator_ColumnPropNameInRow="Unit_Price" msprop:Generator_ColumnPropNameInTable="Unit_PriceColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Unit_Used" msprop:Generator_UserColumnName="Unit_Used" msprop:Generator_ColumnVarNameInTable="columnUnit_Used" msprop:Generator_ColumnPropNameInRow="Unit_Used" msprop:Generator_ColumnPropNameInTable="Unit_UsedColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Chrg_Amt" msprop:Generator_UserColumnName="Chrg_Amt" msprop:Generator_ColumnVarNameInTable="columnChrg_Amt" msprop:Generator_ColumnPropNameInRow="Chrg_Amt" msprop:Generator_ColumnPropNameInTable="Chrg_AmtColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Status" msprop:Generator_UserColumnName="Status" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInTable="StatusColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Pay_Dt" msprop:Generator_UserTableName="Pay_Dt" msprop:Generator_RowDeletedName="Pay_DtRowDeleted" msprop:Generator_RowChangedName="Pay_DtRowChanged" msprop:Generator_RowClassName="Pay_DtRow" msprop:Generator_RowChangingName="Pay_DtRowChanging" msprop:Generator_RowEvArgName="Pay_DtRowChangeEvent" msprop:Generator_RowEvHandlerName="Pay_DtRowChangeEventHandler" msprop:Generator_TableClassName="Pay_DtDataTable" msprop:Generator_TableVarName="tablePay_Dt" msprop:Generator_RowDeletingName="Pay_DtRowDeleting" msprop:Generator_TablePropName="Pay_Dt">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Rpt_dt" msprop:Generator_UserColumnName="Rpt_dt" msprop:Generator_ColumnVarNameInTable="columnRpt_dt" msprop:Generator_ColumnPropNameInRow="Rpt_dt" msprop:Generator_ColumnPropNameInTable="Rpt_dtColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Rpt_No" msprop:Generator_UserColumnName="Rpt_No" msprop:Generator_ColumnVarNameInTable="columnRpt_No" msprop:Generator_ColumnPropNameInRow="Rpt_No" msprop:Generator_ColumnPropNameInTable="Rpt_NoColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Amt" msprop:Generator_UserColumnName="Amt" msprop:Generator_ColumnVarNameInTable="columnAmt" msprop:Generator_ColumnPropNameInRow="Amt" msprop:Generator_ColumnPropNameInTable="AmtColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Amt_Flag" msprop:Generator_UserColumnName="Amt_Flag" msprop:Generator_ColumnVarNameInTable="columnAmt_Flag" msprop:Generator_ColumnPropNameInRow="Amt_Flag" msprop:Generator_ColumnPropNameInTable="Amt_FlagColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Status" msprop:Generator_UserColumnName="Status" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInTable="StatusColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

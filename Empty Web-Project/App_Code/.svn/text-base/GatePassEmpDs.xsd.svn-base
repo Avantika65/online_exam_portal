@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="GatePassEmpDs" targetNamespace="http://tempuri.org/GatePassEmpDs.xsd" xmlns:mstns="http://tempuri.org/GatePassEmpDs.xsd" xmlns="http://tempuri.org/GatePassEmpDs.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="GatePassEmpDs" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="GatePassEmpDs" msprop:Generator_UserDSName="GatePassEmpDs">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DataTable1" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowClassName="DataTable1Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="GPSNO" msprop:Generator_ColumnVarNameInTable="columnGPSNO" msprop:Generator_ColumnPropNameInRow="GPSNO" msprop:Generator_ColumnPropNameInTable="GPSNOColumn" msprop:Generator_UserColumnName="GPSNO" type="xs:string" minOccurs="0" />
+              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" type="xs:string" minOccurs="0" />
+              <xs:element name="GPSDate" msprop:Generator_ColumnVarNameInTable="columnGPSDate" msprop:Generator_ColumnPropNameInRow="GPSDate" msprop:Generator_ColumnPropNameInTable="GPSDateColumn" msprop:Generator_UserColumnName="GPSDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="GPSTime" msprop:Generator_ColumnVarNameInTable="columnGPSTime" msprop:Generator_ColumnPropNameInRow="GPSTime" msprop:Generator_ColumnPropNameInTable="GPSTimeColumn" msprop:Generator_UserColumnName="GPSTime" type="xs:string" minOccurs="0" />
+              <xs:element name="PassType" msprop:Generator_ColumnVarNameInTable="columnPassType" msprop:Generator_ColumnPropNameInRow="PassType" msprop:Generator_ColumnPropNameInTable="PassTypeColumn" msprop:Generator_UserColumnName="PassType" type="xs:string" minOccurs="0" />
+              <xs:element name="Purpose" msprop:Generator_ColumnVarNameInTable="columnPurpose" msprop:Generator_ColumnPropNameInRow="Purpose" msprop:Generator_ColumnPropNameInTable="PurposeColumn" msprop:Generator_UserColumnName="Purpose" type="xs:string" minOccurs="0" />
+              <xs:element name="ValidFrom" msprop:Generator_ColumnVarNameInTable="columnValidFrom" msprop:Generator_ColumnPropNameInRow="ValidFrom" msprop:Generator_ColumnPropNameInTable="ValidFromColumn" msprop:Generator_UserColumnName="ValidFrom" type="xs:string" minOccurs="0" />
+              <xs:element name="ValidTo" msprop:Generator_ColumnVarNameInTable="columnValidTo" msprop:Generator_ColumnPropNameInRow="ValidTo" msprop:Generator_ColumnPropNameInTable="ValidToColumn" msprop:Generator_UserColumnName="ValidTo" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="VehicalNo" msprop:Generator_ColumnVarNameInTable="columnVehicalNo" msprop:Generator_ColumnPropNameInRow="VehicalNo" msprop:Generator_ColumnPropNameInTable="VehicalNoColumn" msprop:Generator_UserColumnName="VehicalNo" type="xs:string" minOccurs="0" />
+              <xs:element name="VType" msprop:Generator_ColumnVarNameInTable="columnVType" msprop:Generator_ColumnPropNameInRow="VType" msprop:Generator_ColumnPropNameInTable="VTypeColumn" msprop:Generator_UserColumnName="VType" type="xs:string" minOccurs="0" />
+              <xs:element name="PassEntryFrom" msprop:Generator_ColumnVarNameInTable="columnPassEntryFrom" msprop:Generator_ColumnPropNameInRow="PassEntryFrom" msprop:Generator_ColumnPropNameInTable="PassEntryFromColumn" msprop:Generator_UserColumnName="PassEntryFrom" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

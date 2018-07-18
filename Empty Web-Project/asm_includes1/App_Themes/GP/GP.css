@@ -1,0 +1,345 @@
+ 
+body {
+COLOR: #E0E0E0; FONT-SIZE: 11px;font-family:arial ;font-weight:normal ;
+ 
+  
+ 	 margin:0px; 
+	 PADDING-TOP: 0px; 
+	  PADDING-BOTTOM: 0px; 
+	 MARGIN: 0px; 
+	 PADDING-LEFT: 0px; 
+	 PADDING-RIGHT: 0px;
+  width:100%;
+  height:100%;
+ 
+	
+}
+form 
+{
+	padding-top:0px;
+	padding: 0px;
+  background: url(../CssStudent/c3.jpg);
+  
+  width:100%;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	height:100%;
+	COLOR: black; FONT-SIZE: 11px;font-family:arial ;font-weight:normal ;
+}
+.btable
+{
+	border: 1px solid #445056;
+	background: url(GP_BG.jpg);
+}
+#table
+{
+	border: 1px solid #445056;
+	background: url(../GP_BG.jpg);
+}
+.table tr
+{
+	  TEXT-ALIGN: left;   COLOR: none; FONT-SIZE: 11px;font-family:arial ;font-weight:normal ;
+
+} 
+span
+{
+	  TEXT-ALIGN: left;   COLOR: none; FONT-SIZE: 11px;font-family:arial ;font-weight:normal ;
+
+} 
+.tr
+{
+		  TEXT-ALIGN: left;BACKGROUND-COLOR: #EFEFEF;  COLOR: #666666; FONT-SIZE: 11px;font-family:arial ;font-weight:normal ;
+
+}  
+.buttons {
+	border: 1px solid #CECECE;
+	TEXT-ALIGN: center; cursor:hand;	BACKGROUND-COLOR: #45A7FB; 	FONT-FAMILY: arial; 	COLOR: #ffffff; 	FONT-SIZE: 11px; 	VERTICAL-ALIGN: top; 	FONT-WEIGHT: bold; 	TEXT-DECORATION: none;
+	 
+	margin-top: 0px;
+	width: 64px;
+	height: 20px;
+}     
+.chks {
+	
+	TEXT-ALIGN: center; FONT-SIZE: 12px;	FONT-FAMILY: arial; 	COLOR: #248cbe; 	FONT-SIZE: 11px; 	VERTICAL-ALIGN: top; 	FONT-WEIGHT: bold; 	TEXT-DECORATION: none;
+    height: 20px;
+}  
+.chk
+	{
+	font-size: 1.0em;
+	color:#248cbe; 
+	FONT-FAMILY: Arial;	
+	FONT-WEIGHT:bold; 	
+	
+	}
+
+a:link { 
+color:#0A3C72; 
+}
+a:visited { 
+color: #0A3C72;
+}
+a:active { 
+color: #0A3C72;
+}
+a:hover { 
+color: #770B0B; 
+} 
+.mandatoryfields {
+	FONT-FAMILY: arial; COLOR: #ff0000; FONT-SIZE: 11px
+}       
+.rdgrowH {
+	  TEXT-ALIGN: center; COLOR: coral;background-color:whitesmoke; FONT-SIZE: 11px;font-family:arial ;font-weight:normal;
+}
+.rdgrowL {
+	  TEXT-ALIGN: left; COLOR: coral;background-color:whitesmoke; FONT-SIZE: 11px;font-family:arial ;font-weight:normal;
+}
+.rdgrowLH {
+	  TEXT-ALIGN: left; COLOR: coral;background-color:whitesmoke; FONT-SIZE: 12px;font-family:arial ;font-weight:normal;
+}
+.rdgrowRC {
+	  TEXT-ALIGN: Right; COLOR: coral;background-color:whitesmoke; FONT-SIZE: 11px;font-family:arial ;font-weight:normal;
+}
+
+.rdgrow {
+  TEXT-ALIGN: left;BACKGROUND-COLOR: #ffffff;  COLOR: #0a3c72; FONT-SIZE: 11px;font-family:arial ;font-weight:normal ;
+}
+.rdgrowR {
+  TEXT-ALIGN: right;BACKGROUND-COLOR: #ffffff;  COLOR: #0a3c72; FONT-SIZE: 11px;font-family:arial ;font-weight:normal;
+}
+.rdgrowalt {
+  TEXT-ALIGN: left; BACKGROUND-COLOR:whitesmoke;  COLOR: black; FONT-SIZE: 11px;font-family:arial ;font-weight:normal;
+}
+.rdgrowaltR {
+  TEXT-ALIGN: right; BACKGROUND-COLOR:whitesmoke;  COLOR: black; FONT-SIZE: 11px;font-family:arial ;font-weight:normal;
+}
+.rdgrowH1 {
+	  TEXT-ALIGN: center; 
+COLOR:  #0a3c72;background-color:whitesmoke; FONT-SIZE: 11px;font-family:arial;font-weight:normal;
+}
+.rdgrowH1alt {
+	  TEXT-ALIGN: center; 
+COLOR:  black;background-color:white; FONT-SIZE: 11px;font-family:arial;font-weight:normal;
+}
+ 
+.rdginputbox {
+	border: 1px solid #696969;
+
+	TEXT-ALIGN: left; 	BACKGROUND-POSITION: left center; 		COLOR:Black; 	FONT-SIZE: 11px; 	FONT-WEIGHT: normal; 	font-family:arial;
+	margin-left: 0px;
+	margin-bottom: 0px;
+}
+.rdginputboxC {
+	border: 1px solid #45A7FB;
+
+	TEXT-ALIGN:center; 	BACKGROUND-POSITION: left center; 		COLOR:Black; 	FONT-SIZE: 11px; 	FONT-WEIGHT: normal; 	font-family:arial;
+	margin-left: 0px;
+ 
+} 
+.rdginputboxR {
+	border: 1px solid #45A7FB;
+	 
+	TEXT-ALIGN: right; 	BACKGROUND-POSITION: right center; 	 	COLOR: #000066; 	FONT-SIZE: 11px; 	FONT-WEIGHT: normal; 	font-family:arial;
+	margin-left: 0px;
+}
+ 
+.rdgdropdown {
+	border: 1px solid #248cbe;
+	
+	
+	TEXT-ALIGN: left; 	 	COLOR: #000066; 	FONT-SIZE: 11px; 	FONT-WEIGHT: normal;
+ 
+	width: 199px;
+}    
+.focus{ background-color:#CEE8FE;
+        border: 1px solid #45A7FB;
+
+	TEXT-ALIGN: left; 	BACKGROUND-POSITION: left center; 	 	COLOR: black; 	FONT-SIZE: 11px; 	FONT-WEIGHT: normal; 	font-family:arial;
+	margin-left: 0px;
+        }
+.focusR
+{ background-color:696969;
+        border: 1px solid #696969;
+
+	TEXT-ALIGN: right; 	BACKGROUND-POSITION: right center; 		COLOR: black; 	FONT-SIZE: 11px; 	FONT-WEIGHT: normal; 	font-family:arial;
+	margin-left: 0px;
+}
+.blur
+{ 
+	background-color:White;
+        border: 1px solid #696969;
+	
+	TEXT-ALIGN: left; 	BACKGROUND-POSITION: left center;	COLOR: #000066; 	FONT-SIZE: 11px; 	FONT-WEIGHT: normal; 	font-family:arial;
+	margin-left: 0px;
+}
+.blurR
+{ 
+	background-color:White;
+        border: 1px solid #696969;
+	padding: 2px 2px;
+	TEXT-ALIGN: right; 	BACKGROUND-POSITION: right center; 	 	COLOR: #000066; 	FONT-SIZE: 11px; 	FONT-WEIGHT: normal; 	font-family:arial;
+	margin-left: 0px;
+}
+.updateProgress
+{
+	position: absolute;
+	background-color: #fff;
+	 
+	filter: alpha(opacity=70);
+	MozOpacity: 0.7;
+	opacity: 0.7;
+	padding: 0px;
+	margin: 0px;
+}
+.ProgressMsg
+{
+    text-align:center;
+    height:80%; 
+    margin-top:3%;
+    top:2%;
+ }
+ 
+ .asmMenu 
+{
+	position: absolute;
+	overflow-y: auto;
+	z-index: 5;
+	 text-align:left;
+	border: 1px solid lightblue;
+	background: #ffffff;
+	 padding-left:1px;
+	 padding-top:0px;
+	 padding-bottom:3px;
+ 	white-space: nowrap;
+}
+	
+				
+.asmMenuItem, .asmSelMenuItem
+{			
+	color: blue;
+	background: #ffffff;
+	cursor: hand;
+	cursor: pointer;
+	
+	font-family: arial;
+	font-size: 11px;
+}
+
+
+.asmSelMenuItem
+{			
+	background: lightblue;
+	white-space: nowrap;
+}
+
+
+A:link.asmNavigationLink, A:active.asmNavigationLink, A:visited.asmNavigationLink, A:hover.asmNavigationLink
+{
+	color: blue;
+	font-family: arial;
+	font-size: 11px;
+	margin:0px;
+	text-decoration: none;
+}
+.header {
+	TEXT-ALIGN: center;
+	BACKGROUND-COLOR: #248cbe; 
+	FONT-FAMILY: arial; 
+	WHITE-SPACE: nowrap; 
+	COLOR:White ; 
+	FONT-SIZE: 12px; 
+	FONT-WEIGHT: bold; 
+	TEXT-DECORATION: none;
+	background: #424242 url(grd_head.gif) repeat-x top;padding: 2px 2px;
+}
+
+/* grid */
+table.paging_gridview { border-collapse: collapse; margin: 0px !important; width: 100%; border: #6593CF 1px solid; }
+.paging_gridview td { font-size: 11px; font-family: Arial; color: #000000; cursor: default; text-align: left; }
+.paging_gridview th { font-size: 11px; font-family: Arial; color:  #484848; cursor: default; text-align: left; }
+table.paging_gridview a { color: #000000; text-decoration: none; }
+table.paging_gridview a:hover { text-decoration: underline; }
+
+/* header */
+tr.paging_gridview_hdr { background-color: #6593CF; }
+.paging_gridview_hdr th { color: white; font-weight: normal; text-align: left;border-top: solid 1px #6593CF; border-bottom: solid 1px #6593CF; border-left: solid 1px #6593CF; border-right: solid 1px #6593CF; padding-left: 5px; padding-right: 5px; padding-top: 2px; padding-bottom: 2px; }
+.paging_gridview_hdr th a { color: #484848; text-decoration: none; }
+.paging_gridview_hdr th a:hover { color: #484848; text-decoration: none; }
+
+/* item row */
+tr.paging_gridview_itm { background-color: #FFFFFF; }
+.paging_gridview_itm td {color:black;  border-right: #E2DED6 0px solid; border-top: #E2DED6 1px solid; border-left: #E2DED6 0px solid; border-bottom: #ADD1FF 1px solid; }
+.paging_gridview_itm span {color:black; }
+
+.paging_gridview_itm td a { text-decoration: underline; }
+
+/* alternating item row */
+tr.paging_gridview_aitm { background-color: whitesmoke; }
+.paging_gridview_aitm td { color:#0a3c72;  border-right: #E2DED6 0px solid; border-top: #E2DED6 1px solid; border-left: #E2DED6 0px solid; border-bottom: #ADD1FF 1px solid; }
+.paging_gridview_aitm span { color:#0a3c72;}
+
+/* Selected item row */
+tr.paging_gridview_saitm { background-color: #E2DED6; }
+.paging_gridview_saitm td { color:white;}
+.paging_gridview_saitm span {color:#0a3c72;}
+
+
+.paging_gridview_aitm td a { text-decoration: underline; }
+
+/* pager row */
+tr.paging_gridview_pgr { width : 100%; }
+.paging_gridview_pgr td { background-image: url(/img/bg.gif); background-repeat: repeat-x; height: 23px; padding: 0px; font-size: 11px; font-family: Arial;}
+.paging_gridview_pgr_ddl { font-size: 11px; font-family: Arial; }
+    
+.ui-datepicker { width: 17em; padding: .2em .2em 0;background-color:whitesmoke; }
+.ui-datepicker .ui-datepicker-header { position:relative; padding:.2em 0; }
+.ui-datepicker .ui-datepicker-prev, .ui-datepicker .ui-datepicker-next { position:absolute; top: 2px; width: 1.8em; height: 1.8em; }
+.ui-datepicker .ui-datepicker-prev-hover, .ui-datepicker .ui-datepicker-next-hover { top: 1px; }
+.ui-datepicker .ui-datepicker-prev { left:2px; }
+.ui-datepicker .ui-datepicker-next { right:2px; }
+.ui-datepicker .ui-datepicker-prev-hover { left:1px; }
+.ui-datepicker .ui-datepicker-next-hover { right:1px; }
+.ui-datepicker .ui-datepicker-prev span, .ui-datepicker .ui-datepicker-next span { display: block; position: absolute; left: 50%; margin-left: -8px; top: 50%; margin-top: -8px;  }
+.ui-datepicker .ui-datepicker-title { margin: 0 2.3em; line-height: 1.8em; text-align: center; }
+.ui-datepicker .ui-datepicker-title select { font-size:1em; margin:1px 0; }
+.ui-datepicker select.ui-datepicker-month-year {width: 100%;}
+.ui-datepicker select.ui-datepicker-month, 
+.ui-datepicker select.ui-datepicker-year { width: 49%;}
+.ui-datepicker table {width: 100%; font-size: .9em; border-collapse: collapse; margin:0 0 .4em;background-color:whitesmoke }
+.ui-datepicker th { padding: .7em .3em; text-align: center; font-weight: bold; border: 0;  }
+.ui-datepicker td { border: 0; padding: 1px; }
+.ui-datepicker td span, .ui-datepicker td a { display: block; padding: .2em; text-align: right; text-decoration: none; }
+.ui-datepicker .ui-datepicker-buttonpane { background-image: none; margin: .7em 0 0 0; padding:0 .2em; border-left: 0; border-right: 0; border-bottom: 0; }
+.ui-datepicker .ui-datepicker-buttonpane button { float: right; margin: .5em .2em .4em; cursor: pointer; padding: .2em .6em .3em .6em; width:auto; overflow:visible; }
+.ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-curr.ui-helper-hidden { display: none; }
+.ui-helper-hidden-accessible { position: absolute; left: -99999999px; }
+.ui-helper-reset { margin: 0; padding: 0; border: 0; outline: 0; line-height: 1.3; text-decoration: none; font-size: 100%; list-style: none; }
+.ui-helper-clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+.ui-helper-clearfix { display: inline-block; }
+/* required comment for clearfix to work in Opera \*/
+* html .ui-helper-clearfix { height:1%; }
+.ui-helper-clearfix { display:block; }
+/* end clearfix */
+.ui-helper-zfix { width: 100%; height: 100%; top: 0; left: 0; position: absolute; opacity: 0; filter:Alpha(Opacity=0); }
+
+
+/* Interaction Cues
+----------------------------------*/
+.ui-state-disabled { cursor: default !important; }
+
+
+/* Icons
+----------------------------------*/
+
+/* states and images */
+.ui-icon { display: block; text-indent: -99999px; overflow: hidden; background-repeat: no-repeat; }
+
+
+/* Misc visuals
+----------------------------------*/
+
+/* Overlays */
+.ui-widget-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+th:1px; 
+ent { float:left; }

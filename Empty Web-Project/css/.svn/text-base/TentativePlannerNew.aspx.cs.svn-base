@@ -1,0 +1,1894 @@
+﻿using System;
+using System.Collections;
+using System.Configuration;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Xml.Linq;
+using NewDAL;
+public partial class TimeTable_TentativePlannerNew : System.Web.UI.Page
+{
+    DbFunctions objFunc = new DbFunctions();
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (Session["U_Name"] == null)
+        {
+            Response.Redirect("~/LogIn_Home.aspx");
+        }
+        if (!IsPostBack)
+        {
+            ddlCourse.Items.Add("---Select---");
+            ddlInstitute.Items.Add("---Select---");
+            ddlSession.Items.Add("---Select---");
+            ddlSemester.Items.Add("---Select---");
+            ddlWeek.Items.Add("---Select---");
+            ddlFaculty.Items.Add("---Select---");
+            ddlVenue.Items.Add("---Select---");
+            ddlSession.Visible = false;
+            objFunc.FillDropdownlist(ddlInstitute, "CollegeName", "CollegeID", "select CollegeID,CollegeName from College order by CollegeName", "---Select---");
+            ddlInstitute.SelectedValue = Session["instID"].ToString();
+            objFunc.FillDropdownlist(ddlCourse, "ShortName", "CourseID", "SELECT CourseID, ShortName FROM Course WHERE InstituteID='" + ddlInstitute.SelectedValue + "' and courseid in (Select courseid from subject)", "---Select---");
+            
+            ddlInstitute.Enabled = false;
+        }
+    }
+    protected void ddlInstitute_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        objFunc.FillDropdownlist(ddlCourse, "ShortName", "CourseID", "SELECT CourseID, ShortName FROM Course WHERE InstituteID='" + ddlInstitute.SelectedValue + "' and courseid in (Select courseid from subject)", "---Select---");
+        //objFunc.FillDropdownlist(ddlFaculty, "name", "FacultyID", "select FacultyID,Salutation +''+FirstName+''+MiddleName+''+LastName as name from faculty  WHERE InstituteID='" + ddlInstitute.SelectedValue + "' order by FirstName", "---Select---");
+
+    }
+    protected void ddlCourse_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        objFunc.FillDropdownlist(ddlSemester, "CourseYear", "SID", "Select SID,COurseYear from Semester_View where CourseID='" + ddlCourse.SelectedValue + "' and SessionYear='" + Session["sesnID"].ToString() + "' and Inst_ID='" + ddlInstitute.SelectedValue + "' order by CID", "---Select---");
+
+    }
+    protected void ddlWeek_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (ddlSemester.SelectedIndex == 0)
+        {
+            objFunc.MsgBox("Select Semester/Year .", this);
+            ddlWeek.SelectedIndex = 0;
+            return;
+
+        }
+        hdperiod.Value = "";
+        hddays.Value = "";
+        string startDate = "";
+        startDate = objFunc.Get_details("Select startdate from week where courseid='" + ddlCourse.SelectedValue + "' and inst_id='" + ddlInstitute.SelectedValue + "' and weekid='" + ddlWeek.SelectedValue + "' and SessionYear='" + Session["SesnID"] + "' and semID='" + ddlSemester.SelectedValue + "'");
+        lblStartDateW.Text = Convert.ToDateTime(startDate).ToString("dd-MMM-yyyy");
+        string Enddate = "";
+        Enddate = objFunc.Get_details("Select enddate from week where courseid='" + ddlCourse.SelectedValue + "' and inst_id='" + ddlInstitute.SelectedValue + "' and weekid='" + ddlWeek.SelectedValue + "' and SessionYear='" + Session["SesnID"] + "' and semID='" + ddlSemester.SelectedValue + "'");
+        lblEndDateW.Text = Convert.ToDateTime(Enddate).ToString("dd-MMM-yyyy");
+        DataTable dtSession = new DataTable();
+        objFunc.FetchRecordsByTable(dtSession, "SELECT StartDate, EndDate,DATEDIFF ( dd , startdate , enddate ) AS TotalDays,(SELECT COUNT(Date) FROM NonTeachingDay WHERE Date > StartDate AND Date < EndDate and InstituteID='" + Session["instID"] + "' and SessionID='" + Session["sesnID"] + "') AS TotalLeaves,DATEDIFF ( dd , startdate , enddate )-(SELECT COUNT(Date) FROM NonTeachingDay WHERE Date > StartDate AND Date < EndDate and InstituteID='" + ddlInstitute.SelectedValue + "' and SessionID='" + Session["sesnID"] + "') AS AvailDays FROM Semester_View WHERE CourseID=" + ddlCourse.SelectedValue + " and sid='" + ddlSemester.SelectedValue + "'");
+        lblNDates.Text = dtSession.Rows[0].ItemArray[4].ToString();
+        dtSession.Rows.Clear();
+        dtSession.Columns.Clear();
+        objFunc.FetchRecordsByTable(dtSession, "SELECT sum(TheoryHours)+sum(PracticalHours) from subject where CourseID='" + ddlCourse.SelectedValue + "' and Semester='" + ddlSemester.SelectedValue + "'");
+        if (dtSession.Rows[0].ItemArray[0].ToString() != String.Empty)
+        {
+            lblHrStudy.Text = (Math.Round(decimal.Parse(dtSession.Rows[0].ItemArray[0].ToString()) / decimal.Parse(lblNDates.Text))).ToString();
+        }
+        else
+        {
+            objFunc.MsgBox("Please define subjects for selected course.", this);
+            return;
+        }
+        FillGridview();
+    }
+    protected void ddlSemester_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        objFunc.FillDropdownlist(ddlWeek, "WeekName", "WeekID", "SELECT WeekID, WeekName from Week where CourseID='" + ddlCourse.SelectedValue + "' and semID='" + ddlSemester.SelectedValue + "' and SessionYear='" + Session["sesnID"].ToString() + "' and Inst_ID='" + ddlInstitute.SelectedValue + "' and weekid in (Select distinct weekid from periodView  WHERE  (Session = '" + Session["sesnID"] + "') AND (courseid ='" + ddlCourse.SelectedValue + "') and (inst_id='" + ddlInstitute.SelectedValue + "') and semester='" + ddlSemester.SelectedValue + "' and weekid not in (Select weekid from periods where courseid='" + ddlCourse.SelectedValue + "' and InstituteID='" + ddlInstitute.SelectedValue + "' and SessionID='" + Session["sesnId"] + "' and semester='" + ddlSemester.SelectedValue + "' )) order by weekid", "---Select---");
+        objFunc.FillDropdownlist(ddlSubject,"SubjectName","SubjectID","select * from Subject where CourseID='"+ddlCourse.SelectedValue+"' and Semester='"+ddlSemester.SelectedValue+"' and InstituteID='"+ddlInstitute.SelectedValue+"' and sessionID='"+Session["sesnID"].ToString()+"'","---Select---");
+        //objFunc.FillDropdownlist(ddlTopic, "TopicName", "TopicID", "select * from Topic where subjectID in (select subjectID from Subject where CourseID='" + ddlCourse.SelectedValue + "' and Semester='" + ddlSemester.SelectedValue + "' and InstituteID='" + ddlInstitute.SelectedValue + "' and sessionID='" + Session["sesnID"].ToString() + "') ", "---Select---");
+        //objFunc.FillDropdownlist(ddlSubtopic, "SubTopicName", "SubtopicID", "select * from subtopic where topicid in (select topicID from topic where subjectID in (select subjectID from Subject where CourseID='" + ddlCourse.SelectedValue + "' and Semester='" + ddlSemester.SelectedValue + "' and InstituteID='" + ddlInstitute.SelectedValue + "' and sessionID='" + Session["sesnID"].ToString() + "')  and subtopicID not in (select subtopicid from periods where instituteID='"+ddlInstitute.SelectedValue+"' and SessionID='"+Session["sesnID"]+"' and courseid='"+ddlCourse.SelectedValue+"' and Semester='"+ddlSemester.SelectedValue+"'))", "---Select---");
+        string startDate = "";
+        startDate = objFunc.Get_details("Select startdate from Semester_View where courseid='" + ddlCourse.SelectedValue + "' and sid='" + ddlSemester.SelectedValue + "' and sessionyear='" + Session["sesnID"] + "'");
+        lblSessionStartD.Text = Convert.ToDateTime(startDate).ToString("dd-MMM-yyyy");
+        string Enddate = "";
+        Enddate = objFunc.Get_details("Select enddate from Semester_View where courseid='" + ddlCourse.SelectedValue + "' and sid='" + ddlSemester.SelectedValue + "' and sessionyear='" + Session["sesnID"] + "'");
+        lblSessionEndD.Text = Convert.ToDateTime(Enddate).ToString("dd-MMM-yyyy");
+    }
+    private void FillGridview()
+    {
+        string selectSQL = "SELECT SubjectID as sno, lower(SubjectName) as subject, TheoryHours as Theory, PracticalHours as Practical,CAST(TheoryHours AS int)+CAST(PracticalHours AS int) AS SSHours,'' as THours,'' as SSHP,'' as HAPD,'' as DW,'' as THW,'' as THSW,'' as HTP,'' as HPP,0 as HT,0 as HP FROM Subject WHERE CourseID=" + ddlCourse.SelectedValue + " AND Semester='" + ddlSemester.SelectedValue + "' and (CAST(TheoryHours AS int)+CAST(PracticalHours AS int))>0";
+        DataTable dtSubject = new DataTable();
+        dtSubject = objFunc.FillDataTable(selectSQL);
+        int i;
+        string nonteachingday = objFunc.Get_details("SELECT COUNT(Date) FROM NonTeachingDay WHERE Date >= '" + Convert.ToDateTime(lblStartDateW.Text) + "' AND Date <= '" + Convert.ToDateTime(lblEndDateW.Text) + "' and instituteID='" + Int32.Parse(Session["instID"].ToString()) + "'");
+        if (nonteachingday.ToString() == "")
+            nonteachingday = "0";
+        DateTime dt = Convert.ToDateTime(lblStartDateW.Text);
+        DateTime dt2 = Convert.ToDateTime(lblEndDateW.Text);
+        TimeSpan d = dt2.Subtract(dt);
+        Int32 days = Int32.Parse(d.Days.ToString()) - Convert.ToInt32(nonteachingday);
+        int AvailDays_Week = Convert.ToInt16(objFunc.FetchScalar("SELECT DATEDIFF ( dd , '" + Convert.ToDateTime(lblStartDateW.Text) + "' , '" + Convert.ToDateTime(lblEndDateW.Text) + "' )+1-(SELECT COUNT(Date) FROM NonTeachingDay WHERE Date >= '" + Convert.ToDateTime(lblStartDateW.Text) + "' AND Date <= '" + Convert.ToDateTime(lblEndDateW.Text) + "' and instituteID='" + Int32.Parse(ddlInstitute.SelectedValue) + "' and sessionID='" + Session["sesnID"] + "' ) AS AvailDays FROM SessionDates WHERE CourseID='" + ddlCourse.SelectedValue + "' and sid='" + ddlSemester.SelectedValue + "'"));
+
+        for (i = 0; i <= dtSubject.Rows.Count - 1; i++)
+        {
+            DataRow dr = dtSubject.Rows[i];
+            dr[5] = dtSubject.Compute("sum(SSHours)", "sno>0");
+            dr[6] = (int.Parse(dtSubject.Rows[i].ItemArray[4].ToString()) * 100 / int.Parse(dtSubject.Compute("sum(SSHours)", "sno>0").ToString()));
+            int HAP = int.Parse(dtSubject.Rows[i].ItemArray[4].ToString()) * 100 / int.Parse(dtSubject.Compute("sum(SSHours)", "sno>0").ToString());
+            dr[7] = lblHrStudy.Text;
+            dr[8] = AvailDays_Week.ToString();
+            dr[9] = (Int16.Parse(lblHrStudy.Text) * AvailDays_Week).ToString();
+            dr[10] = Math.Round((decimal.Parse(lblHrStudy.Text) * decimal.Parse(AvailDays_Week.ToString())) * HAP / 100).ToString();
+            dr[11] = Math.Round((decimal.Parse(dtSubject.Rows[i].ItemArray[2].ToString()) / decimal.Parse(dtSubject.Rows[i].ItemArray[4].ToString())) * 100);
+            dr[12] = Math.Round((decimal.Parse(dtSubject.Rows[i].ItemArray[3].ToString()) / decimal.Parse(dtSubject.Rows[i].ItemArray[4].ToString())) * 100);
+            dtSubject.AcceptChanges();
+            dr[13] = Math.Round((decimal.Parse(dtSubject.Rows[i].ItemArray[10].ToString()) * decimal.Parse(dtSubject.Rows[i].ItemArray[11].ToString())) / 100);
+            dr[14] = Math.Round((decimal.Parse(dtSubject.Rows[i].ItemArray[10].ToString()) * decimal.Parse(dtSubject.Rows[i].ItemArray[12].ToString())) / 100);
+        }
+        gvDetailP.DataSource = dtSubject;
+        gvDetailP.DataBind();
+        gvDetailP.FooterRow.Cells[13].Text = dtSubject.Compute("sum(HT)", "HT>0").ToString();
+        gvDetailP.FooterRow.Cells[14].Text = dtSubject.Compute("sum(HP)", "HP>0").ToString();
+        IdentifyTemplate();
+
+    }
+    private void IdentifyTemplate()
+    {
+        DataTable dtTemplate = new DataTable();
+        dtTemplate = objFunc.FillDataTable("select * from PeriodView where inst_id='" + ddlInstitute.SelectedValue + "' and courseid='" + ddlCourse.SelectedValue + "' and weekid='" + ddlWeek.SelectedValue + "' and semester='" + ddlSemester.SelectedValue + "'");
+        DataTable dtTemp = new DataTable();
+        DataTable dtFill = new DataTable();
+        hdperiod.Value = "";
+        hddays.Value = "";
+        dtTemp = objFunc.FillDataTable("select distinct templateid from period_temp_child where inst_id='" + ddlInstitute.SelectedValue + "' and courseid='" + ddlCourse.SelectedValue + "' and weekid='" + ddlWeek.SelectedValue + "' and semester='" + ddlSemester.SelectedValue + "'");
+        if (dtTemp.Rows.Count == 1)
+        {
+            int i;
+            dtFill.Columns.Add("Day");
+            //DataRow[] drPeriod = dtTemplate.Select("distinct(period)");
+            for (i = 0; i <= dtTemplate.Rows.Count - 1; i++)
+            {
+                if (!dtFill.Columns.Contains(dtTemplate.Rows[i].ItemArray[3].ToString()))
+                {
+                    dtFill.Columns.Add(dtTemplate.Rows[i].ItemArray[3].ToString());
+                    if (hdperiod.Value == String.Empty)
+                    {
+                        hdperiod.Value = dtTemplate.Rows[i].ItemArray[3].ToString() + "(" + dtTemplate.Rows[i].ItemArray[8].ToString()+")";
+                    }
+                    else
+                    {
+                        if (!hdperiod.Value.ToString().Contains(dtTemplate.Rows[i].ItemArray[3].ToString()))
+                            hdperiod.Value = hdperiod.Value + "," + dtTemplate.Rows[i].ItemArray[3].ToString() + "(" + dtTemplate.Rows[i].ItemArray[8].ToString() + ")";
+                    }
+                }
+                //===========
+                DataRow dr1=null;
+                DataRow[] dtFind1 = dtTemplate.Select("period='" + dtTemplate.Rows[i].ItemArray[3].ToString() + "'");
+                DataRow[] dtFind11 = dtFill.Select("Day='Period-->'");
+                if (dtFind11.Length == 0)
+                {
+                    dr1 = dtFill.NewRow();
+                    dr1[0] = "Period-->";
+                    dtFill.Rows.Add(dr1);
+                }
+                 
+                //if (dtFind1[0][8].ToString() != "LUNCH")
+                //{
+                //    dr1[i] = dtFind1[0][8].ToString();
+                //}
+                //if (i == 0)
+                //{
+                //   dtTemplate.Rows.Add(dr1);
+                //}
+                //===========
+                DataRow dr;
+                DataRow[] dtFind = dtFill.Select("day like'" + dtTemplate.Rows[i].ItemArray[1].ToString() + "%'");
+                //**********************
+
+                if (hddays.Value == String.Empty)
+                {
+                    hddays.Value = dtTemplate.Rows[i].ItemArray[1].ToString();
+                }
+                else
+                {
+                    if (!hddays.Value.ToString().Contains(dtTemplate.Rows[i].ItemArray[1].ToString()))
+                        hddays.Value = hddays.Value + "," + dtTemplate.Rows[i].ItemArray[1].ToString();
+                }
+
+                //*********************
+                if (dtFind.Length == 0)
+                {
+                    dr = dtFill.NewRow();
+                    dr[0] = dtTemplate.Rows[i].ItemArray[1].ToString() + "(" + dtTemplate.Rows[i].ItemArray[2].ToString() + ")";
+
+                    dtFill.Rows.Add(dr);
+                }
+                else if (dtTemplate.Rows[i].ItemArray[8].ToString() == "LUNCH")
+                {
+                    DataRow[] drLunch = dtFill.Select("day like'" + dtTemplate.Rows[i].ItemArray[1].ToString() + "%'");
+                    drLunch[0][int.Parse(dtTemplate.Rows[i].ItemArray[3].ToString())] = "&nbsp;Lunch&nbsp;";
+                    DataRow[] drLunch1 = dtFill.Select("day='Period-->'");
+                    drLunch1[0][int.Parse(dtTemplate.Rows[i].ItemArray[3].ToString())] = "&nbsp;Lunch&nbsp;";
+                }
+            }
+        }
+        DataTable dtFinal = new DataTable();
+        dtFinal = FillSubjectPractical();
+        GridView1.DataSource = dtFinal;
+        GridView1.DataBind();
+        GridView1.FooterRow.Cells[2].Text = dtFinal.Compute("sum(hour)", "hour>0").ToString();
+        DataTable dtFinalP = new DataTable();
+        dtFinalP = FillSubjectPractical35();
+        GridView2.DataSource = dtFinalP;
+        GridView2.DataBind();
+        if (dtFinalP.Rows.Count > 0)
+            GridView2.FooterRow.Cells[2].Text = dtFinalP.Compute("sum(hour)", "hour>0").ToString();
+        //dtFinal.Merge(dtFinalP, true, MissingSchemaAction.Ignore);
+        string ColumnIndex = "";
+        DataTable DtFillId;
+        DtFillId = dtFill.Copy();
+
+        //objFunc.FillDropdownlist(ddlDays, "day", "day", "select distinct day from PeriodView where inst_id='" + ddlInstitute.SelectedValue + "' and courseid='" + ddlCourse.SelectedValue + "' and weekid='" + ddlWeek.SelectedValue + "'", "---Select---");
+
+        FillTopFinal(dtFill, dtFinal, dtFinalP, ref ColumnIndex, DtFillId);
+        FillTopFinalP(dtFill, dtFinal, dtFinalP, ref ColumnIndex, DtFillId);
+        ViewState["FillText"] = DtFillId;
+        ViewState["FillValue"] = dtFill;
+        DataTable dtnewT = dtFill.Copy();
+        DataTable dtnewI = DtFillId.Copy();
+        DataSet ds = new DataSet();
+        batchB(dtnewT, dtnewI, ref ds);
+        ds.Tables.Add(DtFillId);
+        ds.Tables.Add(dtFill);
+        ds.Tables[0].TableName = "BT";
+        ds.Tables[1].TableName = "BI";
+        ds.Tables[2].TableName = "AI";
+        ds.Tables[3].TableName = "AT";
+        ViewState["DsF"] = ds;
+
+    }
+    private DataTable FillSubjectPractical()
+    {
+        int i;
+        DataTable dtSub = new DataTable();
+        string selectSQL = "SELECT *,0 as alloted from Suject_topic_Subtopic WHERE CourseID=" + ddlCourse.SelectedValue + " AND Semester='" + ddlSemester.SelectedValue + "' and type <>'Practical' and subtopicID not in (select subtopicID from periods where CourseID=" + ddlCourse.SelectedValue + " AND Semester='" + ddlSemester.SelectedValue + "') order by SubTopicID ";
+        dtSub = objFunc.FillDataTable(selectSQL);
+        int reminder = 0;
+        int remd = 0;
+        for (i = 0; i <= gvDetailP.Rows.Count - 1; i++)
+        {
+            int subjecthrs = 0;// int.Parse(gvDetailP.Rows[i].Cells[14].Text.ToString());
+            DataRow[] dr = dtSub.Select("subjectid='" + gvDetailP.Rows[i].Cells[0].Text + "'");
+            if (dr.Length > 0)
+            {
+                int subtopichrs;
+                int allocated = int.Parse(gvDetailP.Rows[i].Cells[13].Text.ToString());
+                reminder = 0;
+                //allocated += remd;
+                for (int j = 0; j <= dr.Length - 1; j++)
+                {
+                    allocated = allocated - reminder;
+                    if (allocated <= 0 || int.Parse(dtSub.Compute("sum(alloted)", "hour>0").ToString()) >= int.Parse(gvDetailP.FooterRow.Cells[13].Text.ToString()))
+                    {
+                        break;
+                    }
+
+                    subtopichrs = int.Parse(dtSub.Compute("sum(hour)", "subjectid='" + gvDetailP.Rows[i].Cells[0].Text + "' and subtopicid='" + dr[j][6].ToString() + "' ").ToString());
+                    if (subtopichrs < allocated)
+                    {
+                        subtopichrs = allocated - subtopichrs;
+                        DataRow[] dr1 = dtSub.Select("subtopicid='" + dr[j][6].ToString() + "'");
+                        if (int.Parse(dtSub.Compute("sum(alloted)", "hour>0").ToString()) < int.Parse(gvDetailP.FooterRow.Cells[13].Text.ToString()))
+                        {
+                            dr1[0][9] = allocated - subtopichrs;
+                            dtSub.AcceptChanges();
+                            allocated = subtopichrs;
+                            // reminder += subtopichrs;
+                        }
+
+                    }
+                    else if (subtopichrs > allocated)
+                    {
+                        reminder += subtopichrs;
+                        //subtopichrs = allocated;
+                        DataRow[] dr2 = dtSub.Select("subtopicid='" + dr[j][6].ToString() + "'");
+                        if (int.Parse(dtSub.Compute("sum(alloted)", "hour>0").ToString()) < int.Parse(gvDetailP.FooterRow.Cells[13].Text.ToString()))
+                        {
+                            dr2[0][9] = subtopichrs;
+                            dtSub.AcceptChanges();
+                            allocated = 0;
+                        }
+                        // subtopichrs - allocated;
+                        // -allocated;
+                    }
+                    else if (subtopichrs == allocated)
+                    {
+                        DataRow[] dr2 = dtSub.Select("subtopicid='" + dr[j][6].ToString() + "'");
+                        if (int.Parse(dtSub.Compute("sum(alloted)", "hour>0").ToString()) < int.Parse(gvDetailP.FooterRow.Cells[13].Text.ToString()))
+                        {
+                            dr2[0][9] = subtopichrs;
+                            dtSub.AcceptChanges();
+                            allocated = 0;
+                        }
+                    }
+
+                }
+                // reminder += allocated ;
+            }
+        }
+        DataRow[] drfinal;
+        drfinal = dtSub.Select("alloted=0");
+        foreach (DataRow row in drfinal)
+        {
+            if (row.ItemArray[9].ToString() == "0")
+            {
+                row.Delete();
+                dtSub.AcceptChanges();
+            }
+        }
+
+        return dtSub;
+    }
+    private DataTable FillSubjectPractical35()
+    {
+        int i;
+        DataTable dtSub = new DataTable();
+        string selectSQL = "SELECT *,0 as alloted from Suject_topic_Subtopic WHERE CourseID=" + ddlCourse.SelectedValue + " AND Semester='" + ddlSemester.SelectedValue + "' and (type ='Practical' or type='Demonstration') and subtopicID not in (select subtopicID from periods where CourseID=" + ddlCourse.SelectedValue + " AND Semester='" + ddlSemester.SelectedValue + "') order by SubTopicID";
+        dtSub = objFunc.FillDataTable(selectSQL);
+        int reminder = 0;
+        int remd = 0;
+        for (i = 0; i <= gvDetailP.Rows.Count - 1; i++)
+        {
+            int subjecthrs = 0;// int.Parse(gvDetailP.Rows[i].Cells[14].Text.ToString());
+            DataRow[] dr = dtSub.Select("subjectid='" + gvDetailP.Rows[i].Cells[0].Text + "'");
+            if (dr.Length > 0)
+            {
+                int subtopichrs;
+                int allocated = int.Parse(gvDetailP.Rows[i].Cells[14].Text.ToString());
+                reminder = 0;
+                //allocated += remd;
+                for (int j = 0; j <= dr.Length - 1; j++)
+                {
+                    allocated = allocated - reminder;
+                    if (allocated <= 0 || int.Parse(dtSub.Compute("sum(alloted)", "hour>0").ToString()) >= int.Parse(gvDetailP.FooterRow.Cells[14].Text.ToString()))
+                    {
+                        break;
+                    }
+
+                    subtopichrs = int.Parse(dtSub.Compute("sum(hour)", "subjectid='" + gvDetailP.Rows[i].Cells[0].Text + "' and subtopicid='" + dr[j][6].ToString() + "' ").ToString());
+                    if (subtopichrs < allocated)
+                    {
+                        subtopichrs = allocated - subtopichrs;
+                        DataRow[] dr1 = dtSub.Select("subtopicid='" + dr[j][6].ToString() + "'");
+                        if (int.Parse(dtSub.Compute("sum(alloted)", "hour>0").ToString()) < int.Parse(gvDetailP.FooterRow.Cells[14].Text.ToString()))
+                        {
+                            dr1[0][9] = allocated - subtopichrs;
+                            dtSub.AcceptChanges();
+                            allocated = subtopichrs;
+                            // reminder += subtopichrs;
+                        }
+
+                    }
+                    else if (subtopichrs > allocated)
+                    {
+                        
+                        //subtopichrs = allocated;
+                        DataRow[] dr2 = dtSub.Select("subtopicid='" + dr[j][6].ToString() + "'");
+                        if (int.Parse(dtSub.Compute("sum(alloted)", "hour>0").ToString()) < int.Parse(gvDetailP.FooterRow.Cells[14].Text.ToString()))
+                        {
+                            dr2[0][9] = allocated;
+                            dtSub.AcceptChanges();
+                            allocated = 0;
+                        }
+                        reminder += subtopichrs;
+                        // subtopichrs - allocated;
+                        // -allocated;
+                    }
+                    else if (subtopichrs == allocated)
+                    {
+                        DataRow[] dr2 = dtSub.Select("subtopicid='" + dr[j][6].ToString() + "'");
+                        if (int.Parse(dtSub.Compute("sum(alloted)", "hour>0").ToString()) < int.Parse(gvDetailP.FooterRow.Cells[13].Text.ToString()))
+                        {
+                            dr2[0][9] = subtopichrs;
+                            dtSub.AcceptChanges();
+                            allocated = 0;
+                        }
+                    }
+
+                }
+                // reminder += allocated ;
+            }
+        }
+        DataRow[] drfinal;
+        drfinal = dtSub.Select("alloted=0");
+        foreach (DataRow row in drfinal)
+        {
+            if (row.ItemArray[9].ToString() == "0")
+            {
+                row.Delete();
+                dtSub.AcceptChanges();
+            }
+        }
+
+        return dtSub;
+    }
+    private DataTable FillSubjecttheory()
+    {
+        int i;
+        DataTable dtSub = new DataTable();
+        string selectSQL = "SELECT *,0 as alloted from Suject_topic_Subtopic WHERE CourseID=" + ddlCourse.SelectedValue + " AND Semester='" + ddlSemester.SelectedValue + "' and type like'Practical%' and subtopicID not in (select subtopicID from periods where CourseID=" + ddlCourse.SelectedValue + " AND Semester='" + ddlSemester.SelectedValue + "') order by subjectid ,subtopicid";
+        dtSub = objFunc.FillDataTable(selectSQL);
+        int reminder = 0;
+        for (i = 0; i <= gvDetailP.Rows.Count - 1; i++)
+        {
+            int subjecthrs = 0;// int.Parse(gvDetailP.Rows[i].Cells[14].Text.ToString());
+            DataRow[] dr = dtSub.Select("subjectid='" + gvDetailP.Rows[i].Cells[0].Text + "'");
+
+            if (dr.Length > 0)
+            {
+                int subtopichrs;
+                int allocated = int.Parse(gvDetailP.Rows[i].Cells[14].Text.ToString());
+                allocated += reminder;
+                for (int j = 0; j <= dr.Length - 1; j++)
+                {
+
+                    subtopichrs = int.Parse(dtSub.Compute("sum(hour)", "subjectid='" + gvDetailP.Rows[i].Cells[0].Text + "' and subtopicid='" + dr[j][6].ToString() + "' ").ToString());
+                    if (subtopichrs <= allocated)
+                    {
+                        subtopichrs = allocated - subtopichrs;
+                        DataRow[] dr1 = dtSub.Select("subtopicid='" + dr[j][6].ToString() + "'");
+                        if (int.Parse(dtSub.Compute("sum(alloted)", "hour>0").ToString()) < int.Parse(gvDetailP.FooterRow.Cells[14].Text.ToString()))
+                        {
+                            dr1[0][9] = allocated - subtopichrs;
+                            dtSub.AcceptChanges();
+                            allocated = subtopichrs;
+                            if (subtopichrs % 2 != 0)
+                            {
+                                reminder += subtopichrs;
+                            }
+                        }
+                    }
+                    else if (subtopichrs >= allocated)
+                    {
+                        //subtopichrs = subtopichrs - allocated;
+                        //DataRow[] dr2 = dtSub.Select("subtopicid='" + dr[j][6].ToString() + "'");
+                        //dr2[0][9] = subtopichrs;
+                        //dtSub.AcceptChanges();
+                        //allocated = subtopichrs - allocated;
+                    }
+                    if (allocated % 2 != 0)
+                    {
+                        break;
+                    }
+                }
+            }
+        }
+        DataRow[] drfinal;
+        drfinal = dtSub.Select("alloted=0");
+        foreach (DataRow row in drfinal)
+        {
+            if (row.ItemArray[9].ToString() == "0")
+            {
+                row.Delete();
+                dtSub.AcceptChanges();
+            }
+        }
+        return dtSub;
+    }
+    private void FillTopFinal(DataTable dtF, DataTable dtTheory, DataTable dtPract, ref string ColumnIndex, DataTable dtfillID)
+    {
+
+        int i;
+        int j;
+        int k;
+        string storeLunchField = "";
+        dtTheory.Columns.Add("IsUsed");
+        for (j = 1; j < dtF.Columns.Count - 1; j++)
+        {
+            for (i = 0; i <= dtF.Rows.Count - 1; i++)//===========
+            {
+                if (j == dtF.Columns.Count)
+                {
+                    break;
+                }
+                if (dtF.Rows[i].ItemArray[j].ToString() == "&nbsp;Lunch&nbsp;")
+                {
+                   // j = j + 1;
+                }
+                else
+                {
+                    int n = 1;
+                    int added = 0;
+                    for (k = 0; k <= dtTheory.Rows.Count - 1; k++)
+                    {
+                        int p;
+                        int totalcount = int.Parse(dtTheory.Rows[k].ItemArray[3].ToString()) - added;
+
+
+                        for (p = 0; p <= (totalcount - 1); p++)
+                        {
+
+                            if (n < dtF.Rows.Count)
+                            {
+                                DataRow drFill = dtF.Rows[n];
+                                DataRow drFillID = dtfillID.Rows[n];
+                                if (j == dtF.Columns.Count)
+                                {
+                                    break;
+                                }
+                                if (drFill[j].ToString() != "&nbsp;Lunch&nbsp;" && dtTheory.Rows[k]["IsUsed"].ToString() != "Y")
+                                {
+                                    var send = drFill[0].ToString() + "|" + j.ToString();
+                                    string sub_topic ="<span style='color:Brown'>"+ objFunc.Get_details("select subjectname from Suject_topic_SubtopicN where subtopicid='" + dtTheory.Rows[k].ItemArray[6].ToString() + "'")+"</span>";
+                                    string sub_topic1 = "<span style='color:Green'>" + objFunc.Get_details("select TopicName from Suject_topic_SubtopicN where subtopicid='" + dtTheory.Rows[k].ItemArray[6].ToString() + "'")+"</span>";
+                                    if (j > 1 )
+                                    {
+                                        send = drFill[0].ToString() + "|" + (j + 4).ToString();
+                                        drFill[j + 4] = "<a id='S" + dtTheory.Rows[k].ItemArray[6].ToString() + "' href='Javascript:void(0);' onclick=Javascript:{GetCustomer(this,'" + dtTheory.Rows[k].ItemArray[6].ToString() + "');OpenCourse();OpenCourse1('" + send + "');}  ><img src='../file.ico' alt='' style='cursor:hand;Border:none' /></a>" + sub_topic + "<br/>" + sub_topic1 + "<br/>" + dtTheory.Rows[k].ItemArray[8].ToString() + "<br/># " + dtTheory.Rows[k].ItemArray[7].ToString() + "<br/> #<br/>#<br/>#";//<img src='../icon_alert.gif' alt='Suspend' style='cursor:hand;Border:none' />
+                                        drFillID[j + 4] = dtTheory.Rows[k].ItemArray[6].ToString() + "# " + dtTheory.Rows[k].ItemArray[7].ToString() + "###";
+                                    }
+                                    else
+                                    {
+                                        drFill[j] = "<a id='S" + dtTheory.Rows[k].ItemArray[6].ToString() + "' href='Javascript:void(0);' onclick=Javascript:{GetCustomer(this,'" + dtTheory.Rows[k].ItemArray[6].ToString() + "');OpenCourse();OpenCourse1('" + send + "');}  ><img src='../file.ico' alt='' style='cursor:hand;Border:none' /></a>" + sub_topic + "<br/>" + sub_topic1 + "<br/>" + dtTheory.Rows[k].ItemArray[8].ToString() + "<br/># " + dtTheory.Rows[k].ItemArray[7].ToString() + "<br/> #<br/>#<br/>#";//<img src='../icon_alert.gif' alt='Suspend' style='cursor:hand;Border:none' />
+                                        drFillID[j] = dtTheory.Rows[k].ItemArray[6].ToString() + "# " + dtTheory.Rows[k].ItemArray[7].ToString() + "###";
+
+                                    }
+                                    dtF.AcceptChanges();
+                                    dtfillID.AcceptChanges();
+                                    added = added + 1;
+                                }
+                                else
+                                {
+
+                                    break;
+                                }
+
+                            }
+                            else
+                            {
+                                k = k - 1;
+                                totalcount = totalcount - added;
+                            }
+                            if (n == dtF.Rows.Count)
+                            {
+                                i = i + 1;
+                                n = 1;
+                                j = j + 1;
+
+                            }
+                            else
+                            {
+                                n = n + 1;
+
+                            }
+                            if (p == totalcount - 1)
+                            {
+                                DataRow drIsused = dtTheory.Rows[k];
+                                drIsused[dtTheory.Columns.Count - 1] = "Y";
+                                added = 0;
+                            }
+                        }
+
+                    }
+                }
+            }
+
+
+        }
+        int fcol;
+        for (fcol = 0; fcol <= dtF.Columns.Count - 1; fcol++)
+        {
+            int frow;
+            for (frow = 1; frow <= dtF.Rows.Count - 1; frow++)
+            {
+                if (dtF.Rows[frow].ItemArray[fcol].ToString() == "&nbsp;Lunch&nbsp;")
+                {
+                    ColumnIndex = fcol.ToString();
+                    break;
+                }
+                else if (dtF.Rows[frow].ItemArray[fcol].ToString() == "")
+                {
+                    DataRow drBlank;
+                    drBlank = dtF.Rows[frow];
+                    drBlank[fcol] = "<a id='S" + "" + "' href='Javascript:void(0);' onclick=Javascript:{GetCustomer(this,'" + "" + "');OpenCourse();OpenCourse1('" + dtF.Rows[frow].ItemArray[0].ToString()+"|"+fcol.ToString() + "');}  ><img src='../comment_new.gif' alt='' style='cursor:hand;Border:none' /></a>" + "" + "<br/>" + "" + "<br/>" + "" + "# " + "" + "<br/> #<br/>#<br/>#";//<img src='../icon_alert.gif' alt='Suspend' style='cursor:hand;Border:none' />
+                    //drBlank[fcol] = "<img src='../comment_new.gif' alt='' />";
+                }
+                  if(ddlInstitute.SelectedValue=="2" && ddlSemester.SelectedItem.Text.ToString()=="II" && (fcol==2 || fcol==3 || fcol==4))
+                {
+                    //DataRow drCP;
+                    //drCP = dtF.Rows[frow];
+                    //drCP[fcol] = "Clinical Posting";
+                    //DataRow drCID;
+                    //drCID = dtfillID.Rows[frow];
+                    //drCID[fcol] = "-1";
+                }
+            }
+            if (ColumnIndex != "")
+            {
+                break;
+            }
+        }
+        ViewState["SubTopicRecord"] = dtF;
+        ViewState["SubTopicID"] = dtfillID;
+        grdSubTopicID.DataSource = dtfillID;
+        grdSubTopicID.DataBind();
+        GridView3.DataSource = dtF;
+        GridView3.DataBind();
+    }
+    private void FillTopFinalP(DataTable dtF, DataTable dtTheory, DataTable dtPract, ref string ColumnIndex, DataTable dtfillID)
+    {
+        int i;
+        int j;
+        int k;
+        ViewState["colIndex"] = ColumnIndex;
+        string storeLunchField = "";
+        dtPract.Columns.Add("IsUsed");
+
+        for (j = int.Parse(ColumnIndex) + 2; j < dtF.Columns.Count - 1; j++)
+        {
+            for (i = 0; i <= dtF.Rows.Count - 1; i++)//===========
+            {
+                if (j == dtF.Columns.Count)
+                {
+                    break;
+                }
+                if (dtF.Rows[i].ItemArray[j].ToString() == "&nbsp;Lunch&nbsp;")
+                {
+
+                }
+                else
+                {
+                    int n = 1;
+                    for (k = 0; k <= dtPract.Rows.Count - 1; k++)
+                    {
+                        int p;
+
+                        for (p = 0; p <= int.Parse(dtPract.Rows[k].ItemArray[3].ToString()) - 1; p++)
+                        {
+
+                            if (n < dtF.Rows.Count)
+                            {
+                                DataRow drFill = dtF.Rows[n];
+                                DataRow drFillID = dtfillID.Rows[n];
+                                if (j == dtF.Columns.Count)
+                                {
+                                    break;
+                                }
+                                if (drFill[j].ToString() != "&nbsp;Lunch&nbsp;" && dtPract.Rows[k]["IsUsed"].ToString() != "Y")
+                                {
+                                    string sub_topic = "<span style='color:Brown'>" + objFunc.Get_details("select subjectname from Suject_topic_SubtopicN where subtopicid='" + dtPract.Rows[k].ItemArray[6].ToString() + "'") + "</span>";
+                                    string sub_topic1 = "<span style='color:Green'>" + objFunc.Get_details("select TopicName from Suject_topic_SubtopicN where subtopicid='" + dtPract.Rows[k].ItemArray[6].ToString() + "'") + "</span>";
+
+                                    string pd = drFill[0].ToString() + "|" + (j + p).ToString();
+                                    if (int.Parse(dtPract.Rows[k].ItemArray[9].ToString()) == 1)
+                                    {
+                                        drFill[j + p] = "<a id='P" + dtPract.Rows[k].ItemArray[6].ToString() + "' href='Javascript:void(0);'  onclick=Javascript:{GetCustomer(this,'" + dtPract.Rows[k].ItemArray[6].ToString() + "');OpenCourse();OpenCourse1('" + pd + "');}><img src='../file.ico' style='cursor:hand;Border:none' alt='' id='" + dtPract.Rows[k].ItemArray[6].ToString() + "' /></a>" + sub_topic + "<br/>" + sub_topic1 + "<br/>" + dtPract.Rows[k].ItemArray[8].ToString() + "<br/># " + dtPract.Rows[k].ItemArray[7].ToString() + "<br/> #<br/>#<br/>#";
+                                        drFillID[j + p] = dtPract.Rows[k].ItemArray[6].ToString() + "# " + dtPract.Rows[k].ItemArray[7].ToString() + "###";
+pd = drFill[0].ToString() + "|" + (j + p+1).ToString();
+                                        drFill[j + p+1] = "<a id='P" + dtPract.Rows[k].ItemArray[6].ToString() + "' href='Javascript:void(0);'  onclick=Javascript:{GetCustomer(this,'" + dtPract.Rows[k].ItemArray[6].ToString() + "');OpenCourse();OpenCourse1('" + pd + "');}><img src='../file.ico' style='cursor:hand;Border:none' alt='' id='" + dtPract.Rows[k].ItemArray[6].ToString() + "' /></a>" + sub_topic + "<br/>" + sub_topic1 + "<br/>" + dtPract.Rows[k].ItemArray[8].ToString() + "# " + dtPract.Rows[k].ItemArray[7].ToString() + "<br/> #<br/>#<br/>#";
+                                        drFillID[j + p+1] = dtPract.Rows[k].ItemArray[6].ToString() + "# " + dtPract.Rows[k].ItemArray[7].ToString() + "###";
+                                    }
+                                    else
+                                    {
+                                        drFill[j + p] = "<a id='P" + dtPract.Rows[k].ItemArray[6].ToString() + "' href='Javascript:void(0);'  onclick=Javascript:{GetCustomer(this,'" + dtPract.Rows[k].ItemArray[6].ToString() + "');OpenCourse();OpenCourse1('" + pd + "');}><img src='../file.ico' style='cursor:hand;Border:none' alt='' id='" + dtPract.Rows[k].ItemArray[6].ToString() + "' /></a>" + sub_topic + "<br/>" + sub_topic1 + "<br/>" + dtPract.Rows[k].ItemArray[8].ToString() + "<br/>#" + dtPract.Rows[k].ItemArray[7].ToString() + "<br/> #<br/>#<br/>#";
+                                        drFillID[j + p] = dtPract.Rows[k].ItemArray[6].ToString() + "# " + dtPract.Rows[k].ItemArray[7].ToString() + "###";
+                                    }
+                                    dtfillID.AcceptChanges();
+                                    dtF.AcceptChanges();
+                                }
+                                else
+                                {
+
+                                    break;
+                                }
+
+                            }
+                            //else
+                            //{
+                            //    k = k - 1;
+                            //}
+                            //if (n == dtF.Rows.Count)
+                            //{
+                            //   // i = i + 1;
+                            //    n = 0;
+                            //    j = j + 1;
+                            //}
+                            else
+                            {
+                               // n = n + 1;
+
+                            }
+                            if (p == int.Parse(dtPract.Rows[k].ItemArray[9].ToString()) - 1)
+                            {
+                                DataRow drIsused = dtPract.Rows[k];
+                                drIsused[dtPract.Columns.Count - 1] = "Y";
+                            }
+                        }
+                        n = n + 1;
+
+                    }
+                }
+            }
+
+
+        }
+        int fcol;
+        for (fcol = 0; fcol <= dtF.Columns.Count - 1; fcol++)
+        {
+            int frow;
+            for (frow = 1; frow <= dtF.Rows.Count - 1; frow++)
+            {
+                 if (dtF.Rows[frow].ItemArray[fcol].ToString() == "")
+                {
+                    DataRow drBlank;
+                    drBlank = dtF.Rows[frow];
+                    drBlank[fcol] = "<a id='S" + "" + "' href='Javascript:void(0);' onclick=Javascript:{GetCustomer(this,'" + "" + "');OpenCourse();OpenCourse1('" + dtF.Rows[frow].ItemArray[0].ToString() + "|" + fcol.ToString() + "');}  ><img src='../comment_new.gif' alt='' style='cursor:hand;Border:none' /></a>" + "" + "<br/>" + "" + "<br/>" + "" + "# " + "" + "<br/> #<br/>#<br/>#";//<img src='../icon_alert.gif' alt='Suspend' style='cursor:hand;Border:none' />
+                    //drBlank[fcol] = "<img src='../comment_new.gif' alt='' />";
+                }
+                if (ddlInstitute.SelectedValue == "2" && ddlSemester.SelectedItem.Text.ToString() == "II" && (fcol == 2 || fcol == 3 || fcol == 4))
+                {
+                    //DataRow drCP;
+                    //drCP = dtF.Rows[frow];
+                    //drCP[fcol] = "Clinical Posting";
+                    //DataRow drCID;
+                    //drCID = dtfillID.Rows[frow];
+                    //drCID[fcol] = "-1";
+                }
+            }
+            
+        }
+        ViewState["SubTopicRecord"] = dtF;
+        ViewState["SubTopicID"] = dtfillID;
+        GridView3.DataSource = dtF;
+        grdSubTopicID.DataSource = dtfillID;
+        grdSubTopicID.DataBind();
+        GridView3.DataBind();
+        GridHtmlEncode(GridView3);
+
+
+    }
+    private DataTable _FillValue
+    {
+        get
+        {
+            DataTable dt = (DataTable)ViewState["FillValue"];
+            if (dt == null)
+            {
+                _FillValue = dt;
+            }
+
+            return dt;
+        }
+        set
+        {
+            ViewState["FillValue"] = value;
+        }
+    }
+    private DataTable _FillText
+    {
+        get
+        {
+            DataTable dt = (DataTable)ViewState["FillText"];
+            if (dt == null)
+            {
+                _FillText = dt;
+            }
+
+            return dt;
+        }
+        set
+        {
+            ViewState["FillText"] = value;
+        }
+    }
+    private DataSet _Ds
+    {
+        get
+        {
+            DataSet dt = (DataSet)ViewState["DsF"];
+            if (dt == null)
+            {
+                _Ds = dt;
+            }
+
+            return dt;
+        }
+        set
+        {
+            ViewState["DsF"] = value;
+        }
+    }
+    protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
+    {
+        if (optSuspend.Checked == true)
+        {
+            SuspendPeriod();
+            return;
+        }
+        DataTable dtFillText = new DataTable();
+        DataTable dtFillValue = new DataTable();
+        dtFillText = (DataTable)ViewState["FillText"];
+        dtFillValue = (DataTable)ViewState["FillValue"];
+
+        DataRow[] drFillText = dtFillValue.Select("Day='" + hdSelday.Value + "'");
+        drFillText[0][int.Parse(hdSelPeriod.Value)] = "<a href='Javascript:void(0);'  onclick=Javascript:{GetCustomer('" + drFillText[0][6].ToString() + "');OpenCourse();OpenCourse1('');}><img src='../file.ico' style='cursor:hand;Border:none' alt='' id='" + drFillText[0][6].ToString() + "' /></a>" + hdstopic.Value;
+        dtFillValue.AcceptChanges();
+
+        //drFillText = dtFillValue.Select("Day='" + hdSelday.Value + "'");
+        //drFillText[0][int.Parse(hdSelPeriod.Value)] = "<a href='Javascript:void(0);'  onclick=Javascript:{GetCustomer('" + drFillText[0][6].ToString() + "');OpenCourse();OpenCourse1('');}><img src='../file.ico' style='cursor:hand;Border:none' alt='' id='" + drFillText[0][6].ToString() + "' /></a>" + hdstopic.Value;
+        //dtFillValue.AcceptChanges();
+
+
+        GridView3.DataSource = dtFillValue;
+        GridView3.DataBind();
+        for (int i1 = 0; i1 < GridView3.Rows.Count; i1++)
+        {
+            for (int j1 = 0; j1 < GridView3.Rows[i1].Cells.Count; j1++)
+            {
+                string encoded = GridView3.Rows[i1].Cells[j1].Text;
+                if (encoded == "&amp;nbsp;Lunch&amp;nbsp;")
+                {
+                    GridView3.Rows[i1].Cells[j1].BackColor = System.Drawing.Color.LightGray;
+                    GridView3.Rows[i1].Cells[j1].ForeColor = System.Drawing.Color.Coral;
+                }
+                GridView3.Rows[i1].Cells[j1].Text = Context.Server.HtmlDecode(encoded);
+            }
+        }
+    }
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+
+        string option = String.Empty;
+        DataTable dtFillText = new DataTable();
+        DataTable dtFillValue = new DataTable();
+        DataSet Ds = new DataSet();
+        Ds = (DataSet)ViewState["DsF"];
+        if (optMove.Checked == true)
+        {
+            option = "Move";
+        }
+        if (optEdit.Checked == true)
+        {
+            option = "Edit";
+        }
+
+        if (optCopy.Checked == true)
+        {
+            option = "Copy";
+        }
+        if (optSwap.Checked == true)
+        {
+            option = "Swap";
+        }
+        if (optSuspend.Checked == true)
+        {
+            option = "Suspend";
+        }
+         
+        if (hdbatch.Value == "1")
+        {
+            dtFillText = (DataTable)Ds.Tables["AI"];
+            dtFillValue = (DataTable)Ds.Tables["AT"];
+            Update(dtFillValue, dtFillText, option);
+            if (hdtype.Value.Trim() == "Theory")
+            {
+                Update((DataTable)Ds.Tables["BT"], (DataTable)Ds.Tables["BI"], option);
+            }
+        }
+        else if (hdbatch.Value == "2")
+        {
+            Update((DataTable)Ds.Tables["BT"], (DataTable)Ds.Tables["BI"], option);
+            if (hdtype.Value.Trim() == "Theory")
+            {
+                dtFillText = (DataTable)Ds.Tables["AI"];
+                dtFillValue = (DataTable)Ds.Tables["AT"];
+                Update(dtFillValue, dtFillText, option);
+            }
+        }
+        GridView3.DataSource = (DataTable)Ds.Tables["AT"];
+        GridView3.DataBind();
+        grdSubTopicID.DataSource = (DataTable)Ds.Tables["AI"];
+        grdSubTopicID.DataBind();
+        grdBatchBT.DataSource = (DataTable)Ds.Tables["BT"];
+        grdBatchBT.DataBind();
+        grdBatchBI.DataSource = (DataTable)Ds.Tables["BI"];
+        grdBatchBI.DataBind();
+        ViewState["DsF"] = Ds;
+        GridHtmlEncode(GridView3);
+        GridHtmlEncode(grdBatchBT);
+        optCopy.Checked = false;
+        optMove.Checked = false;
+        optSuspend.Checked = false;
+        optSwap.Checked = false;
+        optVenu.Checked = false;
+        optFaculty.Checked = false;
+        optEdit.Checked = false;
+        perValue();
+    }
+    private void SuspendPeriod()
+    {
+        DataTable dtFillText = new DataTable();
+        DataTable dtFillValue = new DataTable();
+        dtFillText = (DataTable)ViewState["FillText"];
+        dtFillValue = (DataTable)ViewState["FillValue"];
+        System.Array arr;
+        arr = Microsoft.VisualBasic.Strings.Split(hdAll.Value, "^", -1, 0);//all previous periods
+        string pd = hdSelday.Value + "|" + hdSelPeriod.Value;//new selected Period
+        DataRow[] drFillText = dtFillValue.Select("Day='" + arr.GetValue(6).ToString() + "'");//select from text grid
+        DataRow[] drFillvalue = dtFillText.Select("Day='" + arr.GetValue(6).ToString() + "'");//select from Value grid
+        if (optSuspend.Checked == true)
+        {
+            drFillText = dtFillValue.Select("Day='" + arr.GetValue(6).ToString() + "'");
+            drFillText[0][int.Parse(arr.GetValue(7).ToString())] = drFillText[0][int.Parse(arr.GetValue(7).ToString())] + "<img src='../page_alert.gif' alt='" + txtReason.Value + "' />";
+            dtFillValue.AcceptChanges();
+
+            drFillvalue = dtFillText.Select("Day='" + arr.GetValue(6).ToString() + "'");
+            drFillvalue[0][int.Parse(arr.GetValue(7).ToString())] = drFillvalue[0][int.Parse(arr.GetValue(7).ToString())] + "<br/>#" + txtReason.Value + "<br/>#";
+            dtFillText.AcceptChanges();
+        }
+
+        GridView3.DataSource = dtFillValue;
+        GridView3.DataBind();
+        grdSubTopicID.DataSource = dtFillText;
+        grdSubTopicID.DataBind();
+        //grdBatchBT.DataSource = dtFillValue;
+        //grdBatchBT.DataBind();
+        //grdBatchBI.DataSource = dtFillText;
+        //grdBatchBI.DataBind();
+        for (int i1 = 0; i1 < GridView3.Rows.Count; i1++)
+        {
+            for (int j1 = 0; j1 < GridView3.Rows[i1].Cells.Count; j1++)
+            {
+                string encoded = GridView3.Rows[i1].Cells[j1].Text;
+                string encoded1 = grdSubTopicID.Rows[i1].Cells[j1].Text;
+                if (encoded == "&amp;nbsp;Lunch&amp;nbsp;")
+                {
+                    GridView3.Rows[i1].Cells[j1].BackColor = System.Drawing.Color.LightGray;
+                    GridView3.Rows[i1].Cells[j1].ForeColor = System.Drawing.Color.Coral;
+                }
+                GridView3.Rows[i1].Cells[j1].Text = Context.Server.HtmlDecode(encoded);
+                grdSubTopicID.Rows[i1].Cells[j1].Text = Context.Server.HtmlDecode(encoded1);
+            }
+        }
+    }
+    private void AssginFaculty()
+    {
+        DataTable dtFillText = new DataTable();
+        DataTable dtFillValue = new DataTable();
+        dtFillText = (DataTable)ViewState["FillText"];
+        dtFillValue = (DataTable)ViewState["FillValue"];
+        System.Array arr;
+        arr = Microsoft.VisualBasic.Strings.Split(hdAll.Value, "^", -1, 0);//all previous periods
+        string pd = hdSelday.Value + "|" + hdSelPeriod.Value;//new selected Period
+        DataRow[] drFillText = dtFillValue.Select("Day='" + arr.GetValue(6).ToString() + "'");//select from text grid
+        DataRow[] drFillvalue = dtFillText.Select("Day='" + arr.GetValue(6).ToString() + "'");//select from Value grid
+        if (optFaculty.Checked == true)
+        {
+            drFillText = dtFillValue.Select("Day='" + arr.GetValue(6).ToString() + "'");
+            drFillText[0][int.Parse(arr.GetValue(7).ToString())] = drFillText[0][int.Parse(arr.GetValue(7).ToString())] + "</br><img src='../icon_user.gif' alt='" + arr.GetValue(9).ToString() + "' /><span style='color:green'>" + arr.GetValue(9).ToString() + "</span>";
+            dtFillValue.AcceptChanges();
+
+            drFillvalue = dtFillText.Select("Day='" + arr.GetValue(6).ToString() + "'");
+            drFillvalue[0][int.Parse(arr.GetValue(7).ToString())] = drFillvalue[0][int.Parse(arr.GetValue(7).ToString())] + "<br/>#" + arr.GetValue(8).ToString();
+            dtFillText.AcceptChanges();
+        }
+
+        GridView3.DataSource = dtFillValue;
+        GridView3.DataBind();
+        grdSubTopicID.DataSource = dtFillText;
+        grdSubTopicID.DataBind();
+        //grdBatchBT.DataSource = dtFillValue;
+        //grdBatchBT.DataBind();
+        //grdBatchBI.DataSource = dtFillText;
+        //grdBatchBI.DataBind();
+        for (int i1 = 0; i1 < GridView3.Rows.Count; i1++)
+        {
+            for (int j1 = 0; j1 < GridView3.Rows[i1].Cells.Count; j1++)
+            {
+                string encoded = GridView3.Rows[i1].Cells[j1].Text;
+                string encoded1 = grdSubTopicID.Rows[i1].Cells[j1].Text;
+                if (encoded == "&amp;nbsp;Lunch&amp;nbsp;")
+                {
+                    GridView3.Rows[i1].Cells[j1].BackColor = System.Drawing.Color.LightGray;
+                    GridView3.Rows[i1].Cells[j1].ForeColor = System.Drawing.Color.Coral;
+                }
+                GridView3.Rows[i1].Cells[j1].Text = Context.Server.HtmlDecode(encoded);
+                grdSubTopicID.Rows[i1].Cells[j1].Text = Context.Server.HtmlDecode(encoded1);
+            }
+        }
+    }
+    private string _colIndex
+    {
+        get
+        {
+            string colIndex = (string)ViewState["colIndex"];
+            if (colIndex == null)
+            {
+                _colIndex = colIndex;
+            }
+
+            return colIndex;
+        }
+        set
+        {
+            ViewState["colIndex"] = value;
+        }
+    }
+    protected void GridView3_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+
+    }
+    public void batchB(DataTable dtFillValue, DataTable dtFillText, ref DataSet ds)
+    {
+        int startIndex = 0;
+        //****************************************View state for Batch type A******
+        //ViewState["FillTextA"] = dtFillValue;
+        //ViewState["FillValueA"] = dtFillText;
+        //**************************************************************************
+        int rd;
+        int cd;
+        string colIndex = (string)ViewState["colIndex"];
+        for (cd = (int.Parse(colIndex) + 2); cd <= dtFillValue.Columns.Count - 1; cd++)
+        {
+            int lastIndex = dtFillValue.Rows.Count - 1;
+            for (rd = 1; rd <= dtFillValue.Rows.Count - 1; rd++)
+            {
+                DataRow drrd = dtFillValue.Rows[rd];
+                DataRow drbatchB = dtFillText.Rows[rd];
+                string tempID = drbatchB[cd].ToString();
+                string tempValue = drrd[cd].ToString();
+                string daynew = "";
+                string periodn = "";
+                System.Array arr1;
+                System.Array arr2;
+                string setV = "OpenCourse1('";
+                DataRow[] f;
+                DataRow[] ID;
+                if (lastIndex > rd)
+                {
+                    f = (DataRow[])dtFillValue.Select();
+                    ID = (DataRow[])dtFillText.Select();
+                    tempValue = f[rd][cd].ToString();
+                    arr1 = Microsoft.VisualBasic.Strings.Split(tempValue, ";", -1, 0);
+
+                    tempID = ID[rd][cd].ToString();
+                    string tempID1 = ID[lastIndex][cd].ToString();
+                    string tempValue1 = f[lastIndex][cd].ToString();
+                    arr2 = Microsoft.VisualBasic.Strings.Split(tempValue1, ";", -1, 0);
+                    dtFillValue.BeginInit();
+                    dtFillText.BeginInit();
+
+                    if (arr1.GetValue(0).ToString() != "")
+                    {
+                        if (arr1.Length > 3)
+                        {
+                            arr1.SetValue(setV + f[lastIndex][0].ToString() + "|" + dtFillValue.Columns[cd].ColumnName + "')", 3);
+                            tempValue = StringFromArray(arr1);
+                        }
+                        else
+                        {
+                            arr1.SetValue(setV + f[lastIndex][0].ToString() + "|" + dtFillValue.Columns[cd].ColumnName + "')", 0);
+                            tempValue = StringFromArray(arr1);
+                        }
+                    }
+                    if (arr2.GetValue(0).ToString() != "")
+                    {
+                        if (arr2.Length > 3)
+                        {
+                            arr2.SetValue(setV + f[rd][0].ToString() + "|" + dtFillValue.Columns[cd].ColumnName + "')", 3);
+                            tempValue1 = StringFromArray(arr2);
+                        }
+                        else
+                        {
+                            arr2.SetValue(setV + f[rd][0].ToString() + "|" + dtFillValue.Columns[cd].ColumnName + "')", 0);
+                            tempValue1 = StringFromArray(arr2);
+                        }
+                    }
+
+                    f[rd][cd] = tempValue1;
+                    ID[rd][cd] = tempID1;
+
+
+                    f[lastIndex][cd] = tempValue;
+                    ID[lastIndex][cd] = tempID;
+                    lastIndex -= 1;
+                    dtFillValue.AcceptChanges();
+                    dtFillText.AcceptChanges();
+                }
+
+            }
+
+        }
+        if (!ds.Tables.Contains("dtFillValue") && !ds.Tables.Contains("AT") && !ds.Tables.Contains("AI"))
+        {
+            ds.Tables.Add(dtFillValue);
+            ds.Tables.Add(dtFillText);
+            grdBatchBT.DataSource = dtFillValue;
+            grdBatchBT.DataBind();
+            grdBatchBI.DataSource = dtFillText;
+            grdBatchBI.DataBind();
+        }
+        else if (hdbatch.Value == "2")
+        {
+            GridView3.DataSource = dtFillValue;
+            GridView3.DataBind();
+            grdSubTopicID.DataSource = dtFillText;
+            grdSubTopicID.DataBind();
+        }
+        else if (hdbatch.Value == "1")
+        {
+            grdBatchBT.DataSource = dtFillValue;
+            grdBatchBT.DataBind();
+            grdBatchBI.DataSource = dtFillText;
+            grdBatchBI.DataBind();
+
+        }
+
+
+        for (int i1 = 0; i1 < grdBatchBT.Rows.Count; i1++)
+        {
+            for (int j1 = 0; j1 < grdBatchBT.Rows[i1].Cells.Count; j1++)
+            {
+                string encoded = grdBatchBT.Rows[i1].Cells[j1].Text;
+                string encoded1 = grdBatchBI.Rows[i1].Cells[j1].Text;
+                if (encoded == "&amp;nbsp;Lunch&amp;nbsp;")
+                {
+                    grdBatchBT.Rows[i1].Cells[j1].BackColor = System.Drawing.Color.LightGray;
+                    grdBatchBT.Rows[i1].Cells[j1].ForeColor = System.Drawing.Color.Coral;
+                }
+                grdBatchBT.Rows[i1].Cells[j1].Text = Context.Server.HtmlDecode(encoded);
+                grdBatchBI.Rows[i1].Cells[j1].Text = Context.Server.HtmlDecode(encoded1);
+            }
+        }
+        for (int i1 = 0; i1 < GridView3.Rows.Count; i1++)
+        {
+            string L = "";
+            for (int j1 = 0; j1 < GridView3.Rows[i1].Cells.Count; j1++)
+            {
+                string encoded = GridView3.Rows[i1].Cells[j1].Text;
+                string encoded1 = grdBatchBT.Rows[i1].Cells[j1].Text;
+                if (encoded == "&amp;nbsp;Lunch&amp;nbsp;")
+                {
+                    GridView3.Rows[i1].Cells[j1].BackColor = System.Drawing.Color.LightGray;
+                    GridView3.Rows[i1].Cells[j1].ForeColor = System.Drawing.Color.Coral;
+                }
+                GridView3.Rows[i1].Cells[j1].Text = Context.Server.HtmlDecode(encoded);
+                grdBatchBT.Rows[i1].Cells[j1].Text = Context.Server.HtmlDecode(encoded1);
+                if (i1 == 0 && j1 > 0 )
+                {
+                    DataTable dtTemplate = new DataTable();
+                    if (L == "L")
+                    {
+                        dtTemplate = objFunc.FillDataTable("select time from PeriodView where inst_id='" + ddlInstitute.SelectedValue + "' and courseid='" + ddlCourse.SelectedValue + "' and weekid='" + ddlWeek.SelectedValue + "' and semester='" + ddlSemester.SelectedValue + "' and period='" + (j1 - 1).ToString() + "'");
+                        GridView3.Rows[i1].Cells[j1].Text = Shortname((j1 - 1).ToString(), "") + "<br/>(" + checkTime(dtTemplate.Rows[0].ItemArray[0].ToString()) + ")";
+                        grdBatchBT.Rows[i1].Cells[j1].Text = Shortname((j1 - 1).ToString(), "") + "<br/>(" + checkTime(dtTemplate.Rows[0].ItemArray[0].ToString()) + ")";
+                    }
+                    else
+                    {
+                        dtTemplate = objFunc.FillDataTable("select time from PeriodView where inst_id='" + ddlInstitute.SelectedValue + "' and courseid='" + ddlCourse.SelectedValue + "' and weekid='" + ddlWeek.SelectedValue + "' and semester='" + ddlSemester.SelectedValue + "' and period='" + (j1).ToString() + "'");
+                        GridView3.Rows[i1].Cells[j1].Text = Shortname(j1.ToString(), "") + "<br/>(" + checkTime(dtTemplate.Rows[0].ItemArray[0].ToString()) + ")";
+                        grdBatchBT.Rows[i1].Cells[j1].Text = Shortname(j1.ToString(), "") + "<br/>(" + checkTime(dtTemplate.Rows[0].ItemArray[0].ToString()) + ")";
+                    }
+                }
+                else if (encoded == "&nbsp;Lunch&nbsp;")
+                {
+                    L = "L";
+                }
+            }
+        }
+    }
+    private string checkTime(string ti)
+    {
+        System.Array arr1;
+        arr1 = Microsoft.VisualBasic.Strings.Split(ti.Replace("AM", "").Replace("PM", ""), "-", -1, 0);
+        int i;
+        string rettime = "";
+        for (i = 0; i <= arr1.Length - 1; i++)
+        {
+            System.Array arr;
+
+            arr = Microsoft.VisualBasic.Strings.Split(arr1.GetValue(i).ToString().Replace("AM", "").Replace("PM", ""), ":", -1, 0);
+            int timeformat = 12;
+            timeformat = timeformat + int.Parse(arr.GetValue(0).ToString());
+            if (timeformat <= 18)
+            {
+                if (rettime == "")
+                {
+                    rettime = arr.GetValue(0) + ":" + arr.GetValue(1) + ":" + arr.GetValue(2) + " PM";
+                }
+                else
+                {
+                    rettime = rettime + "-" + arr.GetValue(0) + ":" + arr.GetValue(1) + ":" + arr.GetValue(2) + " PM";
+                }
+            }
+            else
+            {
+                if (rettime == "")
+                {
+                    rettime = arr.GetValue(0) + ":" + arr.GetValue(1) + ":" + arr.GetValue(2) + " AM";
+                }
+                else
+                {
+                    rettime = rettime + "-" + arr.GetValue(0) + ":" + arr.GetValue(1) + ":" + arr.GetValue(2) + " AM";
+                }
+            }
+        }
+        return rettime;
+    }
+    public string StringFromArray(System.Array arr)
+    {
+        int i = 0;
+        string result = "";
+        for (i = 0; i < arr.Length; i++)
+        {
+            if (result == String.Empty)
+            {
+                result = arr.GetValue(i).ToString();
+            }
+            else
+            {
+                result = result + ";" + arr.GetValue(i).ToString();
+            }
+        }
+        return result;
+    }
+
+    protected void grdBatchBT_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+
+    }
+    public void Update(DataTable dtText, DataTable dtID, String option)
+    {
+
+        System.Array arr;
+        arr = Microsoft.VisualBasic.Strings.Split(hdAll.Value, "^", -1, 0);//all previous periods
+       objFunc.MsgBox(hdAll.Value, this);
+        System.Array arr1;
+        arr1 = Microsoft.VisualBasic.Strings.Split(hdVenue.Value, "^", -1, 0);
+        string pd = hdSelday.Value + "|" + hdSelPeriod.Value;//new selected Period
+        System.Array Storefaculy = null;
+        string faculty = "";
+        string Venue = "";
+
+        if (optEdit.Checked != true && (option == "Move" || option == "Copy" || option == "Swap"))
+        {
+            if (hdSelday.Value == "" && option.ToString() != "Suspend" && option.ToString() != "Faculty" && option.ToString() != "Venue")
+            {
+                objFunc.MsgBox1("Invalid Day assignment.", UpdatePanel1);
+                return;
+            }
+            if (hdSelPeriod.Value == "" && option.ToString() != "Suspend" && option.ToString() != "Faculty" && option.ToString() != "Venue")
+            {
+                objFunc.MsgBox1("Invalid Period assignment.", UpdatePanel1);
+                return;
+            }
+        }
+        string subtop = "";
+        string FacultyN = "";
+        string VenuN = "";
+        string ReasonN = "";
+        string type = "";
+        string subtopID = "";
+        string facultyID = "";
+        string venuid = "";
+        System.Array storeText;
+        System.Array storeValue;
+        DataRow[] drCheck = dtText.Select("Day like'" + txtd.Value + "%'"); //Select previous values using Day
+                    storeText = Microsoft.VisualBasic.Strings.Split(drCheck[0][int.Parse(txtp.Value)].ToString(), "#", -1, 0);//check whether faculty assigned or not
+        
+        if (storeText.GetValue(0).ToString() != "<img src='../comment_new.gif' alt='' />")//if assigned then
+        {
+            try
+            {
+                subtop = storeText.GetValue(0).ToString();
+                type = storeText.GetValue(1).ToString();
+                FacultyN = storeText.GetValue(2).ToString();
+                VenuN = storeText.GetValue(3).ToString();
+                ReasonN = storeText.GetValue(4).ToString();
+            }
+            catch
+            {
+            }
+        }
+        DataRow[] drChecID = dtID.Select("Day like'" + txtd.Value + "%'");//Select previous value from ID Table
+        storeValue = Microsoft.VisualBasic.Strings.Split(drChecID[0][int.Parse(txtp.Value.ToString())].ToString(), "#", -1, 0);//check whether faculty assigned or not
+        if (storeValue.GetValue(0).ToString() != "<img src='../comment_new.gif' alt='' />")//if assigned then
+        {
+            try
+            {
+                subtopID = storeValue.GetValue(0).ToString();
+                type = storeValue.GetValue(1).ToString();
+                facultyID = storeValue.GetValue(2).ToString();
+                venuid = storeValue.GetValue(3).ToString();
+                ReasonN = storeValue.GetValue(4).ToString();
+            }
+            catch
+            {
+            }
+        }
+      
+        if (optFaculty.Checked == true)
+        {
+            DataRow[] drFillText = dtText.Select("Day like'" + txtd.Value + "%'");//select from text grid
+            DataRow[] drFillvalue = dtID.Select("Day like'" + txtd.Value + "%'");//select from Value grid
+            drFillText = dtText.Select("Day='" + txtd.Value + "'");
+            //if (!drFillText[0][int.Parse(arr.GetValue(7).ToString())].ToString().Contains("icon_user"))
+            //{
+            FacultyN = "<img src='../icon_user.gif' alt='" + arr.GetValue(9).ToString() + "' /><span style='color:green'>" + arr.GetValue(9).ToString() + "</span>";
+            drFillText[0][int.Parse(txtp.Value.ToString())] = subtop + "#" + type + "<br/>#" + FacultyN + "<br/>#" + VenuN + "<br/>#" + ReasonN;
+            if (type.Trim() == "Practical")
+            {
+                drFillText[0][int.Parse(txtp.Value.ToString()) + 1] = subtop + "#" + type + "<br/>#" + FacultyN + "<br/>#" + VenuN + "<br/>#" + ReasonN;
+            }
+            //}
+            dtText.AcceptChanges();
+            facultyID = arr.GetValue(8).ToString();
+            drFillvalue = dtID.Select("Day like'" + txtd.Value + "%'");
+            drFillvalue[0][int.Parse(txtp.Value.ToString())] = subtopID + "<br/>#" + type + "<br/>#" + facultyID + "<br/>#" + venuid + "<br/>#" + ReasonN; //drFillvalue[0][int.Parse(arr.GetValue(7).ToString())].ToString().Replace("F-", "F-" + arr.GetValue(8).ToString());
+            if (type.Trim() == "Practical")
+            {
+                drFillvalue[0][int.Parse(txtp.Value.ToString()) + 1] = subtopID + "#" + type + "#" + facultyID + "#" + venuid + "#" + ReasonN; //drFillvalue[0][int.Parse(arr.GetValue(7).ToString())].ToString().Replace("F-", "F-" + arr.GetValue(8).ToString());
+
+            }
+            dtID.AcceptChanges();
+        }
+        if (optVenu.Checked == true)
+        {
+
+            DataRow[] drFillText = dtText.Select("Day like'" + arr.GetValue(6).ToString() + "%'");//select from text grid
+            DataRow[] drFillvalue = dtID.Select("Day like'" + arr.GetValue(6).ToString() + "%'");//select from Value grid
+            drFillText = dtText.Select("Day='" + arr.GetValue(6).ToString() + "'");
+
+            VenuN = "<img src='../icon_home.gif' alt='" + arr1.GetValue(1).ToString() + "' /><span style='color:green'>" + arr1.GetValue(1).ToString() + "</span>";
+            drFillText[0][int.Parse(arr.GetValue(7).ToString())] = subtop + "#" + type + "<br/>#" + FacultyN + "<br/>#" + VenuN + "<br/>#" + ReasonN;
+            if (type.Trim() == "Practical")
+            {
+                drFillText[0][int.Parse(txtp.Value.ToString()) + 1] = subtop + "#" + type + "<br/>#" + FacultyN + "<br/>#" + VenuN + "<br/>#" + ReasonN;
+            }
+            dtText.AcceptChanges();
+            drFillvalue = dtID.Select("Day like'" + arr.GetValue(6).ToString() + "%'");
+            if (venuid == "")
+            {
+                venuid = arr1.GetValue(0).ToString();
+            }
+            drFillvalue[0][int.Parse(arr.GetValue(7).ToString())] = subtopID + "#" + type + "#" + facultyID + "#" + venuid + "#" + ReasonN; //drFillvalue[0][int.Parse(arr.GetValue(7).ToString())].ToString().Replace("V-", "V-" + arr1.GetValue(0).ToString());
+            if (type.Trim() == "Practical")
+            {
+                drFillvalue[0][int.Parse(txtp.Value.ToString()) + 1] = subtopID + "#" + type + "#" + facultyID + "#" + venuid + "#" + ReasonN; //drFillvalue[0][int.Parse(arr.GetValue(7).ToString())].ToString().Replace("F-", "F-" + arr.GetValue(8).ToString());
+
+            }
+            dtID.AcceptChanges();
+        }
+        if (optEdit.Checked == true)
+        {
+            string dd = txtd.Value.ToString() + "|" + txtp.Value.ToString();
+            System.Array arrSub;
+            arrSub = Microsoft.VisualBasic.Strings.Split(hdSubjectTopic.Value, "^", -1, 0);
+            arr.SetValue(arrSub.GetValue(5).ToString(), 0);
+            arr.SetValue(arrSub.GetValue(4).ToString(), 1);
+            arr.SetValue(arrSub.GetValue(3).ToString(), 2);
+            arr.SetValue(arrSub.GetValue(2).ToString(), 3);
+            arr.SetValue(arrSub.GetValue(1).ToString(), 4);
+            arr.SetValue(arrSub.GetValue(0).ToString(), 5);
+            arr.SetValue(arrSub.GetValue(6).ToString(), 6);
+            arr.SetValue(arrSub.GetValue(7).ToString(), 7);
+            arr.SetValue(arrSub.GetValue(8).ToString(), 8);
+            arr.SetValue(arrSub.GetValue(9).ToString(), 9);
+            arr.SetValue(arrSub.GetValue(10).ToString(), 10);
+            arr.SetValue(arrSub.GetValue(11).ToString(), 11);
+            hdtype.Value = objFunc.Get_details("Select type from Subtopic where subtopicid='" + arrSub.GetValue(4).ToString() + "'");
+            DataRow[] drFillText = dtText.Select("Day like'" + txtd.Value + "%'");//select from text grid
+
+            string sub_topic = "<span style='color:Brown'>" + arrSub.GetValue(1).ToString().ToUpper() + "</span>";
+            string sub_topic1 = "<span style='color:Green'>" + arrSub.GetValue(3).ToString().ToUpper() + "</span>";
+
+            // drFill[j] = "<a id='S" + dtTheory.Rows[k].ItemArray[6].ToString() + "' href='Javascript:void(0);' onclick=Javascript:{GetCustomer(this,'" + dtTheory.Rows[k].ItemArray[6].ToString() + "');OpenCourse();OpenCourse1('" + send + "');}  ><img src='../file.ico' alt='' style='cursor:hand;Border:none' /></a>" + sub_topic + "<br/>" + sub_topic1 + "<br/>" + dtTheory.Rows[k].ItemArray[8].ToString() + "# " + dtTheory.Rows[k].ItemArray[7].ToString() + "<br/> #<br/>#<br/>#";//<img src='../icon_alert.gif' alt='Suspend' style='cursor:hand;Border:none' />
+
+
+
+            drFillText[0][int.Parse(txtp.Value)] = "<a id='" + arrSub.GetValue(4).ToString() + "' href='Javascript:void(0);'  onclick=Javascript:{GetCustomer(this,'" + arr.GetValue(1).ToString() + "');OpenCourse();OpenCourse1('" + dd + "');}><img src='../flag_red.gif' style='cursor:hand;Border:none' alt='' id='" + "" + "' /></a>" + sub_topic + "<br/>" + sub_topic1 + "<br/>" + arrSub.GetValue(5).ToString() + "#" + hdtype.Value + "<br/>#<img src='../icon_user.gif' alt='' />" + arrSub.GetValue(9) + "</br>#<img src='../icon_home.gif' />" + arrSub.GetValue(11) + "<br/>#" + ReasonN;
+            if (type.Trim() == "Practical")
+            {
+                drFillText[0][int.Parse(txtp.Value.ToString()) + 1] = "<a id='" + arrSub.GetValue(4).ToString() + "' href='Javascript:void(0);'  onclick=Javascript:{GetCustomer(this,'" + arr.GetValue(1).ToString() + "');OpenCourse();OpenCourse1('" + dd + "');}><img src='../flag_red.gif' style='cursor:hand;Border:none' alt='' id='" + "" + "' /></a>" + sub_topic + "<br/>" + sub_topic1 + "<br/>" + arrSub.GetValue(5).ToString() + "#" + hdtype.Value + "<br/>#<img src='../icon_user.gif' alt='' />" + arrSub.GetValue(9) + "</br>#<img src='../icon_home.gif' />" + arrSub.GetValue(11) + "<br/>#" + ReasonN;
+
+            }
+            dtText.AcceptChanges();
+            DataRow[] drFillvalue = dtID.Select("Day like'" + txtd.Value + "%'");//select from Value grid
+            drFillvalue[0][int.Parse(txtp.Value)] = arrSub.GetValue(4).ToString() + "#" + hdtype.Value + "#" + arrSub.GetValue(8) + "#" + arrSub.GetValue(10) + "#" + ReasonN; //to update id datatable
+            if (type.Trim() == "Practical")
+            {
+                drFillvalue[0][int.Parse(txtp.Value.ToString()) + 1] =  arrSub.GetValue(4).ToString() + "#" + hdtype.Value + "#" + arrSub.GetValue(8) + "#" + arrSub.GetValue(10) + "#" + ReasonN; //to update id datatable
+
+            }
+            dtID.AcceptChanges();
+        }
+        if (option.ToString() == "Move")
+        {
+            DataRow[] drFillText = dtText.Select("Day like'" + arr.GetValue(6).ToString() + "%'"); //Select previous values using Day
+            Storefaculy = Microsoft.VisualBasic.Strings.Split(drFillText[0][int.Parse(arr.GetValue(7).ToString())].ToString(), "#", -1, 0);//check whether faculty assigned or not
+            if (Storefaculy.GetValue(0).ToString() != "<img src='../comment_new.gif' alt='' />")//if assigned then
+            {
+                try
+                {
+                    subtop = storeText.GetValue(0).ToString();
+                    type = storeText.GetValue(1).ToString();
+                    ReasonN = storeText.GetValue(4).ToString();
+                    faculty = Storefaculy.GetValue(2).ToString();
+                    Venue = Storefaculy.GetValue(3).ToString();
+                }
+                catch
+                {
+                }
+            }
+            drFillText[0][int.Parse(arr.GetValue(7).ToString())] = "<a id='S" + "" + "' href='Javascript:void(0);' onclick=Javascript:{GetCustomer(this,'" + "" + "');OpenCourse();OpenCourse1('" + arr.GetValue(6).ToString() + "|" + arr.GetValue(7).ToString() + "');}  ><img src='../comment_new.gif' alt='' style='cursor:hand;Border:none' /></a><br/># <br/>#<br/>#<br/>#<br/>#";//Replace previous value from blank
+            drFillText = dtText.Select("Day='" + hdSelday.Value + "'");//select row where data is to move using day
+            //
+            string sub_topic = "<span style='color:Brown'>" + objFunc.Get_details("select subjectname from Suject_topic_SubtopicN where subtopicid='" + arr.GetValue(1).ToString()+ "'") + "</span>";
+            string sub_topic1 = "<span style='color:Green'>" + objFunc.Get_details("select TopicName from Suject_topic_SubtopicN where subtopicid='" + arr.GetValue(1).ToString()+ "'") + "</span>";
+            //
+            drFillText[0][int.Parse(hdSelPeriod.Value)] = "<a id='" + "" + "' href='Javascript:void(0);'  onclick=Javascript:{GetCustomer(this,'" + arr.GetValue(1).ToString() + "');OpenCourse();OpenCourse1('" + pd + "');}><img src='../flag_red.gif' style='cursor:hand;Border:none' alt='' id='" + "" + "' /></a>" + sub_topic.ToString() + "<br/>" + sub_topic1.ToString() + "<br/>" + hdstopic.Value + "<br/>#" + hdtype.Value + "<br/>#" + faculty + "<br/>#" + Venue + "<br/>#" + ReasonN;//update data + "<br/><img src='../page_alert.gif' alt='" + Storefaculy.GetValue(4).ToString() + "/>"
+            dtText.AcceptChanges();
+
+            DataRow[] drFillvalue = dtID.Select("Day like'" + arr.GetValue(6).ToString() + "%'");//Select previous value from ID Table
+            Storefaculy = Microsoft.VisualBasic.Strings.Split(drFillvalue[0][int.Parse(arr.GetValue(7).ToString())].ToString(), "#", -1, 0);//check whether faculty assigned or not
+            if (Storefaculy.GetValue(0).ToString() != "<img src='../comment_new.gif' alt='' />")//if assigned then
+            {
+                try
+                {
+                    subtopID = storeValue.GetValue(0).ToString();
+                    type = storeValue.GetValue(1).ToString();
+                    ReasonN = storeValue.GetValue(4).ToString();
+                    faculty = Storefaculy.GetValue(2).ToString();
+                    Venue = Storefaculy.GetValue(3).ToString();
+                }
+                catch
+                {
+                }
+            }
+            drFillvalue[0][int.Parse(arr.GetValue(7).ToString())] = "";//Set Pervious value blank
+            drFillvalue = dtID.Select("Day like'" + hdSelday.Value + "%'");//select from Value grid
+            drFillvalue[0][int.Parse(hdSelPeriod.Value)] = arr.GetValue(1).ToString() + "#" + hdtype.Value + "#" + faculty + "#" + Venue + "#" + txtReason.Value;
+
+            dtID.AcceptChanges();
+        }
+       
+        if (option.ToString() == "Swap")
+        {
+            DataRow[] drFillvalue = dtID.Select("Day like'" + hdSelday.Value + "%'");//select from Value grid
+            DataRow[] drFillText = dtText.Select("Day like'" + hdSelday.Value + "%'");//select from text grid
+            string swap = drFillText[0][int.Parse(hdSelPeriod.Value)].ToString();       //To swap text
+            string swapvalue = drFillvalue[0][int.Parse(hdSelPeriod.Value)].ToString(); //To Sap Value
+            string sub_topic = "<span style='color:Brown'>" + objFunc.Get_details("select subjectname from Suject_topic_SubtopicN where subtopicid='" + arr.GetValue(1).ToString() + "'") + "</span>";
+            string sub_topic1 = "<span style='color:Green'>" + objFunc.Get_details("select TopicName from Suject_topic_SubtopicN where subtopicid='" + arr.GetValue(1).ToString() + "'") + "</span>";
+           
+            drFillText[0][int.Parse(hdSelPeriod.Value)] = "<a id='" + "" + "' href='Javascript:void(0);'  onclick=Javascript:{GetCustomer(this,'" + arr.GetValue(1).ToString() + "');OpenCourse();OpenCourse1('" + pd + "');}><img src='../flag_red.gif' style='cursor:hand;Border:none' alt='' id='" + "" + "' /></a>"+sub_topic.ToString()+"<br/>#"+sub_topic1.ToString()+"<br/>#" + hdstopic.Value + "# " + hdtype.Value + "<br/>#" + FacultyN.ToString() + "<br/>#" + VenuN.ToString() + "<br/>#" + ReasonN.ToString();
+            drFillText = dtText.Select("Day like'" + arr.GetValue(6).ToString() + "%'");
+            string old = arr.GetValue(6).ToString() + "|" + arr.GetValue(7).ToString();
+            if (swap.Contains(pd.ToString()) == true)
+                swap = swap.ToString().Replace(pd.ToString(), old.ToString());
+            drFillText[0][int.Parse(arr.GetValue(7).ToString())] = swap;
+            dtText.AcceptChanges();
+            drFillvalue[0][int.Parse(hdSelPeriod.Value)] = arr.GetValue(1).ToString() + "#" + hdtype.Value + "#" + facultyID.ToString() + "#" + venuid.ToString() + "#" + ReasonN.ToString();
+            drFillvalue = dtID.Select("Day like'" + arr.GetValue(6).ToString() + "%'");
+            drFillvalue[0][int.Parse(arr.GetValue(7).ToString())] = swapvalue;
+            dtID.AcceptChanges();
+        }
+
+        if (option.ToString() == "Suspend")
+        {
+
+            DataRow[] drFillText1 = dtText.Select("Day like'" + arr.GetValue(6).ToString() + "%'");//select from text grid
+            drFillText1 = dtText.Select("Day='" + arr.GetValue(6).ToString() + "'");
+            ReasonN = "R-<img src='../page_alert.gif' alt='" + txtReason.Value + "' />";
+            drFillText1[0][int.Parse(arr.GetValue(7).ToString())] = subtop + "<br/>#" + type + "<br/>#" + FacultyN + "<br/>#" + VenuN + "<br/>#" + ReasonN;
+            dtText.AcceptChanges();
+
+            DataRow[] drFillvalue1 = dtID.Select("Day like'" + arr.GetValue(6).ToString() + "%'");
+            drFillvalue1 = dtID.Select("Day like'" + arr.GetValue(6).ToString() + "%'");//select from Value grid
+            drFillvalue1[0][int.Parse(arr.GetValue(7).ToString())] = subtopID + "#" + type + "#" + facultyID + "#" + venuid + "#" + txtReason.Value; //drFillvalue1[0][int.Parse(arr.GetValue(7).ToString())].ToString().Replace("F-", "F-" + faculty).Replace("V-", "V-" + Venue).Replace("R-", "R-" + txtReason.Value);// + "#" + hdtype.Value + "#F-" + faculty + "#V-" + Venue + "#R-" + txtReason.Value;
+            dtID.AcceptChanges();
+
+        }
+        if (option.ToString() == "Copy")
+        {
+            DataRow[] drFillText = dtText.Select("Day like'" + arr.GetValue(6).ToString() + "%'");//select from text grid
+           string sub_topic = "<span style='color:Brown'>" + objFunc.Get_details("select subjectname from Suject_topic_SubtopicN where subtopicid='" + arr.GetValue(1).ToString() + "'") + "</span>";
+            string sub_topic1 = "<span style='color:Green'>" + objFunc.Get_details("select TopicName from Suject_topic_SubtopicN where subtopicid='" + arr.GetValue(1).ToString() + "'") + "</span>";
+           
+            drFillText = dtText.Select("Day like'" + hdSelday.Value + "%'");//select from text grid
+
+            drFillText[0][int.Parse(hdSelPeriod.Value)] = "<a id='' href='Javascript:void(0);'  onclick=Javascript:{GetCustomer(this,'" + arr.GetValue(1).ToString() + "');OpenCourse();OpenCourse1('" + pd + "');}><img src='../flag_red.gif' style='cursor:hand;Border:none' alt='' id='' /></a>"+ sub_topic +"<br/>"+sub_topic1 +"<br/>" + hdstopic.Value + "<br/>#" + hdtype.Value + "<br/>#" + FacultyN + "<br/>#" + VenuN + "<br/>#" + ReasonN;
+            DataRow[] drFillvalue = dtID.Select("Day like'" + arr.GetValue(6).ToString() + "%'");//Select previous value from ID Table
+
+            drFillvalue = dtID.Select("Day like'" + hdSelday.Value + "%'");//select from Value grid
+            drFillvalue[0][int.Parse(hdSelPeriod.Value)] = arr.GetValue(1).ToString() + "#" + hdtype.Value + "#" + facultyID + "#" + venuid + "#" + ReasonN; //to update id datatable
+            dtID.AcceptChanges();//Update ID Table
+            dtText.AcceptChanges();
+        }
+       
+       
+    }
+    private void perValue()
+    {
+        for (int i1 = 0; i1 < GridView3.Rows.Count; i1++)
+        {
+            string L = "";
+            for (int j1 = 0; j1 < GridView3.Rows[i1].Cells.Count; j1++)
+            {
+                string encoded = GridView3.Rows[i1].Cells[j1].Text;
+                string encoded1 = grdBatchBT.Rows[i1].Cells[j1].Text;
+                if (encoded == "&amp;nbsp;Lunch&amp;nbsp;")
+                {
+                    GridView3.Rows[i1].Cells[j1].BackColor = System.Drawing.Color.LightGray;
+                    GridView3.Rows[i1].Cells[j1].ForeColor = System.Drawing.Color.Coral;
+                }
+                GridView3.Rows[i1].Cells[j1].Text = Context.Server.HtmlDecode(encoded);
+                grdBatchBT.Rows[i1].Cells[j1].Text = Context.Server.HtmlDecode(encoded1);
+                if (i1 == 0 && j1 > 0)
+                {
+                    DataTable dtTemplate = new DataTable();
+                    if (L == "L")
+                    {
+                        dtTemplate = objFunc.FillDataTable("select time from PeriodView where inst_id='" + ddlInstitute.SelectedValue + "' and courseid='" + ddlCourse.SelectedValue + "' and weekid='" + ddlWeek.SelectedValue + "' and semester='" + ddlSemester.SelectedValue + "' and period='" + (j1 - 1).ToString() + "'");
+                        GridView3.Rows[i1].Cells[j1].Text = Shortname((j1 - 1).ToString(), "") + "<br/>(" + checkTime(dtTemplate.Rows[0].ItemArray[0].ToString()) + ")";
+                        grdBatchBT.Rows[i1].Cells[j1].Text = Shortname((j1 - 1).ToString(), "") + "<br/>(" + checkTime(dtTemplate.Rows[0].ItemArray[0].ToString()) + ")";
+                    }
+                    else
+                    {
+                        dtTemplate = objFunc.FillDataTable("select time from PeriodView where inst_id='" + ddlInstitute.SelectedValue + "' and courseid='" + ddlCourse.SelectedValue + "' and weekid='" + ddlWeek.SelectedValue + "' and semester='" + ddlSemester.SelectedValue + "' and period='" + (j1).ToString() + "'");
+                        GridView3.Rows[i1].Cells[j1].Text = Shortname(j1.ToString(), "") + "<br/>(" + checkTime(dtTemplate.Rows[0].ItemArray[0].ToString()) + ")";
+                        grdBatchBT.Rows[i1].Cells[j1].Text = Shortname(j1.ToString(), "") + "<br/>(" + checkTime(dtTemplate.Rows[0].ItemArray[0].ToString()) + ")";
+                    }
+                }
+                else if (encoded == "&nbsp;Lunch&nbsp;")
+                {
+                    L = "L";
+                }
+            }
+        }
+    }
+    public void GridHtmlEncode(GridView Gridview1)
+    {
+        for (int i1 = 0; i1 < Gridview1.Rows.Count; i1++)
+        {
+            for (int j1 = 0; j1 < Gridview1.Rows[i1].Cells.Count; j1++)
+            {
+                string encoded = Gridview1.Rows[i1].Cells[j1].Text;
+                ////string encoded1 = grdBatchBT.Rows[i1].Cells[j1].Text;
+                if (encoded == "&amp;nbsp;Lunch&amp;nbsp;")
+                {
+                    Gridview1.Rows[i1].Cells[j1].BackColor = System.Drawing.Color.LightGray;
+                    Gridview1.Rows[i1].Cells[j1].ForeColor = System.Drawing.Color.Coral;
+                }
+                if (i1 == 0 && j1>0)
+                {
+                    Gridview1.Rows[i1].Cells[j1].Text = j1.ToString();
+                }
+                Gridview1.Rows[i1].Cells[j1].Text = Context.Server.HtmlDecode(encoded);
+                ////grdBatchBT.Rows[i1].Cells[j1].Text = Context.Server.HtmlDecode(encoded1);
+            }
+        }
+    }
+    protected void cmdSubmit_Click(object sender, EventArgs e)
+    {
+        NewDAL.DBManager objDB = new DBManager();
+        objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+        objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+        objDB.Open();
+        objDB.BeginTransaction();
+        string insertS = String.Empty;
+        string insertS1 = String.Empty;
+        DataTable dt_Period = new DataTable();
+        dt_Period = objFunc.FillDataTable("SELECT dbo.Period_Temp_Child.Inst_ID, dbo.Period_Temp_Child.Date, dbo.Period_Temp_Child.Day, dbo.Period_Template.shortname, dbo.Period_Template.Period, dbo.Period_Temp_Child.courseid, dbo.Period_Temp_Child.weekID, dbo.Period_Temp_Child.Session FROM dbo.Period_Template INNER JOIN dbo.Period_Temp_Child ON dbo.Period_Template.TemplateID = dbo.Period_Temp_Child.TemplateID AND  dbo.Period_Template.Inst_Id = dbo.Period_Temp_Child.Inst_ID WHERE (dbo.Period_Temp_Child.courseid = '" + ddlCourse.SelectedValue.ToString() + "') AND (dbo.Period_Temp_Child.weekID = '" + ddlWeek.SelectedValue + "') and (dbo.Period_Temp_Child.inst_ID = '" + ddlInstitute.SelectedValue + "') and dbo.Period_Temp_Child.Session='" + Session["sesnID"] + "'");
+        DataTable dt_subject = new DataTable();
+        dt_subject = objFunc.FillDataTable("SELECT * from Suject_topic_SubtopicN WHERE CourseID=" + ddlCourse.SelectedValue + " AND Semester='" + ddlSemester.SelectedValue + "'  order by SubTopicID ");
+        if (RadioButtonList1.Items[0].Selected == true)
+        {
+            if (grdSubTopicID.Rows.Count > 0)
+            {
+                for (int i = 1; i < grdSubTopicID.Rows.Count; i++)
+                {
+
+                    for (int j = 1; j < grdSubTopicID.HeaderRow.Cells.Count; j++)
+                    {
+                        string subjectID = "0";
+                        string TopicID = "0";
+                        string SubTopicID = "0";
+                        string facultyID = "0";
+                        string type = "";
+                        string suspend = "False";
+                        string suspendResn = "";
+                        string venue = "";
+                        string Temp="";
+                        System.Array arr;
+                        arr = Microsoft.VisualBasic.Strings.Split(grdSubTopicID.Rows[i].Cells[j].Text.ToString(), "#", -1, 0);
+                        DataRow[] dr;
+                        if (arr.GetValue(0).ToString() != "&amp;nbsp;Lunch&amp;nbsp;" && arr.GetValue(0).ToString() != "&nbsp;" && arr.GetValue(0).ToString()!="-1")
+                        {
+                            dr = dt_subject.Select("SubtopicID='" + arr.GetValue(0).ToString().Replace("&lt;br/&gt;","") + "'");
+                            subjectID = dr[0].ItemArray[0].ToString();
+                            TopicID = dr[0].ItemArray[2].ToString();
+                            SubTopicID = dr[0].ItemArray[6].ToString();
+                            facultyID = arr.GetValue(2).ToString();
+                            type = arr.GetValue(1).ToString().Trim();
+                            if (arr.GetValue(4).ToString() == String.Empty)
+                            {
+                                suspend = "False";
+                            }
+                            else
+                            {
+                                suspend = "True";
+                            }
+                            suspendResn = arr.GetValue(4).ToString();
+                            venue = arr.GetValue(3).ToString();
+                        }
+                        else 
+                        {
+                            
+                            subjectID = "0";
+                            TopicID = "0";
+                            SubTopicID = "0";
+                            facultyID = "0";
+                            dr = dt_subject.Select("SubtopicID='0'");
+                            venue = "";
+                        }
+                        if(arr.GetValue(0).ToString() == "&amp;nbsp;Lunch&amp;nbsp;")
+                            Temp = "LUNCH";
+                        DataRow[] dr1;
+                        dr1 = dt_Period.Select("Day='" + grdSubTopicID.Rows[i].Cells[0].Text.ToString().Trim() + "' and Period='" + grdSubTopicID.HeaderRow.Cells[j].Text.ToString().Trim() + "'");
+
+                        string PName = Shortname(grdSubTopicID.HeaderRow.Cells[j].Text.ToString().Trim(), Temp);
+                        if (insertS.ToString() == String.Empty)
+                            insertS = "insert into periods values('" + ddlWeek.SelectedValue + "','" + ddlCourse.SelectedValue + "','" + subjectID.ToString() + "','" + TopicID.ToString() + "','" + SubTopicID.ToString() + "','" + facultyID.ToString() + "','" + ddlSemester.SelectedValue.ToString() + "','1','" + grdSubTopicID.HeaderRow.Cells[j].Text.ToString().Trim() + "','" + Convert.ToDateTime(dr1[0].ItemArray[1].ToString()) + "','" + type.ToString() + "','A','" + suspend.ToString() + "','" + suspendResn.ToString() + "','" + Session["instID"] + "','" + Session["SesnID"] + "','" + Session["U_name"] + "','" + DateTime.Now.Date + "','" + venue.ToString() + "','" + grdSubTopicID.Rows[i].Cells[0].Text.ToString().Trim() + "','" + PName.ToString() + "')";
+                        else
+                            insertS = insertS + ";" + "insert into periods values('" + ddlWeek.SelectedValue + "','" + ddlCourse.SelectedValue + "','" + subjectID.ToString() + "','" + TopicID.ToString() + "','" + SubTopicID.ToString() + "','" + facultyID.ToString() + "','" + ddlSemester.SelectedValue.ToString() + "','1','" + grdSubTopicID.HeaderRow.Cells[j].Text.ToString().Trim() + "','" + Convert.ToDateTime(dr1[0].ItemArray[1].ToString()) + "','" + type.ToString() + "','A','" + suspend.ToString() + "','" + suspendResn.ToString() + "','" + Session["instID"] + "','" + Session["SesnID"] + "','" + Session["U_name"] + "','" + DateTime.Now.Date + "','" + venue.ToString() + "','" + grdSubTopicID.Rows[i].Cells[0].Text.ToString().Trim() + "','" + PName.ToString() + "')";
+                    }
+                }
+
+            }
+            if (grdBatchBI.Rows.Count > 0)
+            {
+                for (int i = 1; i < grdBatchBI.Rows.Count; i++)
+                {
+                    for (int j = 1; j < grdBatchBI.HeaderRow.Cells.Count; j++)
+                    {
+                        string subjectID = "0";
+                        string TopicID = "0";
+                        string SubTopicID = "0";
+                        string facultyID = "0";
+                        string type = "";
+                        string suspend = "False";
+                        string suspendResn = "";
+                        string venue = "";
+                        string Temp = "";
+                        System.Array arr;
+                        arr = Microsoft.VisualBasic.Strings.Split(grdBatchBI.Rows[i].Cells[j].Text.ToString(), "#", -1, 0);
+                        DataRow[] dr;
+                        if (arr.GetValue(0).ToString().Contains("Lunch") != true && (arr.GetValue(0).ToString().Trim() != "" && arr.GetValue(0).ToString().Trim() != "&nbsp;" && arr.GetValue(0).ToString()!="-1" ))
+                        {
+                            dr = dt_subject.Select("SubtopicID='" + arr.GetValue(0).ToString().Replace("<br/>","") + "'");
+                            subjectID = dr[0].ItemArray[0].ToString();
+                            TopicID = dr[0].ItemArray[2].ToString();
+                            SubTopicID = dr[0].ItemArray[6].ToString();
+                            facultyID = arr.GetValue(2).ToString();
+                            type = arr.GetValue(1).ToString().Trim();
+                            if (arr.GetValue(4).ToString() == String.Empty)
+                            {
+                                suspend = "False";
+                            }
+                            else
+                            {
+                                suspend = "True";
+                            }
+                            suspendResn = arr.GetValue(4).ToString();
+                            venue = arr.GetValue(3).ToString();
+                        }
+                        else
+                        {
+                            subjectID = "0";
+                            TopicID = "0";
+                            SubTopicID = "0";
+                            facultyID = "0";
+                            dr = dt_subject.Select("SubtopicID='0'");
+                            venue = "";
+                        }
+                        if (arr.GetValue(0).ToString().Contains("Lunch") == true)
+                            Temp = "LUNCH";
+                           
+                        DataRow[] dr1;
+                        dr1 = dt_Period.Select("Day='" + grdBatchBI.Rows[i].Cells[0].Text.ToString().Trim() + "' and Period='" + grdBatchBI.HeaderRow.Cells[j].Text.ToString().Trim() + "'");
+                        string PName = Shortname(grdBatchBI.HeaderRow.Cells[j].Text.ToString().Trim(), Temp);
+                     
+                        if (insertS.ToString() == String.Empty)
+                            insertS = "insert into periods values('" + ddlWeek.SelectedValue + "','" + ddlCourse.SelectedValue + "','" + subjectID.ToString() + "','" + TopicID.ToString() + "','" + SubTopicID.ToString() + "','" + facultyID.ToString() + "','" + ddlSemester.SelectedValue.ToString() + "','1','" + grdBatchBI.HeaderRow.Cells[j].Text.ToString().Trim() + "','" + Convert.ToDateTime(dr1[0].ItemArray[1].ToString()) + "','" + type.ToString() + "','B','" + suspend.ToString() + "','" + suspendResn.ToString() + "','" + Session["instID"] + "','" + Session["SesnID"] + "','" + Session["U_name"] + "','" + DateTime.Now.Date + "','" + venue.ToString() + "','" + grdBatchBI.Rows[i].Cells[0].Text.ToString().Trim() + "','" + PName.ToString() + "')";
+                        else
+                            insertS = insertS + ";" + "insert into periods values('" + ddlWeek.SelectedValue + "','" + ddlCourse.SelectedValue + "','" + subjectID.ToString() + "','" + TopicID.ToString() + "','" + SubTopicID.ToString() + "','" + facultyID.ToString() + "','" + ddlSemester.SelectedValue.ToString() + "','1','" + grdBatchBI.HeaderRow.Cells[j].Text.ToString().Trim() + "','" + Convert.ToDateTime(dr1[0].ItemArray[1].ToString()) + "','" + type.ToString() + "','B','" + suspend.ToString() + "','" + suspendResn.ToString() + "','" + Session["instID"] + "','" + Session["SesnID"] + "','" + Session["U_name"] + "','" + DateTime.Now.Date + "','" + venue.ToString() + "','" + grdBatchBI.Rows[i].Cells[0].Text.ToString().Trim() + "','" + PName.ToString() + "')";
+                    }
+                }
+            }
+
+
+        }
+        if (RadioButtonList1.Items[1].Selected == true)
+        {
+            insertS = String.Empty;
+            if (grdSubTopicID.Rows.Count > 0)
+            {
+                for (int i = 1; i < grdSubTopicID.Rows.Count; i++)
+                {
+                    for (int j = 1; j < grdSubTopicID.HeaderRow.Cells.Count; j++)
+                    {
+                        string subjectID = "0";
+                        string TopicID = "0";
+                        string SubTopicID = "0";
+                        string facultyID = "0";
+                        string type = "";
+                        string suspend = "False";
+                        string suspendResn = "";
+                        string venue = "";
+                        string Temp = "";
+                        System.Array arr;
+                        arr = Microsoft.VisualBasic.Strings.Split(grdSubTopicID.Rows[i].Cells[j].Text.ToString(), "#", -1, 0);
+                        DataRow[] dr;
+                        if (arr.GetValue(0).ToString() != "&amp;nbsp;Lunch&amp;nbsp;" && arr.GetValue(0).ToString() != "&nbsp;")
+                        {
+                            dr = dt_subject.Select("SubtopicID='" + arr.GetValue(0).ToString() + "'");
+                            subjectID = dr[0].ItemArray[0].ToString();
+                            TopicID = dr[0].ItemArray[2].ToString();
+                            SubTopicID = dr[0].ItemArray[6].ToString();
+                            facultyID = arr.GetValue(2).ToString();
+                            type = arr.GetValue(1).ToString().Trim();
+                            if (arr.GetValue(4).ToString() == String.Empty)
+                            {
+                                suspend = "False";
+                            }
+                            else
+                            {
+                                suspend = "True";
+                            }
+                            suspendResn = arr.GetValue(4).ToString();
+                            venue = arr.GetValue(3).ToString();
+                        }
+                        else
+                        {
+                            subjectID = "0";
+                            TopicID = "0";
+                            SubTopicID = "0";
+                            facultyID = "0";
+                            dr = dt_subject.Select("SubtopicID='0'");
+                            venue = "";
+                        }
+                        if (arr.GetValue(0).ToString() != "&amp;nbsp;Lunch&amp;nbsp;")
+                            Temp = "LUNCH";
+                        string PName = Shortname(grdSubTopicID.HeaderRow.Cells[j].Text.ToString().Trim(), Temp);
+                     
+                        DataRow[] dr1;
+                        dr1 = dt_Period.Select("Day='" + grdSubTopicID.Rows[i].Cells[0].Text.ToString().Trim() + "' and Period='" + grdSubTopicID.HeaderRow.Cells[j].Text.ToString().Trim() + "'");
+
+
+                        if (insertS.ToString() == String.Empty)
+                            insertS = "insert into periods values('" + ddlWeek.SelectedValue + "','" + ddlCourse.SelectedValue + "','" + subjectID.ToString() + "','" + TopicID.ToString() + "','" + SubTopicID.ToString() + "','" + facultyID.ToString() + "','" + ddlSemester.SelectedValue.ToString() + "','1','" + grdSubTopicID.HeaderRow.Cells[j].Text.ToString().Trim() + "','" + Convert.ToDateTime(dr1[0].ItemArray[1].ToString()) + "','" + type.ToString() + "','A','" + suspend.ToString() + "','" + suspendResn.ToString() + "','" + Session["instID"] + "','" + Session["SesnID"] + "','" + Session["U_name"] + "','" + DateTime.Now.Date + "','" + venue.ToString() + "','" + grdSubTopicID.Rows[i].Cells[0].Text.ToString().Trim() + "','" + PName.ToString() + "')";
+                        else
+                            insertS = insertS + ";" + "insert into periods values('" + ddlWeek.SelectedValue + "','" + ddlCourse.SelectedValue + "','" + subjectID.ToString() + "','" + TopicID.ToString() + "','" + SubTopicID.ToString() + "','" + facultyID.ToString() + "','" + ddlSemester.SelectedValue.ToString() + "','1','" + grdSubTopicID.HeaderRow.Cells[j].Text.ToString().Trim() + "','" + Convert.ToDateTime(dr1[0].ItemArray[1].ToString()) + "','" + type.ToString() + "','A','" + suspend.ToString() + "','" + suspendResn.ToString() + "','" + Session["instID"] + "','" + Session["SesnID"] + "','" + Session["U_name"] + "','" + DateTime.Now.Date + "','" + venue.ToString() + "','" + grdSubTopicID.Rows[i].Cells[0].Text.ToString().Trim() + "','" + PName.ToString() + "')";
+                    }
+                }
+
+            }
+        }
+        if (RadioButtonList1.Items[2].Selected == true)
+        {
+            insertS = String.Empty;
+            if (grdBatchBI.Rows.Count > 0)
+            {
+                for (int i = 1; i < grdBatchBI.Rows.Count; i++)
+                {
+                    for (int j = 1; j < grdBatchBI.HeaderRow.Cells.Count; j++)
+                    {
+                        string subjectID = "0";
+                        string TopicID = "0";
+                        string SubTopicID = "0";
+                        string facultyID = "0";
+                        string type = "";
+                        string suspend = "False";
+                        string suspendResn = "";
+                        string venue = "";
+                        string Temp = "";
+                        System.Array arr;
+                        arr = Microsoft.VisualBasic.Strings.Split(grdBatchBI.Rows[i].Cells[j].Text.ToString(), "#", -1, 0);
+                        DataRow[] dr;
+                        if (arr.GetValue(0).ToString().Contains("Lunch") != true && (arr.GetValue(0).ToString().Trim() != "" && arr.GetValue(0).ToString().Trim() != "&nbsp;"))
+                        {
+                            dr = dt_subject.Select("SubtopicID='" + arr.GetValue(0).ToString() + "'");
+                            subjectID = dr[0].ItemArray[0].ToString();
+                            TopicID = dr[0].ItemArray[2].ToString();
+                            SubTopicID = dr[0].ItemArray[6].ToString();
+                            facultyID = arr.GetValue(2).ToString();
+                            type = arr.GetValue(1).ToString().Trim();
+                            if (arr.GetValue(4).ToString() == String.Empty)
+                            {
+                                suspend = "False";
+                            }
+                            else
+                            {
+                                suspend = "True";
+                            }
+                            suspendResn = arr.GetValue(4).ToString();
+                            venue = arr.GetValue(3).ToString();
+                        }
+                        else
+                        {
+                            subjectID = "0";
+                            TopicID = "0";
+                            SubTopicID = "0";
+                            facultyID = "0";
+                            dr = dt_subject.Select("SubtopicID='0'");
+                            venue = "";
+                        }
+                        if (arr.GetValue(0).ToString().Contains("Lunch") != true)
+                            Temp = "LUNCH";
+                        DataRow[] dr1;
+                        dr1 = dt_Period.Select("Day='" + grdBatchBI.Rows[i].Cells[0].Text.ToString().Trim() + "' and Period='" + grdBatchBI.HeaderRow.Cells[j].Text.ToString().Trim() + "'");
+                        string PName = Shortname(grdBatchBI.HeaderRow.Cells[j].Text.ToString().Trim(), Temp);
+                     
+                        if (insertS.ToString() == String.Empty)
+                            insertS = "insert into periods values('" + ddlWeek.SelectedValue + "','" + ddlCourse.SelectedValue + "','" + subjectID.ToString() + "','" + TopicID.ToString() + "','" + SubTopicID.ToString() + "','" + facultyID.ToString() + "','" + ddlSemester.SelectedValue.ToString() + "','1','" + grdBatchBI.HeaderRow.Cells[j].Text.ToString().Trim() + "','" + Convert.ToDateTime(dr1[0].ItemArray[1].ToString()) + "','" + type.ToString() + "','B','" + suspend.ToString() + "','" + suspendResn.ToString() + "','" + Session["instID"] + "','" + Session["SesnID"] + "','" + Session["U_name"] + "','" + DateTime.Now.Date + "','" + venue.ToString() + "','" + grdBatchBI.Rows[i].Cells[0].Text.ToString().Trim() + "','" + PName.ToString() + "')";
+                        else
+                            insertS = insertS + ";" + "insert into periods values('" + ddlWeek.SelectedValue + "','" + ddlCourse.SelectedValue + "','" + subjectID.ToString() + "','" + TopicID.ToString() + "','" + SubTopicID.ToString() + "','" + facultyID.ToString() + "','" + ddlSemester.SelectedValue.ToString() + "','1','" + grdBatchBI.HeaderRow.Cells[j].Text.ToString().Trim() + "','" + Convert.ToDateTime(dr1[0].ItemArray[1].ToString()) + "','" + type.ToString() + "','B','" + suspend.ToString() + "','" + suspendResn.ToString() + "','" + Session["instID"] + "','" + Session["SesnID"] + "','" + Session["U_name"] + "','" + DateTime.Now.Date + "','" + venue.ToString() + "','" + grdBatchBI.Rows[i].Cells[0].Text.ToString().Trim() + "','" + PName.ToString() + "')";
+                    }
+
+                }
+            }
+        }
+            if (insertS.ToString() != String.Empty)
+            {
+                objDB.ExecuteNonQuery(CommandType.Text, insertS.ToString().Replace("&lt;br/&gt;","").Replace("<br/>",""));
+                objDB.Transaction.Commit();
+                objFunc.MsgBox("Record Saved for Selected batch.", this);
+
+            }
+            else
+            {
+                objFunc.MsgBox("Select Any option All || Batch A || Batch B", this);
+                return;
+            }
+            objDB.Close();
+        }
+   
+    public string Shortname(string PNum,String Lunc)
+    {
+        string result = "";
+        if (Lunc.ToString() == "LUNCH")
+        {
+            result = "LUNCH";
+            hdPL.Value = PNum.ToString();
+        }
+        else
+        {
+            if (hdPL.Value != String.Empty)
+            {
+                if (Int32.Parse(PNum.ToString()) > Int32.Parse(hdPL.Value))
+                {
+                    PNum = (Int32.Parse(PNum.ToString()) - 1).ToString();
+                }
+            }
+            if (PNum.ToString() == "1")
+                result = "I";
+            if (PNum.ToString() == "2")
+                result = "II";
+            if (PNum.ToString() == "3")
+                result = "III";
+            if (PNum.ToString() == "4")
+                result = "IV";
+            if (PNum.ToString() == "5")
+                result = "Lunch";
+            if (PNum.ToString() == "6")
+                result = "V";
+            if (PNum.ToString() == "7")
+                result = "VI";
+            if (PNum.ToString() == "8")
+                result = "VII";
+        }
+        return result;
+    }
+}

@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Accountoffice" targetNamespace="http://tempuri.org/Accountoffice.xsd" xmlns:mstns="http://tempuri.org/Accountoffice.xsd" xmlns="http://tempuri.org/Accountoffice.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="AccountOfficeTableAdapter" GeneratorDataComponentClassName="AccountOfficeTableAdapter" Name="AccountOffice" UserDataComponentName="AccountOfficeTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT     dbo.Employee_Master.empId, dbo.Employee_Master.empCode, dbo.Employee_Master.empName, dbo.Employee_Master.lastName, dbo.EmpPayMode.paymodeId, 
+                      dbo.EmpPayMode.AccNo, dbo.EmpPayMode.WED, dbo.PaySalaryDet_C.MainID, dbo.PaySalaryDet.MName, dbo.PaySalaryDet.InstituteID, dbo.PaySalaryDet.yearN, 
+                      dbo.PaySalaryDet_C.Atten, dbo.PaySalaryDet_C.NetSal
+FROM         dbo.Employee_Master INNER JOIN
+                      dbo.EmpPayMode ON dbo.Employee_Master.empId = dbo.EmpPayMode.empId INNER JOIN
+                      dbo.PaySalaryDet_C ON dbo.Employee_Master.empId = dbo.PaySalaryDet_C.Empid INNER JOIN
+                      dbo.PaySalaryDet ON dbo.PaySalaryDet_C.MainID = dbo.PaySalaryDet.MainID</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="empId" DataSetColumn="empId" />
+              <Mapping SourceColumn="empCode" DataSetColumn="empCode" />
+              <Mapping SourceColumn="empName" DataSetColumn="empName" />
+              <Mapping SourceColumn="paymodeId" DataSetColumn="paymodeId" />
+              <Mapping SourceColumn="AccNo" DataSetColumn="AccNo" />
+              <Mapping SourceColumn="WED" DataSetColumn="WED" />
+              <Mapping SourceColumn="MainID" DataSetColumn="MainID" />
+              <Mapping SourceColumn="MName" DataSetColumn="MName" />
+              <Mapping SourceColumn="InstituteID" DataSetColumn="InstituteID" />
+              <Mapping SourceColumn="yearN" DataSetColumn="yearN" />
+              <Mapping SourceColumn="Atten" DataSetColumn="Atten" />
+              <Mapping SourceColumn="NetSal" DataSetColumn="NetSal" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Accountoffice" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="Accountoffice" msprop:Generator_UserDSName="Accountoffice">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="AccountOffice" msprop:Generator_TableClassName="AccountOfficeDataTable" msprop:Generator_TableVarName="tableAccountOffice" msprop:Generator_TablePropName="AccountOffice" msprop:Generator_RowDeletingName="AccountOfficeRowDeleting" msprop:Generator_UserTableName="AccountOffice" msprop:Generator_RowChangingName="AccountOfficeRowChanging" msprop:Generator_RowEvHandlerName="AccountOfficeRowChangeEventHandler" msprop:Generator_RowDeletedName="AccountOfficeRowDeleted" msprop:Generator_RowEvArgName="AccountOfficeRowChangeEvent" msprop:Generator_RowChangedName="AccountOfficeRowChanged" msprop:Generator_RowClassName="AccountOfficeRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="empId" msprop:Generator_ColumnVarNameInTable="columnempId" msprop:Generator_ColumnPropNameInRow="empId" msprop:Generator_ColumnPropNameInTable="empIdColumn" msprop:Generator_UserColumnName="empId" type="xs:int" />
+              <xs:element name="empCode" msprop:Generator_ColumnVarNameInTable="columnempCode" msprop:Generator_ColumnPropNameInRow="empCode" msprop:Generator_ColumnPropNameInTable="empCodeColumn" msprop:Generator_UserColumnName="empCode">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="empName" msprop:Generator_ColumnVarNameInTable="columnempName" msprop:Generator_ColumnPropNameInRow="empName" msprop:Generator_ColumnPropNameInTable="empNameColumn" msprop:Generator_UserColumnName="empName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="paymodeId" msprop:Generator_ColumnVarNameInTable="columnpaymodeId" msprop:Generator_ColumnPropNameInRow="paymodeId" msprop:Generator_ColumnPropNameInTable="paymodeIdColumn" msprop:Generator_UserColumnName="paymodeId">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="25" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AccNo" msprop:Generator_ColumnVarNameInTable="columnAccNo" msprop:Generator_ColumnPropNameInRow="AccNo" msprop:Generator_ColumnPropNameInTable="AccNoColumn" msprop:Generator_UserColumnName="AccNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="WED" msprop:Generator_ColumnVarNameInTable="columnWED" msprop:Generator_ColumnPropNameInRow="WED" msprop:Generator_ColumnPropNameInTable="WEDColumn" msprop:Generator_UserColumnName="WED" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="MainID" msprop:Generator_ColumnVarNameInTable="columnMainID" msprop:Generator_ColumnPropNameInRow="MainID" msprop:Generator_ColumnPropNameInTable="MainIDColumn" msprop:Generator_UserColumnName="MainID" type="xs:int" />
+              <xs:element name="MName" msprop:Generator_ColumnVarNameInTable="columnMName" msprop:Generator_ColumnPropNameInRow="MName" msprop:Generator_ColumnPropNameInTable="MNameColumn" msprop:Generator_UserColumnName="MName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="InstituteID" msprop:Generator_ColumnVarNameInTable="columnInstituteID" msprop:Generator_ColumnPropNameInRow="InstituteID" msprop:Generator_ColumnPropNameInTable="InstituteIDColumn" msprop:Generator_UserColumnName="InstituteID" type="xs:int" />
+              <xs:element name="yearN" msprop:Generator_ColumnVarNameInTable="columnyearN" msprop:Generator_ColumnPropNameInRow="yearN" msprop:Generator_ColumnPropNameInTable="yearNColumn" msprop:Generator_UserColumnName="yearN" type="xs:int" minOccurs="0" />
+              <xs:element name="Atten" msprop:Generator_ColumnVarNameInTable="columnAtten" msprop:Generator_ColumnPropNameInRow="Atten" msprop:Generator_ColumnPropNameInTable="AttenColumn" msprop:Generator_UserColumnName="Atten" type="xs:decimal" />
+              <xs:element name="NetSal" msprop:Generator_ColumnVarNameInTable="columnNetSal" msprop:Generator_ColumnPropNameInRow="NetSal" msprop:Generator_ColumnPropNameInTable="NetSalColumn" msprop:Generator_UserColumnName="NetSal" type="xs:decimal" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

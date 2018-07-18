@@ -1,0 +1,21 @@
+﻿
+<%@ Register Assembly="CommonClassLibrary" Namespace="CommonClassLibrary" TagPrefix="cc1" %>
+<asp:GridView runat="server"   CssClass="paging_gridview">
+  <%--<FooterStyle ForeColor="#FFFFFF" BackColor="#AAAAAA"></FooterStyle>--%>
+  <EditRowStyle CssClass="paging_gridview_itm" ForeColor="white" BackColor="#006699"></EditRowStyle>
+  <HeaderStyle  CssClass="paging_gridview_hdr"   />
+  <AlternatingRowStyle CssClass="paging_gridview_aitm" ></AlternatingRowStyle>
+  <SelectedRowStyle BackColor="Gray" ForeColor="white"   />
+  <RowStyle CssClass="paging_gridview_itm" />
+   <PagerStyle CssClass="paging_gridview_pgr"></PagerStyle>
+</asp:GridView>
+<cc1:GroupedGridView runat="server" CssClass="paging_gridview">
+  <EditRowStyle CssClass="paging_gridview_itm" ForeColor="white" BackColor="#006699" />
+  <HeaderStyle  CssClass="paging_gridview_hdr"   />
+  <AlternatingRowStyle CssClass="paging_gridview_aitm" />
+  <SelectedRowStyle BackColor="Gray" ForeColor="white"   />
+  <RowStyle CssClass="paging_gridview_itm" />
+   <PagerStyle CssClass="paging_gridview_pgr" /> 
+ </cc1:GroupedGridView>
+                            
+<asp:Button runat="server" skinid="btnSkin" cssclass="buttons"  />

@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="StudentAdmitCard" targetNamespace="http://tempuri.org/StudentAdmitCard.xsd" xmlns:mstns="http://tempuri.org/StudentAdmitCard.xsd" xmlns="http://tempuri.org/StudentAdmitCard.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Student_AdmitCardTableAdapter" GeneratorDataComponentClassName="Student_AdmitCardTableAdapter" Name="Student_AdmitCard" UserDataComponentName="Student_AdmitCardTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectName="[E-SIMDB].dbo.Student_AdmitCard" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT RollNo, StudentName, FatherName, Photo, Gender, CollegeName, CAddress, StateName, CityName, CCategory, Signature, CollegeAddress, CollegeCode, PZipCode, StudentID, Status FROM dbo.Student_AdmitCard</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="RollNo" DataSetColumn="RollNo" />
+              <Mapping SourceColumn="StudentName" DataSetColumn="StudentName" />
+              <Mapping SourceColumn="FatherName" DataSetColumn="FatherName" />
+              <Mapping SourceColumn="Photo" DataSetColumn="Photo" />
+              <Mapping SourceColumn="Gender" DataSetColumn="Gender" />
+              <Mapping SourceColumn="CollegeName" DataSetColumn="CollegeName" />
+              <Mapping SourceColumn="CAddress" DataSetColumn="CAddress" />
+              <Mapping SourceColumn="StateName" DataSetColumn="StateName" />
+              <Mapping SourceColumn="CityName" DataSetColumn="CityName" />
+              <Mapping SourceColumn="CCategory" DataSetColumn="CCategory" />
+              <Mapping SourceColumn="Signature" DataSetColumn="Signature" />
+              <Mapping SourceColumn="CollegeAddress" DataSetColumn="CollegeAddress" />
+              <Mapping SourceColumn="CollegeCode" DataSetColumn="CollegeCode" />
+              <Mapping SourceColumn="PZipCode" DataSetColumn="PZipCode" />
+              <Mapping SourceColumn="StudentID" DataSetColumn="StudentID" />
+              <Mapping SourceColumn="Status" DataSetColumn="Status" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="StudentAdmitCard" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="StudentAdmitCard" msprop:Generator_UserDSName="StudentAdmitCard">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Student_AdmitCard" msprop:Generator_TableClassName="Student_AdmitCardDataTable" msprop:Generator_TableVarName="tableStudent_AdmitCard" msprop:Generator_TablePropName="Student_AdmitCard" msprop:Generator_RowDeletingName="Student_AdmitCardRowDeleting" msprop:Generator_UserTableName="Student_AdmitCard" msprop:Generator_RowChangingName="Student_AdmitCardRowChanging" msprop:Generator_RowEvHandlerName="Student_AdmitCardRowChangeEventHandler" msprop:Generator_RowDeletedName="Student_AdmitCardRowDeleted" msprop:Generator_RowEvArgName="Student_AdmitCardRowChangeEvent" msprop:Generator_RowChangedName="Student_AdmitCardRowChanged" msprop:Generator_RowClassName="Student_AdmitCardRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RollNo" msprop:Generator_ColumnVarNameInTable="columnRollNo" msprop:Generator_ColumnPropNameInRow="RollNo" msprop:Generator_ColumnPropNameInTable="RollNoColumn" msprop:Generator_UserColumnName="RollNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="StudentName" msprop:Generator_ColumnVarNameInTable="columnStudentName" msprop:Generator_ColumnPropNameInRow="StudentName" msprop:Generator_ColumnPropNameInTable="StudentNameColumn" msprop:Generator_UserColumnName="StudentName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FatherName" msprop:Generator_ColumnVarNameInTable="columnFatherName" msprop:Generator_ColumnPropNameInRow="FatherName" msprop:Generator_ColumnPropNameInTable="FatherNameColumn" msprop:Generator_UserColumnName="FatherName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Photo" msprop:Generator_ColumnVarNameInTable="columnPhoto" msprop:Generator_ColumnPropNameInRow="Photo" msprop:Generator_ColumnPropNameInTable="PhotoColumn" msprop:Generator_UserColumnName="Photo" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="Gender" msprop:Generator_ColumnVarNameInTable="columnGender" msprop:Generator_ColumnPropNameInRow="Gender" msprop:Generator_ColumnPropNameInTable="GenderColumn" msprop:Generator_UserColumnName="Gender" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CollegeName" msprop:Generator_ColumnVarNameInTable="columnCollegeName" msprop:Generator_ColumnPropNameInRow="CollegeName" msprop:Generator_ColumnPropNameInTable="CollegeNameColumn" msprop:Generator_UserColumnName="CollegeName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CAddress" msprop:Generator_ColumnVarNameInTable="columnCAddress" msprop:Generator_ColumnPropNameInRow="CAddress" msprop:Generator_ColumnPropNameInTable="CAddressColumn" msprop:Generator_UserColumnName="CAddress" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="StateName" msprop:Generator_ColumnVarNameInTable="columnStateName" msprop:Generator_ColumnPropNameInRow="StateName" msprop:Generator_ColumnPropNameInTable="StateNameColumn" msprop:Generator_UserColumnName="StateName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CityName" msprop:Generator_ColumnVarNameInTable="columnCityName" msprop:Generator_ColumnPropNameInRow="CityName" msprop:Generator_ColumnPropNameInTable="CityNameColumn" msprop:Generator_UserColumnName="CityName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CCategory" msprop:Generator_ColumnVarNameInTable="columnCCategory" msprop:Generator_ColumnPropNameInRow="CCategory" msprop:Generator_ColumnPropNameInTable="CCategoryColumn" msprop:Generator_UserColumnName="CCategory" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Signature" msprop:Generator_ColumnVarNameInTable="columnSignature" msprop:Generator_ColumnPropNameInRow="Signature" msprop:Generator_ColumnPropNameInTable="SignatureColumn" msprop:Generator_UserColumnName="Signature" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="CollegeAddress" msprop:Generator_ColumnVarNameInTable="columnCollegeAddress" msprop:Generator_ColumnPropNameInRow="CollegeAddress" msprop:Generator_ColumnPropNameInTable="CollegeAddressColumn" msprop:Generator_UserColumnName="CollegeAddress">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="350" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CollegeCode" msprop:Generator_ColumnVarNameInTable="columnCollegeCode" msprop:Generator_ColumnPropNameInRow="CollegeCode" msprop:Generator_ColumnPropNameInTable="CollegeCodeColumn" msprop:Generator_UserColumnName="CollegeCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PZipCode" msprop:Generator_ColumnVarNameInTable="columnPZipCode" msprop:Generator_ColumnPropNameInRow="PZipCode" msprop:Generator_ColumnPropNameInTable="PZipCodeColumn" msprop:Generator_UserColumnName="PZipCode" type="xs:int" minOccurs="0" />
+              <xs:element name="StudentID" msprop:Generator_ColumnVarNameInTable="columnStudentID" msprop:Generator_ColumnPropNameInRow="StudentID" msprop:Generator_ColumnPropNameInTable="StudentIDColumn" msprop:Generator_UserColumnName="StudentID" type="xs:int" minOccurs="0" />
+              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

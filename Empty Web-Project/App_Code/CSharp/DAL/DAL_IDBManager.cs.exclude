@@ -1,0 +1,48 @@
+﻿using Microsoft.VisualBasic;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Data;
+using System.Diagnostics;
+
+using System.Data.Odbc;
+using System.Data.SqlClient;
+using System.Data.OleDb;
+namespace DataAccessLayer
+{
+    public enum DataProvider
+    {
+        Oracle,
+        SqlServer,
+        OleDb,
+        Odbc
+    }
+    public interface IDBManager_
+    {
+        DataProvider ProviderType { get; set; }
+        string ConnectionString { get; set; }
+        IDbConnection Connection { get; }
+        IDbTransaction Transaction { get; }
+        IDataReader DataReader { get; set; }
+        IDbCommand Command { get; }
+        IDbDataParameter[] Parameters { get; }
+        // ReadOnly Property CommandType() As String
+
+        DbType DBtype { get; }
+        void Open();
+        void BeginTransaction();
+        void CommitTransaction();
+        void CreateParameters(int paramsCount);
+        void AddParameters(int index, string paramName, object objValue, DbType dbtype);
+        void AddParameters(int index, string paramName, object objValue, DbType dbtype,System.Data.ParameterDirection direction);
+        //Function ExecuteReader(ByVal CommandType As IDbCommand, ByVal commandText As String) As IDataReader
+        IDataReader ExecuteReader(CommandType commandType, string commandText);
+        DataTable ExecuteTable(CommandType commandType, string commandText);
+        DataSet ExecuteDataSet(CommandType commandType, string commandText);
+        object ExecuteScalar(CommandType commandType, string commandText);
+        int ExecuteNonQuery(CommandType commandType, string commandText);
+        void CloseReader();
+        void Close();
+        void Dispose();
+    }
+}

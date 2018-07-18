@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="MergingBatch" targetNamespace="http://tempuri.org/MergingBatch.xsd" xmlns:mstns="http://tempuri.org/MergingBatch.xsd" xmlns="http://tempuri.org/MergingBatch.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="avanish2_tuteTableAdapter" GeneratorDataComponentClassName="avanish2_tuteTableAdapter" Name="avanish2_tute" UserDataComponentName="avanish2_tuteTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectName="ESIM.dbo.avanish2_tute" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        EgroupId, tute, SubjectCode, Batch_Name, COUNT(StudentId) AS no_of_student, SessionName, CourseYear, SubjectCat_Name, CourseName
+FROM            avanish2_tute
+GROUP BY EgroupId, tute, SubjectCode, Batch_Name, SessionName, CourseYear, SubjectCat_Name, CourseName, SubjectId</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="EgroupId" DataSetColumn="EgroupId" />
+              <Mapping SourceColumn="tute" DataSetColumn="tute" />
+              <Mapping SourceColumn="SubjectCode" DataSetColumn="SubjectCode" />
+              <Mapping SourceColumn="Batch_Name" DataSetColumn="Batch_Name" />
+              <Mapping SourceColumn="no_of_student" DataSetColumn="no_of_student" />
+              <Mapping SourceColumn="SessionName" DataSetColumn="SessionName" />
+              <Mapping SourceColumn="CourseYear" DataSetColumn="CourseYear" />
+              <Mapping SourceColumn="SubjectCat_Name" DataSetColumn="SubjectCat_Name" />
+              <Mapping SourceColumn="CourseName" DataSetColumn="CourseName" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="MergingBatch" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="MergingBatch" msprop:Generator_DataSetName="MergingBatch">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="avanish2_tute" msprop:Generator_TableClassName="avanish2_tuteDataTable" msprop:Generator_TableVarName="tableavanish2_tute" msprop:Generator_TablePropName="avanish2_tute" msprop:Generator_RowDeletingName="avanish2_tuteRowDeleting" msprop:Generator_UserTableName="avanish2_tute" msprop:Generator_RowChangingName="avanish2_tuteRowChanging" msprop:Generator_RowEvHandlerName="avanish2_tuteRowChangeEventHandler" msprop:Generator_RowDeletedName="avanish2_tuteRowDeleted" msprop:Generator_RowEvArgName="avanish2_tuteRowChangeEvent" msprop:Generator_RowChangedName="avanish2_tuteRowChanged" msprop:Generator_RowClassName="avanish2_tuteRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="EgroupId" msprop:Generator_ColumnVarNameInTable="columnEgroupId" msprop:Generator_ColumnPropNameInRow="EgroupId" msprop:Generator_ColumnPropNameInTable="EgroupIdColumn" msprop:Generator_UserColumnName="EgroupId" type="xs:int" minOccurs="0" />
+              <xs:element name="tute" msprop:Generator_ColumnVarNameInTable="columntute" msprop:Generator_ColumnPropNameInRow="tute" msprop:Generator_ColumnPropNameInTable="tuteColumn" msprop:Generator_UserColumnName="tute" type="xs:int" minOccurs="0" />
+              <xs:element name="SubjectCode" msprop:Generator_ColumnVarNameInTable="columnSubjectCode" msprop:Generator_ColumnPropNameInRow="SubjectCode" msprop:Generator_ColumnPropNameInTable="SubjectCodeColumn" msprop:Generator_UserColumnName="SubjectCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Batch_Name" msprop:Generator_ColumnVarNameInTable="columnBatch_Name" msprop:Generator_ColumnPropNameInRow="Batch_Name" msprop:Generator_ColumnPropNameInTable="Batch_NameColumn" msprop:Generator_UserColumnName="Batch_Name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="no_of_student" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnno_of_student" msprop:Generator_ColumnPropNameInRow="no_of_student" msprop:Generator_ColumnPropNameInTable="no_of_studentColumn" msprop:Generator_UserColumnName="no_of_student" type="xs:int" minOccurs="0" />
+              <xs:element name="SessionName" msprop:Generator_ColumnVarNameInTable="columnSessionName" msprop:Generator_ColumnPropNameInRow="SessionName" msprop:Generator_ColumnPropNameInTable="SessionNameColumn" msprop:Generator_UserColumnName="SessionName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CourseYear" msprop:Generator_ColumnVarNameInTable="columnCourseYear" msprop:Generator_ColumnPropNameInRow="CourseYear" msprop:Generator_ColumnPropNameInTable="CourseYearColumn" msprop:Generator_UserColumnName="CourseYear">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SubjectCat_Name" msprop:Generator_ColumnVarNameInTable="columnSubjectCat_Name" msprop:Generator_ColumnPropNameInRow="SubjectCat_Name" msprop:Generator_ColumnPropNameInTable="SubjectCat_NameColumn" msprop:Generator_UserColumnName="SubjectCat_Name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CourseName" msprop:Generator_ColumnVarNameInTable="columnCourseName" msprop:Generator_ColumnPropNameInRow="CourseName" msprop:Generator_ColumnPropNameInTable="CourseNameColumn" msprop:Generator_UserColumnName="CourseName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

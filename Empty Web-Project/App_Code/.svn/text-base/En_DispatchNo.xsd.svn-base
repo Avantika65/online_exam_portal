@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="En_DispatchNo" targetNamespace="http://tempuri.org/En_DispatchNo.xsd" xmlns:mstns="http://tempuri.org/En_DispatchNo.xsd" xmlns="http://tempuri.org/En_DispatchNo.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="En_DispatchNoTableAdapter" GeneratorDataComponentClassName="En_DispatchNoTableAdapter" Name="En_DispatchNo" UserDataComponentName="En_DispatchNoTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectName="EduSuite.dbo.En_DispatchNo" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        onlineID, ExamID, status, Sname, Dispatchno, Srollno, cantactaddress, examdate, examtimefrom, examtimeto, ExamYear, examname
+FROM            En_DispatchNo</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="onlineID" DataSetColumn="onlineID" />
+              <Mapping SourceColumn="ExamID" DataSetColumn="ExamID" />
+              <Mapping SourceColumn="status" DataSetColumn="status" />
+              <Mapping SourceColumn="Sname" DataSetColumn="Sname" />
+              <Mapping SourceColumn="Dispatchno" DataSetColumn="Dispatchno" />
+              <Mapping SourceColumn="Srollno" DataSetColumn="Srollno" />
+              <Mapping SourceColumn="cantactaddress" DataSetColumn="cantactaddress" />
+              <Mapping SourceColumn="examdate" DataSetColumn="examdate" />
+              <Mapping SourceColumn="examtimefrom" DataSetColumn="examtimefrom" />
+              <Mapping SourceColumn="examtimeto" DataSetColumn="examtimeto" />
+              <Mapping SourceColumn="ExamYear" DataSetColumn="ExamYear" />
+              <Mapping SourceColumn="examname" DataSetColumn="examname" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="En_DispatchNo" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="En_DispatchNo" msprop:Generator_DataSetName="En_DispatchNo">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="En_DispatchNo" msprop:Generator_TableClassName="En_DispatchNoDataTable" msprop:Generator_TableVarName="tableEn_DispatchNo" msprop:Generator_TablePropName="_En_DispatchNo" msprop:Generator_RowDeletingName="En_DispatchNoRowDeleting" msprop:Generator_UserTableName="En_DispatchNo" msprop:Generator_RowChangingName="En_DispatchNoRowChanging" msprop:Generator_RowEvHandlerName="En_DispatchNoRowChangeEventHandler" msprop:Generator_RowDeletedName="En_DispatchNoRowDeleted" msprop:Generator_RowEvArgName="En_DispatchNoRowChangeEvent" msprop:Generator_RowChangedName="En_DispatchNoRowChanged" msprop:Generator_RowClassName="En_DispatchNoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="onlineID" msprop:Generator_ColumnVarNameInTable="columnonlineID" msprop:Generator_ColumnPropNameInRow="onlineID" msprop:Generator_ColumnPropNameInTable="onlineIDColumn" msprop:Generator_UserColumnName="onlineID" type="xs:int" />
+              <xs:element name="ExamID" msprop:Generator_ColumnVarNameInTable="columnExamID" msprop:Generator_ColumnPropNameInRow="ExamID" msprop:Generator_ColumnPropNameInTable="ExamIDColumn" msprop:Generator_UserColumnName="ExamID" type="xs:int" />
+              <xs:element name="status" msprop:Generator_ColumnVarNameInTable="columnstatus" msprop:Generator_ColumnPropNameInRow="status" msprop:Generator_ColumnPropNameInTable="statusColumn" msprop:Generator_UserColumnName="status">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Sname" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSname" msprop:Generator_ColumnPropNameInRow="Sname" msprop:Generator_ColumnPropNameInTable="SnameColumn" msprop:Generator_UserColumnName="Sname" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="154" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Dispatchno" msprop:Generator_ColumnVarNameInTable="columnDispatchno" msprop:Generator_ColumnPropNameInRow="Dispatchno" msprop:Generator_ColumnPropNameInTable="DispatchnoColumn" msprop:Generator_UserColumnName="Dispatchno" type="xs:int" />
+              <xs:element name="Srollno" msprop:Generator_ColumnVarNameInTable="columnSrollno" msprop:Generator_ColumnPropNameInRow="Srollno" msprop:Generator_ColumnPropNameInTable="SrollnoColumn" msprop:Generator_UserColumnName="Srollno" type="xs:int" />
+              <xs:element name="cantactaddress" msprop:Generator_ColumnVarNameInTable="columncantactaddress" msprop:Generator_ColumnPropNameInRow="cantactaddress" msprop:Generator_ColumnPropNameInTable="cantactaddressColumn" msprop:Generator_UserColumnName="cantactaddress">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="examdate" msprop:Generator_ColumnVarNameInTable="columnexamdate" msprop:Generator_ColumnPropNameInRow="examdate" msprop:Generator_ColumnPropNameInTable="examdateColumn" msprop:Generator_UserColumnName="examdate" type="xs:dateTime" />
+              <xs:element name="examtimefrom" msprop:Generator_ColumnVarNameInTable="columnexamtimefrom" msprop:Generator_ColumnPropNameInRow="examtimefrom" msprop:Generator_ColumnPropNameInTable="examtimefromColumn" msprop:Generator_UserColumnName="examtimefrom">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="examtimeto" msprop:Generator_ColumnVarNameInTable="columnexamtimeto" msprop:Generator_ColumnPropNameInRow="examtimeto" msprop:Generator_ColumnPropNameInTable="examtimetoColumn" msprop:Generator_UserColumnName="examtimeto">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ExamYear" msprop:Generator_ColumnVarNameInTable="columnExamYear" msprop:Generator_ColumnPropNameInRow="ExamYear" msprop:Generator_ColumnPropNameInTable="ExamYearColumn" msprop:Generator_UserColumnName="ExamYear">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="examname" msprop:Generator_ColumnVarNameInTable="columnexamname" msprop:Generator_ColumnPropNameInRow="examname" msprop:Generator_ColumnPropNameInTable="examnameColumn" msprop:Generator_UserColumnName="examname">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

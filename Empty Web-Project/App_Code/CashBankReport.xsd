@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="CashBankReport" targetNamespace="http://tempuri.org/CashBankReport.xsd" xmlns:mstns="http://tempuri.org/CashBankReport.xsd" xmlns="http://tempuri.org/CashBankReport.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="CashBankVWTableAdapter" GeneratorDataComponentClassName="CashBankVWTableAdapter" Name="CashBankVW" UserDataComponentName="CashBankVWTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectName="Test1.dbo.CashBankVW" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT StudentName, FeeID, FeeHeadName, TotalAmount, PrNo, Narration FROM CashBankVW</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="StudentName" DataSetColumn="StudentName" />
+              <Mapping SourceColumn="FeeID" DataSetColumn="FeeID" />
+              <Mapping SourceColumn="FeeHeadName" DataSetColumn="FeeHeadName" />
+              <Mapping SourceColumn="TotalAmount" DataSetColumn="TotalAmount" />
+              <Mapping SourceColumn="PrNo" DataSetColumn="PrNo" />
+              <Mapping SourceColumn="Narration" DataSetColumn="Narration" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="CashBankReport" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="CashBankReport" msprop:Generator_UserDSName="CashBankReport">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="CashBankVW" msprop:Generator_TableClassName="CashBankVWDataTable" msprop:Generator_TableVarName="tableCashBankVW" msprop:Generator_TablePropName="CashBankVW" msprop:Generator_RowDeletingName="CashBankVWRowDeleting" msprop:Generator_UserTableName="CashBankVW" msprop:Generator_RowChangingName="CashBankVWRowChanging" msprop:Generator_RowEvHandlerName="CashBankVWRowChangeEventHandler" msprop:Generator_RowDeletedName="CashBankVWRowDeleted" msprop:Generator_RowEvArgName="CashBankVWRowChangeEvent" msprop:Generator_RowChangedName="CashBankVWRowChanged" msprop:Generator_RowClassName="CashBankVWRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="StudentName" msprop:Generator_ColumnVarNameInTable="columnStudentName" msprop:Generator_ColumnPropNameInRow="StudentName" msprop:Generator_ColumnPropNameInTable="StudentNameColumn" msprop:Generator_UserColumnName="StudentName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FeeID" msprop:Generator_ColumnVarNameInTable="columnFeeID" msprop:Generator_ColumnPropNameInRow="FeeID" msprop:Generator_ColumnPropNameInTable="FeeIDColumn" msprop:Generator_UserColumnName="FeeID" type="xs:int" minOccurs="0" />
+              <xs:element name="FeeHeadName" msprop:Generator_ColumnVarNameInTable="columnFeeHeadName" msprop:Generator_ColumnPropNameInRow="FeeHeadName" msprop:Generator_ColumnPropNameInTable="FeeHeadNameColumn" msprop:Generator_UserColumnName="FeeHeadName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TotalAmount" msprop:Generator_ColumnVarNameInTable="columnTotalAmount" msprop:Generator_ColumnPropNameInRow="TotalAmount" msprop:Generator_ColumnPropNameInTable="TotalAmountColumn" msprop:Generator_UserColumnName="TotalAmount" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PrNo" msprop:Generator_ColumnVarNameInTable="columnPrNo" msprop:Generator_ColumnPropNameInRow="PrNo" msprop:Generator_ColumnPropNameInTable="PrNoColumn" msprop:Generator_UserColumnName="PrNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Narration" msprop:Generator_ColumnVarNameInTable="columnNarration" msprop:Generator_ColumnPropNameInRow="Narration" msprop:Generator_ColumnPropNameInTable="NarrationColumn" msprop:Generator_UserColumnName="Narration" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Payment" msprop:Generator_ColumnVarNameInTable="columnPayment" msprop:Generator_ColumnPropNameInRow="Payment" msprop:Generator_ColumnPropNameInTable="PaymentColumn" msprop:Generator_UserColumnName="Payment" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DDNO" msprop:Generator_ColumnVarNameInTable="columnDDNO" msprop:Generator_ColumnPropNameInRow="DDNO" msprop:Generator_ColumnPropNameInTable="DDNOColumn" msprop:Generator_UserColumnName="DDNO" type="xs:string" minOccurs="0" />
+              <xs:element name="PaidAmt" msprop:Generator_ColumnVarNameInTable="columnPaidAmt" msprop:Generator_ColumnPropNameInRow="PaidAmt" msprop:Generator_ColumnPropNameInTable="PaidAmtColumn" msprop:Generator_UserColumnName="PaidAmt" type="xs:string" minOccurs="0" />
+              <xs:element name="ChqBAmt" msprop:Generator_ColumnVarNameInTable="columnChqBAmt" msprop:Generator_ColumnPropNameInRow="ChqBAmt" msprop:Generator_ColumnPropNameInTable="ChqBAmtColumn" msprop:Generator_UserColumnName="ChqBAmt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="RCNO" msprop:Generator_ColumnVarNameInTable="columnRCNO" msprop:Generator_ColumnPropNameInRow="RCNO" msprop:Generator_ColumnPropNameInTable="RCNOColumn" msprop:Generator_UserColumnName="RCNO" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

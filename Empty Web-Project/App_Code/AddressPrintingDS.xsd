@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="AddressPrintingDS" targetNamespace="http://tempuri.org/AddressPrintingDS.xsd" xmlns:mstns="http://tempuri.org/AddressPrintingDS.xsd" xmlns="http://tempuri.org/AddressPrintingDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Student_LabelPrintTableAdapter" GeneratorDataComponentClassName="Student_LabelPrintTableAdapter" Name="Student_LabelPrint" UserDataComponentName="Student_LabelPrintTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectName="EDU5March.dbo.Student_LabelPrint" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Student_LabelPrint.*
+FROM            Student_LabelPrint</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="CourseId" DataSetColumn="CourseId" />
+              <Mapping SourceColumn="StudentName" DataSetColumn="StudentName" />
+              <Mapping SourceColumn="Fname" DataSetColumn="Fname" />
+              <Mapping SourceColumn="LAddress" DataSetColumn="LAddress" />
+              <Mapping SourceColumn="LPinCode" DataSetColumn="LPinCode" />
+              <Mapping SourceColumn="LPhoneNo" DataSetColumn="LPhoneNo" />
+              <Mapping SourceColumn="LMobileNo" DataSetColumn="LMobileNo" />
+              <Mapping SourceColumn="PAddress" DataSetColumn="PAddress" />
+              <Mapping SourceColumn="PPinCode" DataSetColumn="PPinCode" />
+              <Mapping SourceColumn="PMobileNo" DataSetColumn="PMobileNo" />
+              <Mapping SourceColumn="CAddress" DataSetColumn="CAddress" />
+              <Mapping SourceColumn="CPinCode" DataSetColumn="CPinCode" />
+              <Mapping SourceColumn="CMobileNo" DataSetColumn="CMobileNo" />
+              <Mapping SourceColumn="StudentID" DataSetColumn="StudentID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="AddressPrintingDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="AddressPrintingDS" msprop:Generator_DataSetName="AddressPrintingDS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Student_LabelPrint" msprop:Generator_TableClassName="Student_LabelPrintDataTable" msprop:Generator_TableVarName="tableStudent_LabelPrint" msprop:Generator_TablePropName="Student_LabelPrint" msprop:Generator_RowDeletingName="Student_LabelPrintRowDeleting" msprop:Generator_UserTableName="Student_LabelPrint" msprop:Generator_RowChangingName="Student_LabelPrintRowChanging" msprop:Generator_RowEvHandlerName="Student_LabelPrintRowChangeEventHandler" msprop:Generator_RowDeletedName="Student_LabelPrintRowDeleted" msprop:Generator_RowEvArgName="Student_LabelPrintRowChangeEvent" msprop:Generator_RowChangedName="Student_LabelPrintRowChanged" msprop:Generator_RowClassName="Student_LabelPrintRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CourseId" msprop:Generator_ColumnVarNameInTable="columnCourseId" msprop:Generator_ColumnPropNameInRow="CourseId" msprop:Generator_ColumnPropNameInTable="CourseIdColumn" msprop:Generator_UserColumnName="CourseId" type="xs:int" />
+              <xs:element name="StudentName" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnStudentName" msprop:Generator_ColumnPropNameInRow="StudentName" msprop:Generator_ColumnPropNameInTable="StudentNameColumn" msprop:Generator_UserColumnName="StudentName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="152" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Fname" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnFname" msprop:Generator_ColumnPropNameInRow="Fname" msprop:Generator_ColumnPropNameInTable="FnameColumn" msprop:Generator_UserColumnName="Fname" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="56" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LAddress" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnLAddress" msprop:Generator_ColumnPropNameInRow="LAddress" msprop:Generator_ColumnPropNameInTable="LAddressColumn" msprop:Generator_UserColumnName="LAddress" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="405" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LPinCode" msprop:Generator_ColumnVarNameInTable="columnLPinCode" msprop:Generator_ColumnPropNameInRow="LPinCode" msprop:Generator_ColumnPropNameInTable="LPinCodeColumn" msprop:Generator_UserColumnName="LPinCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LPhoneNo" msprop:Generator_ColumnVarNameInTable="columnLPhoneNo" msprop:Generator_ColumnPropNameInRow="LPhoneNo" msprop:Generator_ColumnPropNameInTable="LPhoneNoColumn" msprop:Generator_UserColumnName="LPhoneNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="35" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LMobileNo" msprop:Generator_ColumnVarNameInTable="columnLMobileNo" msprop:Generator_ColumnPropNameInRow="LMobileNo" msprop:Generator_ColumnPropNameInTable="LMobileNoColumn" msprop:Generator_UserColumnName="LMobileNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="35" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PAddress" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnPAddress" msprop:Generator_ColumnPropNameInRow="PAddress" msprop:Generator_ColumnPropNameInTable="PAddressColumn" msprop:Generator_UserColumnName="PAddress" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="455" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PPinCode" msprop:Generator_ColumnVarNameInTable="columnPPinCode" msprop:Generator_ColumnPropNameInRow="PPinCode" msprop:Generator_ColumnPropNameInTable="PPinCodeColumn" msprop:Generator_UserColumnName="PPinCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PMobileNo" msprop:Generator_ColumnVarNameInTable="columnPMobileNo" msprop:Generator_ColumnPropNameInRow="PMobileNo" msprop:Generator_ColumnPropNameInTable="PMobileNoColumn" msprop:Generator_UserColumnName="PMobileNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="35" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CAddress" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCAddress" msprop:Generator_ColumnPropNameInRow="CAddress" msprop:Generator_ColumnPropNameInTable="CAddressColumn" msprop:Generator_UserColumnName="CAddress" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="455" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CPinCode" msprop:Generator_ColumnVarNameInTable="columnCPinCode" msprop:Generator_ColumnPropNameInRow="CPinCode" msprop:Generator_ColumnPropNameInTable="CPinCodeColumn" msprop:Generator_UserColumnName="CPinCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CMobileNo" msprop:Generator_ColumnVarNameInTable="columnCMobileNo" msprop:Generator_ColumnPropNameInRow="CMobileNo" msprop:Generator_ColumnPropNameInTable="CMobileNoColumn" msprop:Generator_UserColumnName="CMobileNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="35" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="StudentID" msprop:Generator_ColumnVarNameInTable="columnStudentID" msprop:Generator_ColumnPropNameInRow="StudentID" msprop:Generator_ColumnPropNameInTable="StudentIDColumn" msprop:Generator_UserColumnName="StudentID" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Student_LabelPrint" />
+      <xs:field xpath="mstns:StudentID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

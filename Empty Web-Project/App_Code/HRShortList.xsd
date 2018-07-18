@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="HRShortList" targetNamespace="http://tempuri.org/HRShortList.xsd" xmlns:mstns="http://tempuri.org/HRShortList.xsd" xmlns="http://tempuri.org/HRShortList.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="HR_ShortListed_VTableAdapter" GeneratorDataComponentClassName="HR_ShortListed_VTableAdapter" Name="HR_ShortListed_V" UserDataComponentName="HR_ShortListed_VTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectName="FeesManagement.dbo.HR_ShortListed_V" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT     Designation, DepartmentName, Candidate, deptId, desigId, jobId, jobTitle, payscale, candId, InstituteID, SessionID, UEDate
+FROM         HR_ShortListed_V</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Designation" DataSetColumn="Designation" />
+              <Mapping SourceColumn="DepartmentName" DataSetColumn="DepartmentName" />
+              <Mapping SourceColumn="Candidate" DataSetColumn="Candidate" />
+              <Mapping SourceColumn="deptId" DataSetColumn="deptId" />
+              <Mapping SourceColumn="desigId" DataSetColumn="desigId" />
+              <Mapping SourceColumn="jobId" DataSetColumn="jobId" />
+              <Mapping SourceColumn="jobTitle" DataSetColumn="jobTitle" />
+              <Mapping SourceColumn="payscale" DataSetColumn="payscale" />
+              <Mapping SourceColumn="candId" DataSetColumn="candId" />
+              <Mapping SourceColumn="InstituteID" DataSetColumn="InstituteID" />
+              <Mapping SourceColumn="SessionID" DataSetColumn="SessionID" />
+              <Mapping SourceColumn="UEDate" DataSetColumn="UEDate" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="HRShortList" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="HRShortList" msprop:Generator_DataSetName="HRShortList">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="HR_ShortListed_V" msprop:Generator_UserTableName="HR_ShortListed_V" msprop:Generator_RowDeletedName="HR_ShortListed_VRowDeleted" msprop:Generator_TableClassName="HR_ShortListed_VDataTable" msprop:Generator_RowChangedName="HR_ShortListed_VRowChanged" msprop:Generator_RowClassName="HR_ShortListed_VRow" msprop:Generator_RowChangingName="HR_ShortListed_VRowChanging" msprop:Generator_RowEvArgName="HR_ShortListed_VRowChangeEvent" msprop:Generator_RowEvHandlerName="HR_ShortListed_VRowChangeEventHandler" msprop:Generator_TablePropName="HR_ShortListed_V" msprop:Generator_TableVarName="tableHR_ShortListed_V" msprop:Generator_RowDeletingName="HR_ShortListed_VRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Designation" msprop:Generator_UserColumnName="Designation" msprop:Generator_ColumnPropNameInRow="Designation" msprop:Generator_ColumnVarNameInTable="columnDesignation" msprop:Generator_ColumnPropNameInTable="DesignationColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DepartmentName" msprop:Generator_UserColumnName="DepartmentName" msprop:Generator_ColumnPropNameInRow="DepartmentName" msprop:Generator_ColumnVarNameInTable="columnDepartmentName" msprop:Generator_ColumnPropNameInTable="DepartmentNameColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Candidate" msdata:ReadOnly="true" msprop:Generator_UserColumnName="Candidate" msprop:Generator_ColumnPropNameInRow="Candidate" msprop:Generator_ColumnVarNameInTable="columnCandidate" msprop:Generator_ColumnPropNameInTable="CandidateColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="136" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="deptId" msprop:Generator_UserColumnName="deptId" msprop:Generator_ColumnPropNameInRow="deptId" msprop:Generator_ColumnVarNameInTable="columndeptId" msprop:Generator_ColumnPropNameInTable="deptIdColumn" type="xs:int" />
+              <xs:element name="desigId" msprop:Generator_UserColumnName="desigId" msprop:Generator_ColumnPropNameInRow="desigId" msprop:Generator_ColumnVarNameInTable="columndesigId" msprop:Generator_ColumnPropNameInTable="desigIdColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="jobId" msprop:Generator_UserColumnName="jobId" msprop:Generator_ColumnPropNameInRow="jobId" msprop:Generator_ColumnVarNameInTable="columnjobId" msprop:Generator_ColumnPropNameInTable="jobIdColumn" type="xs:int" />
+              <xs:element name="jobTitle" msprop:Generator_UserColumnName="jobTitle" msprop:Generator_ColumnPropNameInRow="jobTitle" msprop:Generator_ColumnVarNameInTable="columnjobTitle" msprop:Generator_ColumnPropNameInTable="jobTitleColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="payscale" msprop:Generator_UserColumnName="payscale" msprop:Generator_ColumnPropNameInRow="payscale" msprop:Generator_ColumnVarNameInTable="columnpayscale" msprop:Generator_ColumnPropNameInTable="payscaleColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="candId" msprop:Generator_UserColumnName="candId" msprop:Generator_ColumnPropNameInRow="candId" msprop:Generator_ColumnVarNameInTable="columncandId" msprop:Generator_ColumnPropNameInTable="candIdColumn" type="xs:int" />
+              <xs:element name="InstituteID" msprop:Generator_UserColumnName="InstituteID" msprop:Generator_ColumnPropNameInRow="InstituteID" msprop:Generator_ColumnVarNameInTable="columnInstituteID" msprop:Generator_ColumnPropNameInTable="InstituteIDColumn" type="xs:int" />
+              <xs:element name="SessionID" msprop:Generator_UserColumnName="SessionID" msprop:Generator_ColumnPropNameInRow="SessionID" msprop:Generator_ColumnVarNameInTable="columnSessionID" msprop:Generator_ColumnPropNameInTable="SessionIDColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="UEDate" msprop:Generator_UserColumnName="UEDate" msprop:Generator_ColumnPropNameInRow="UEDate" msprop:Generator_ColumnVarNameInTable="columnUEDate" msprop:Generator_ColumnPropNameInTable="UEDateColumn" type="xs:dateTime" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

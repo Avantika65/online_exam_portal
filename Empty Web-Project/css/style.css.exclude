@@ -1,0 +1,63 @@
+* HTML #tlc {
+	HEIGHT: 1%
+}
+* HTML #trc {
+	HEIGHT: 1%
+}
+#tlc {
+	z-index: 1
+}
+#trc {
+	z-index: 1
+}
+#box {
+	PADDING-RIGHT: 0px; MARGIN-TOP: 1em; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN-LEFT: auto; WIDTH: 20em; MARGIN-RIGHT: auto; PADDING-TOP: 0px; POSITION: relative; BACKGROUND-COLOR: #eeeeee; TEXT-ALIGN: left
+}
+#content {
+	PADDING-RIGHT: 1em; PADDING-LEFT: 1em; PADDING-BOTTOM: 1em; PADDING-TOP: 1em
+}
+#tlc {
+	BACKGROUND-REPEAT: no-repeat; BACKGROUND-COLOR: transparent
+}
+#trc {
+	BACKGROUND-REPEAT: no-repeat; BACKGROUND-COLOR: transparent
+}
+#blc {
+	BACKGROUND-REPEAT: no-repeat; BACKGROUND-COLOR: transparent
+}
+#brc {
+	BACKGROUND-REPEAT: no-repeat; BACKGROUND-COLOR: transparent
+}
+#tlc {
+	BACKGROUND-POSITION: 0% 0%; BACKGROUND-IMAGE: url(images/back.gif)
+}
+#trc {
+	BACKGROUND-POSITION: 100% 0%; BACKGROUND-IMAGE: url(images/back.gif)
+}
+#blc {
+	BACKGROUND-POSITION: 0% 100%; BACKGROUND-IMAGE: url(images/back.gif)
+}
+#bk {
+	background-image: url(images/back.gif)
+}
+#brc {
+	BACKGROUND-POSITION: 100% 100%; BACKGROUND-IMAGE: url(images/back.gif)
+}
+#tb {
+	BACKGROUND-REPEAT: repeat-x; BACKGROUND-COLOR: transparent
+}
+#bb {
+	BACKGROUND-REPEAT: repeat-x; BACKGROUND-COLOR: transparent
+}
+#tb {
+	BACKGROUND-POSITION: 0% 0%; BACKGROUND-IMAGE: url(images/tb.gif)
+}
+#bb {
+	BACKGROUND-POSITION: 50% 100%; BACKGROUND-IMAGE: url(images/bb.gif)
+}
+#rb {
+	BACKGROUND-POSITION: 100% 0%; BACKGROUND-IMAGE: url(images/r.gif); BACKGROUND-REPEAT: repeat-y
+}
+#lb {
+	BACKGROUND-POSITION: 0% 100%; BACKGROUND-IMAGE: url(images/l.gif); BACKGROUND-REPEAT: repeat-y; BACKGROUND-COLOR: #eeeeee
+}

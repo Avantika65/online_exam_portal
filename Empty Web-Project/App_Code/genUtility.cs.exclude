@@ -1,0 +1,46 @@
+﻿using System;
+using System.Data;
+using System.Configuration;
+using System.Linq;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Xml.Linq;
+
+/// <summary>
+/// Summary description for genUtility
+/// </summary>
+public class genUtility
+{
+	public genUtility()
+	{
+		//
+		// TODO: Add constructor logic here
+		//
+	}
+
+    //public bool InvalidChars(string sInput)
+    //{
+    //    bool functionReturnValue = false;
+    //    //Declare variables
+    //    object sBadChars;
+    //    int iCounter;
+    //    //Set functionReturnValue to False
+    //    functionReturnValue = false;
+    //    //Create an array of invalid characters and words
+    //    sBadChars = array("select", "drop", ";", "--", "insert", "delete", "xp_", "#", "%", "&", "'", "(", ")", "/", "\\", ":", ";", "<", ">", "=","[", "]", "?", "`", "|");
+    //    //Loop through array sBadChars using our counter & UBound function
+    //    for (iCounter = 0; iCounter <= Information.uBound(sBadChars); iCounter++)
+    //    {
+    //        //Use Function Instr to check presence of illegal character in our variable
+    //        if (Strings.Instr(sInput, sBadChars(iCounter)) > 0)
+    //        {
+    //            functionReturnValue = true;
+    //        }
+    //    }
+    //    return functionReturnValue;
+    //}
+}

@@ -1,0 +1,510 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ApplicationSettings.aspx.cs" EnableTheming="true"  Inherits="userPermission_ApplicationSettings" Theme="BasicBlue" StylesheetTheme="BasicBlue" %>
+<%@ Register Assembly="CalendarExtenderPlus" Namespace="AjaxControlToolkitPlus" TagPrefix="cc1" %>
+<%@ Register TagPrefix="FH1" TagName="TopImageControl" Src="~/UserControls/FormHeader.ascx" %>
+<%@ Register Assembly="Flan.Controls" Namespace="Flan.Controls" TagPrefix="cc2" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Application Settings</title>
+   <link rel="stylesheet" type="text/css" href="../css_Admin/cloud-admin.css" >
+	<link rel="stylesheet" type="text/css"  href="../css_Admin/themes/default.css">
+	<link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../font-awesome/css/font-awesome.css" rel="stylesheet">
+	<!-- DATE RANGE PICKER -->
+	<link rel="stylesheet" type="text/css" href="../js_admin/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+	<!-- UNIFORM -->
+	<link rel="stylesheet" type="text/css" href="../js_admin/uniform/css/uniform.default.min.css" />
+	<!-- ANIMATE -->
+	<link rel="stylesheet" type="text/css" href="../css_Admin/animatecss/animate.min.css" />
+	<!-- FONTS -->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+     <link rel="stylesheet" href="../codebase/style.css" type="text/css" media="screen" />
+        <link rel="STYLESHEET" type="text/css" href="../codebase/dhtmlxtabbar.css"/>
+	    <script type="text/javascript" src="../codebase/dhtmlxcommon.js"></script>
+	    <script type="text/javascript"  src="../codebase/dhtmlxcommon.js"></script>
+	     <script type="text/javascript"  src="../codebase/dhtmlxtabbar.js"></script>
+	     
+	    <script language="javascript" type="text/javascript" >
+            function MemIdGen()
+            {
+                if($get('chkMemIdGen').checked==true)
+                {
+                    $get('FldsetMemid').style.display='block';
+                }
+                else
+                {
+                    $get('FldsetMemid').style.display='none';
+                }
+            }
+           //....................................................................................................
+           function Item_MoveUp()
+            { debugger;
+                var iIndex = 0;
+                var iCount = 0;
+                var iOffset = 0;
+                var iInsertAt = 0;
+                var iIndexSelectedMarker = -1;
+                var lItemData = null;
+                var lItemval = null;
+                
+                iCount=$get('lbxFlds').length;
+                iIndex = 0;
+                iOffset = -1;
+            
+                while (iIndex < iCount)
+                { 
+                   if ($get('lbxFlds').selectedIndex > 0)
+                    {
+                        var sel_Indx=$get('lbxFlds').selectedIndex;                       
+                        lItemval = $get('lbxFlds')[sel_Indx].value;
+                        lItemData = $get('lbxFlds')[sel_Indx].text;
+                        iIndexSelectedMarker = $get('lbxFlds').selectedIndex;
+                        
+                        if (!(-1 == iIndexSelectedMarker))
+                        {
+                            var iIndex2 = 0;
+                            while (iIndex2 < iCount)
+                            {
+                                if (lItemval == $get('lbxFlds')[iIndex2].value)
+                                {
+                                    var oOption = $get('lbxFlds').options[iIndex2];
+                                    $get('lbxFlds').add(oOption,(oOption-1));
+//                                    $get('lbxFlds').Items.RemoveAt(iIndex2);
+//                                    iInsertAt = ((iIndex2 + iOffset) < 0 ? 0 : iIndex2 + iOffset);
+//                                    //ListItem li = new ListItem(lItemData, lItemval);
+//                                    $get('lbxFlds').Items.Insert(iInsertAt, li);
+                                }
+                                iIndex2++;
+//                               // System.Threading.Interlocked.Increment(iIndex2);
+                            }
+                        }
+                    }  
+//                    else
+//                    {
+//                        if (-1 == iIndexSelectedMarker)
+//                        {
+//                            iIndexSelectedMarker = iIndex;
+//                        }
+//                    }
+//                    iIndex = iIndex + 1;
+                }
+//                if (iIndexSelectedMarker == 0)
+//                {
+//                    $get('lbxFlds').SelectedIndex = iIndexSelectedMarker;
+//                }
+//                else
+//                {
+//                    $get('lbxFlds').SelectedIndex = iIndexSelectedMarker - 1;
+//                }
+
+            }
+           
+           //....................................................................................................
+      </script>
+    
+	     
+    <style type="text/css">
+        #uploadlogo
+        {
+            width: 180px;
+        }
+        #btnupload
+        {
+            width: 98px;
+        }
+        #btnupload0
+        {
+            width: 98px;
+        }
+    </style>
+    
+   
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
+    </div>
+   <div id="wrap">
+<div id="top"> 
+</div>
+<div id="content">
+    <div class="left">
+    <table class="table" width="100%">
+            <tr>
+                <td>
+                      <div class="box border primary">
+                    <div class="box-title">
+                    <h4><i class="fa fa-bars"></i>Holiday Master</h4>
+                    </div>           
+                   </div>
+                    <div ID="lbltitle" class="header" style="display:none" runat="server" >Application Settings</div>
+                </td>
+            </tr>
+           
+            <tr>
+                <td align="center" colspan="4">
+                  <div ID="lblmsg" runat="server" >
+                  
+                  </div> 
+                </td>
+            </tr>
+           
+    <tr>
+     <td colspan="4">
+      <div id="a_tabbar" style="width:100%; height:450px;"/>
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+    <ContentTemplate>
+        <div id='divApplication'>
+       <table width="100%">
+         <tr>
+            <td>
+              <asp:Label ID="lblinst" runat="server" Text="<u>I</u>nstitute Name"></asp:Label>
+                </td>
+                <td>
+                    <asp:TextBox ID="txtinst" runat="server" MaxLength="200" Width="300px" AccessKey="I"></asp:TextBox>
+                </td>
+                <td >
+                    <asp:Label ID="lblInstitute" runat="server" Text="Upload Institute Logo"></asp:Label>
+             </td>
+            </tr>
+            <tr>
+                <td>
+                    <asp:Label ID="lblinstShort" runat="server" Text="<u>S</u>hort Name"></asp:Label>
+                </td>
+                <td>
+                    <asp:TextBox ID="txtinstshort" runat="server" MaxLength="10" Width="250px" AccessKey="S"></asp:TextBox>
+                     </td>
+                <td rowspan="4" align="center">
+                     <asp:Image ID="ImgInst" runat="server" AlternateText="Institute Logo" 
+                         Height="120px" Width="120px" />
+                     </td>
+            </tr>
+            <tr>
+                <td><asp:Label ID="lblsession" runat="server" Text="Type of Institut"></asp:Label>
+                     e</td>
+                <td>
+                     <asp:DropDownList ID="ddlInst_Type" runat="server" Width="250px" AccessKey="C">
+                    </asp:DropDownList>
+                     </td>
+            </tr>
+             <tr>
+                 <td>
+                     <asp:Label ID="lblLibName" runat="server" Text="<u>N</u>ature of Institute"></asp:Label>
+                 </td>
+                 <td>
+                     <asp:DropDownList ID="ddlnature" runat="server" AccessKey="C" 
+                         Width="250px">
+                     </asp:DropDownList>
+                 </td>
+           </tr>
+             <tr>
+                <td><asp:Label ID="lbladd" runat="server" Text="<u>A</u>ddress" ></asp:Label>
+                     </td>                     
+                <td><asp:TextBox ID="txtaddress" runat="server" MaxLength="50" Width="300px" AccessKey="A"></asp:TextBox>
+                     </td>
+            </tr>
+             <tr>
+                <td><asp:Label ID="lblphone1" runat="server" Text="<u>P</u>hone-1"></asp:Label>
+                     </td>
+                <td><asp:TextBox ID="txtphone1" runat="server" MaxLength="12" Width="250px" OnKeyPress="ValidateSession()"  AccessKey="P"></asp:TextBox>
+                    <%-- <asp:CustomValidator ID="CustomValidator1" runat="server" 
+                                ClientValidationFunction="ValidPhoneNo" ControlToValidate="txtphone1" 
+                                Display="None" ErrorMessage="Enter Phone No. In Valid Format Ex.(0512-2552671)" SetFocusOnError="True" 
+                                ValidationGroup="v1"></asp:CustomValidator>--%>
+                
+                     </td>
+                <td>
+                     <input ID="uploadlogo" type="file" style="width:100%" runat="server" accesskey="B" />
+                     &nbsp;</td>
+            </tr>
+             <tr>
+                <td><asp:Label ID="lblphone2" runat="server" Text="Phone-2"></asp:Label>
+                     </td>
+                <td><asp:TextBox ID="txtphone2" runat="server" MaxLength="12" Width="250px" OnKeyPress="ValidateSession()" ></asp:TextBox>
+                     </td>
+                <td>
+                     <asp:Button ID="btnupload" runat="server" AccessKey="O" 
+                         onclick="btnupload_Click" Text="Upload" ValidationGroup="v1" Width="90px" />
+                     </td>
+            </tr>
+             <tr>
+                <td><asp:Label ID="lblfax" runat="server" Text="<u>F</u>ax"></asp:Label>
+                     </td>
+                <td><asp:TextBox ID="txtfax" runat="server" MaxLength="12" Width="250px" OnKeyPress="ValidateSession()" AccessKey="F"></asp:TextBox>
+                     </td>
+                <td align="center">
+                     &nbsp;</td>
+            </tr>
+             <tr>
+                <td><asp:Label ID="lblmobile" runat="server" Text="<u>M</u>obile"></asp:Label>
+                     </td>
+                <td><asp:TextBox ID="txtmobile" runat="server" MaxLength="12" Width="250px" OnKeyPress="IntegerNumber(event);"  AccessKey="M"></asp:TextBox>
+                     </td>
+                <td>
+                     </td>
+            </tr>
+             <tr>
+                <td><asp:Label ID="lblemail1" runat="server" Text="<u>E</u>-Mail-1"></asp:Label>
+                     </td>
+                <td><asp:TextBox ID="txtemail1" runat="server" MaxLength="30" Width="250px" AccessKey="E"></asp:TextBox>
+                     <asp:RegularExpressionValidator ID="RegularExpressionValidator1" 
+                        runat="server" ControlToValidate="txtemail1" Display="None" 
+                        ErrorMessage="Invalid EmailID" SetFocusOnError="True" 
+                        ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" 
+                        ValidationGroup="v1"></asp:RegularExpressionValidator>
+                     </td>
+                <td>
+                     </td>
+            </tr>
+             <tr>
+                <td><asp:Label ID="lblemail2" runat="server" Text="E-Mail-2"></asp:Label>
+                     </td>
+                <td><asp:TextBox ID="txtemail2" runat="server" MaxLength="30" Width="250px"></asp:TextBox>
+                     <asp:RegularExpressionValidator ID="RegularExpressionValidator2" 
+                        runat="server" ControlToValidate="txtemail2" Display="None" 
+                        ErrorMessage="Invalid EmailID" SetFocusOnError="True" 
+                        ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" 
+                        ValidationGroup="v1"></asp:RegularExpressionValidator>
+                     </td>
+                <td>
+                     </td>
+            </tr>
+             <tr>
+                <td><asp:Label ID="lblurl" runat="server" Text="<u>W</u>eb URL"></asp:Label>
+                     </td>
+                <td><asp:TextBox ID="txturl" runat="server" MaxLength="35" Width="250px" AccessKey="W"></asp:TextBox>
+                        <asp:Label ID="lblurlEx" runat="server" 
+                        Text="(Eg:http://www.mktsoftwares.com)"></asp:Label>
+                     </td>
+                <td>
+                     <asp:RegularExpressionValidator ID="RegularExpValidator3" runat="server" 
+                         ControlToValidate="txturl" Display="None" ErrorMessage="Invalid Url" 
+                         SetFocusOnError="True" 
+                         ValidationExpression="http(s)?://([\w-]+\.)+[\w-]+(/[\w- ./?%&amp;=]*)?" 
+                         ValidationGroup="v1"></asp:RegularExpressionValidator>
+                     </td>
+            </tr>
+             <tr>
+                <td valign="top"><asp:Label ID="lbldesc" runat="server" Text="Descrip<u>t</u>ion"></asp:Label>
+                     </td>
+                <td><asp:TextBox ID="txtdesc" runat="server" Height="50px" MaxLength="100" Rows="3" 
+                        TextMode="MultiLine" Width="200px" AccessKey="T"></asp:TextBox>
+                     </td>
+                <td>
+                     </td>
+            </tr>
+             <tr>
+                <td>
+                     </td>
+                <td align="center">
+                      <asp:Panel ID="Panel1" runat="server" Height="62px" Width="172px">
+                                <table class="table_">
+                                    <tr>
+                                        <td>
+                                            <asp:Button ID="BtnSave" runat="server"
+                                                Text="Submit" ValidationGroup="v1" onclick="BtnSave_Click" Width="90px" 
+                                                AccessKey="U"  />
+                                            
+                                        </td>
+                                    </tr>
+                                </table>
+                            </asp:Panel>
+                     </td>
+                <td>
+                     <asp:ValidationSummary ID="ValidationSummary1" runat="server" 
+                         ShowMessageBox="True" ShowSummary="False" ValidationGroup="v1" />
+                     </td>
+            </tr>
+            </table>
+            </div>
+            <div id='divProxy'>
+            <table width="100%">
+             <tr>
+                <td>
+                   <asp:Label ID="lblServer" runat="server" Text="Pro<u>x</u>y Address : Port"></asp:Label>
+                </td>
+                <td>
+                    <asp:TextBox ID="txtServer" runat="server" MaxLength="30" Width="200px" AccessKey="X"></asp:TextBox>
+                 </td>
+            </tr>
+            <tr>
+                <td>
+                   <asp:Label ID="lblUserID" runat="server" Text="Prox<u>y</u> User"></asp:Label>
+                </td>
+                <td>
+                    <asp:TextBox ID="txtUserID" runat="server" MaxLength="50" Width="200px" AccessKey="Y"></asp:TextBox>
+                 </td>
+            </tr>
+            <tr>
+              <td>
+                   <asp:Label ID="lblUserPwd" runat="server" Text="Proxy Passwo<u>r</u>d"></asp:Label>
+                </td>
+                <td>
+                    <%--<input id="txtUserPwd" runat="server"  class="inputlogin" maxlength="30" name="txtUserPwd" 
+                                                         size="20" type="password">--%>
+                    <asp:TextBox ID="txtUserPwd" runat="server" MaxLength="30" Width="200px" TextMode="Password" AccessKey="R"></asp:TextBox>
+                 </td>
+            </tr>
+            <tr>
+              <td>
+                   <asp:Label ID="lblActiveMail" runat="server" Text="Activate Mail"></asp:Label>
+                </td>
+                <td>
+                   <asp:DropDownList ID="ddlActiveMail" runat="server" Width="80px">
+                    <asp:ListItem Value="False">No</asp:ListItem>
+                    <asp:ListItem Value="True">Yes</asp:ListItem>
+                   </asp:DropDownList>                   
+                 </td>
+            </tr>
+            <tr>
+              <td colspan="2"></td>
+            </tr>
+            <tr>
+              <td colspan="2" align="center">
+                <table  >
+                  <tr>
+                    <td>
+                      <asp:Button ID="btnSubmit" runat="server" Width="90px" Text="Update" 
+                            onclick="btnSubmit_Click" />
+                     <%-- <asp:Button ID="btnReset" runat="server" Width="90px" Text="Reset" />--%>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+           </table>
+           </div>
+           <div id="divappsettins">
+                <table>
+                    <tr>
+                        <td>
+                            <asp:CheckBox ID="chkMemIdGen" runat="server" Text="Auto Student ID" onclick="javascript:{MemIdGen();}"></asp:CheckBox>
+                      
+                        </td>
+                        <td>
+                           
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                     <tr>
+                        <td colspan="4">
+                           <%-- <asp:Panel ID="PanelMemId" runat="server" Height="200px" Visible="false">--%>
+                             <fieldset   runat="server" style="display:none" id="FldsetMemid">
+                                <legend  >Fields in Auto Generated Student ID</legend>
+                                 <table >
+                                    <tr align="left">
+                                        <td rowspan="4">
+                                            <asp:ListBox ID="lbxFlds" runat="server" 
+                                                   Rows="6" SelectionMode="Multiple" 
+                                                  Width="150px">
+                                                  <asp:ListItem Value="0">Institute short name</asp:ListItem>
+                                                  <asp:ListItem Value="1">Department short name</asp:ListItem>
+                                                  <asp:ListItem Value="2">Member Group</asp:ListItem>
+                                                  <asp:ListItem Value="3">Session Year</asp:ListItem>
+                                                  <asp:ListItem Value="4">Month</asp:ListItem>
+                                                  <asp:ListItem Value="5">Day</asp:ListItem>
+                                                  
+                                            </asp:ListBox>
+                                        </td>
+                                    </tr>
+                                    <tr align="left">
+                                          <td>
+                                               <asp:Button ID="btnUp" runat="server" Height="25px" onclick="btnUp_Click" 
+                                                  Text="^" Width="22px" Visible="false" />
+                                          </td>
+                                     </tr>
+                                     <tr align="left">     
+                                          <td>
+                                                <asp:Button ID="btnDwn" runat="server" Height="25px" onclick="btnDwn_Click" 
+                                                  Text="V" Width="22px" Visible="false" />
+                                          </td>
+                                      </tr>
+                                    
+                                 </table>
+                              </fieldset>
+                        
+                        </td>
+                    </tr>
+                      <tr>
+                      <td colspan="2">
+                           <asp:CheckBox ID="chkLog" runat="server" Text="Activate Log" ></asp:CheckBox>
+                      </td>
+           
+            </tr>
+            <tr><td colspan="2">
+                           <asp:CheckBox ID="chkAutoPPSNO" runat="server" Text="AutoGenerate PPSNO" ></asp:CheckBox>
+                      </td></tr>
+                      <tr><td colspan="2">
+                           <asp:CheckBox ID="chkAutoRECNO" runat="server" Text="AutoGenerate RCNO" ></asp:CheckBox>
+                      </td></tr>
+                     <tr>
+                        <td></td>
+                        <td colspan="2">   
+                            <asp:Button ID="BtnAppSettings" runat="server" Width="90px" Text="Update" 
+                            onclick="BtnAppSettings_Click" Visible="False" />
+                            
+                            </td>
+                        <td></td>
+                    </tr>
+                </table>           
+           </div>
+       
+    </ContentTemplate>
+        <Triggers>
+            <asp:PostBackTrigger ControlID="btnupload" />
+        </Triggers>
+    </asp:UpdatePanel>
+     </td>
+           </tr>
+        </table>
+        
+        
+        
+     <asp:UpdateProgress ID="UpdateProgress3" runat="server" AssociatedUpdatePanelID="UpdatePanel1"
+        DisplayAfter="0">
+        <ProgressTemplate>
+            <div class="ProgressMsg">
+                <img src="../images/indicator.gif" alt="Wait" />
+                Please Wait...
+            </div>
+        </ProgressTemplate>
+    </asp:UpdateProgress>
+     <cc2:UpdateProgressOverlayExtender ID="UpdateProgressOverlayExtender3" runat="server"
+        CssClass="updateProgress" TargetControlID="UpdateProgress3" OverlayType="Browser" />
+     </div>
+
+<script>
+            tabbar=new dhtmlXTabBar("a_tabbar","top");
+
+            tabbar.setSkin('dhx_skyblue');
+			tabbar.setImagePath("../codebase/imgs/");
+
+            tabbar.addTab("a1","Institute Information","150px");
+            tabbar.addTab("a2","Proxy Settings","150px");
+             tabbar.addTab("a3","Application Settings","150px");
+
+            tabbar.setContent("a1","divApplication");
+            tabbar.setContent("a2","divProxy");
+             tabbar.setContent("a3","divappsettins");
+            
+//            tabbar.setContentHTML("a3","<br/>The content can be set as <b>HTML</b> node or as <b>HTML</b> text.");
+            
+            tabbar.setTabActive("a1")
+</script>    
+
+<div style="clear: both;"> </div>
+
+</div>
+
+<div id="bottom"> </div>
+<%--<div id="footer"> Designed & Developed by <a href="http://www.mktsoftwares.com">RCS Global Limited</a>.</div>--%>
+        
+</div>
+    
+    </form>
+</body>
+</html>

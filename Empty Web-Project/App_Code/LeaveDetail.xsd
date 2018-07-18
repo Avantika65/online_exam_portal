@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="LeaveDetail" targetNamespace="http://tempuri.org/LeaveDetail.xsd" xmlns:mstns="http://tempuri.org/LeaveDetail.xsd" xmlns="http://tempuri.org/LeaveDetail.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="empLeaveDetailsTableAdapter" GeneratorDataComponentClassName="empLeaveDetailsTableAdapter" Name="empLeaveDetails" UserDataComponentName="empLeaveDetailsTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectName="FeesManagement.dbo.empLeaveDetails" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT     *
+FROM         empLeaveDetails</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="id" DataSetColumn="id" />
+              <Mapping SourceColumn="empid" DataSetColumn="empid" />
+              <Mapping SourceColumn="empName" DataSetColumn="empName" />
+              <Mapping SourceColumn="leaveid" DataSetColumn="leaveid" />
+              <Mapping SourceColumn="leaveType" DataSetColumn="leaveType" />
+              <Mapping SourceColumn="shName" DataSetColumn="shName" />
+              <Mapping SourceColumn="totalLeave" DataSetColumn="totalLeave" />
+              <Mapping SourceColumn="leavestatus" DataSetColumn="leavestatus" />
+              <Mapping SourceColumn="taken" DataSetColumn="taken" />
+              <Mapping SourceColumn="colgName" DataSetColumn="colgName" />
+              <Mapping SourceColumn="location" DataSetColumn="location" />
+              <Mapping SourceColumn="phNo" DataSetColumn="phNo" />
+              <Mapping SourceColumn="fax" DataSetColumn="fax" />
+              <Mapping SourceColumn="website" DataSetColumn="website" />
+              <Mapping SourceColumn="InstituteID" DataSetColumn="InstituteID" />
+              <Mapping SourceColumn="SessionID" DataSetColumn="SessionID" />
+              <Mapping SourceColumn="UserID" DataSetColumn="UserID" />
+              <Mapping SourceColumn="UEDate" DataSetColumn="UEDate" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="LeaveDetail" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="LeaveDetail" msprop:Generator_DataSetName="LeaveDetail">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="empLeaveDetails" msprop:Generator_UserTableName="empLeaveDetails" msprop:Generator_RowDeletedName="empLeaveDetailsRowDeleted" msprop:Generator_TableClassName="empLeaveDetailsDataTable" msprop:Generator_RowChangedName="empLeaveDetailsRowChanged" msprop:Generator_RowClassName="empLeaveDetailsRow" msprop:Generator_RowChangingName="empLeaveDetailsRowChanging" msprop:Generator_RowEvArgName="empLeaveDetailsRowChangeEvent" msprop:Generator_RowEvHandlerName="empLeaveDetailsRowChangeEventHandler" msprop:Generator_TablePropName="empLeaveDetails" msprop:Generator_TableVarName="tableempLeaveDetails" msprop:Generator_RowDeletingName="empLeaveDetailsRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="id" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInTable="idColumn" type="xs:int" />
+              <xs:element name="empid" msprop:Generator_UserColumnName="empid" msprop:Generator_ColumnPropNameInRow="empid" msprop:Generator_ColumnVarNameInTable="columnempid" msprop:Generator_ColumnPropNameInTable="empidColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="empName" msprop:Generator_UserColumnName="empName" msprop:Generator_ColumnPropNameInRow="empName" msprop:Generator_ColumnVarNameInTable="columnempName" msprop:Generator_ColumnPropNameInTable="empNameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="leaveid" msprop:Generator_UserColumnName="leaveid" msprop:Generator_ColumnPropNameInRow="leaveid" msprop:Generator_ColumnVarNameInTable="columnleaveid" msprop:Generator_ColumnPropNameInTable="leaveidColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="leaveType" msprop:Generator_UserColumnName="leaveType" msprop:Generator_ColumnPropNameInRow="leaveType" msprop:Generator_ColumnVarNameInTable="columnleaveType" msprop:Generator_ColumnPropNameInTable="leaveTypeColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="shName" msprop:Generator_UserColumnName="shName" msprop:Generator_ColumnPropNameInRow="shName" msprop:Generator_ColumnVarNameInTable="columnshName" msprop:Generator_ColumnPropNameInTable="shNameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="totalLeave" msprop:Generator_UserColumnName="totalLeave" msprop:Generator_ColumnPropNameInRow="totalLeave" msprop:Generator_ColumnVarNameInTable="columntotalLeave" msprop:Generator_ColumnPropNameInTable="totalLeaveColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="leavestatus" msprop:Generator_UserColumnName="leavestatus" msprop:Generator_ColumnPropNameInRow="leavestatus" msprop:Generator_ColumnVarNameInTable="columnleavestatus" msprop:Generator_ColumnPropNameInTable="leavestatusColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="taken" msprop:Generator_UserColumnName="taken" msprop:Generator_ColumnPropNameInRow="taken" msprop:Generator_ColumnVarNameInTable="columntaken" msprop:Generator_ColumnPropNameInTable="takenColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="colgName" msprop:Generator_UserColumnName="colgName" msprop:Generator_ColumnPropNameInRow="colgName" msprop:Generator_ColumnVarNameInTable="columncolgName" msprop:Generator_ColumnPropNameInTable="colgNameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="location" msprop:Generator_UserColumnName="location" msprop:Generator_ColumnPropNameInRow="location" msprop:Generator_ColumnVarNameInTable="columnlocation" msprop:Generator_ColumnPropNameInTable="locationColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="phNo" msprop:Generator_UserColumnName="phNo" msprop:Generator_ColumnPropNameInRow="phNo" msprop:Generator_ColumnVarNameInTable="columnphNo" msprop:Generator_ColumnPropNameInTable="phNoColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="12" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="fax" msprop:Generator_UserColumnName="fax" msprop:Generator_ColumnPropNameInRow="fax" msprop:Generator_ColumnVarNameInTable="columnfax" msprop:Generator_ColumnPropNameInTable="faxColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="website" msprop:Generator_UserColumnName="website" msprop:Generator_ColumnPropNameInRow="website" msprop:Generator_ColumnVarNameInTable="columnwebsite" msprop:Generator_ColumnPropNameInTable="websiteColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="InstituteID" msprop:Generator_UserColumnName="InstituteID" msprop:Generator_ColumnPropNameInRow="InstituteID" msprop:Generator_ColumnVarNameInTable="columnInstituteID" msprop:Generator_ColumnPropNameInTable="InstituteIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="SessionID" msprop:Generator_UserColumnName="SessionID" msprop:Generator_ColumnPropNameInRow="SessionID" msprop:Generator_ColumnVarNameInTable="columnSessionID" msprop:Generator_ColumnPropNameInTable="SessionIDColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="UserID" msprop:Generator_UserColumnName="UserID" msprop:Generator_ColumnPropNameInRow="UserID" msprop:Generator_ColumnVarNameInTable="columnUserID" msprop:Generator_ColumnPropNameInTable="UserIDColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="UEDate" msprop:Generator_UserColumnName="UEDate" msprop:Generator_ColumnPropNameInRow="UEDate" msprop:Generator_ColumnVarNameInTable="columnUEDate" msprop:Generator_ColumnPropNameInTable="UEDateColumn" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

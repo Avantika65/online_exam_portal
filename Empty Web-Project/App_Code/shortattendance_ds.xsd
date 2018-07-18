@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="shortattendance_ds" targetNamespace="http://tempuri.org/shortattendance_ds.xsd" xmlns:mstns="http://tempuri.org/shortattendance_ds.xsd" xmlns="http://tempuri.org/shortattendance_ds.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Student_Attendance_ViewTableAdapter" GeneratorDataComponentClassName="Student_Attendance_ViewTableAdapter" Name="Student_Attendance_View" UserDataComponentName="Student_Attendance_ViewTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectName="ESIM.dbo.student_attendance_view1" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select studentname,universityrollno,coursename,courseyear,shortname,convert(decimal(18,2),sum(percentage)/COUNT(percentage)) as percentage from Student_Attendance_View1 group by studentname,universityrollno,coursename,courseyear,shortname,sid,specid</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="coursename" DataSetColumn="coursename" />
+              <Mapping SourceColumn="courseyear" DataSetColumn="courseyear" />
+              <Mapping SourceColumn="shortname" DataSetColumn="shortname" />
+              <Mapping SourceColumn="studentname" DataSetColumn="studentname" />
+              <Mapping SourceColumn="universityrollno" DataSetColumn="universityrollno" />
+              <Mapping SourceColumn="percentage" DataSetColumn="percentage" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="shortattendance_ds" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="shortattendance_ds" msprop:Generator_UserDSName="shortattendance_ds">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Student_Attendance_View" msprop:Generator_TableClassName="Student_Attendance_ViewDataTable" msprop:Generator_TableVarName="tableStudent_Attendance_View" msprop:Generator_TablePropName="Student_Attendance_View" msprop:Generator_RowDeletingName="Student_Attendance_ViewRowDeleting" msprop:Generator_UserTableName="Student_Attendance_View" msprop:Generator_RowChangingName="Student_Attendance_ViewRowChanging" msprop:Generator_RowEvHandlerName="Student_Attendance_ViewRowChangeEventHandler" msprop:Generator_RowDeletedName="Student_Attendance_ViewRowDeleted" msprop:Generator_RowEvArgName="Student_Attendance_ViewRowChangeEvent" msprop:Generator_RowChangedName="Student_Attendance_ViewRowChanged" msprop:Generator_RowClassName="Student_Attendance_ViewRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="coursename" msprop:Generator_ColumnVarNameInTable="columncoursename" msprop:Generator_ColumnPropNameInRow="coursename" msprop:Generator_ColumnPropNameInTable="coursenameColumn" msprop:Generator_UserColumnName="coursename">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="courseyear" msprop:Generator_ColumnVarNameInTable="columncourseyear" msprop:Generator_ColumnPropNameInRow="courseyear" msprop:Generator_ColumnPropNameInTable="courseyearColumn" msprop:Generator_UserColumnName="courseyear">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="shortname" msprop:Generator_ColumnVarNameInTable="columnshortname" msprop:Generator_ColumnPropNameInRow="shortname" msprop:Generator_ColumnPropNameInTable="shortnameColumn" msprop:Generator_UserColumnName="shortname">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="studentname" msprop:Generator_ColumnVarNameInTable="columnstudentname" msprop:Generator_ColumnPropNameInRow="studentname" msprop:Generator_ColumnPropNameInTable="studentnameColumn" msprop:Generator_UserColumnName="studentname" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="universityrollno" msprop:Generator_ColumnVarNameInTable="columnuniversityrollno" msprop:Generator_ColumnPropNameInRow="universityrollno" msprop:Generator_ColumnPropNameInTable="universityrollnoColumn" msprop:Generator_UserColumnName="universityrollno" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="percentage" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnpercentage" msprop:Generator_ColumnPropNameInRow="percentage" msprop:Generator_ColumnPropNameInTable="percentageColumn" msprop:Generator_UserColumnName="percentage" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

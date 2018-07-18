@@ -1,0 +1,108 @@
+﻿using System;
+using System.Data;
+using System.Configuration;
+using System.Linq;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Xml.Linq;
+using System.Runtime.Serialization;
+
+/// <summary>
+/// Summary description for SecurityDM
+/// </summary>
+[Serializable]
+[DataContract]
+public class SecurityDM
+{
+	public SecurityDM()
+	{
+	
+	}
+
+    [Serializable]
+    [DataContract]
+    public class RoleDM
+    {
+        [DataMember]
+        public int RoleID { get; set; }
+        [DataMember]
+        public string RoleName { get; set; }
+        [DataMember]
+        public string IsActive { get; set; }
+        [DataMember]
+        public int Flag { get; set; }//deleteOp
+    }
+
+    [Serializable]
+    [DataContract]
+    public class FillRoleDM
+    {
+        [DataMember]
+        public int RoleID { get; set; }
+        [DataMember]
+        public string RoleName { get; set; }
+        [DataMember]
+        public bool  IsActive { get; set; }
+   }
+    [Serializable]
+    [DataContract]
+    public class FillMenuIDDM
+    {
+        [DataMember]
+        public int MenuID { get; set; }
+    }
+
+    [Serializable]
+    [DataContract]
+    public class MenuPermissionDM
+    {
+        [DataMember]
+        public int RoleID { get; set; }
+        [DataMember]
+        public int MenuID { get; set; }
+        [DataMember]
+        public int permission { get; set; }
+        [DataMember]
+        public int insertOp { get; set; }
+        [DataMember]
+        public int updateOp { get; set; }
+        [DataMember]
+        public int deleteOp { get; set; }
+        [DataMember]
+        public int Flag { get; set; }//deleteOp
+    }
+
+    [Serializable]
+    [DataContract]
+    public class AssignRoleDM
+    {
+        [DataMember]
+        public int id { get; set; }
+        [DataMember]
+        public int ARCID { get; set; }
+        [DataMember]
+        public int roleID { get; set; }
+        [DataMember]
+        public int FieldId { get; set; }
+        [DataMember]
+        public string  FieldDataId { get; set; }
+        [DataMember]
+        public string IndividualId { get; set; }
+        [DataMember]
+        public int instId { get; set; }
+        [DataMember]
+        public int sessionId { get; set; }
+        [DataMember]
+        public string FormId { get; set; }
+        [DataMember]
+        public string RetSuccess { get; set; }
+        [DataMember]
+        public string flag { get; set; }
+        [DataMember]
+        public string flag_N { get; set; }
+    }
+}

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="AcademicDBM">
+  <DataContextMoniker Name="/AcademicDBMDataContext" />
+  <nestedChildShapes>
+    <classShape Id="76334591-1f2b-4328-bb54-58992c2feeaf" absoluteBounds="0.875, 0.5, 2, 1.5891951497395831">
+      <DataClassMoniker Name="/AcademicDBMDataContext/Department" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1b81ee58-fc0c-4c9f-a634-a4d4c9f171c0" absoluteBounds="0.89000000000000012, 0.96, 1.9700000000000002, 1.0291951497395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b01a24ad-ec93-4588-b50d-25025cc21313" absoluteBounds="3.125, 1.5, 2.125, 3.23266845703125">
+      <DataClassMoniker Name="/AcademicDBMDataContext/Course" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5a06bcdc-2d29-4c4f-b6f6-55d59781eb4e" absoluteBounds="3.1399999999999997, 1.96, 2.0949999999999998, 2.67266845703125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9f4b40fc-e9ab-49e9-a878-e1ced91643fd" absoluteBounds="6.375, 1, 2, 1.5891951497395831">
+      <DataClassMoniker Name="/AcademicDBMDataContext/Course_Child" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a26247e0-099e-42c0-8cd7-ebd3f71e3dce" absoluteBounds="6.39, 1.46, 1.9700000000000002, 1.0291951497395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <inheritanceConnector edgePoints="[(5.25 : 2.04459757486979); (6.375 : 2.04459757486979)]" fixedFrom="Algorithm" fixedTo="Algorithm" TargetRelationshipDomainClassId="7a7fe09e-e9ef-4b01-9ff3-bde95e827b62">
+      <nodes>
+        <classShapeMoniker Id="b01a24ad-ec93-4588-b50d-25025cc21313" />
+        <classShapeMoniker Id="9f4b40fc-e9ab-49e9-a878-e1ced91643fd" />
+      </nodes>
+    </inheritanceConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="FeeHead" targetNamespace="http://tempuri.org/FeeHead.xsd" xmlns:mstns="http://tempuri.org/FeeHead.xsd" xmlns="http://tempuri.org/FeeHead.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Fee_CourseWise_ViewTableAdapter" GeneratorDataComponentClassName="Fee_CourseWise_ViewTableAdapter" Name="Fee_CourseWise_View" UserDataComponentName="Fee_CourseWise_ViewTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectName="FeesManagement.dbo.Fee_CourseWise_View" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT     Fee_CourseWise_View.*
+FROM         Fee_CourseWise_View</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="FeeHead" DataSetColumn="FeeHead" />
+              <Mapping SourceColumn="Nature" DataSetColumn="Nature" />
+              <Mapping SourceColumn="TotalAmount" DataSetColumn="TotalAmount" />
+              <Mapping SourceColumn="Category" DataSetColumn="Category" />
+              <Mapping SourceColumn="FeeClass" DataSetColumn="FeeClass" />
+              <Mapping SourceColumn="CourseId" DataSetColumn="CourseId" />
+              <Mapping SourceColumn="CourseName" DataSetColumn="CourseName" />
+              <Mapping SourceColumn="Course_ShortName" DataSetColumn="Course_ShortName" />
+              <Mapping SourceColumn="UniversityName" DataSetColumn="UniversityName" />
+              <Mapping SourceColumn="Address" DataSetColumn="Address" />
+              <Mapping SourceColumn="City" DataSetColumn="City" />
+              <Mapping SourceColumn="Phone" DataSetColumn="Phone" />
+              <Mapping SourceColumn="URL" DataSetColumn="URL" />
+              <Mapping SourceColumn="SessionID" DataSetColumn="SessionID" />
+              <Mapping SourceColumn="BreakoffTime" DataSetColumn="BreakoffTime" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="FeeHead" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="FeeHead" msprop:Generator_DataSetName="FeeHead">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Fee_CourseWise_View" msprop:Generator_UserTableName="Fee_CourseWise_View" msprop:Generator_RowDeletedName="Fee_CourseWise_ViewRowDeleted" msprop:Generator_TableClassName="Fee_CourseWise_ViewDataTable" msprop:Generator_RowChangedName="Fee_CourseWise_ViewRowChanged" msprop:Generator_RowClassName="Fee_CourseWise_ViewRow" msprop:Generator_RowChangingName="Fee_CourseWise_ViewRowChanging" msprop:Generator_RowEvArgName="Fee_CourseWise_ViewRowChangeEvent" msprop:Generator_RowEvHandlerName="Fee_CourseWise_ViewRowChangeEventHandler" msprop:Generator_TablePropName="Fee_CourseWise_View" msprop:Generator_TableVarName="tableFee_CourseWise_View" msprop:Generator_RowDeletingName="Fee_CourseWise_ViewRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="FeeHead" msdata:ReadOnly="true" msprop:Generator_UserColumnName="FeeHead" msprop:Generator_ColumnPropNameInRow="FeeHead" msprop:Generator_ColumnVarNameInTable="columnFeeHead" msprop:Generator_ColumnPropNameInTable="FeeHeadColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="62" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Nature" msprop:Generator_UserColumnName="Nature" msprop:Generator_ColumnPropNameInRow="Nature" msprop:Generator_ColumnVarNameInTable="columnNature" msprop:Generator_ColumnPropNameInTable="NatureColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TotalAmount" msprop:Generator_UserColumnName="TotalAmount" msprop:Generator_ColumnPropNameInRow="TotalAmount" msprop:Generator_ColumnVarNameInTable="columnTotalAmount" msprop:Generator_ColumnPropNameInTable="TotalAmountColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Category" msprop:Generator_UserColumnName="Category" msprop:Generator_ColumnPropNameInRow="Category" msprop:Generator_ColumnVarNameInTable="columnCategory" msprop:Generator_ColumnPropNameInTable="CategoryColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FeeClass" msprop:Generator_UserColumnName="FeeClass" msprop:Generator_ColumnPropNameInRow="FeeClass" msprop:Generator_ColumnVarNameInTable="columnFeeClass" msprop:Generator_ColumnPropNameInTable="FeeClassColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CourseId" msprop:Generator_UserColumnName="CourseId" msprop:Generator_ColumnPropNameInRow="CourseId" msprop:Generator_ColumnVarNameInTable="columnCourseId" msprop:Generator_ColumnPropNameInTable="CourseIdColumn" type="xs:int" />
+              <xs:element name="CourseName" msprop:Generator_UserColumnName="CourseName" msprop:Generator_ColumnPropNameInRow="CourseName" msprop:Generator_ColumnVarNameInTable="columnCourseName" msprop:Generator_ColumnPropNameInTable="CourseNameColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Course_ShortName" msprop:Generator_UserColumnName="Course_ShortName" msprop:Generator_ColumnPropNameInRow="Course_ShortName" msprop:Generator_ColumnVarNameInTable="columnCourse_ShortName" msprop:Generator_ColumnPropNameInTable="Course_ShortNameColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="UniversityName" msprop:Generator_UserColumnName="UniversityName" msprop:Generator_ColumnPropNameInRow="UniversityName" msprop:Generator_ColumnVarNameInTable="columnUniversityName" msprop:Generator_ColumnPropNameInTable="UniversityNameColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Address" msprop:Generator_UserColumnName="Address" msprop:Generator_ColumnPropNameInRow="Address" msprop:Generator_ColumnVarNameInTable="columnAddress" msprop:Generator_ColumnPropNameInTable="AddressColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="City" msprop:Generator_UserColumnName="City" msprop:Generator_ColumnPropNameInRow="City" msprop:Generator_ColumnVarNameInTable="columnCity" msprop:Generator_ColumnPropNameInTable="CityColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Phone" msprop:Generator_UserColumnName="Phone" msprop:Generator_ColumnPropNameInRow="Phone" msprop:Generator_ColumnVarNameInTable="columnPhone" msprop:Generator_ColumnPropNameInTable="PhoneColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="URL" msprop:Generator_UserColumnName="URL" msprop:Generator_ColumnPropNameInRow="URL" msprop:Generator_ColumnVarNameInTable="columnURL" msprop:Generator_ColumnPropNameInTable="URLColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SessionID" msprop:Generator_UserColumnName="SessionID" msprop:Generator_ColumnPropNameInRow="SessionID" msprop:Generator_ColumnVarNameInTable="columnSessionID" msprop:Generator_ColumnPropNameInTable="SessionIDColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BreakoffTime" msprop:Generator_UserColumnName="BreakoffTime" msprop:Generator_ColumnPropNameInRow="BreakoffTime" msprop:Generator_ColumnVarNameInTable="columnBreakoffTime" msprop:Generator_ColumnPropNameInTable="BreakoffTimeColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

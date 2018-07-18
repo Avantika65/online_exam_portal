@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Week" targetNamespace="http://tempuri.org/Week.xsd" xmlns:mstns="http://tempuri.org/Week.xsd" xmlns="http://tempuri.org/Week.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Week_vwTableAdapter" GeneratorDataComponentClassName="Week_vwTableAdapter" Name="Week_vw" UserDataComponentName="Week_vwTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectName="EduSuite.dbo.Week_vw" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT     WeekID, CourseName, WeekName, StartDate, EndDate, SessionYear, Active, Inst_ID, semid, CourseYear, CourseId, YearID, Batch, YrSem
+FROM         Week_vw</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="WeekID" DataSetColumn="WeekID" />
+              <Mapping SourceColumn="CourseName" DataSetColumn="CourseName" />
+              <Mapping SourceColumn="WeekName" DataSetColumn="WeekName" />
+              <Mapping SourceColumn="StartDate" DataSetColumn="StartDate" />
+              <Mapping SourceColumn="EndDate" DataSetColumn="EndDate" />
+              <Mapping SourceColumn="SessionYear" DataSetColumn="SessionYear" />
+              <Mapping SourceColumn="Active" DataSetColumn="Active" />
+              <Mapping SourceColumn="Inst_ID" DataSetColumn="Inst_ID" />
+              <Mapping SourceColumn="semid" DataSetColumn="semid" />
+              <Mapping SourceColumn="CourseYear" DataSetColumn="CourseYear" />
+              <Mapping SourceColumn="CourseId" DataSetColumn="CourseId" />
+              <Mapping SourceColumn="YearID" DataSetColumn="YearID" />
+              <Mapping SourceColumn="Batch" DataSetColumn="Batch" />
+              <Mapping SourceColumn="YrSem" DataSetColumn="YrSem" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Week" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="Week" msprop:Generator_DataSetName="Week">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Week_vw" msprop:Generator_UserTableName="Week_vw" msprop:Generator_RowDeletedName="Week_vwRowDeleted" msprop:Generator_TableClassName="Week_vwDataTable" msprop:Generator_RowChangedName="Week_vwRowChanged" msprop:Generator_RowClassName="Week_vwRow" msprop:Generator_RowChangingName="Week_vwRowChanging" msprop:Generator_RowEvArgName="Week_vwRowChangeEvent" msprop:Generator_RowEvHandlerName="Week_vwRowChangeEventHandler" msprop:Generator_TablePropName="Week_vw" msprop:Generator_TableVarName="tableWeek_vw" msprop:Generator_RowDeletingName="Week_vwRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="WeekID" msprop:Generator_UserColumnName="WeekID" msprop:Generator_ColumnPropNameInRow="WeekID" msprop:Generator_ColumnVarNameInTable="columnWeekID" msprop:Generator_ColumnPropNameInTable="WeekIDColumn" type="xs:int" />
+              <xs:element name="CourseName" msprop:Generator_UserColumnName="CourseName" msprop:Generator_ColumnPropNameInRow="CourseName" msprop:Generator_ColumnVarNameInTable="columnCourseName" msprop:Generator_ColumnPropNameInTable="CourseNameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="WeekName" msprop:Generator_UserColumnName="WeekName" msprop:Generator_ColumnPropNameInRow="WeekName" msprop:Generator_ColumnVarNameInTable="columnWeekName" msprop:Generator_ColumnPropNameInTable="WeekNameColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="StartDate" msprop:Generator_UserColumnName="StartDate" msprop:Generator_ColumnPropNameInRow="StartDate" msprop:Generator_ColumnVarNameInTable="columnStartDate" msprop:Generator_ColumnPropNameInTable="StartDateColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="EndDate" msprop:Generator_UserColumnName="EndDate" msprop:Generator_ColumnPropNameInRow="EndDate" msprop:Generator_ColumnVarNameInTable="columnEndDate" msprop:Generator_ColumnPropNameInTable="EndDateColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="SessionYear" msprop:Generator_UserColumnName="SessionYear" msprop:Generator_ColumnPropNameInRow="SessionYear" msprop:Generator_ColumnVarNameInTable="columnSessionYear" msprop:Generator_ColumnPropNameInTable="SessionYearColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Active" msprop:Generator_UserColumnName="Active" msprop:Generator_ColumnPropNameInRow="Active" msprop:Generator_ColumnVarNameInTable="columnActive" msprop:Generator_ColumnPropNameInTable="ActiveColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Inst_ID" msprop:Generator_UserColumnName="Inst_ID" msprop:Generator_ColumnPropNameInRow="Inst_ID" msprop:Generator_ColumnVarNameInTable="columnInst_ID" msprop:Generator_ColumnPropNameInTable="Inst_IDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="semid" msprop:Generator_UserColumnName="semid" msprop:Generator_ColumnPropNameInRow="semid" msprop:Generator_ColumnVarNameInTable="columnsemid" msprop:Generator_ColumnPropNameInTable="semidColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="CourseYear" msprop:Generator_UserColumnName="CourseYear" msprop:Generator_ColumnPropNameInRow="CourseYear" msprop:Generator_ColumnVarNameInTable="columnCourseYear" msprop:Generator_ColumnPropNameInTable="CourseYearColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CourseId" msprop:Generator_UserColumnName="CourseId" msprop:Generator_ColumnPropNameInRow="CourseId" msprop:Generator_ColumnVarNameInTable="columnCourseId" msprop:Generator_ColumnPropNameInTable="CourseIdColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="YearID" msprop:Generator_UserColumnName="YearID" msprop:Generator_ColumnPropNameInRow="YearID" msprop:Generator_ColumnVarNameInTable="columnYearID" msprop:Generator_ColumnPropNameInTable="YearIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Batch" msprop:Generator_UserColumnName="Batch" msprop:Generator_ColumnPropNameInRow="Batch" msprop:Generator_ColumnVarNameInTable="columnBatch" msprop:Generator_ColumnPropNameInTable="BatchColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="YrSem" msdata:ReadOnly="true" msprop:Generator_UserColumnName="YrSem" msprop:Generator_ColumnPropNameInRow="YrSem" msprop:Generator_ColumnVarNameInTable="columnYrSem" msprop:Generator_ColumnPropNameInTable="YrSemColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="101" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

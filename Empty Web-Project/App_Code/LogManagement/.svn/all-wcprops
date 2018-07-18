@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/LogManagement
+END
+LogManager.cs
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/LogManagement/LogManager.cs
+END
+LogDBManager.cs
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/LogManagement/LogDBManager.cs
+END
+LogTypeEnum.cs
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/Edusuite10/!svn/ver/2/Edusuite10/App_Code/LogManagement/LogTypeEnum.cs
+END

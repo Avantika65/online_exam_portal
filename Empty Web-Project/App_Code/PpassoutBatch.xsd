@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="PpassoutBatch" targetNamespace="http://tempuri.org/PpassoutBatch.xsd" xmlns:mstns="http://tempuri.org/PpassoutBatch.xsd" xmlns="http://tempuri.org/PpassoutBatch.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="PpassoutBatch" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="PpassoutBatch" msprop:Generator_UserDSName="PpassoutBatch">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="PassOutB" msprop:Generator_TableClassName="PassOutBDataTable" msprop:Generator_TableVarName="tablePassOutB" msprop:Generator_TablePropName="PassOutB" msprop:Generator_RowDeletingName="PassOutBRowDeleting" msprop:Generator_UserTableName="PassOutB" msprop:Generator_RowChangingName="PassOutBRowChanging" msprop:Generator_RowEvHandlerName="PassOutBRowChangeEventHandler" msprop:Generator_RowDeletedName="PassOutBRowDeleted" msprop:Generator_RowEvArgName="PassOutBRowChangeEvent" msprop:Generator_RowChangedName="PassOutBRowChanged" msprop:Generator_RowClassName="PassOutBRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="FeedbackParameter" msprop:Generator_ColumnVarNameInTable="columnFeedbackParameter" msprop:Generator_ColumnPropNameInRow="FeedbackParameter" msprop:Generator_ColumnPropNameInTable="FeedbackParameterColumn" msprop:Generator_UserColumnName="FeedbackParameter" type="xs:string" minOccurs="0" />
+              <xs:element name="FeedbackParamID" msprop:Generator_ColumnVarNameInTable="columnFeedbackParamID" msprop:Generator_ColumnPropNameInRow="FeedbackParamID" msprop:Generator_ColumnPropNameInTable="FeedbackParamIDColumn" msprop:Generator_UserColumnName="FeedbackParamID" type="xs:string" minOccurs="0" />
+              <xs:element name="Excellent" msprop:Generator_ColumnVarNameInTable="columnExcellent" msprop:Generator_ColumnPropNameInRow="Excellent" msprop:Generator_ColumnPropNameInTable="ExcellentColumn" msprop:Generator_UserColumnName="Excellent" type="xs:string" minOccurs="0" />
+              <xs:element name="Good" msprop:Generator_ColumnVarNameInTable="columnGood" msprop:Generator_ColumnPropNameInRow="Good" msprop:Generator_ColumnPropNameInTable="GoodColumn" msprop:Generator_UserColumnName="Good" type="xs:string" minOccurs="0" />
+              <xs:element name="Satisfactory" msprop:Generator_ColumnVarNameInTable="columnSatisfactory" msprop:Generator_ColumnPropNameInRow="Satisfactory" msprop:Generator_ColumnPropNameInTable="SatisfactoryColumn" msprop:Generator_UserColumnName="Satisfactory" type="xs:string" minOccurs="0" />
+              <xs:element name="NotSatisfactory" msprop:Generator_ColumnVarNameInTable="columnNotSatisfactory" msprop:Generator_ColumnPropNameInRow="NotSatisfactory" msprop:Generator_ColumnPropNameInTable="NotSatisfactoryColumn" msprop:Generator_UserColumnName="NotSatisfactory" type="xs:string" minOccurs="0" />
+              <xs:element name="Highlight" msprop:Generator_ColumnVarNameInTable="columnHighlight" msprop:Generator_ColumnPropNameInRow="Highlight" msprop:Generator_ColumnPropNameInTable="HighlightColumn" msprop:Generator_UserColumnName="Highlight" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

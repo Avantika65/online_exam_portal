@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DepartIssue" targetNamespace="http://tempuri.org/DepartIssue.xsd" xmlns:mstns="http://tempuri.org/DepartIssue.xsd" xmlns="http://tempuri.org/DepartIssue.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DepartmentalIssue_vwTableAdapter" GeneratorDataComponentClassName="DepartmentalIssue_vwTableAdapter" Name="DepartmentalIssue_vw" UserDataComponentName="DepartmentalIssue_vwTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectName="SRM.dbo.DepartmentalIssue_vw" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        IndentId, Indent_Code, IssueQty, InstID, IndentDate, Qty, Prod_Name, UserName
+FROM            DepartmentalIssue_vw</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IndentId" DataSetColumn="IndentId" />
+              <Mapping SourceColumn="Indent_Code" DataSetColumn="Indent_Code" />
+              <Mapping SourceColumn="IssueQty" DataSetColumn="IssueQty" />
+              <Mapping SourceColumn="InstID" DataSetColumn="InstID" />
+              <Mapping SourceColumn="IndentDate" DataSetColumn="IndentDate" />
+              <Mapping SourceColumn="Qty" DataSetColumn="Qty" />
+              <Mapping SourceColumn="Prod_Name" DataSetColumn="Prod_Name" />
+              <Mapping SourceColumn="UserName" DataSetColumn="UserName" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DepartIssue" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="DepartIssue" msprop:Generator_DataSetName="DepartIssue">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DepartmentalIssue_vw" msprop:Generator_TableClassName="DepartmentalIssue_vwDataTable" msprop:Generator_TableVarName="tableDepartmentalIssue_vw" msprop:Generator_TablePropName="DepartmentalIssue_vw" msprop:Generator_RowDeletingName="DepartmentalIssue_vwRowDeleting" msprop:Generator_UserTableName="DepartmentalIssue_vw" msprop:Generator_RowChangingName="DepartmentalIssue_vwRowChanging" msprop:Generator_RowEvHandlerName="DepartmentalIssue_vwRowChangeEventHandler" msprop:Generator_RowDeletedName="DepartmentalIssue_vwRowDeleted" msprop:Generator_RowEvArgName="DepartmentalIssue_vwRowChangeEvent" msprop:Generator_RowChangedName="DepartmentalIssue_vwRowChanged" msprop:Generator_RowClassName="DepartmentalIssue_vwRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IndentId" msprop:Generator_ColumnVarNameInTable="columnIndentId" msprop:Generator_ColumnPropNameInRow="IndentId" msprop:Generator_ColumnPropNameInTable="IndentIdColumn" msprop:Generator_UserColumnName="IndentId" type="xs:int" minOccurs="0" />
+              <xs:element name="Indent_Code" msprop:Generator_ColumnVarNameInTable="columnIndent_Code" msprop:Generator_ColumnPropNameInRow="Indent_Code" msprop:Generator_ColumnPropNameInTable="Indent_CodeColumn" msprop:Generator_UserColumnName="Indent_Code" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="25" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IssueQty" msprop:Generator_ColumnVarNameInTable="columnIssueQty" msprop:Generator_ColumnPropNameInRow="IssueQty" msprop:Generator_ColumnPropNameInTable="IssueQtyColumn" msprop:Generator_UserColumnName="IssueQty" type="xs:decimal" minOccurs="0" />
+              <xs:element name="InstID" msprop:Generator_ColumnVarNameInTable="columnInstID" msprop:Generator_ColumnPropNameInRow="InstID" msprop:Generator_ColumnPropNameInTable="InstIDColumn" msprop:Generator_UserColumnName="InstID" type="xs:int" />
+              <xs:element name="IndentDate" msprop:Generator_ColumnVarNameInTable="columnIndentDate" msprop:Generator_ColumnPropNameInRow="IndentDate" msprop:Generator_ColumnPropNameInTable="IndentDateColumn" msprop:Generator_UserColumnName="IndentDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Qty" msprop:Generator_ColumnVarNameInTable="columnQty" msprop:Generator_ColumnPropNameInRow="Qty" msprop:Generator_ColumnPropNameInTable="QtyColumn" msprop:Generator_UserColumnName="Qty" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Prod_Name" msprop:Generator_ColumnVarNameInTable="columnProd_Name" msprop:Generator_ColumnPropNameInRow="Prod_Name" msprop:Generator_ColumnPropNameInTable="Prod_NameColumn" msprop:Generator_UserColumnName="Prod_Name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="UserName" msprop:Generator_ColumnVarNameInTable="columnUserName" msprop:Generator_ColumnPropNameInRow="UserName" msprop:Generator_ColumnPropNameInTable="UserNameColumn" msprop:Generator_UserColumnName="UserName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,338 @@
+﻿using System;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.ServiceModel.Activation;
+using System.ServiceModel.Web;
+namespace Admin
+{
+    [ServiceContract(Namespace = "")]
+    [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
+    public class AdministratorData
+    {
+        [Serializable]
+        [DataContract]
+        public class AppsettingDM
+        {
+            [DataMember]
+            public int CollegeID { get; set; }
+            [DataMember]
+            public string CollegeName { get; set; }
+            [DataMember]
+            public string ShortName { get; set; }
+            [DataMember]
+            public string Location { get; set; }
+            [DataMember]
+            public string Phone1 { get; set; }
+            [DataMember]
+            public string Phone2 { get; set; }
+            [DataMember]
+            public string Phone3 { get; set; }
+            [DataMember]
+            public string Fax { get; set; }
+            [DataMember]
+            public string Mobile { get; set; }
+            [DataMember]
+            public string EmailID1 { get; set; }
+            [DataMember]
+            public string Email2 { get; set; }
+            [DataMember]
+            public string Website { get; set; }
+            [DataMember]
+            public string Description { get; set; }
+            [DataMember]
+            public byte[]  InstLogo { get; set; }
+            [DataMember]
+            public string Acd_Session { get; set; }
+            [DataMember]
+            public string PrincipalName { get; set; }
+            [DataMember]
+            public string ProxyAddress { get; set; }
+            [DataMember]
+            public string ProxyUser { get; set; }
+            [DataMember]
+            public string ProxyPwd { get; set; }
+            [DataMember]
+            public string Salt { get; set; }
+            [DataMember]
+            public string IsMailActive { get; set; }
+            [DataMember]
+            public string IsLog { get; set; }
+ 
+        }
+
+        [Serializable]
+        [DataContract]
+        public class EgroupDM
+        {
+            [DataMember]
+            public string Egroupname { get; set; }
+            [DataMember]
+            public int EgroupID { get; set; }
+            [DataMember]
+            public string flag { get; set; }
+        }
+
+        [DataContract]
+        public class InstituteDM
+        {
+            [DataMember]
+            public int id_inst { get; set; }
+            [DataMember]
+            public int EgroupID { get; set; }
+            [DataMember]
+            public string INSTITUTE_NAME { get; set; }
+            [DataMember]
+            public string SHORT_NAME { get; set; }
+            [DataMember]
+            public string flag { get; set; }
+        }
+
+        [DataContract]
+        public class CollegeDM
+        {
+            [DataMember]
+            public int CollegeID { get; set; }
+            [DataMember]
+            public string CollegeName { get; set; }
+            [DataMember]
+            public string ShortName { get; set; }
+            [DataMember]
+            public string Location { get; set; }
+            [DataMember]
+            public string Phone1 { get; set; }
+            [DataMember]
+            public string Phone2 { get; set; }
+            [DataMember]
+            public string Phone3 { get; set; }
+            [DataMember]
+            public string Fax { get; set; }
+            [DataMember]
+            public string Mobile { get; set; }
+            [DataMember]
+            public string EmailID1 { get; set; }
+            [DataMember]
+            public string EmailID2 { get; set; }
+            [DataMember]
+            public string WebSite { get; set; }
+            [DataMember]
+            public string Description { get; set; }
+            [DataMember]
+            public byte[] InstLogo { get; set; }
+            [DataMember]
+            public string Acd_Session { get; set; }
+            [DataMember]
+            public string PrincipalName { get; set; }
+            [DataMember]
+            public string ProxyAddress { get; set; }
+            [DataMember]
+            public string ProxyUser { get; set; }
+            [DataMember]
+            public string ProxyPwd { get; set; }
+            [DataMember]
+            public string Salt { get; set; }
+            [DataMember]
+            public bool IsMailActive { get; set; }
+            [DataMember]
+            public string flag { get; set; }
+            [DataMember]
+            public string Auto_PPSNO { get; set; }
+            [DataMember]
+            public string Auto_RECNO { get; set; }
+
+        }
+
+        [DataContract]
+        public class SessionDM
+        {
+            [DataMember]
+            public int SessionID { get; set; }
+            [DataMember]
+            public string Session { get; set; }
+            [DataMember]
+            public DateTime StartDate { get; set; }
+            [DataMember]
+            public DateTime EndDate { get; set; }
+            [DataMember]
+            public string Active { get; set; }
+            [DataMember]
+            public string Flag { get; set; }
+        }
+
+        [DataContract]
+        public class YearSemDM
+        {
+            [DataMember]
+            public int CID { get; set; }
+            [DataMember]
+            public int CourseID { get; set; }
+            [DataMember]
+            public string CourseYear { get; set; }
+            [DataMember]
+            public int SpecialisationID { get; set; }
+            [DataMember]
+            public int Description { get; set; }
+            [DataMember]
+            public int inst_ID { get; set; }
+            [DataMember]
+            public string SessionID { get; set; }
+            [DataMember]
+            public DateTime StartDate { get; set; }
+            [DataMember]
+            public DateTime endDate { get; set; }
+            [DataMember]
+            public string SessionName { get; set; }
+            [DataMember]
+            public string sessionyear { get; set; }
+            [DataMember]
+            public string SemYear { get; set; }
+            [DataMember]
+            public string Active { get; set; }
+            [DataMember]
+            public string Batch { get; set; }
+            [DataMember]
+            public string flag { get; set; }
+            [DataMember]
+            public string Year { get; set; }
+         }
+
+        [DataContract]
+        public class LoginDM
+        {
+            [DataMember]
+            public int ID { get; set; }
+            [DataMember]
+            public string Login_Date { get; set; }
+            [DataMember]
+            public string Login_Time { get; set; }
+            [DataMember]
+            public int InstituteID { get; set; }
+            [DataMember]
+            public string SessionID { get; set; }
+            [DataMember(IsRequired=false)]
+            public string Logout_Time { get; set; }
+            [DataMember(IsRequired = false)]
+            public string Logout_Date { get; set; }
+            [DataMember]
+            public string Is_Login { get; set; }
+            [DataMember]
+            public string Flag { get; set; }
+            [DataMember]
+            public string User_ID { get; set; }
+        }
+
+        [DataContract]
+        public class AuditDM
+        {
+            [DataMember]
+            public int ID { get; set; }
+            [DataMember]
+            public string Form_Name { get; set; }
+            [DataMember]
+            public string Action { get; set; }
+            [DataMember]
+            public string User_ID { get; set; }
+            [DataMember]
+            public string Entry_Date { get; set; }
+            [DataMember]
+            public string Record_ID { get; set; }
+            [DataMember]
+            public string Entry_Time { get; set; }
+            [DataMember]
+            public int InstituteID { get; set; }
+            [DataMember]
+            public string SessionID { get; set; }
+
+        }
+
+        [DataContract]
+        public class CreateUserDM
+        {
+            [DataMember]
+            public int UserID { get; set; }
+            [DataMember]
+            public string UserName { get; set; }
+            [DataMember]
+            public string Password { get; set; }
+            [DataMember]
+            public string Salt { get; set; }
+            [DataMember]
+            public int InstituteID { get; set; }
+            [DataMember]
+            public string Active { get; set; }
+            [DataMember]
+            public string UName { get; set; }
+            [DataMember]
+            public DateTime  UEntDt { get; set; }
+            [DataMember]
+            public int Emp_id { get; set; }
+            [DataMember]
+            public string User_Type { get; set; }
+            [DataMember]
+            public string Flag { get; set; }
+            [DataMember]
+            public string EmailID { get; set; }
+        }
+
+        [DataContract]
+        public class FormPermissionDM
+        {
+            [DataMember]
+            public int MenuId { get; set; }
+            [DataMember]
+            public string RetSuccess { get; set; }
+            [DataMember]
+            public string fields { get; set; }
+            [DataMember]
+            public string where { get; set; }
+            [DataMember]
+            public int InstId { get; set; }
+            [DataMember]
+            public int FieldId { get; set; }
+            [DataMember]
+            public string FieldName { get; set; }
+            [DataMember]
+            public string ValueField { get; set; }
+            [DataMember]
+            public string TableName { get; set; }
+            [DataMember]
+            public string User_Type { get; set; }
+            [DataMember]
+            public string Flag { get; set; }
+
+        }
+
+        [DataContract]
+        public class IDCardTemplateDM
+        {
+            [DataMember]
+            public int TemplateID { get; set; }
+            [DataMember]
+            public int CourseID { get; set; }
+            [DataMember]
+            public byte[] HeaderImage { get; set; }
+            [DataMember]
+            public byte[] Aus { get; set; }
+            [DataMember]
+            public string Desgin_String { get; set; }
+            [DataMember]
+            public string Flag { get; set; }
+
+        }
+        [Serializable]
+        [DataContract]
+        public class CheckLoginDM
+        {
+            [DataMember]
+            public int instId { get; set; }
+            [DataMember]
+            public string  username { get; set; }
+            [DataMember]
+            public int IsNewLogin { get; set; }
+            [DataMember]
+            public int StudentId { get; set; }
+            [DataMember]
+            public int Flag { get; set; }
+        }
+    }
+}

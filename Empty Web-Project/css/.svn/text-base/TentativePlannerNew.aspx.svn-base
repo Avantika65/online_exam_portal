@@ -1,0 +1,992 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="TentativePlannerNew.aspx.cs" EnableEventValidation="false" MaintainScrollPositionOnPostback="true"   Inherits="TimeTable_TentativePlannerNew" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>Untitled Page</title>
+     
+    <!-- Arquivos utilizados pelo jQuery lightBox plugin -->
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/jquery.lightbox-0.5.js"></script>
+     <link type="text/css" rel="Stylesheet" href="../Account.css" />
+    <script type="text/javascript">
+     
+    </script>
+   	<style type="text/css">
+	/* jQuery lightBox plugin - Gallery style */
+	#gallery {
+		background-color: #444;
+		padding: 2px;
+		width: 100%;
+	}
+	#gallery ul { list-style: none; }
+	#gallery ul li { display: inline; }
+	#gallery ul img {
+		border: 1px solid #3e3e3e;
+		border-width: 1px 1px 1px;
+	}
+	#gallery ul a:hover img {
+		border: 5px solid #fff;
+		border-width: 5px 5px 20px;
+		color: #fff;
+	}
+	#gallery ul a:hover { color: #fff; }
+	</style>
+	
+	
+    <style type="text/css">
+        .toolTip{
+   border:1px solid #CCC;
+   background-color:#F9F9F9;
+   width:150px;
+   position:absolute;
+   visibility: hidden;
+   overflow: hidden;
+  	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+   color:#333;
+}
+
+#toolTip h1{
+   display:block;
+  	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+   background-color:#F1F1F1;
+   border-bottom:1px solid #CCC;  
+   margin:0px;
+   padding:0px 2px;   
+}
+
+#toolTip p {
+   margin:0px;
+   padding:4px 2px;   
+}
+
+    div.MaskedDiv 
+{
+	position: absolute;
+	background-color: #fff;
+	filter: alpha(opacity=70);
+	MozOpacity: 0.7;
+	opacity: 0.7;
+	padding: 0px;
+	margin: 0px;
+}
+h1{
+   display:block;
+  	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+   background-color:#F1F1F1;
+   border-bottom:1px solid #CCC;  
+   margin:0px;
+   padding:0px 2px;   
+}
+
+.ModalPopup {
+	 
+	
+	position:absolute;
+	/* set z-index higher than possiblebackground-color: #CCCCCC; */
+	z-index:10000;
+	display: none;
+	 
+	border-style: solid;
+	border-color: black;
+	border-width: 1px;
+    width: 300px;
+    height :auto;
+}
+
+
+        
+     
+
+        #txt3
+        {
+            width: 389px;
+        }
+
+ 
+        
+     
+
+        </style> 
+        <script language="javascript" type="text/javascript" >
+        function openTopic(url,name)
+        {
+            window.open(url,name,'','');
+        }
+function GetXmlHttpObject(handler)
+  { 
+  var objXmlHttp=null
+  if (navigator.userAgent.indexOf("Opera")>=0)
+  {
+  alert("This example doesn't work in Opera") 
+  return 
+  }
+  if (navigator.userAgent.indexOf("MSIE")>=0)
+  { 
+  var strName="Msxml2.XMLHTTP"
+  if (navigator.appVersion.indexOf("MSIE 5.5")>=0)
+  {
+  strName="Microsoft.XMLHTTP"
+  } 
+  try
+  { 
+  objXmlHttp=new ActiveXObject(strName)
+  objXmlHttp.onreadystatechange=handler 
+  return objXmlHttp
+  } 
+  catch(e)
+  { 
+  alert("Error. Scripting for ActiveX might be disabled") 
+  return 
+  } 
+  } 
+  if (navigator.userAgent.indexOf("Mozilla")>=0)
+  {
+  objXmlHttp=new XMLHttpRequest()
+  objXmlHttp.onload=handler
+  objXmlHttp.onerror=handler 
+  return objXmlHttp
+  }
+  } 
+  function GetFaculty(id,par)
+  { 
+ 
+  var url="../TimeTable/GetSelected.aspx?instID=" + document.getElementById("ddlInstitute").value+"&F="+par ;
+  xmlHttp=GetXmlHttpObject(stateChanged1);
+  xmlHttp.open("GET", url , true);
+  xmlHttp.send(null);
+  } 
+  function GetVenue(id,par)
+  { 
+ 
+  var url="../TimeTable/GetSelected.aspx?instID=" + document.getElementById("ddlInstitute").value+"&F="+par ;
+  xmlHttp=GetXmlHttpObject(stateChangedV);
+  xmlHttp.open("GET", url , true);
+  xmlHttp.send(null);
+  } 
+  function stateChanged1() 
+  {  
+      if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")
+          {
+            var arrall=xmlHttp.responseText.split("^");
+            BindDDL('ddlFaculty',arrall);
+        
+          }
+  }
+  function stateChangedV() 
+  {  
+      if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")
+          {
+            var arrall=xmlHttp.responseText.split("^");
+            BindDDL('ddlVenue',arrall);
+         
+          }
+  }
+function GetCustomer(ctl,id)
+  { 
+  debugger;
+  var parentid=ctl.parentNode.parentElement.offsetParent.id;
+  //hdbatch
+  if(parentid=="GridView3")
+    {
+    document.getElementById("hdbatch").value="1";
+    }
+    else
+        {
+        document.getElementById("hdbatch").value="2";
+        }
+        
+  var ty=ctl.parentElement.innerText.split("#");
+  //document.getElementById("ddlFaculty").outerText=ty[2];
+  document.getElementById("hdtype").value=ty[1];
+  var url="../TimeTable/GetTopicDetails.aspx?ID=" + id ;
+  document.getElementById("optAd").checked=true;
+  if(id.toString()=="")
+  {
+  AddV();
+  document.getElementById("optEdit").checked=false;
+  document.getElementById("optAd").checked=false;
+  return;
+  }
+  
+  
+  xmlHttp=GetXmlHttpObject(stateChanged);
+  xmlHttp.open("GET", url , true);
+  xmlHttp.send(null);
+  } 
+   
+  function stateChanged() 
+  { 
+  if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")
+  {
+   
+  var arr=xmlHttp.responseText.split("^");
+  alert(xmlHttp.responseText);
+  document.getElementById("hdAll").value=xmlHttp.responseText;
+  alert(document.getElementById("hdAll").value+"1");
+  document.getElementById("txt1").value=arr[2];
+  document.getElementById("txt2").value=arr[4]; 
+    document.getElementById("txt3").value=arr[0];
+     document.getElementById("hdstopic").value=arr[0];
+ 
+//  document.getElementById("ctl00_MasterContent_txtProgram").value=arr[3]; hdstopic
+//  document.getElementById("ctl00_MasterContent_txtSem").value=arr[4];  
+//  document.getElementById("ctl00_MasterContent_txtAmt").value=arr[5];hdSelday 
+  }
+  }
+  function visibleCtl()
+    {
+        if(document.getElementById("chkPlanner").checked==true)
+            {
+            $(document).ready(function() 
+{
+		// fade in content.
+		$( '#trplanner' ).fadeIn("slow");		
+});
+                //document.getElementById("trplanner").style.display='';
+                $('#trplanner').slideDown('slow');
+            }
+        else
+            {
+                document.getElementById("trplanner").style.display='none';
+            }
+     if(document.getElementById("chkTopic").checked==true)
+            {
+                document.getElementById("trtopic").style.display='';
+            }
+        else
+            {
+                document.getElementById("trtopic").style.display='none';
+            }
+    if(document.getElementById("chkPract").checked==true)
+            {
+                document.getElementById("trpract").style.display='';
+            }
+        else
+            {
+                document.getElementById("trpract").style.display='none';
+            }
+    }
+    function AddV()
+    {
+     document.getElementById("txt1").style.display='none';
+     document.getElementById("txt2").style.display='none';
+     document.getElementById("txt3").style.display='none';
+     document.getElementById("ddlSubject").style.display='';
+      document.getElementById("ddlTopic").style.display='';
+       document.getElementById("ddlSubtopic").style.display='';
+       
+    }
+    function EditV()
+    {
+     document.getElementById("txt1").style.display='';
+     document.getElementById("txt2").style.display='';
+     document.getElementById("txt3").style.display='';
+     document.getElementById("ddlSubject").style.display='none';
+      document.getElementById("ddlTopic").style.display='none';
+       document.getElementById("ddlSubtopic").style.display='none';
+    }
+  function chkVisible(ctlID)
+        {
+        debugger;
+            if( document.getElementById("optSuspend").checked==true )
+            {  
+                document.getElementById("trreason").style.display='';
+                document.getElementById ('ddlDays1').disabled=true;
+                document.getElementById ('ddlPeriod1').disabled=true;
+                
+            }
+           
+           else
+                {
+                        document.getElementById("trreason").style.display='none';
+                       document.getElementById ('ddlDays1').disabled=false;
+                       document.getElementById ('ddlPeriod1').disabled=false ;
+                }
+                
+            //// if(document.getElementById("hdAll").value.indexOf(document.getElementById ("txtd").value, 1)<0)
+              //  {
+             
+                   // document.getElementById("hdAll").value=document.getElementById("hdAll").value + "^" + document.getElementById ("txtd").value+"^"+ document.getElementById ("txtp").value;//+ "^"+Value +"^"+Text;
+            
+              //  }
+//                if(document.getElementById("hdAll").value.match("^" + document.getElementById ("txtp").value)==null)
+//                {
+//                    document.getElementById("hdAll").value=document.getElementById("hdAll").value + "^" + document.getElementById ("txtp").value;//+ "^" + document.getElementById ("txtp").value+ "^"+Value +"^"+Text;
+//                }
+                 if( document.getElementById("optFaculty").checked==true )
+                 {       
+                    var arrall;
+//                      arrall[0]="1"
+//                      arrall[1]="F1";
+//                      arrall[2]="2";
+//                      arrall[3]="F2";
+//GetFaculty('ddlFaculty','F');
+                       //BindDDL('ddlFaculty',arrall);
+                 }
+                 if( document.getElementById("optVenu").checked==true )
+                 {        
+                      var a;
+                    //  GetFaculty('ddlVenue','V');
+                 }
+
+        } 
+  function onchange1(sval)
+  {
+    document.getElementById ("hdSelday").value=document.getElementById ('ddlDays1').value;
+  }
+   function onchangeF()
+  {
+    
+    var ddlReport = document.getElementById("<%=ddlFaculty.ClientID%>");
+    document.getElementById ("hdFac").value=ddlReport.selectedIndex;
+    var Text = ddlReport.options[document.getElementById ("hdFac").value].text; 
+    var Value = ddlReport.options[document.getElementById ("hdFac").value].value;
+    document.getElementById ("txtFaculty").value=Text;
+   var chkarr=document.getElementById("hdAll").value.split("^");
+   debugger;
+   var chd="false";
+   var chp="false";
+   if(document.getElementById ("optEdit").checked==true)
+   {
+       var st=  document.getElementById ("hdSubjectTopic").value.split("^");
+       st[6]=document.getElementById ("txtd").value;
+       st[7]=document.getElementById ("txtp").value;
+       st[8]=Value;
+       st[9]=Text;
+       var k;
+       var FillS="";
+       for(k=0;k<=st.length-1;k++)
+        {
+          if(FillS=="")
+          {
+             FillS=st[k];
+          }
+          else
+          {
+            FillS=FillS+"^"+ st[k];
+          }  
+        }
+       document.getElementById ("hdSubjectTopic").value =FillS;
+       document.getElementById("hdAll").value=FillS;
+   }
+   if(chkarr.length>5)
+    {
+          if(  chkarr[6]!=document.getElementById ("txtd").value)
+            {
+            chd="true";
+                //document.getElementById("hdAll").value=document.getElementById("hdAll").value+"^"+document.getElementById ("txtd").value
+                chkarr[6]=document.getElementById ("txtd").value;
+            }
+            if(  chkarr[7]!=document.getElementById ("txtp").value)
+            {
+             chp="true";
+            chkarr[7]=document.getElementById ("txtp").value;
+                // document.getElementById("hdAll").value=document.getElementById("hdAll").value+"^"+document.getElementById ("txtp").value
+            }
+           
+    }
+    chkarr[8]=Value;
+    chkarr[9]=Text;
+    var i;
+    var collectv="";
+      for(i=0;i<=chkarr.length-1;i++)
+        {
+          if(collectv =="")
+            {
+               collectv=chkarr[i]; 
+            }
+            else
+            {
+               collectv=collectv+"^"+chkarr[i]  ;
+            }
+        }
+   document.getElementById("hdAll").value=collectv;
+
+ 
+//alert(document.getElementById("hdAll").value);
+        
+  }
+  function onchangeV()
+  {
+   var ddlVen = document.getElementById("<%=ddlVenue.ClientID%>");
+    document.getElementById ("hdVenue").value=ddlVen.selectedIndex;
+    var TextV = ddlVen.options[document.getElementById ("hdVenue").value].text; 
+    var ValueV = ddlVen.options[document.getElementById ("hdVenue").value].value;
+    document.getElementById ("txtVenu").value=TextV;
+    document.getElementById("hdVenue").value=ValueV +"^"+TextV;
+   var chkarr=document.getElementById("hdAll").value.split("^");
+   chkarr[11] =ValueV;
+   chkarr[12] =TextV;
+    var i;
+    var collectv="";
+      for(i=0;i<=chkarr.length-1;i++)
+        {
+          if(collectv =="")
+            {
+               collectv=chkarr[i]; 
+            }
+            else
+            {
+               collectv=collectv+"^"+chkarr[i]  ;
+            }
+        }
+   document.getElementById("hdAll").value=collectv;
+   if(document.getElementById ("optEdit").checked==true)
+   {
+       var st=  document.getElementById ("hdSubjectTopic").value.split("^");
+       st[6]=document.getElementById ("txtd").value;
+       st[7]=document.getElementById ("txtp").value;
+       st[10]=ValueV;
+       st[11]=TextV;
+       var k;
+       var FillS="";
+       for(k=0;k<=st.length-1;k++)
+        {
+          if(FillS=="")
+          {
+             FillS=st[k];
+          }
+          else
+          {
+            FillS=FillS+"^"+ st[k];
+          }  
+        }
+       document.getElementById ("hdSubjectTopic").value =FillS;
+       document.getElementById("hdAll").value=FillS;
+   }
+  }
+ 
+  function onchange2(sval)
+          {
+          debugger;
+          document.getElementById ("hdSelday").value=document.getElementById ('ddlDays1').value;
+            document.getElementById ("hdSelPeriod").value=document.getElementById ('ddlPeriod1').value;
+            
+            if(document.getElementById("hdAll").value.indexOf(document.getElementById ("txtd").value, 1)<0)
+                {
+                  document.getElementById("hdAll").value=document.getElementById("hdAll").value + "^" + document.getElementById ("txtd").value;//+ "^" + document.getElementById ("txtp").value+ "^"+Value +"^"+Text;
+                }
+//            if(document.getElementById("hdAll").value.match("^"+document.getElementById ("txtp").value)==null)
+//                {
+//                  document.getElementById("hdAll").value=document.getElementById("hdAll").value + "^" + document.getElementById ("txtp").value;//+ "^" + document.getElementById ("txtp").value+ "^"+Value +"^"+Text;
+//                }
+          }
+  function BindDDL(DDLList,result)
+       {
+            var selectOfInst = $get(DDLList);
+            selectOfInst.innerHTML='';
+            //selectOfInst.options.length = 0;
+            var customerItems = result;
+            var pos = 1;
+            var oOption = document.createElement("OPTION");
+                oOption.text = '---Select---';
+                oOption.value = 0;
+           selectOfInst.add(oOption, 0); 
+           for (var i=0; i<result.length;i++) 
+            {   oOption = document.createElement("OPTION");
+                oOption.text = result[i+1];
+                oOption.value =result[i];
+                selectOfInst.add(oOption, pos);                   
+              i=i+1;
+                pos += 1;
+            }
+            //selectOfInst.selectedIndex=0;
+           // selectOfInst.focus();
+       }
+   function OpenCourse1(d)
+   
+    {   debugger;
+    var arr=d.split("|");
+        var i=0;
+         EditV();
+        document.getElementById ("txtp").value=arr[1];
+        document.getElementById ("txtd").value=arr[0];
+        document.getElementById("hdAll").value=document.getElementById("hdAll").value + "^" + arr[0]+ "^" + arr[1];
+        var arr=document.getElementById ("hddays").value.split(",");
+        document.getElementById("ddlDays1").options.length=0;
+
+        var optS=document.createElement("option");
+        var pos=1;
+          document.getElementById("ddlDays1").options.add(optS,0);
+          optS.text="-";
+          optS.value="-";
+      for( i =0 ; i< arr.length ;i++)
+        {  
+        var opt=document.createElement("option");
+          document.getElementById("ddlDays1").options.add(opt,pos);
+                opt.text=arr[i];
+                opt.value=arr[i];
+                pos=pos+1;
+        }
+        var arr1=document.getElementById ("hdperiod").value.split(",");
+        document.getElementById("ddlPeriod1").options.length=0;
+        var optS1=document.createElement("option");
+        var pos1=1;
+           document.getElementById("ddlPeriod1").options.add(optS1,0);
+          optS1.text="-";
+          optS1.value="-";
+       for( i =0 ; i< arr1.length ;i++)
+        {
+        var opt1=document.createElement("option");
+          document.getElementById("ddlPeriod1").options.add(opt1,pos1);
+          var sp=arr1[i].split("(");
+                opt1.text=sp[1].replace(")","");
+                opt1.value=sp[0];
+                pos1=pos1+1;
+                    
+        }
+        // document.getElementById("ddlDays1").value=document.getElementById ("txtd").value;
+        // document.getElementById("ddlPeriod1").value=document.getElementById ("txtp").value;
+        //
+        //////////////
+        
+    }
+  function OpenCourse()
+    { 
+       $('#ModalPopupCourse').fadeIn(function() {
+       //document.getElementById ('hdAll').value ="";
+       document.getElementById ('ddlSubject').value ="0";
+       document.getElementById("optFaculty").checked==true
+       GetFaculty('ddlFaculty','F');
+       document.getElementById("optVenu").checked==true
+        GetVenue('ddlVenu','V');
+				document.getElementById ('ModalPopupCourse').style.display='';
+        //document.getElementById ('ModalPopupCourse').style.display='block';
+        document.getElementById ('ModalPopupCourse').style.top= (Math.round ((document.documentElement.clientHeight/2)+ document.documentElement.scrollTop)-200) + 'px';
+        document.getElementById ('ModalPopupCourse').style.left='0px';
+        
+        // document.getElementById ('DivCourse').style.display='block';
+         $('#ModalPopupCourse').slideDown('slow');
+        document.getElementById ('DivCourse').style.display='';
+        document.getElementById ('DivCourse').style.top='0px';
+        document.getElementById ('DivCourse').style.left='0px';
+        document.getElementById ('DivCourse').style.width=  document.documentElement.clientWidth + 'px';
+        document.getElementById ('DivCourse').style.height= document.documentElement.clientHeight+ 'px';
+        
+			
+			});
+        
+    }
+    function CloseCourse()
+    {
+        document.getElementById ('DivCourse').style.display='none';
+        document.getElementById ('ModalPopupCourse').style.display='none';
+    }
+    function GetList(ctl)
+  { 
+  var t="";
+ if(ctl.id=="ddlSubject")
+ {
+ t="T";
+ }
+ else{
+ t="ST";
+ }
+ 
+  var url="../TimeTable/ListGet.aspx?ID=" + document.getElementById(ctl.id).value+"&Type="+t ;
+  xmlHttp=GetXmlHttpObject(stateChanged3);
+  xmlHttp.open("GET", url , true);
+  xmlHttp.send(null);
+  } 
+  function stateChanged3() 
+  {  
+      if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")
+          {
+          debugger;
+          var arrall1=xmlHttp.responseText.split("|");
+            var arrall=arrall1[0].split("^");
+            if(arrall1[1]=="T")
+            {
+               BindDDL('ddlTopic',arrall);
+
+            }
+            if(arrall1[1]=="ST")
+            {
+               BindDDL('ddlSubtopic',arrall);
+
+            }
+
+          }
+  }
+  
+  function SubjectTopic()
+  {
+  var e=document.getElementById ('ddlSubject');
+  var sid=e.options[e.selectedIndex].text;
+  var e1=document.getElementById ('ddlTopic');
+  var tid=e1.options[e1.selectedIndex].text;
+   var e2=document.getElementById ('ddlSubtopic');
+  var stid=e2.options[e2.selectedIndex].text;
+    document.getElementById ("hdSubjectTopic").value = document.getElementById ('ddlSubject').value+"^"+sid+"^"+document.getElementById ('ddlTopic').value+"^"+tid+"^"+ document.getElementById ('ddlSubtopic').value+"^"+ stid;
+  }
+  
+    </script>
+</head>
+<body>
+    
+    <form id="form1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server"  AsyncPostBackTimeout="9999999" EnablePageMethods="true">
+        </asp:ScriptManager>
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server" >
+            <ContentTemplate>
+            <table width="100%">
+            <tr><td class="header" colspan="4">Tentative Planner</td></tr>
+              <tr><td class="rdgrow" style="width:15%">Institute</td><td class="rdgrow" style="width:30%">
+                  <asp:DropDownList ID="ddlInstitute" CssClass="rdgdropdown" runat="server" 
+                      Height="16px" Width="229px" AutoPostBack="True" 
+                      onselectedindexchanged="ddlInstitute_SelectedIndexChanged">
+                  </asp:DropDownList>
+                  </td><td class="rdgrow" style="width:15%">&nbsp;</td><td class="rdgrow" style="width:25%">
+                  <asp:DropDownList ID="ddlSession" runat="server" CssClass="rdgdropdown" 
+                       Width="129px" AutoPostBack="True">
+                  </asp:DropDownList>
+                  </td></tr>
+                <tr>
+                    <td class="rdgrow">
+                        Course</td>
+                    <td class="rdgrow">
+                        <asp:DropDownList ID="ddlCourse" runat="server" CssClass="rdgdropdown" 
+                              Width="229px" AutoPostBack="True"  
+                            onselectedindexchanged="ddlCourse_SelectedIndexChanged">
+                        </asp:DropDownList>
+                        <input type="hidden" id="hddays" runat="server" />
+                        <input type="hidden" id="hdSubjectTopic" runat="server" />
+                        <input type="hidden" id="hdPL" runat="server" />
+                        <input type="hidden" id="hdSelday" runat="server" />
+                        <input type="hidden" id="hdperiod" runat="server" />
+                        <input type="hidden" id="hdtype" runat="server" />
+                          <input type="hidden" id="hdSelPeriod" runat="server" />
+                          <input type="hidden" id="hdstopic" runat="server" />
+                          <input type="hidden" id="hdAll" runat="server" />
+                          <input type="hidden" id="hdFac" runat="server" />
+                          <input type="hidden" id="hdbatch" runat="server" />
+                          <input type="hidden" id="hdVenue" runat="server" />
+                    </td>
+                    <td class="rdgrow">
+                        Semester/Year</td>
+                    <td class="rdgrow">
+                        <asp:DropDownList ID="ddlSemester" runat="server" CssClass="rdgdropdown" 
+                            Width="129px" AutoPostBack="True" 
+                            onselectedindexchanged="ddlSemester_SelectedIndexChanged">
+                        </asp:DropDownList>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="rdgrow">
+                        Week </td>
+                    <td class="rdgrow">
+                        <asp:DropDownList ID="ddlWeek" runat="server" CssClass="rdgdropdown" 
+                             Width="89px" AutoPostBack="True" 
+                            onselectedindexchanged="ddlWeek_SelectedIndexChanged">
+                        </asp:DropDownList>
+                    </td>
+                    <td class="rdgrow">
+                        Applicable For Batch(s)</td>
+                    <td class="rdgrow">
+                        <asp:RadioButtonList ID="RadioButtonList1" runat="server" CellPadding="0" 
+                            CellSpacing="0" RepeatDirection="Horizontal">
+                            <asp:ListItem Value="1">All
+                            </asp:ListItem>
+                            <asp:ListItem Value="2">A</asp:ListItem>
+                            <asp:ListItem Value="3">B</asp:ListItem>
+                        </asp:RadioButtonList>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="rdgrow">
+                        Start Date (Week)</td>
+                    <td class="rdgrowL">
+                        <asp:Label ID="lblStartDateW" runat="server" Text=""></asp:Label>
+                    </td>
+                    <td class="rdgrow">
+                        End Date (Week)</td>
+                    <td class="rdgrowL">
+                        <asp:Label ID="lblEndDateW" runat="server" Text=""></asp:Label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="rdgrow">
+                        Session Start Date</td>
+                    <td class="rdgrowL">
+                        <asp:Label ID="lblSessionStartD" runat="server" Text=""></asp:Label>
+                    </td>
+                    <td class="rdgrow">
+                        Session End Date</td>
+                    <td class="rdgrowL">
+                        <asp:Label ID="lblSessionEndD" runat="server" Text=""></asp:Label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="rdgrow">
+                        # of Days Avaliable </td>
+                    <td class="rdgrowL">
+                        <asp:Label ID="lblNDates" runat="server" Text=""></asp:Label>
+                    </td>
+                    <td class="rdgrow">
+                         # of hrs of study/day</td>
+                    <td class="rdgrowL">
+                        <asp:Label ID="lblHrStudy" runat="server" Text=""></asp:Label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="rdgrow">
+                        &nbsp;</td>
+                    <td class="rdgrowL">
+                        &nbsp;</td>
+                    <td class="rdgrow">
+                        <asp:Button ID="cmdSubmit" runat="server" CssClass="buttons" 
+                            onclick="cmdSubmit_Click" Text="Submit" />
+                    </td>
+                    <td class="rdgrowL">
+                        &nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="rdgrowL" colspan="4">
+                         <input ID="chkPlanner" onclick="visibleCtl()" type="checkbox" />Planner Details</td>
+                </tr>
+                <tr id="trplanner" style="display:none">
+                    <td   colspan="4">
+                        <asp:GridView ID="gvDetailP" runat="server" AutoGenerateColumns="False" 
+                            CellPadding="0"   Width="100%" CssClass="paging_gridview" 
+                            ShowFooter="True">
+                                <PagerSettings Position="TopAndBottom" />
+                                <RowStyle CssClass="paging_gridview_itm" />
+                                <Columns>
+                                    <asp:BoundField DataField="sno" HeaderText="S.No." />
+                                    <asp:BoundField DataField="Subject" HeaderText="Subject" >
+                                        <HeaderStyle Width="200px" />
+                                        <ItemStyle Width="200px" />
+                                    </asp:BoundField>
+                                    <asp:BoundField DataField="Theory" HeaderText="Theory" />
+                                    <asp:BoundField DataField="Practical" HeaderText="Practical" />
+                                    <asp:BoundField DataField="SSHours" HtmlEncode="false"  HeaderText="Subject &lt;br/&gt; Subtotal &lt;br/&gt; Hours" />
+                                    <asp:BoundField DataField="THours" HeaderText="Total Hours" />
+                                    <asp:BoundField DataField="SSHP" HtmlEncode="false"  HeaderText="Subject &lt;br/&gt; Subtotal &lt;br/&gt;  Hours(%)" />
+                                    <asp:BoundField DataField="HAPD" HtmlEncode="false" HeaderText="Hours &lt;br/&gt; available &lt;br/&gt; per day" />
+                                    <asp:BoundField DataField="DW" HtmlEncode="false" HeaderText="Days &lt;br/&gt; in a week" />
+                                    <asp:BoundField DataField="THW" HtmlEncode="false" HeaderText="Total &lt;br/&gt; hours &lt;br/&gt; in a week" />
+                                    <asp:BoundField DataField="THSW" HtmlEncode="false" HeaderText="Total hours &lt;br/&gt; for a subject &lt;br/&gt; in a week" />
+                               <asp:BoundField DataField="HTP" HtmlEncode="false"  HeaderText="Hours &lt;br/&gt; for &lt;br/&gt; Theory(%)" />
+                               <asp:BoundField DataField="HPP" HtmlEncode="false" HeaderText="Hours &lt;br/&gt; for &lt;br/&gt; Practical(%)" />
+                               <asp:BoundField DataField="HT" HtmlEncode="false" HeaderText="Hours &lt;br/&gt; for &lt;br/&gt; Theory" />
+                               <asp:BoundField DataField="HP" HtmlEncode="false" HeaderText="Hours &lt;br/&gt; for &lt;br/&gt; Practical." />
+                                </Columns>
+                                <PagerStyle CssClass="paging_gridview_pgr" />
+                                <HeaderStyle CssClass="paging_gridview_hdr" />
+                                <AlternatingRowStyle CssClass="paging_gridview_aitm" />
+                                </asp:GridView> </td>
+                </tr>
+                <tr  >
+                    <td class="rdgrowL"  colspan="2">
+                         <input id="chkTopic" type="checkbox" onclick="visibleCtl()" />Show Topic</td>
+                    <td  class="rdgrowL"  valign="top"  colspan="2">
+                        <input id="chkPract" type="checkbox" onclick="visibleCtl()" />Show Practical</td>
+                </tr>
+                <tr >
+                    <td colspan="2" id="trtopic" style="display:none" >
+                        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" 
+                            CellPadding="0" CssClass="paging_gridview" ShowFooter="True" Width="100%">
+                            <PagerSettings Position="TopAndBottom" />
+                            <RowStyle CssClass="paging_gridview_itm" />
+                            <Columns>
+                                <asp:TemplateField HeaderText="S.No.">
+                                    <ItemTemplate>
+                                        <asp:Label ID="Label1" runat="server" Text="<%# Container.DataItemIndex +1 %>"></asp:Label>
+                                    </ItemTemplate>
+                                    <HeaderStyle Width="30px" />
+                                    <ItemStyle Width="30px" />
+                                </asp:TemplateField>
+                                <asp:BoundField DataField="SubTopicName" HeaderText="Sub Topic" />
+                                <asp:BoundField DataField="alloted" HeaderText="Alloted hrs" 
+                                    HtmlEncode="false" />
+                            </Columns>
+                            <PagerStyle CssClass="paging_gridview_pgr" />
+                            <HeaderStyle CssClass="paging_gridview_hdr" />
+                            <AlternatingRowStyle CssClass="paging_gridview_aitm" />
+                        </asp:GridView>
+                    </td>
+                    <td colspan="2" valign="top" id="trpract" style="display:none">
+                        <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" 
+                            CellPadding="0" CssClass="paging_gridview" ShowFooter="True" Width="100%">
+                            <PagerSettings Position="TopAndBottom" />
+                            <RowStyle CssClass="paging_gridview_itm" />
+                            <Columns>
+                                <asp:TemplateField HeaderText="S.No.">
+                                    <ItemTemplate>
+                                        <asp:Label ID="Label1" runat="server" Text="<%# Container.DataItemIndex +1 %>"></asp:Label>
+                                    </ItemTemplate>
+                                    <HeaderStyle Width="30px" />
+                                    <ItemStyle Width="30px" />
+                                </asp:TemplateField>
+                                <asp:BoundField DataField="SubTopicName" HeaderText="S.No." />
+                                <asp:BoundField DataField="alloted" HeaderText="Alloted hrs" 
+                                    HtmlEncode="false" />
+                            </Columns>
+                            <PagerStyle CssClass="paging_gridview_pgr" />
+                            <HeaderStyle CssClass="paging_gridview_hdr" />
+                            <AlternatingRowStyle CssClass="paging_gridview_aitm" />
+                        </asp:GridView>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="rdgrow" ID="NewTopic" colspan="2"  >
+                       <a href="#" onclick="openTopic('Topic.aspx','Topic')">Enter New Topic</a> &nbsp;&nbsp;<a href="#" onclick="openTopic('subTopic.aspx','Topic')">Enter New Sub Topic</a> </td>
+                    <td ID="Td1" colspan="2" style="display:none" valign="top">
+                        &nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="4"> 
+                        <asp:GridView ID="GridView3" runat="server" AutoGenerateColumns="true" 
+                            CellPadding="0" CssClass="paging_gridview" ShowFooter="True" Width="100%" 
+                            onrowdatabound="GridView3_RowDataBound" GridLines="Vertical">
+                            <PagerSettings Position="TopAndBottom" />
+                            <RowStyle CssClass="paging_gridview_itm" />
+                             
+                            <PagerStyle CssClass="paging_gridview_pgr" />
+                            <HeaderStyle CssClass="paging_gridview_hdr" />
+                            <AlternatingRowStyle CssClass="paging_gridview_aitm" />
+                        </asp:GridView> 
+                    </td>
+                </tr>
+                <tr>
+                    <td class="rdgrow" colspan="4">
+                        <asp:GridView ID="grdSubTopicID" runat="server" Visible="false">
+                        </asp:GridView>
+                    </td>
+                </tr>
+                <tr>
+                    <td  colspan="4">
+                        <asp:GridView ID="grdBatchBT" runat="server" AutoGenerateColumns="true" 
+                            CellPadding="0" CssClass="paging_gridview" 
+                            onrowdatabound="grdBatchBT_RowDataBound" ShowFooter="True" Width="100%">
+                            <PagerSettings Position="TopAndBottom" />
+                            <RowStyle CssClass="paging_gridview_itm" />
+                            <PagerStyle CssClass="paging_gridview_pgr" />
+                            <HeaderStyle CssClass="paging_gridview_hdr" />
+                            <AlternatingRowStyle CssClass="paging_gridview_aitm" />
+                        </asp:GridView>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="rdgrow" colspan="4">
+                        <asp:GridView ID="grdBatchBI" Visible="false" runat="server" AutoGenerateColumns="true" 
+                            CellPadding="0" ShowFooter="True">
+                            <PagerSettings Position="TopAndBottom" />
+                            <RowStyle CssClass="paging_gridview_itm" />
+                            <PagerStyle CssClass="paging_gridview_pgr" />
+                            <HeaderStyle CssClass="paging_gridview_hdr" />
+                            <AlternatingRowStyle CssClass="paging_gridview_aitm" />
+                        </asp:GridView>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="rdgrow">
+                        &nbsp;</td>
+                    <td class="rdgrow">
+                        &nbsp;</td>
+                    <td class="rdgrow">
+                        &nbsp;</td>
+                    <td class="rdgrow">
+                        &nbsp;</td>
+                </tr>
+            </table>
+            </ContentTemplate> 
+            <Triggers>
+                <asp:PostBackTrigger ControlID="ddlSemester" />
+                <asp:PostBackTrigger ControlID="ddlWeek" />
+            </Triggers>
+          </asp:UpdatePanel> 
+          <div id="DivCourse" class ="MaskedDiv"></div>
+     <div id="ModalPopupCourse" class="ModalPopup"    style="width:50%"> 
+        <table width="100%" class="rdgrow"   cellpadding="1" cellspacing="0" border="0">
+        <tr><td colspan="2"  style="width:100%;background-color: #6593CF" valign="top" ><div style="width:30%; margin-left:0%;float:left;font:arial;font-size:11px;color:White">Shift Period</div>
+                        <div style="width:8%;float:right;  position:relative;font:arial;font-size:11px;color:White"><a href="javascript:void(0);" onclick="javascript:CloseCourse();" >Close</a></div></td></tr>
+           
+            <tr><td colspan="2" class="rdgrowH">Move From</td></tr>
+            <tr><td >Edit</td><td ><asp:RadioButton ID="optAd" runat="server" GroupName="m" onclick="EditV();" Checked="true" />Add<asp:RadioButton ID="optEdit" onclick="AddV();" runat="server" GroupName="m"/></td></tr>
+            <tr><td  >Period</td>
+                <td  ><input id="txtp" class="rdginputbox"   runat="server"  type="text" readonly="readonly" style="width:30px" />&nbsp;Day&nbsp;<input id="txtd" class="rdginputbox"   runat="server" style="width:90px"  type="text" readonly="readonly"  /> </td>
+            </tr>
+            <tr><td  >Subject</td>
+                <td  > <asp:TextBox ID="txt1" CssClass="rdginputbox" ReadOnly="true"  Width="350px"  runat="server"></asp:TextBox>
+                <asp:DropDownList ID="ddlSubject" CssClass="rdgdropdown" onchange="GetList(this);" runat="server" Width="350px"></asp:DropDownList>
+                </td> 
+                    
+            </tr>
+            <tr><td  >Topic</td>
+                <td >
+                    <asp:TextBox ID="txt2" runat="server" CssClass="rdginputbox" ReadOnly="true"   Width="350px"></asp:TextBox> 
+                    <asp:DropDownList ID="ddlTopic" CssClass="rdgdropdown" onchange="GetList(this);" runat="server" Width="350px"></asp:DropDownList>
+                    </td>
+            </tr>
+            <tr><td  >Subtopic</td>
+                <td  >
+                    <asp:TextBox ID="txt3" CssClass="rdginputbox" ReadOnly="true"  Width="350px" runat="server"></asp:TextBox>
+                    <asp:DropDownList ID="ddlSubtopic" CssClass="rdgdropdown" onchange="SubjectTopic(this);" runat="server" Width="350px"></asp:DropDownList>
+                    </td>
+            </tr>
+            <tr><td  >Faculty</td>
+                <td  >
+                    <asp:DropDownList CssClass="rdgdropdown" onchange="onchangeF();" 
+                        ID="ddlFaculty" runat="server" Width="350px" AppendDataBoundItems="True"></asp:DropDownList>
+                    </td>
+            </tr>
+            <tr><td  >Venu</td>
+                <td  >
+                    <asp:DropDownList ID="ddlVenue" CssClass="rdgdropdown" onchange="onchangeV();" runat="server" Width="350px"></asp:DropDownList></td>
+            </tr>
+            <tr><td  >Options</td>
+                <td  >
+                    <input id="optMove" type="radio" value="Move" runat="server" onclick="chkVisible(this);"   />Move &nbsp;<input id="optCopy" onclick="chkVisible(this);" runat="server"  value="Copy" type="radio" />Copy&nbsp;<input id="optSwap" runat="server" onclick="chkVisible(this);"  value="swap" type="radio" />Swap&nbsp;<input id="optSuspend" onclick="chkVisible(this);" runat="server"  value="Suspend" type="radio" />Suspend
+                    &nbsp;<input id="optFaculty"    checked="true"   runat="server"  value="faculty" type="checkbox" />Faculty&nbsp;<input  id="optVenu"  checked="true" runat="server"  value="Venu" type="checkbox" />Venu
+                    </td>
+            </tr>
+            
+            <tr id="trreason" style="display:none;height:1px"><td >
+                <span id="res" >Reason to suspend</span></td><td >
+                    <input id="txtReason" class="rdginputbox" style="Width:350px;" runat="server"    type="text" /></td></tr>
+            <tr><td colspan="2" class="rdgrowH">Move To</td></tr>
+                <tr><td class="rdgrow">Period</td>
+                <td class="rdgrow">
+                 <select id="ddlPeriod1" class="rdgdropdown" onchange="onchange2(this);" runat="server" >
+                         
+                    </select><span class="star">*</span> &nbsp;Days&nbsp;
+                    
+                    <select id="ddlDays1" class="rdgdropdown" onchange="onchange1(this);onchange2(this);" runat="server" >
+                         
+                    </select><span class="star">*</span>
+                </td>
+                </tr>
+                <tr><td class="rdgrow">Faculty</td><td class="rdgrow">
+                    <asp:TextBox ID="txtFaculty" CssClass="rdginputbox" ReadOnly="true"    
+                        Width="16px" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtVenu" CssClass="rdginputbox" ReadOnly="true"  Width="30px" 
+                        runat="server" Height="16px"></asp:TextBox>
+                </td></tr>
+                <%--<tr><td class="rdgrow"></td><td class="rdgrow">
+                    <input id="chkSameF" type="checkbox" visible="false" />Same faculty for above subject</td></tr>--%>
+                <tr><td class="rdgrow">Venue</td><td class="rdgrow">&nbsp;</td></tr>
+               <%-- <tr><td class="rdgrow"></td><td class="rdgrow"><input id="chkSameV" visible="false" type="checkbox" />Same venu for above subject</td></tr>--%>
+
+                <tr align="center" >
+                    
+                    
+                <td class="rdgrow" colspan="2" align="center" > <div style="float:right">
+                    <asp:ImageButton ID="ImageButton1" ImageUrl="~/spellcheck.gif" runat="server" 
+                        Height="20px" Width="20px" onclick="ImageButton1_Click" />
+                    <asp:Button ID="Button1" CssClass="buttons"
+                            runat="server" Text="Assign" onclick="Button1_Click" /></div></td>
+           </tr>
+        </table>
+        </div> 
+    </form>
+</body>
+</html>

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Stu_Uploaded_Report" targetNamespace="http://tempuri.org/Stu_Uploaded_Report.xsd" xmlns:mstns="http://tempuri.org/Stu_Uploaded_Report.xsd" xmlns="http://tempuri.org/Stu_Uploaded_Report.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Stu_Uploaded_Report" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="Stu_Uploaded_Report" msprop:Generator_UserDSName="Stu_Uploaded_Report">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_RowClassName="DataTable1Row" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="studid" msprop:Generator_ColumnVarNameInTable="columnstudid" msprop:Generator_ColumnPropNameInRow="studid" msprop:Generator_ColumnPropNameInTable="studidColumn" msprop:Generator_UserColumnName="studid" type="xs:string" minOccurs="0" />
+              <xs:element name="Studentname" msprop:Generator_ColumnVarNameInTable="columnStudentname" msprop:Generator_ColumnPropNameInRow="Studentname" msprop:Generator_ColumnPropNameInTable="StudentnameColumn" msprop:Generator_UserColumnName="Studentname" type="xs:string" minOccurs="0" />
+              <xs:element name="coursename" msprop:Generator_ColumnVarNameInTable="columncoursename" msprop:Generator_ColumnPropNameInRow="coursename" msprop:Generator_ColumnPropNameInTable="coursenameColumn" msprop:Generator_UserColumnName="coursename" type="xs:string" minOccurs="0" />
+              <xs:element name="shortname" msprop:Generator_ColumnVarNameInTable="columnshortname" msprop:Generator_ColumnPropNameInRow="shortname" msprop:Generator_ColumnPropNameInTable="shortnameColumn" msprop:Generator_UserColumnName="shortname" type="xs:string" minOccurs="0" />
+              <xs:element name="sem_name" msprop:Generator_ColumnVarNameInTable="columnsem_name" msprop:Generator_ColumnPropNameInRow="sem_name" msprop:Generator_ColumnPropNameInTable="sem_nameColumn" msprop:Generator_UserColumnName="sem_name" type="xs:string" minOccurs="0" />
+              <xs:element name="POH" msprop:Generator_ColumnVarNameInTable="columnPOH" msprop:Generator_ColumnPropNameInRow="POH" msprop:Generator_ColumnPropNameInTable="POHColumn" msprop:Generator_UserColumnName="POH" type="xs:string" minOccurs="0" />
+              <xs:element name="POI" msprop:Generator_ColumnVarNameInTable="columnPOI" msprop:Generator_ColumnPropNameInRow="POI" msprop:Generator_ColumnPropNameInTable="POIColumn" msprop:Generator_UserColumnName="POI" type="xs:string" minOccurs="0" />
+              <xs:element name="POG" msprop:Generator_ColumnVarNameInTable="columnPOG" msprop:Generator_ColumnPropNameInRow="POG" msprop:Generator_ColumnPropNameInTable="POGColumn" msprop:Generator_UserColumnName="POG" type="xs:string" minOccurs="0" />
+              <xs:element name="Entrance_Score_Card" msprop:Generator_ColumnVarNameInTable="columnEntrance_Score_Card" msprop:Generator_ColumnPropNameInRow="Entrance_Score_Card" msprop:Generator_ColumnPropNameInTable="Entrance_Score_CardColumn" msprop:Generator_UserColumnName="Entrance_Score_Card" type="xs:string" minOccurs="0" />
+              <xs:element name="TC_Migration_Certificate" msprop:Generator_ColumnVarNameInTable="columnTC_Migration_Certificate" msprop:Generator_ColumnPropNameInRow="TC_Migration_Certificate" msprop:Generator_ColumnPropNameInTable="TC_Migration_CertificateColumn" msprop:Generator_UserColumnName="TC_Migration_Certificate" type="xs:string" minOccurs="0" />
+              <xs:element name="Character_Certificate" msprop:Generator_ColumnVarNameInTable="columnCharacter_Certificate" msprop:Generator_ColumnPropNameInRow="Character_Certificate" msprop:Generator_ColumnPropNameInTable="Character_CertificateColumn" msprop:Generator_UserColumnName="Character_Certificate" type="xs:string" minOccurs="0" />
+              <xs:element name="Caste_Certificate" msprop:Generator_ColumnVarNameInTable="columnCaste_Certificate" msprop:Generator_ColumnPropNameInRow="Caste_Certificate" msprop:Generator_ColumnPropNameInTable="Caste_CertificateColumn" msprop:Generator_UserColumnName="Caste_Certificate" type="xs:string" minOccurs="0" />
+              <xs:element name="Certificate_of_Medicalfitness" msprop:Generator_ColumnVarNameInTable="columnCertificate_of_Medicalfitness" msprop:Generator_ColumnPropNameInRow="Certificate_of_Medicalfitness" msprop:Generator_ColumnPropNameInTable="Certificate_of_MedicalfitnessColumn" msprop:Generator_UserColumnName="Certificate_of_Medicalfitness" type="xs:string" minOccurs="0" />
+              <xs:element name="Domicile_Certificate" msprop:Generator_ColumnVarNameInTable="columnDomicile_Certificate" msprop:Generator_ColumnPropNameInRow="Domicile_Certificate" msprop:Generator_ColumnPropNameInTable="Domicile_CertificateColumn" msprop:Generator_UserColumnName="Domicile_Certificate" type="xs:string" minOccurs="0" />
+              <xs:element name="Sub_Category" msprop:Generator_ColumnVarNameInTable="columnSub_Category" msprop:Generator_ColumnPropNameInRow="Sub_Category" msprop:Generator_ColumnPropNameInTable="Sub_CategoryColumn" msprop:Generator_UserColumnName="Sub_Category" type="xs:string" minOccurs="0" />
+              <xs:element name="Academic_Gap" msprop:Generator_ColumnVarNameInTable="columnAcademic_Gap" msprop:Generator_ColumnPropNameInRow="Academic_Gap" msprop:Generator_ColumnPropNameInTable="Academic_GapColumn" msprop:Generator_UserColumnName="Academic_Gap" type="xs:string" minOccurs="0" />
+              <xs:element name="Anti_Ragging_Affidavit_Student" msprop:Generator_ColumnVarNameInTable="columnAnti_Ragging_Affidavit_Student" msprop:Generator_ColumnPropNameInRow="Anti_Ragging_Affidavit_Student" msprop:Generator_ColumnPropNameInTable="Anti_Ragging_Affidavit_StudentColumn" msprop:Generator_UserColumnName="Anti_Ragging_Affidavit_Student" type="xs:string" minOccurs="0" />
+              <xs:element name="Anti_Ragging_Affidavit_Parent" msprop:Generator_ColumnVarNameInTable="columnAnti_Ragging_Affidavit_Parent" msprop:Generator_ColumnPropNameInRow="Anti_Ragging_Affidavit_Parent" msprop:Generator_ColumnPropNameInTable="Anti_Ragging_Affidavit_ParentColumn" msprop:Generator_UserColumnName="Anti_Ragging_Affidavit_Parent" type="xs:string" minOccurs="0" />
+              <xs:element name="Adhar_Card" msprop:Generator_ColumnVarNameInTable="columnAdhar_Card" msprop:Generator_ColumnPropNameInRow="Adhar_Card" msprop:Generator_ColumnPropNameInTable="Adhar_CardColumn" msprop:Generator_UserColumnName="Adhar_Card" type="xs:string" minOccurs="0" />
+              <xs:element name="Income_Certificate" msprop:Generator_ColumnVarNameInTable="columnIncome_Certificate" msprop:Generator_ColumnPropNameInRow="Income_Certificate" msprop:Generator_ColumnPropNameInTable="Income_CertificateColumn" msprop:Generator_UserColumnName="Income_Certificate" type="xs:string" minOccurs="0" />
+              <xs:element name="Bank_Paasbook" msprop:Generator_ColumnVarNameInTable="columnBank_Paasbook" msprop:Generator_ColumnPropNameInRow="Bank_Paasbook" msprop:Generator_ColumnPropNameInTable="Bank_PaasbookColumn" msprop:Generator_UserColumnName="Bank_Paasbook" type="xs:string" minOccurs="0" />
+              <xs:element name="DiplomaCertificate" msprop:Generator_ColumnVarNameInTable="columnDiplomaCertificate" msprop:Generator_ColumnPropNameInRow="DiplomaCertificate" msprop:Generator_ColumnPropNameInTable="DiplomaCertificateColumn" msprop:Generator_UserColumnName="DiplomaCertificate" type="xs:string" minOccurs="0" />
+              <xs:element name="RollNo" msprop:Generator_ColumnVarNameInTable="columnRollNo" msprop:Generator_ColumnPropNameInRow="RollNo" msprop:Generator_ColumnPropNameInTable="RollNoColumn" msprop:Generator_UserColumnName="RollNo" type="xs:string" minOccurs="0" />
+              <xs:element name="RegNo" msprop:Generator_ColumnVarNameInTable="columnRegNo" msprop:Generator_ColumnPropNameInRow="RegNo" msprop:Generator_ColumnPropNameInTable="RegNoColumn" msprop:Generator_UserColumnName="RegNo" type="xs:string" minOccurs="0" />
+              <xs:element name="CollegeName" msprop:Generator_ColumnVarNameInTable="columnCollegeName" msprop:Generator_ColumnPropNameInRow="CollegeName" msprop:Generator_ColumnPropNameInTable="CollegeNameColumn" msprop:Generator_UserColumnName="CollegeName" type="xs:string" minOccurs="0" />
+              <xs:element name="InstLogo" msprop:Generator_ColumnVarNameInTable="columnInstLogo" msprop:Generator_ColumnPropNameInRow="InstLogo" msprop:Generator_ColumnPropNameInTable="InstLogoColumn" msprop:Generator_UserColumnName="InstLogo" type="xs:base64Binary" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,813 @@
+﻿using System;
+using System.Data;
+using System.Configuration;
+using System.Linq;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Xml.Linq;
+using System.Runtime.Serialization;
+namespace Academic
+{
+    [Serializable]
+    [DataContract]
+    public class AcademicData
+    {
+        [Serializable]
+        [DataContract]
+        public class DepartmentDM
+        {
+            [DataMember]
+            public int DepartmentID { get; set; }
+            [DataMember]
+            public string DepartmentName { get; set; }
+            [DataMember]
+            public string ShortName { get; set; }
+            [DataMember]
+            public string Active { get; set; }
+            [DataMember]
+            public int InstituteID { get; set; }
+            [DataMember]
+            public string Flag { get; set; }
+        }
+
+
+        //[Serializable]
+        //[DataContract]
+        //public class WeekDM
+        //{
+        //    [DataMember]
+        //    public int WeekID { get; set; }
+        //    [DataMember]
+        //    public int semid { get; set; }
+        //    [DataMember]
+        //    public int Inst_ID { get; set; }
+        //}
+
+
+        [Serializable]
+        [DataContract]
+        public class WeekDelDM
+        {
+            [DataMember]
+            public int CourseID { get; set; }
+            [DataMember]
+            public int semid { get; set; }
+            [DataMember]
+            public string SessionYr { get; set; }
+            [DataMember]
+            public int Inst_ID { get; set; }
+        }
+
+        [Serializable]
+        [DataContract]
+        public class CourseDelDM
+        {
+            [DataMember]
+            public int CourseID { get; set; }  
+        }
+        [Serializable]
+        [DataContract]
+        public class CourseDM
+        {
+            [DataMember]
+            public int CourseId { get; set; }
+            [DataMember]
+            public string CourseName { get; set; }
+            [DataMember]
+            public string ShortName { get; set; }
+            [DataMember]
+            public string CourseNature { get; set; }
+            [DataMember]
+            public int CourseDuration { get; set; }
+            [DataMember]
+            public int SpecialisationID { get; set; }
+            [DataMember]
+            public int InstituteID { get; set; }
+            [DataMember]
+            public string SessionID { get; set; }
+            [DataMember]
+            public string Active { get; set; }
+            [DataMember]
+            public string Type { get; set; }
+            [DataMember]
+            public string DepartmentID { get; set; }
+            [DataMember]
+            public int NOS { get; set; }
+            [DataMember]
+            public int EXS { get; set; }
+            [DataMember]
+            public string Category { get; set; }
+            [DataMember]
+            public string Flag { get; set; }
+            [DataMember]
+            public int Isgroup { get; set; }
+        }
+
+        [Serializable]
+        [DataContract]
+        public class CourseChildDM
+        {
+            [DataMember]
+            public int CourseID { get; set; }
+            [DataMember]
+            public string CastCategory { get; set; }
+            [DataMember]
+            public int Max_Age { get; set; }
+            [DataMember]
+            public int Min_Age { get; set; }
+            [DataMember]
+            public int Min_Per { get; set; }
+            [DataMember]
+            public string  Flag { get; set; }
+        }
+        public class CourseDeptMapDM
+        {
+            [DataMember]
+            public int ID { get; set; }
+            [DataMember]
+            public int InstituteID { get; set; }
+            [DataMember]
+            public int DepartmentID { get; set; }
+            [DataMember]
+            public int  Status { get; set; }
+            [DataMember]
+            public int CourseID { get; set; }
+            [DataMember]
+            public string flag { get; set; }
+        }
+        [Serializable]
+        [DataContract]
+        public class WeekDM
+        {
+            [DataMember]
+            public int WeekID { get; set; }
+            [DataMember]
+            public DateTime StartDate { get; set; }
+            [DataMember]
+            public DateTime EndDate { get; set; }
+            [DataMember]
+            public string WeekName { get; set; }
+            [DataMember]
+            public string SessionYear { get; set; }
+            [DataMember]
+            public string Active { get; set; }
+            [DataMember]
+            public int Inst_ID { get; set; }
+            [DataMember]
+            public int CourseId { get; set; }
+            [DataMember]
+            public int semid { get; set; }
+            [DataMember]
+            public int YearID { get; set; }
+            [DataMember]
+            public string  Flag { get; set; }
+        }
+
+        [Serializable]
+        [DataContract]
+        public class FacultyDM
+        {
+            [DataMember]
+            public int FacultyID { get; set; }
+            [DataMember]
+            public string Salutation { get; set; }
+            [DataMember]
+            public string FirstName { get; set; }
+            [DataMember]
+            public string MiddleName { get; set; }
+            [DataMember]
+            public string LastName { get; set; }
+            [DataMember]
+            public string Password { get; set; }
+            [DataMember]
+            public int DepartmentID { get; set; }
+            [DataMember]
+            public int Designation { get; set; }
+            [DataMember]
+            public DateTime BirthDate { get; set; }
+            [DataMember]
+            public string Address { get; set; }
+            [DataMember]
+            public int City { get; set; }
+            [DataMember]
+            public int State { get; set; }
+            [DataMember]
+            public int Country { get; set; }
+            [DataMember]
+            public string EmailID { get; set; }
+            [DataMember]
+            public string Phone { get; set; }
+            [DataMember]
+            public string Mobile { get; set; }
+            [DataMember]
+            public string Active { get; set; }
+            [DataMember]
+            public string Councellor { get; set; }
+            [DataMember]
+            public int InstituteID { get; set; }
+            [DataMember]
+            public string SessionID { get; set; }
+            [DataMember]
+            public string UName { get; set; }
+            [DataMember]
+            public DateTime UEntDt { get; set; }
+            [DataMember]
+            public string Flag { get; set; }
+            [DataMember]
+            public byte[] Photo { get; set; }
+        }
+
+        [Serializable]
+        [DataContract]
+        public class StudentRegistrationDM
+        {
+            [DataMember]
+            public int StudentID { get; set; }
+            [DataMember]
+            public string ProspectusDocID { get; set; }
+            [DataMember]
+            public string EnquiryDocID { get; set; }
+            [DataMember]
+            public string RegistrationNo { get; set; }
+            [DataMember]
+            public string RegistrationDate { get; set; }
+            [DataMember]
+            public string SessionCode { get; set; }
+            [DataMember]
+            public string CourseCode { get; set; }
+            [DataMember]
+            public string StudentNamePrefix { get; set; }
+            [DataMember]
+            public string StudentName { get; set; }
+            [DataMember]
+            public string ID_Student { get; set; }
+            [DataMember]
+            public byte[] ImagePath { get; set; }
+            [DataMember]
+            public string IdentityMark { get; set; }
+            [DataMember]
+            public string FatherNamePrefix { get; set; }
+            [DataMember]
+            public string FatherName { get; set; }
+            [DataMember]
+            public string ParentOccCode { get; set; }
+            [DataMember]
+            public string MotherNamePrefix { get; set; }
+            [DataMember]
+            public string MotherName { get; set; }
+            [DataMember]
+            public string DOB { get; set; }
+            [DataMember]
+            public string Category { get; set; }
+            [DataMember]
+            public string Sex { get; set; }
+            [DataMember]
+            public string ReligionCode { get; set; }
+            [DataMember]
+            public string NationalityCode { get; set; }
+            [DataMember]
+            public string GuardianNamePrefix { get; set; }
+            [DataMember]
+            public string GuardianName { get; set; }
+            [DataMember]
+            public string GuardianOccCode { get; set; }
+            [DataMember]
+            public string StudentRelation { get; set; }
+            [DataMember]
+            public decimal AnnualIncome { get; set; }
+            [DataMember]
+            public string UniversityCode { get; set; }
+            [DataMember]
+            public int DocumentCode { get; set; }
+            [DataMember]
+            public string LAdd1 { get; set; }
+            [DataMember]
+            public string LAdd2 { get; set; }
+            [DataMember]
+            public string LAdd3 { get; set; }
+            [DataMember]
+            public int LCityCode { get; set; }
+            [DataMember]
+            public string LPinCode { get; set; }
+            [DataMember]
+            public string LPhoneNo { get; set; }
+            [DataMember]
+            public string LMobileNo { get; set; }
+            [DataMember]
+            public string EMail { get; set; }
+            [DataMember]
+            public string PAdd1 { get; set; }
+            [DataMember]
+            public string PAdd2 { get; set; }
+            [DataMember]
+            public string PAdd3 { get; set; }
+            [DataMember]
+            public int PCityCode { get; set; }
+            [DataMember]
+            public string PPinCode { get; set; }
+            [DataMember]
+            public string PPhoneNo { get; set; }
+            [DataMember]
+            public string PMobileNo { get; set; }
+            [DataMember]
+            public string CAdd1 { get; set; }
+            [DataMember]
+            public string CAdd2 { get; set; }
+            [DataMember]
+            public string CAdd3 { get; set; }
+            [DataMember]
+            public int CCityCode { get; set; }
+            [DataMember]
+            public string CPinCode { get; set; }
+            [DataMember]
+            public string CPhoneNo { get; set; }
+            [DataMember]
+            public string CMobileNo { get; set; }
+            [DataMember]
+            public string ModeCode { get; set; }
+            [DataMember]
+            public string BloodGroup { get; set; }
+            [DataMember]
+            public string UName { get; set; }
+            [DataMember]
+            public DateTime UEntDt { get; set; }
+            [DataMember]
+            public string RollNo { get; set; }
+            [DataMember]
+            public string BatchCode { get; set; }
+            [DataMember]
+            public string CourseDescCode { get; set; }
+            [DataMember]
+            public string EnrollmentNo { get; set; }
+            [DataMember]
+            public string PassOutDate { get; set; }
+            [DataMember]
+            public int InstituteID { get; set; }
+            [DataMember]
+            public string SessionID { get; set; }
+            [DataMember]
+            public string MName { get; set; }
+            [DataMember]
+            public string LName { get; set; }
+            [DataMember]
+            public string CCategory { get; set; }
+            [DataMember]
+            public string Status { get; set; }
+            [DataMember]
+            public string Barcode { get; set; }
+            [DataMember]
+            public String flag { get; set; }
+            [DataMember]
+            public string @StudentIDreturn { get; set; }
+        }
+
+        [Serializable]
+        [DataContract]
+        public class StudentRegistrationDetailDM
+        {
+            [DataMember]
+            public int DocID { get; set; }
+            [DataMember]
+            public int SrNo { get; set; }
+            [DataMember]
+            public string FeeHeadCode { get; set; }
+            [DataMember]
+            public decimal TotalFeeAmount { get; set; }
+            [DataMember]
+            public string BreakoffTime { get; set; }
+            [DataMember]
+            public decimal Amount { get; set; }
+            [DataMember]
+            public string UName { get; set; }
+            [DataMember]
+            public DateTime UEntDt { get; set; }
+            [DataMember]
+            public DateTime DueDate { get; set; }
+            [DataMember]
+            public decimal PaidAmount { get; set; }
+            [DataMember]
+            public decimal BalAmount { get; set; }
+            [DataMember]
+            public decimal ReFund { get; set; }
+            [DataMember]
+            public int CourseID { get; set; }
+            [DataMember]
+            public int SID { get; set; }
+            [DataMember]
+            public string YearID { get; set; }
+            [DataMember]
+            public string Session { get; set; }
+            [DataMember]
+            public int Inst_ID { get; set; }
+            [DataMember]
+            public string Status { get; set; }
+            [DataMember]
+            public decimal ODC_Charge { get; set; }
+            [DataMember]
+            public DateTime fromdate { get; set; }
+            [DataMember]
+            public string flag { get; set; }
+            [DataMember]
+            public int FeesubID { get; set; }
+            [DataMember]
+            public string CCategory { get; set; }
+            [DataMember]
+            public string Batch { get; set; }
+        }
+
+        [Serializable]
+        [DataContract]
+        public class StudentStatusDM
+        {
+            [DataMember]
+            public int StudentID { get; set; }
+            [DataMember]
+            public string Batch { get; set; }
+            [DataMember]
+            public string Session { get; set; }
+            [DataMember]
+            public string YearID { get; set; }
+            [DataMember]
+            public int SemesterID { get; set; }
+            [DataMember]
+            public string EnrollmentNo { get; set; }
+            [DataMember]
+            public string RollNo { get; set; }
+            [DataMember]
+            public string Status { get; set; }
+            [DataMember]
+            public int IsFeeDeposited { get; set; }
+            [DataMember]
+            public int IsFeePaid { get; set; }
+            [DataMember]
+            public int IsCardIssued { get; set; }
+            [DataMember]
+            public int IsCourseChange { get; set; }
+            [DataMember]
+            public string ExamRollNo { get; set; }
+            [DataMember]
+            public string flag { get; set; }
+            [DataMember]
+            public int CourseID { get; set; }
+            [DataMember]
+            public string CCategory { get; set; }
+        }
+
+        [Serializable]
+        [DataContract]
+        public class StudentPQuaificationDM
+        {
+            [DataMember]
+            public int StudentID { get; set; }
+            [DataMember]
+            public int QualificationID { get; set; }
+            [DataMember]
+            public int Passing_Year { get; set; }
+            [DataMember]
+            public string Board { get; set; }
+            [DataMember]
+            public string Max_Mark { get; set; }
+            [DataMember]
+            public string Min_Mark { get; set; }
+            [DataMember]
+            public string Division { get; set; }
+            [DataMember]
+            public string SubjectID { get; set; }
+           [DataMember]
+            public string flag { get; set; }
+
+        }
+
+        [Serializable]
+        [DataContract]
+        public class StudentDocumentDM
+        {
+            [DataMember]
+            public int StudentID { get; set; }
+            [DataMember]
+            public int DocumentID { get; set; }
+            [DataMember]
+            public int Passing_Year { get; set; }
+            [DataMember]
+            public string Is_Original { get; set; }
+            [DataMember]
+            public string Is_Submitted { get; set; }
+            [DataMember]
+            public string Issued_By { get; set; }
+            [DataMember]
+            public string Verified_By { get; set; }
+            [DataMember]
+            public string Remark { get; set; }
+            [DataMember]
+            public string flag { get; set; }
+            [DataMember]
+            public string DocSerial { get; set; }
+            [DataMember]
+            public string Percentage { get; set; }
+            [DataMember]
+            public string Doc_Category { get; set; }
+            [DataMember]
+            public string Document_Name { get; set; }
+            [DataMember]
+            public string Doc_Serial { get; set; }
+            [DataMember]
+            public int PassingYr { get; set; }
+        }
+
+        [Serializable]
+        [DataContract]
+        public class SessionDateDM
+        {
+            [DataMember]
+            public DateTime StartDate { get; set; }
+            [DataMember]
+            public DateTime EndDate { get; set; }
+        }
+        [Serializable]
+        [DataContract]
+        public class GetMinimumAge
+        {
+            [DataMember]
+            public int min_age { get; set; }
+            [DataMember]
+            public int Max_Age { get; set; }
+            [DataMember]
+            public int Min_Per { get; set; }
+        }
+        public class GetCity
+        {
+            [DataMember]
+            public int CityID { get; set; }
+            [DataMember]
+            public string StateName { get; set; }
+            [DataMember]
+            public string CountryName { get; set; }
+        }
+
+        [Serializable]
+        [DataContract]
+        public class WeekGrd
+        {
+            [DataMember]
+            public string CourseName { get; set; }
+            [DataMember]
+            public string CourseYear { get; set; }
+            [DataMember]
+            public int CourseId { get; set; }
+            [DataMember]
+            public DateTime SStartDate { get; set; }
+            [DataMember]
+            public DateTime SEndDate { get; set; }
+            [DataMember]
+            public int semid { get; set; }
+            [DataMember]
+            public string SessionYear { get; set; }
+            [DataMember]
+            public int WeekID { get; set; }
+            [DataMember]
+            public string WeekName { get; set; }
+            [DataMember]
+            public DateTime WStartDate { get; set; }
+            [DataMember]
+            public DateTime WEndDate { get; set; }
+            [DataMember]
+            public string Active { get; set; }
+        }
+
+        [Serializable]
+        [DataContract]
+        public class WeekUpdateDM
+        {
+            [DataMember]
+            public int WeekID { get; set; }
+            [DataMember]
+            public string Active { get; set; }
+        }
+
+        [Serializable]
+        [DataContract]
+        public class StudentP
+        {
+            [DataMember]
+            public string SName { get; set; }
+            [DataMember]
+            public int StudentID { get; set; }
+        }
+
+
+        [Serializable]
+        [DataContract]
+        public class StudentPInsert
+        {
+            [DataMember]
+            public int ID { get; set; }
+            [DataMember]
+            public int InstituteID { get; set; }
+            [DataMember]
+            public int StudentID { get; set; }
+            [DataMember]
+            public int CourseID { get; set; }
+            [DataMember]
+            public string Batch { get; set; }
+            [DataMember]
+            public string SessionC { get; set; }
+            [DataMember]
+            public string SessionFrom { get; set; }
+            [DataMember]
+            public int YearFrom { get; set; }
+            [DataMember]
+            public int SemFrom { get; set; }
+            [DataMember]
+            public string SessionTo { get; set; }
+            [DataMember]
+            public int YearTo { get; set; }
+            [DataMember]
+            public int SemTo { get; set; }
+            [DataMember]
+            public string StatusU { get; set; }
+            [DataMember]
+            public string StatusI { get; set; }
+            [DataMember]
+            public string EnrollmentNo { get; set; }
+            [DataMember]
+            public string RollNo { get; set; }
+            [DataMember]
+            public int IsFeeDeposited { get; set; }
+            [DataMember]
+            public int IsFeePaid { get; set; }
+            [DataMember]
+            public int IsCardIssued { get; set; }
+            [DataMember]
+            public int IsCourseChange { get; set; }
+            [DataMember]
+            public string ExamRollNo { get; set; }
+            //[DataMember]
+            //public int CourseID { get; set; }
+            [DataMember]
+            public string CCategory { get; set; }
+        }
+
+
+        [Serializable]
+        [DataContract]
+        public class StudentPGrd
+        {
+            [DataMember]
+            public int StudentID { get; set; }
+            [DataMember]
+            public string ID_Student { get; set; }
+            [DataMember]
+            public string SName { get; set; }
+            [DataMember]
+            public string SessionFrom { get; set; }
+            [DataMember]
+            public string YrSemFrom { get; set; }
+            [DataMember]
+            public string SessionTo { get; set; }
+            [DataMember]
+            public string YrSemTo { get; set; }
+        }
+        [Serializable]
+        [DataContract]
+        public class AddressLabelPrintDM
+        {
+             [DataMember]
+            public string Caddress { get; set; }
+            [DataMember]
+            public string CCity { get; set; }
+            [DataMember]
+            public string CState { get; set; }
+            [DataMember]
+            public string CCountry { get; set; }
+            [DataMember]
+            public string CPincode { get; set; }
+            [DataMember]
+            public string Fname { get; set; }
+        }
+        [Serializable]
+        [DataContract]
+        public class CharacterCertificateDM
+        {
+            [DataMember]
+            public string Sname { get; set; }
+            [DataMember]
+            public string Fname { get; set; }
+            [DataMember]
+            public string DOB { get; set; }
+
+        }
+
+
+        [Serializable]
+        [DataContract]
+        public class StudentPromotionGrd
+        {
+            [DataMember]
+            public int StudentID { get; set; }
+            [DataMember]
+            public string ID_Student { get; set; }
+            [DataMember]
+            public string SName { get; set; }
+            [DataMember]
+            public string SessionFrom { get; set; }
+            [DataMember]
+            public string YrSemFrom { get; set; }
+            [DataMember]
+            public string SessionTo { get; set; }
+            [DataMember]
+            public string YrSemTo { get; set; }
+        }
+
+
+
+        //[Serializable]
+        //[DataContract]
+        //public class StudentPromotionList
+        //{
+        //    [DataMember]
+        //    public string SName { get; set; }
+        //    [DataMember]
+        //    public int StudentID { get; set; }
+        //}
+
+
+        [Serializable]
+        [DataContract]
+        public class StudentPromotionList
+        {
+            [DataMember]
+            public string SName { get; set; }
+            [DataMember]
+            public int StudentID { get; set; }
+            [DataMember]
+            public string ID_Student { get; set; }
+        }
+
+
+        [Serializable]
+        [DataContract]
+        public class StudentPromotionRegDetailDM
+        {
+            [DataMember]
+            public int DocID { get; set; }
+            [DataMember]
+            public int SrNo { get; set; }
+            [DataMember]
+            public int FeeHeadCode { get; set; }
+            [DataMember]
+            public decimal TotalFeeAmount { get; set; }
+            [DataMember]
+            public string BreakoffTime { get; set; }
+            [DataMember]
+            public decimal Amount { get; set; }
+            [DataMember]
+            public string UName { get; set; }
+            [DataMember]
+            public DateTime UEntDt { get; set; }
+            [DataMember]
+            public DateTime DueDate { get; set; }
+            [DataMember]
+            public decimal PaidAmount { get; set; }
+            [DataMember]
+            public decimal BalAmount { get; set; }
+            [DataMember]
+            public int ReFund { get; set; }
+            [DataMember]
+            public int CourseID { get; set; }
+            [DataMember]
+            public int SemFrom { get; set; }
+            [DataMember]
+            public int SemTo { get; set; }
+            [DataMember]
+            public string SessionFrom { get; set; }
+            [DataMember]
+            public string SessionTo { get; set; }
+            [DataMember]
+            public int Inst_ID { get; set; }
+            [DataMember]
+            public string StatusU { get; set; }
+            [DataMember]
+            public string StatusI { get; set; }
+            [DataMember]
+            public decimal ODC_Charge { get; set; }
+            [DataMember]
+            public DateTime fromdate { get; set; }
+            [DataMember]
+            public int FeesubID { get; set; }
+            [DataMember]
+            public int YearTo { get; set; }
+            [DataMember]
+            public string CCategory { get; set; }
+            [DataMember]
+            public string Batch { get; set; }
+        }
+      
+        public AcademicData()
+        {
+        }
+    }
+}

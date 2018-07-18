@@ -1,0 +1,1708 @@
+﻿using System;
+using System.Collections;
+using System.Configuration;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Xml.Linq;
+using System.Data.OleDb;
+using System.Collections.Generic;
+using NewDAL;
+using System.Data.SqlClient;
+using System.Data;
+using System.Web.Services;
+using MSS;
+using Microsoft.VisualBasic;
+using System.ComponentModel;
+
+
+
+public partial class Expense_master : BaseClass
+{
+    DbFunctions objFunc = new DbFunctions();
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (Session["UID"] == null)
+        {
+            Response.Redirect("../error_404_2.html");
+            return;
+        }
+
+        if (Session["instID"].ToString() == null)
+        {
+            Response.Redirect("../error_404_2.html");
+        }
+
+        if (Session["sesnID"].ToString() == null)
+        {
+            Response.Redirect("../error_404_2.html");
+        }
+
+        if (!IsPostBack)
+        {
+            //Tab1...
+            this.hdcontp.Value = Request.QueryString["p"];
+            objFunc.FillDropdownlist(ddlExam_Category, "Exam_Category", "Exam_CategoryID", "select Exam_Category,Exam_CategoryID from Exams_Categoty where InstituteID = " + Convert.ToInt32(Session["instID"]) + "", "---Select---");
+            Btndelete.Enabled = false;
+
+            //tab2....
+            string uid = objFunc.Get_details("SELECT UserCreation.emp_Id FROM UserCreation where UserCreation.UserId='" + Session["UID"].ToString() + "' and   UserCreation.Active='True'");
+            Fid.Value = uid;
+            objFunc.FillDropdownlist(ddlCourse, "coursename", "courseid", "select courseid,coursename from course  where InstituteID='" + Int32.Parse(Session["instID"].ToString()) + "' and Courseid in (select distinct Courseid from FacultySubjectChoice where FacultyId='" + Fid.Value + "' and Approvalstatus='Approved')", "--Select--");
+            objFunc.FillDropdownlist(ddlExamCat, "Exam_Category", "Exam_categoryID", "select Exam_Category,Exam_categoryID from exams_Categoty", "---Select---");
+            objFunc.FillDropdownlist(ddlYear, "SemName", "SID", "select SID,YEAR+'-'+CourseYear as SemName from Semester_View where SID in(Select SemesterID from FacultySubjectChoice where FacultyId=" + Fid.Value + " and CourseId in (Select CourseID from FacultySubjectChoice where FacultyId=" + Fid.Value + ")and SessionID='" + Session["sesnID"].ToString() + "' and InstituteID=" + Session["instID"].ToString() + ") ", "--Select--");
+
+            ddlCourse.Focus();
+
+            //Tab3....
+            //ddlexamtype.Items.Add("--Select--");
+
+            ddlfromweek.Items.Insert(0, "--Select--");
+            ddltoweek.Items.Insert(0, "--Select--");
+
+            DataTable dt = new DataTable();
+            dt = objFunc.FillDataTable("select Exam_Category,Exam_categoryID from exams_Categoty");
+            if (dt.Rows.Count > 0)
+            {
+                rdbExamCate.DataSource = dt;
+                rdbExamCate.DataTextField = "Exam_Category";
+                rdbExamCate.DataValueField = "Exam_categoryID";
+                rdbExamCate.DataBind();
+            }
+
+
+            //Tab4....
+
+            ddlexamname.Items.Add("--Select--");
+            //.Items.Add("--Select--");
+            ddlsubject.Items.Add("--Select--");
+
+
+            //  objFunc.FillDropdownlist(ddlexamtype, "testtypeName", "testtypeId", "Select testtypeName,testtypeId from iTestType where instituteId='" + ddlInstitute.SelectedValue + "' and sessionId='" + ddlSession.SelectedValue + "' and courseId='" + ddlCourse.SelectedValue + "'", "--Select--");
+            //ddlexamtype.SelectedIndex = 0;
+            // objFunc.FillDropdownlist(ddlexamtype, "Exam", "Exam_CategotyID", "Select * from Exam_type where Exam_CategotyID = " + rdbExamCate.SelectedValue + " and FacultyID =" + Fid.Value + " and instituteId='" + Int32.Parse(Session["InstID"].ToString()) + "' and sessionYear='" + Session["sesnID"].ToString() + "'", "--Select--");
+        }
+    }
+
+    //Tab1....
+
+    private void BGrid()
+    {
+        NewDAL.DBManager objDB = new DBManager();
+        objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+        objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+        objDB.Open();
+        DataSet dt = new DataSet();
+        dt = objDB.ExecuteDataSet(CommandType.Text, "SELECT * FROM  Exam_Type_View where facultyID = " + Convert.ToInt32(Session["UID"].ToString()) + "");
+        grdexpense.DataSource = dt;
+        grdexpense.DataBind();
+    }
+
+    protected void Reset_Form()
+    {
+        txtexp.Text = string.Empty;
+        btnsubmit.Text = "Submit";
+        ddlExam_Category.SelectedIndex = 0;
+        Btndelete.Enabled = false;
+        if (Chkall.Checked == true)
+        {
+            Div2.Visible = true;
+            BGrid();
+        }
+    }
+    protected void btnsubmit_Click(object sender, EventArgs e)
+    {
+        NewDAL.DBManager objDB = new DBManager();
+        objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+        objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+        objDB.Open();
+        objDB.BeginTransaction();
+
+        if (ddlExam_Category.SelectedIndex == 0)
+        {
+            objFunc.MsgBox1("Please select exam category..!!", UpdatePanel1);
+            ddlExam_Category.Focus();
+            return;
+        }
+        if (txtexp.Text == "")
+        {
+            objFunc.MsgBox1("Please Enter exam name..!!", UpdatePanel1);
+            txtexp.Focus();
+            return;
+        }
+
+        DataTable dt = new DataTable();
+        dt = objFunc.FillDataTable("SELECT exam FROM exam_type where facultyid = '" + Fid.Value + "' ");
+        string ipadd = String.Empty;
+        ipadd = (txtexp.Text).ToString();
+
+        try
+        {
+            if (btnsubmit.Text == "Submit")
+            {
+                string Exam = objFunc.Get_details("Select Exam from Exam_type where Exam='"+txtexp.Text+"' and facultyid = '" + Fid.Value + "' and Exam_CategotyID="+ddlExam_Category.SelectedValue+"");
+                if (Exam != "")
+                {
+                    objFunc.MsgBox("Exam Name Already Exists.", this);
+                    txtexp.Focus();
+                    return;
+                }
+            }
+
+
+
+            objDB.CreateParameters(9);
+            if (btnsubmit.Text == "Submit")
+            {
+                objDB.AddParameters(0, "Id", 0, DbType.Int32);
+            }
+            else
+            {
+                objDB.AddParameters(0, "Id", Id.Value, DbType.Int32);
+            }
+
+            objDB.AddParameters(1, "ExamCategoryID", Convert.ToInt32(ddlExam_Category.SelectedValue), DbType.Int32);
+            objDB.AddParameters(2, "Exam", Convert.ToString(txtexp.Text.ToString().Trim()), DbType.String);
+            objDB.AddParameters(3, "FacultyID", Convert.ToInt32(Session["UID"].ToString()), DbType.Int32);
+            objDB.AddParameters(4, "InstituteID", Convert.ToInt32(Session["instID"].ToString()), DbType.Int32);
+            objDB.AddParameters(5, "SessionYear", (Session["sesnID"].ToString()), DbType.String);
+            objDB.AddParameters(6, "UserEntryID", (Session["UID"].ToString()), DbType.Int32);
+            objDB.AddParameters(7, "UserEntryDate", DateTime.Now, DbType.DateTime);
+
+            if (btnsubmit.Text == "Submit")
+            {
+                objDB.AddParameters(8, "flag", "N", DbType.String);
+            }
+            else
+            {
+                objDB.AddParameters(8, "flag", "U", DbType.String);
+            }
+            objDB.ExecuteNonQuery(CommandType.StoredProcedure, "[SP_exam_master]");
+            objDB.Transaction.Commit();
+            if (btnsubmit.Text == "Submit")
+            {
+                objFunc.MsgBox("Exam Type Added Successfully..!! Move On Define Exam Parameter ", this);
+                TabContainer1.ActiveTab = TabContainer1.Tabs[1];
+            }
+            else
+            {
+                objFunc.MsgBox("Exam Type Updated Successfully.", this);
+            }
+
+
+        }
+        catch (Exception ex)
+        {
+            objDB.Transaction.Rollback();
+            objFunc.MsgBox(ex.Message.ToString(), this);
+        }
+        Reset_Form();
+    }
+    protected void grdexpense_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        DataTable dt = new DataTable();
+        LinkButton lnkb = (LinkButton)grdexpense.Rows[grdexpense.SelectedIndex].FindControl("LinkExam");
+        Id.Value = grdexpense.DataKeys[grdexpense.SelectedIndex].Value.ToString();
+        dt = objFunc.FillDataTable("Select Exam_CategotyID, Exam from exam_type where id = " + Id.Value + "");
+        if (dt.Rows.Count > 0)
+        {
+            txtexp.Text = dt.Rows[0]["Exam"].ToString();
+            ddlExam_Category.SelectedValue = dt.Rows[0]["Exam_CategotyID"].ToString();
+            txtexp.Text = lnkb.Text.Trim().ToString().Replace("&nbsp;", "");
+            btnsubmit.Text = "Update";
+            Btndelete.Enabled = true;
+            grdexpense.SelectedIndex = -1;
+        }
+    }
+    protected void Btndelete_Click(object sender, System.EventArgs e)
+    {
+        objFunc.ExecuteDML1("delete from Exam_Type where id = " + Id.Value + "");
+        objFunc.MsgBox("Exam type deleted successfully.", this);
+        Reset_Form();
+    }
+    protected void Chkall_CheckedChanged(object sender, System.EventArgs e)
+    {
+        if (Chkall.Checked == true)
+        {
+            Div2.Visible = true;
+            BGrid();
+        }
+        else
+        {
+            Div2.Visible = false;
+            grdexpense.DataSource = new Int32[0];
+            grdexpense.DataBind();
+        }
+
+    }
+    protected void Btnreset_Click(object sender, System.EventArgs e)
+    {
+        Reset_Form();
+    }
+
+
+    //Tab2....
+
+    protected void cmdReset_Click(object sender, EventArgs e)
+    {
+        ddlCourse.SelectedIndex = 0;
+        ddlCourse.Focus();
+        txtduration.Text = string.Empty;
+        Txtbcount.Text = string.Empty;
+        Txtmarkssub.Text = string.Empty;
+        TxtQsubm.Text = string.Empty;
+        Txttests.Text = string.Empty;
+        TxtWeightage.Text = string.Empty;
+        //texttypename.SelectedIndex = 0;
+        foreach (ListItem grp in cblperiods.Items)
+        {
+            if (grp.Selected)
+            {
+                grp.Selected = false;
+            }
+        }
+        foreach (ListItem grd in cbldays.Items)
+        {
+            if (grd.Selected)
+            {
+                grd.Selected = false;
+            }
+        }
+        cmdCreate.Text = "Submit";
+        grdExamParameter.DataSource = new Int32[0];
+        grdExamParameter.DataBind();
+
+    }
+    public void reset()
+    {
+        txtduration.Text = string.Empty;
+        Txtbcount.Text = string.Empty;
+        Txtmarkssub.Text = string.Empty;
+        TxtQsubm.Text = string.Empty;
+        Txttests.Text = string.Empty;
+        TxtWeightage.Text = string.Empty;
+        //texttypename.SelectedIndex = 0;
+        //bool PeridSel = false;       
+        foreach (ListItem grp in cblperiods.Items)
+        {
+            if (grp.Selected)
+            {
+                grp.Selected = false;
+            }
+        }
+        foreach (ListItem grd in cbldays.Items)
+        {
+            if (grd.Selected)
+            {
+                grd.Selected = false;
+            }
+        }
+
+
+    }
+
+    protected void cmdCreate_Click(object sender, EventArgs e)
+    {
+        string testname = "";
+        int testID = 0;
+        Boolean data=false;
+        string flag = "";
+        if (ddlCourse.SelectedIndex == 0)
+        {
+            objFunc.MsgBox("select course", this);
+            return;
+        }
+        if (ddlSpcl.SelectedIndex == 0)
+        {
+            objFunc.MsgBox("select Speacialization", this);
+            return;
+        }
+        if (ddlSem.SelectedIndex == 0)
+        {
+            objFunc.MsgBox("select Semester", this);
+            return;
+        }
+        if (ddlExamCat.SelectedIndex == 0)
+        {
+            objFunc.MsgBox("select Category", this);
+            return;
+        }
+        if (txtduration.Text == "")
+        {
+            objFunc.MsgBox("Enter Test Duration", this);
+            return;
+        }
+        if(grdTestType.Rows.Count>0)
+        {
+            for (int i = 0; i < grdTestType.Rows.Count;i++ )
+            {
+                RadioButton rdb = (RadioButton)grdTestType.Rows[i].FindControl("RowSelector");
+                if (rdb.Checked == true)
+                {
+                    testname = grdTestType.Rows[i].Cells[1].Text;
+                    testID =Convert.ToInt32(grdTestType.DataKeys[i].Values[0].ToString());
+                    data = true;
+                }
+            }
+            if (data == false)
+                objFunc.MsgBox1("Please select TestTypeName..", UpdatePanel1);
+        }
+        bool grpSel = false;
+        string groupId = "";
+        foreach (ListItem grp in cbldays.Items)
+        {
+            if (grp.Selected)
+            {
+                grpSel = true;
+                groupId = grp.Value;
+                break;
+            }
+        }
+        if (!grpSel)
+        {
+            objFunc.MsgBox1("Select Days Priority to conduct exam.", UpdatePanel1);
+            return;
+        }
+        bool PeridSel = false;
+        string group = "";
+        foreach (ListItem grp in cblperiods.Items)
+        {
+            if (grp.Selected)
+            {
+                PeridSel = true;
+                group = grp.Value;
+                break;
+            }
+        }
+
+        if (!PeridSel)
+        {
+            objFunc.MsgBox1("Select Periods Priority to conduct exam.", UpdatePanel1);
+            return;
+        }
+
+
+        ExamDM.ExamTypeDM objDM = new ExamDM.ExamTypeDM();
+        if (cmdCreate.Text == "Submit")
+        {
+            objDM.itesttypeId = testID;
+            flag = "N";
+        }
+        else
+        {
+            objDM.itesttypeId = Int32.Parse(hdID.Value);
+            flag = "U";
+        }
+        string empid = objFunc.Get_details("Select Emp_id from Usercreation where username='" + Session["U_name"].ToString() + "' ");
+
+        objDM.sessionId = Session["sesnID"].ToString();
+        objDM.SPCl = Convert.ToInt32(ddlSpcl.SelectedValue);
+        objDM.semID = Convert.ToInt32(ddlSem.SelectedValue);
+        objDM.Courseid = int.Parse(ddlCourse.SelectedValue);
+        objDM.examCat = int.Parse(ddlExamCat.SelectedValue);
+        objDM.testtypename = testname;
+        objDM.FacultyID = Fid.Value;
+       // objDM.testduration = Int32.Parse(txtduration.Text);
+        objDM.weighatge = int.Parse(TxtWeightage.Text);
+        objDM.status = "Yes";
+        objDM.nooftest = Int32.Parse(Txttests.Text.Trim());
+        objDM.bestcount = Convert.ToInt32(Txtbcount.Text);
+        string prefperiods = "";
+        foreach (ListItem li in cblperiods.Items)
+        {
+            if (li.Selected)
+            {
+                prefperiods += li.Value + ",";
+            }
+        }
+        objDM.periodno = prefperiods;
+        objDM.Quessubday = Int32.Parse(TxtQsubm.Text);
+        objDM.markssubday = Int32.Parse(Txtmarkssub.Text);
+        string prefdays = "";
+        foreach (ListItem li in cbldays.Items)
+        {
+            if (li.Selected)
+            { // save li.text to your outputString    
+                prefdays += li.Value + ",";
+            }
+
+        }
+
+        objDM.daynopriority = prefdays;
+        objDM.instituteid = Int32.Parse(Session["InstID"].ToString());
+        objDM.userid = Int32.Parse(empid);
+        objDM.entrydate = Convert.ToString(DateTime.Now.Date.ToString("dd-MMM-yyyy"));
+        objDM.Flag = flag;
+        Admin.AdministratorData.AuditDM audit = new Admin.AdministratorData.AuditDM();
+        audit.Action = flag;
+        audit.Entry_Date = Convert.ToString(DateTime.Now.Date.ToString("dd-MMM-yyyy"));
+        audit.Entry_Time = String.Format(DateTime.Now.TimeOfDay.ToString(), "{0:T}");
+        audit.Form_Name = "";
+        audit.ID = 0;
+        audit.InstituteID = Int32.Parse(Session["instid"].ToString());
+        audit.Record_ID = "0";
+        audit.SessionID = Session["sesnid"].ToString();
+        audit.User_ID = Session["U_name"].ToString();
+        EXamSVC objInsert = new EXamSVC();
+        string result = objInsert.InsertExamType(objDM, audit);
+        objFunc.FillGridVIew1(grdExamParameter, "Select * from TestParameter_View where instituteId='" + Int32.Parse(Session["InstID"].ToString()) + "' and sessionId='" + Session["sesnID"].ToString() + "' and courseId='" + ddlCourse.SelectedValue + "' ");
+        objFunc.MsgBox1(result, UpdatePanel1);
+        reset();
+        TabContainer1.ActiveTab = TabContainer1.Tabs[2];
+
+    }
+    protected void grdExamParameter_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+        int index = grdExamParameter.SelectedIndex;
+        hdID.Value = grdExamParameter.DataKeys[index].Values[0].ToString();
+        LinkButton lnkid = (LinkButton)grdExamParameter.Rows[index].FindControl("LinkButton1");//Bind("SubjectName")
+       // texttypename.SelectedValue = lnkid.Text;// gvSubject.Rows[index].Cells[1].Text;
+        txtduration.Text = grdExamParameter.Rows[index].Cells[4].Text;
+        TxtWeightage.Text = grdExamParameter.Rows[index].Cells[5].Text;
+        Txttests.Text = grdExamParameter.Rows[index].Cells[6].Text;
+        Txtbcount.Text = grdExamParameter.Rows[index].Cells[7].Text;
+        TxtQsubm.Text = grdExamParameter.DataKeys[index].Values[2].ToString();
+        Txtmarkssub.Text = grdExamParameter.DataKeys[index].Values[3].ToString();
+        string days = grdExamParameter.DataKeys[index].Values[4].ToString();
+        string periods = grdExamParameter.DataKeys[index].Values[1].ToString();
+        ddlSem.SelectedValue = grdExamParameter.DataKeys[index].Values[6].ToString();
+        ddlExamCat.SelectedValue = grdExamParameter.DataKeys[index].Values[7].ToString();
+
+        if (ddlSem.SelectedIndex != 0)
+        {
+            objFunc.FillDropdownlist(ddlSpcl, "shortName", "SpecilisationID", "SELECT shortName,SpecilisationID FROM  dbo.Specilisation where SpecilisationID in (select distinct SpecilizationID from FacultySubjectChoice where FacultyId=" + Fid.Value + " and courseid=" + ddlCourse.SelectedValue + " and SemesterID=" + ddlSem.SelectedValue + " and Approvalstatus='Approved' and SessionID='" + Session["sesnID"].ToString() + "' and InstituteID=" + Convert.ToInt32(Session["instID"].ToString()) + ")", "--Select--");
+            ddlSpcl.SelectedValue = grdExamParameter.DataKeys[index].Values[8].ToString();
+       }
+        if (ddlExamCat.SelectedIndex != 0)
+        {
+            DataTable dt = objFunc.FillDataTable("Select * from Exam_type where Exam_CategotyID = " + ddlExamCat.SelectedValue + " and FacultyID =" + Fid.Value + "");
+            grdTestType.DataSource = dt;
+            grdTestType.DataBind();
+            if (grdTestType.Rows.Count > 0)
+            {
+                Label6.Visible = true;
+                for (int i = 0; i < grdTestType.Rows.Count; i++)
+                {
+                    Label status = (Label)grdTestType.Rows[i].FindControl("LblStatus");
+                    RadioButton rdb = (RadioButton)grdTestType.Rows[i].FindControl("RowSelector");
+                    int id = Convert.ToInt32(grdTestType.DataKeys[i].Values[0].ToString());
+                    string statu = objFunc.Get_details("select testtypeId from itesttype where testtypeId=" + id + " and courseId=" + ddlCourse.SelectedValue + " and SemesterID=" + ddlSem.SelectedValue + " and SpecializationID=" + ddlSpcl.SelectedValue + " ");
+                    if (statu != string.Empty)
+                    {
+                        status.Text = "Scheduled";
+                    }
+                    else
+                    {
+                        status.Text = "Not Scheduled";
+                    }
+                    if (grdExamParameter.DataKeys[index].Values[0].ToString() == grdTestType.DataKeys[i].Values[0].ToString())
+                    {
+                        rdb.Checked = true;
+                    }
+                }
+            }
+        }
+        //-----------------------------------------------------------------------------------------------
+        System.Array arr1;
+        arr1 = Microsoft.VisualBasic.Strings.Split(days, ",", -1, 0);
+        for (int i = 0; i <= cbldays.Items.Count - 1; i++)
+        {
+            for (int p = 0; p <= arr1.Length - 1; p++)
+            {
+                if (cbldays.Items[i].Value == arr1.GetValue(p).ToString())
+                {
+                    cbldays.Items[i].Selected = true;
+                }
+            }
+        }
+       
+        //---------------------------------------------------------------------------------------------------
+        System.Array arr2;
+        arr2 = Microsoft.VisualBasic.Strings.Split(periods, ",", -1, 0);
+        for (int i = 0; i <= cblperiods.Items.Count - 1; i++)
+        {
+            for (int p = 0; p <= arr2.Length - 1; p++)
+            {
+                if (cblperiods.Items[i].Value == arr2.GetValue(p).ToString())
+                {
+                    cblperiods.Items[i].Selected = true;
+                }
+            }
+        }
+        //-----------------------------------------------------------------------------------------------------  
+
+        cmdCreate.Text = "Update";
+        cmddel.Enabled = true;
+    }
+
+    protected void cmddel_Click(object sender, EventArgs e)
+    {
+        string insertSql;
+        insertSql = "delete from itestType where testtypeId='" + hdID.Value + "'";
+        int Record_Found = Convert.ToInt16(objFunc.FetchScalar("select testId from itestMaster where  testtypeId='" + hdID.Value + "'"));
+        if (Record_Found != 0)
+        {
+            objFunc.MsgBox("Record Already Used", this);
+            return;
+        }
+        if (objFunc.ExecuteDML(insertSql) > 0)
+        {
+            objFunc.MsgBox("Delete Sucessfully.", this);
+        }
+        reset();
+        objFunc.FillGridVIew1(grdExamParameter, "Select * from itesttype where instituteId='" + Int32.Parse(Session["InstID"].ToString()) + "' and sessionId='" + Session["sesnID"].ToString() + "' and courseId='" + ddlCourse.SelectedValue + "' ");
+        cmddel.Enabled = false;
+
+    }
+    protected void ddlExamCat_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (ddlCourse.SelectedIndex == 0)
+        {
+            objFunc.MsgBox("select course", this);
+            ddlCourse.Focus();
+            ddlExamCat.SelectedIndex = 0;
+            return;
+        }
+        if (ddlSpcl.SelectedIndex == 0)
+        {
+            objFunc.MsgBox("select Speacialization", this);
+            ddlSpcl.Focus();
+            ddlExamCat.SelectedIndex = 0;
+            return;
+        }
+        if (ddlSem.SelectedIndex == 0)
+        {
+            objFunc.MsgBox("select Semester", this);
+            ddlSem.Focus();
+            ddlExamCat.SelectedIndex = 0;
+            return;
+        }
+        DataTable dt = objFunc.FillDataTable("Select * from Exam_type where Exam_CategotyID = " + ddlExamCat.SelectedValue + " and FacultyID =" + Fid.Value + "");
+        grdTestType.DataSource = dt;
+        grdTestType.DataBind();
+        if (grdTestType.Rows.Count > 0)
+        {
+            Label6.Visible = true;
+            for (int i = 0; i < grdTestType.Rows.Count; i++)
+            {
+                Label status = (Label)grdTestType.Rows[i].FindControl("LblStatus");
+                int id =Convert.ToInt32( grdTestType.DataKeys[i].Values[0].ToString());
+                string statu = objFunc.Get_details("select testtypeId from itesttype where testtypeId=" + id + " and courseId="+ddlCourse.SelectedValue+" and SemesterID="+ddlSem.SelectedValue+" and SpecializationID="+ddlSpcl.SelectedValue+" ");
+                if (statu != string.Empty)
+                {
+                    status.Text = "Scheduled";
+                }
+                else
+                {
+                    status.Text = "Not Scheduled";
+                }
+            }
+        }
+        //objFunc.FillDropdownlist(texttypename, "Exam", "id", "Select * from Exam_type where Exam_CategotyID = " + ddlExamCat.SelectedValue + " and FacultyID =" + Fid.Value + " ", "--Select--");
+        if (ddlExamCat.SelectedValue == "2")
+        {
+            txtduration.Enabled = false;
+            TxtWeightage.Enabled = false;
+            Txttests.Enabled = false;
+            Txtbcount.Enabled = false;
+            TxtQsubm.Enabled = false;
+            Txtmarkssub.Enabled = false;
+            cbldays.Enabled = false;
+            cblperiods.Enabled = false;
+        }
+        else
+        {
+            txtduration.Enabled = true;
+            TxtWeightage.Enabled = true;
+            Txttests.Enabled = true;
+            Txtbcount.Enabled = true;
+            TxtQsubm.Enabled = true;
+            Txtmarkssub.Enabled = true;
+            cbldays.Enabled = true;
+            cblperiods.Enabled = true;
+        }
+        
+
+    }
+
+    //Tab3....
+
+    protected void cmdReset_tab3_Click(object sender, EventArgs e)
+    {
+        ddlCourse.SelectedIndex = 0;
+        ddlCourse.Focus();
+        ddlexamtype.SelectedIndex = 0;
+        txttestname.Text = string.Empty;
+        txtmaxmark.Text = string.Empty;
+       // txtcvf.Text = string.Empty;
+        //txtcvt.Text = string.Empty;
+        ddlfromweek.SelectedIndex = 0;
+        ddltoweek.SelectedIndex = 0;
+        grdExamMaster.DataSource = new Int32[0];
+        grdExamMaster.DataBind();
+        cmdCreate.Text = "Submit";
+
+
+    }
+    public void reset_Tab3()
+    {
+        txttestname.Text = string.Empty;
+        txtmaxmark.Text = string.Empty;
+        //txtcvf.Text = string.Empty;
+        //txtcvt.Text = string.Empty;
+        ddlfromweek.SelectedIndex = 0;
+        ddltoweek.SelectedIndex = 0;
+
+    }
+
+    protected void cmdCreate_Tab3_Click(object sender, EventArgs e)
+    {
+        string flag = "";
+       
+
+        if (ddlYear.SelectedIndex == 0)
+        {
+            objFunc.MsgBox("Please select semester..!!", this);
+            ddlYear.Focus();
+            return;
+        }
+        if (rdbExamCate.SelectedValue == "")
+        {
+            objFunc.MsgBox("Please select exam category..!!", this);
+            rdbExamCate.Focus();
+            return;
+        }
+
+        if (ddlexamtype.SelectedIndex == 0)
+        {
+            objFunc.MsgBox("Select Test Name", this);
+            ddlexamtype.Focus();
+            return;
+        }
+        if (txtmaxmark.Text == string.Empty)
+        {
+            objFunc.MsgBox("Enter Marks", this);
+            txtmaxmark.Focus();
+            return;
+        }
+        if (ddlexamtype.SelectedItem.Text == "Surprise Test" || ddlexamtype.SelectedItem.Text == "Lab Activity")
+        {
+
+        }
+        else
+        {
+        }
+        ExamDM.ExamMasterDM objDM = new ExamDM.ExamMasterDM();
+        if (cmdCreate_Tab3.Text == "Submit")
+        {
+            objDM.testid = 0;
+            flag = "N";
+
+        }
+        else
+        {
+            objDM.testid = Int32.Parse(hdID.Value);
+            flag = "U";
+            cmdCreate_Tab3.Text = "Submit";
+          
+        }
+        objDM.ExamCategoryid = int.Parse(rdbExamCate.SelectedValue);
+        objDM.testtypeid = int.Parse(ddlexamtype.SelectedValue);
+        objDM.testname = txttestname.Text;
+        objDM.maxmark = int.Parse(txtmaxmark.Text);
+        objDM.testduration = int.Parse(txtduration.Text);
+        objDM.iscompul = Int32.Parse(rdbIsComp.SelectedValue);
+        int startdate;
+        int enddate;
+        startdate = Convert.ToInt32(ddlfromweek.SelectedValue);
+        enddate = Convert.ToInt32(ddltoweek.SelectedValue);
+        objDM.facultyID =Convert.ToInt32( Fid.Value);
+        objDM.fromdate = startdate;
+        objDM.todate = enddate;
+        //objDM.coursecompF = Int32.Parse(txtcvf.Text.Trim());
+        //objDM.coursecompT = Convert.ToInt32(txtcvt.Text.Trim());
+        objDM.Semid = Convert.ToInt32(ddlYear.SelectedValue);
+        objDM.SpclID = Convert.ToInt32(ddlSpecialization.SelectedValue);
+        objDM.Flag = flag;
+        Admin.AdministratorData.AuditDM audit = new Admin.AdministratorData.AuditDM();
+        audit.Action = flag;
+        audit.Entry_Date = Convert.ToString(DateTime.Now.Date.ToString("dd-MMM-yyyy"));
+        audit.Entry_Time = String.Format(DateTime.Now.TimeOfDay.ToString(), "{0:T}");
+        audit.Form_Name = "";
+        audit.ID = 0;
+        audit.InstituteID = Int32.Parse(Session["instid"].ToString());
+        audit.Record_ID = "0";
+        audit.SessionID = Session["sesnid"].ToString();
+        audit.User_ID = Session["U_name"].ToString();
+        EXamSVC objInsert = new EXamSVC();
+        string result = objInsert.InsertTestMaster(objDM, audit);
+        objFunc.MsgBox1(result, UpdatePanel1);
+        TabContainer1.ActiveTab = TabContainer1.Tabs[3];
+        objFunc.FillGridVIew1(grdExamMaster, "Select * from TestMaster_View where testtypeId=" + ddlexamtype.SelectedValue + " and Semid='" + ddlYear.SelectedValue + "' and SpclID=" + ddlSpecialization.SelectedValue + " ");
+        reset_Tab3();
+    }
+    protected void ddlCourse_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        string ctype = objFunc.Get_details("select type from Course where courseid='" + ddlCourse.SelectedValue + "'");
+
+        if (ctype == "Year")
+        {
+            lblYS.Text = "Year";
+        }
+        else if (ctype == "Semester")
+        {
+            lblYS.Text = "Semester";
+        }
+        else
+        {
+            lblYS.Text = "Year-Sem";
+        }
+        //objFunc.FillYearsem(ddlYear, ctype, Convert.ToInt32(ddlCourse.SelectedValue), "0", Session["sesnID"].ToString(), Convert.ToInt32(Session["instID"]), "---Select---");
+        //if (ddlYear.Items.Count == 1)
+        //{
+        //    objFunc.MsgBox1("Semester record not found.Please create Year or semester", UpdatePanel1);
+        //    ddlCourse.SelectedIndex = 0;
+        //    return;
+        //}
+        objFunc.FillDropdownlist(ddlSem, "SemName", "SID", "select SID,YEAR+'-'+CourseYear as SemName from Semester_View where SID in(Select SemesterID from FacultySubjectChoice where FacultyId=" + Fid.Value + " and CourseId=" + ddlCourse.SelectedValue + " and SessionID='" + Session["sesnID"].ToString() + "' and InstituteID=" + Convert.ToInt32(Session["instID"].ToString()) + ")", "--Select--");
+    }
+    protected void cmddel_Tab3_Click(object sender, EventArgs e)
+    {
+        string insertSql;
+        insertSql = "delete from itestmaster where testId='" + hdID.Value + "'";
+        int Record_Found = Convert.ToInt16(objFunc.FetchScalar("select testschId from itestSchedule where  testId='" + hdID.Value + "'"));
+        if (Record_Found != 0)
+        {
+            objFunc.MsgBox("Record Already Used", this);
+            return;
+        }
+        if (objFunc.ExecuteDML(insertSql) > 0)
+        {
+            objFunc.MsgBox("Delete Successfully.", this);
+        }
+        objFunc.FillGridVIew1(grdExamMaster, "Select * from TestMaster_View where testtypeId=" + ddlexamtype.SelectedValue + " and Semid='" + ddlYear.SelectedValue + "' and SpclID=" + ddlSpecialization.SelectedValue + " ");
+        reset_Tab3();
+        // objFunc.FillGridVIew1(grdExamMaster, "Select * from itesttype where instituteId='" + ddlInstitute.SelectedValue + "' and sessionId='" + ddlSession.SelectedValue + "' and courseId='" + ddlCourse.SelectedValue + "' ");
+        cmddel.Enabled = false;
+        cmdCreate_Tab3.Text = "Submit";
+    }
+
+    protected void grdExamMaster_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        int index = grdExamMaster.SelectedIndex;
+        hdID.Value = grdExamMaster.DataKeys[index].Values[0].ToString();
+        LinkButton lnkid = (LinkButton)grdExamMaster.Rows[index].FindControl("LinkButton2");//Bind("SubjectName")
+        txttestname.Text = lnkid.Text;
+        txtmaxmark.Text = grdExamMaster.Rows[index].Cells[4].Text;
+        rdbIsComp.SelectedValue = grdExamMaster.DataKeys[index].Values[4].ToString();
+        ddlYear.SelectedValue = grdExamMaster.DataKeys[index].Values[5].ToString();
+        ddlSpecialization.SelectedValue = grdExamMaster.DataKeys[index].Values[6].ToString();
+        ddlfromweek.SelectedValue = grdExamMaster.DataKeys[index].Values[2].ToString();
+        objFunc.FillDropdownlist(ddltoweek, "WeekName", "WeekID", "select distinct WeekID,WeekName  from Week where courseid in(select distinct courseid from facultysubjectchoice where FacultyId=" + Fid.Value + " and SessionID='" + Session["sesnId"].ToString() + "' and InstituteID=" + Convert.ToInt32(Session["instId"].ToString()) + ")  and sessionyear='" + Session["sesnId"].ToString() + "' and Inst_ID=" + Convert.ToInt32(Session["instId"].ToString()) + " and semid=" + ddlYear.SelectedValue + " and SplId=" + ddlSpecialization.SelectedValue + " and  WeekID>=" + ddlfromweek.SelectedValue + "", "--Select--");
+
+        ddltoweek.SelectedValue = grdExamMaster.DataKeys[index].Values[3].ToString();
+        txtduration.Text = grdExamMaster.Rows[index].Cells[5].Text;
+        cmdCreate_Tab3.Text = "Update";
+        cmddel_Tab3.Enabled = true;
+    }
+    protected void ddlYear_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        //objFunc.FillDropdownlist(texttypename, "Exam", "Exam", "Select * from Exam_type where Exam_CategotyID = " + ddlExamCat.SelectedValue + " and FacultyID =" + Fid.Value + " ", "--Select--");
+        objFunc.FillDropdownlist(ddlSpecialization, "shortName", "SpecilisationID", "SELECT shortName,SpecilisationID FROM  dbo.Specilisation where SpecilisationID in (select distinct SpecilizationID from FacultySubjectChoice where FacultyId=" + Fid.Value + " and courseid in(select distinct CourseId from facultysubjectchoice where FacultyId="+Fid.Value+") and SemesterID=" + ddlYear.SelectedValue + " and Approvalstatus='Approved' and SessionID='" + Session["sesnID"].ToString() + "' and InstituteID=" + Convert.ToInt32(Session["instID"].ToString()) + ")", "--Select--");
+
+        //objFunc.FillDropdownlist(ddltoweek, "WeekName", "WeekID", "select distinct WeekID,WeekName  from Week where courseid in(select distinct courseid from facultysubjectchoice where FacultyId="+Fid.Value+" and SessionID='"+Session["sesnID"].ToString()+"' and InstituteID="+Convert.ToInt32(Session["instId"].ToString())+")  and sessionyear='" + Session["sesnid"].ToString() + "' and Inst_ID=" + Convert.ToInt32(Session["instid"].ToString()) + " and semid=" + ddlYear.SelectedValue + "", "---Select---");
+
+        txttestname.Text = string.Empty;
+        txtmaxmark.Text = string.Empty;
+
+    }
+    protected void ddliscomp_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    //Tab4..
+
+    protected void cmdReset_Tab4_Click(object sender, EventArgs e)
+    {
+        ddlCourse.SelectedIndex = 0;
+        ddlCourse.Focus();
+        ddlsubject.SelectedIndex = 0;
+        // ddldate.SelectedIndex = 0;  
+        txtdate.Text = string.Empty;
+        //ddlWeek.SelectedIndex = 0; 
+        ddlexamname.SelectedIndex = 0;
+        //ddlexamtype.SelectedIndex = 0;
+        txtremark.Text = string.Empty;
+        Chlcancel.Checked = false;
+        cmdCreate.Text = "Submit";
+        cmddel.Enabled = false;
+        GrdExamSchedule.DataSource = new Int32[0];
+        GrdExamSchedule.DataBind();
+
+        Chlcancel.Checked = false;
+        ddltime.SelectedIndex = 0;
+        //ddltime.Enabled = false;
+    }
+
+
+    protected void cmdCreate_Tab4_Click(object sender, EventArgs e)
+     {
+       
+            string flag = "";
+            for (int i = 0; i < RadioButtonList1.Items.Count; i++)
+            {
+                if (RadioButtonList1.Items[i].Selected != true)
+                {
+                    objFunc.MsgBox("Select Exam Category..!!", this);
+                    RadioButtonList1.Focus();
+                    return;
+                }
+                else
+                {
+                    break;
+                }
+                
+            }
+            if (ddlexamtype_Tab4.SelectedIndex == 0)
+            {
+                objFunc.MsgBox("Select test type name..!!", this);
+                ddlexamname.Focus();
+                return;
+            }
+            if (ddlexamname.SelectedIndex == 0)
+            {
+                objFunc.MsgBox("Select test name..!!", this);
+                ddlexamname.Focus();
+                return;
+
+            }
+            if (txtdate.Text == "")
+            {
+                objFunc.MsgBox("Enter test date..!!", this);
+                txtdate.Focus();
+                return;
+
+            }
+            if (ddltime.SelectedIndex == 0 || ddltime0.SelectedIndex==0)
+            {
+                objFunc.MsgBox("Select time to..!!", this);
+                ddltime.Focus();
+                return;
+            }
+
+            if (ddltime3.SelectedIndex == 0 || ddltime4.SelectedIndex == 0)
+            {
+                objFunc.MsgBox("Select time From..!!", this);
+                ddltime3.Focus();
+                return;
+            }
+            bool data = true;
+            if (gvTopic.Rows.Count > 0)
+            {
+               
+                for (int i = 0; i < gvTopic.Rows.Count; i++)
+                {
+                    CheckBox chk = (CheckBox)gvTopic.Rows[i].FindControl("Chk");
+                    if (chk.Checked == true)
+                    {
+                        data = false;
+                    }
+                }
+            }
+            if (data == true)
+            {
+                objFunc.MsgBox("Please select Course Coverage Unit....!!", this);
+                return;
+            }
+
+            ExamDM.ExamScheduleDM objDM = new ExamDM.ExamScheduleDM();
+            if (cmdCreate_Tab4.Text == "Submit")
+            {
+                txtremark.Enabled = false;
+                Chlcancel.Checked = false;
+
+                string str = objFunc.Get_details("select testschId from itestSchedule where subjectId='" + ddlsubject.SelectedValue + "' and testId='" + ddlexamname.SelectedValue + "'   and sessionId='" + Session["sesnID"].ToString() + "'   and (Status is null or Status='') ");
+                if (str != "")
+                {
+                    objFunc.MsgBox1(ddlexamname.SelectedItem.Text + ' ' + "Already Schedule", UpdatePanel1);
+                    ddlsubject.Focus();
+                    return;
+
+                }
+                objDM.SchDate = txtdate.SelectedItem.Text;
+                objDM.sessionid = Session["sesnID"].ToString();
+                int course_ID1 = Convert.ToInt32(objFunc.Get_details("select courseID from itestType where testTypeID = '" + ddlexamtype_Tab4.SelectedValue + "'"));
+                objDM.courseid = course_ID1;
+                DataTable dt3 = new DataTable();
+                dt3 = objFunc.FillDataTable("select specilizationID,semesterID from FacultySubjectChoice where facultyID = '" + Fid.Value + "' and InstituteID = '" + Convert.ToInt32(Session["instID"].ToString()) + "' and sessionID = '" + Session["sesnID"].ToString() + "' and subjectID = '" + ddlsubject.SelectedValue + "' and courseID = " + course_ID1 + "");
+
+                if (dt3.Rows.Count > 0)
+                {
+                    objDM.specid = Convert.ToInt32(dt3.Rows[0]["specilizationID"].ToString());
+                    objDM.semid = Convert.ToInt32(dt3.Rows[0]["semesterID"].ToString());
+                }
+                objDM.TimeFrom = ddltime.Text + ":" + ddltime0.Text;
+                objDM.TimeTo = ddltime3.Text + ":" + ddltime4.Text;
+                EXamSVC objInsert1 = new EXamSVC();
+                string result1= objInsert1.Schedule_Test(objDM);
+                if (result1 == "1")
+                {
+                    objFunc.MsgBox1("Test already schedule on that timming and date..", UpdatePanel1);
+                    ddltime.SelectedIndex = 0;
+                    ddltime0.SelectedIndex = 0;
+                    ddltime3.SelectedIndex = 0;
+                    ddltime4.SelectedIndex = 0;
+                    
+                    return;
+                }
+                result1 = objInsert1.Activity_Schedule(objDM);
+                if (result1 == "1")
+                {
+                   
+                    ScriptManager.RegisterStartupScript(this, GetType(), "GetType", "Confirm()", true);
+                    return;
+                    string confirmValue = Request.Form["confirm_value"];
+                    if (confirmValue == "NO")
+                    {
+                        // objFunc.MsgBox1("Activity  on that timming and date..", UpdatePanel1);
+                        ddltime.SelectedIndex = 0;
+                        ddltime0.SelectedIndex = 0;
+                        ddltime3.SelectedIndex = 0;
+                        ddltime4.SelectedIndex = 0;
+                        return;
+
+                    }
+                }
+              
+                objDM.testschid = 0;
+                flag = "N";
+            }
+            else
+            {
+                objDM.testschid = Int32.Parse(hdID.Value);
+
+                flag = "U";
+            }
+            objDM.testid = int.Parse(ddlexamname.SelectedValue);
+            objDM.Subjectid = int.Parse(ddlsubject.SelectedValue);
+            objDM.testdate1 = Convert.ToDateTime(txtdate.Text);
+            objDM.sessionid = Session["sesnID"].ToString();
+            int course_ID = Convert.ToInt32(objFunc.Get_details("select courseID from itestType where testTypeID = '" + ddlexamtype_Tab4.SelectedValue + "'"));
+            objDM.courseid = course_ID;
+
+            DataTable dt2 = new DataTable();
+            dt2 = objFunc.FillDataTable("select specilizationID,semesterID from FacultySubjectChoice where facultyID = '" + Fid.Value + "' and InstituteID = '" + Convert.ToInt32(Session["instID"].ToString()) + "' and sessionID = '" + Session["sesnID"].ToString() + "' and subjectID = '" + ddlsubject.SelectedValue + "' and courseID = " + course_ID + "");
+
+            if (dt2.Rows.Count > 0)
+            {
+                objDM.specid = Convert.ToInt32(dt2.Rows[0]["specilizationID"].ToString());
+                objDM.semid = Convert.ToInt32(dt2.Rows[0]["semesterID"].ToString());
+            }
+
+            objDM.remark = txtremark.Text;
+            objDM.TimeFrom = ddltime.Text + ":" + ddltime0.Text;
+            objDM.TimeTo = ddltime3.Text + ":" + ddltime4.Text;
+            if (Chlcancel.Checked == true)
+            {
+                objDM.Status = Chlcancel.Text;
+            }
+            else
+            {
+                objDM.Status = "";
+            }
+            string Unit_ID=string.Empty;
+            string Unit_name = string.Empty;
+            if (gvTopic.Rows.Count > 0)
+            {
+                for (int i = 0; i < gvTopic.Rows.Count; i++)
+                {
+                    CheckBox chk = (CheckBox)gvTopic.Rows[i].FindControl("Chk");
+                    LinkButton link = (LinkButton)gvTopic.Rows[i].FindControl("LinkButton5");
+                    if (chk.Checked == true)
+                    {
+                        if (Unit_ID == string.Empty)
+                        {
+                            Unit_ID = gvTopic.DataKeys[i].Values[0].ToString();
+                        }
+                        else
+                        {
+                            Unit_ID +=","+ gvTopic.DataKeys[i].Values[0].ToString();
+                        }
+
+                        if (Unit_name == string.Empty)
+                        {
+                            Unit_name = link.Text;
+                        }
+                        else
+                        {
+                            Unit_name +=","+ link.Text;
+                        }
+
+                        
+                    }
+                }
+            }
+
+            objDM.Unit_Id = Unit_ID;
+            objDM.Unit_Name = Unit_name;
+            objDM.Flag = flag;
+            Admin.AdministratorData.AuditDM audit = new Admin.AdministratorData.AuditDM();
+            audit.Action = flag;
+            audit.Entry_Date = Convert.ToString(DateTime.Now.Date.ToString("dd-MMM-yyyy"));
+            audit.Entry_Time = String.Format(DateTime.Now.TimeOfDay.ToString(), "{0:T}");
+            audit.Form_Name = "";
+            audit.ID = 0;
+            audit.InstituteID = Int32.Parse(Session["instid"].ToString());
+            audit.Record_ID = "0";
+            audit.SessionID = Session["sesnid"].ToString();
+            audit.User_ID = Session["U_name"].ToString();
+            EXamSVC objInsert = new EXamSVC();
+            string result = objInsert.InsertTestSchedule1(objDM, audit);
+            objFunc.MsgBox1(result, UpdatePanel1);
+            tab.Visible = true;
+            DataTable dt = new DataTable();
+            dt = objFunc.FillDataTable("Select SubjectName,sem,shortname,specId,testname,UnitName,SubjectCode,Subjectid,convert(nvarchar,testdate,106) as testdate,Remark,Status,testschId,testId,TimeFrom,TimeTO  from Itestschedule_View where InstituteID='" + int.Parse(Session["instID"].ToString()) + "' and testId='" + ddlexamname.SelectedValue + "' and sessionId='" + Session["sesnID"].ToString() + "'");//SubjectType='1'
+            GrdExamSchedule.Visible = true;
+            GrdExamSchedule.DataSource = dt;
+            GrdExamSchedule.DataBind();
+            // ddlexamname.SelectedIndex = 0;
+            txtremark.Text = string.Empty;
+            Chlcancel.Checked = false;
+            //txtdate.Text = ""; 
+            //ddlsubject.SelectedIndex = 0;
+            ddltime.SelectedIndex = 0;
+           // ddlexamtype_Tab4.SelectedIndex = 0;
+           // ddlexamname.SelectedIndex=0;
+           
+            ddltime0.SelectedIndex = 0;
+            ddltime3.SelectedIndex = 0;
+            ddltime4.SelectedIndex = 0;
+
+            division.Visible = true;
+            division1.Visible = true;
+            DateTime selectdate = Convert.ToDateTime(txtdate.SelectedItem.ToString());
+            int day = Convert.ToInt32(selectdate.Day.ToString());
+            int month = Convert.ToInt32(selectdate.Month.ToString());
+            int year = Convert.ToInt32(selectdate.Year.ToString());
+
+            DateTime dt1 = new DateTime(year, month, day);
+            cal0.VisibleDate = dt1;
+
+            cmdCreate_Tab4.Text = "Submit";
+            cmddel.Enabled = false;
+        
+       
+            
+    }
+
+
+
+
+
+
+    protected void cmddel_Tab4_Click(object sender, EventArgs e)
+    {
+
+        string insertSql;
+        insertSql = "Delete from itestSchedule where  testschId='" + hdID.Value + "'";
+        int Record_Found = Convert.ToInt16(objFunc.FetchScalar("select testId from InternalExam_Attendance where  testId='" + ddlexamname.SelectedValue + "' and testtypeid='" + ddlexamtype.SelectedValue + "' and subjectid='" + ddlsubject.SelectedValue + "' and sessionid='" + Session["sesnID"].ToString() + "'"));
+        if (Record_Found != 0)
+        {
+            objFunc.MsgBox("Record Already Used", this);
+            return;
+        }
+        if (objFunc.ExecuteDML(insertSql) > 0)
+        {
+            objFunc.MsgBox("Delete Successfully.", this);
+        }
+
+
+        DataTable dt = new DataTable();
+        dt = objFunc.FillDataTable("Select SubjectName,SubjectCode,Subjectid,convert(nvarchar,testdate,106) as testdate,Remark,Status,testschId,testId,Time from Itestschedule_View where InstituteID='" + int.Parse(Session["instID"].ToString()) + "' and testId='" + ddlexamname.SelectedValue + "' and sessionId='" + Session["sesnID"].ToString() + "' and facultyID = '" + Fid.Value + "'");//SubjectType='1'
+        GrdExamSchedule.DataSource = dt;
+        GrdExamSchedule.DataBind();
+        objFunc.MsgBox1("Record Deleted", UpdatePanel1);
+        cmdCreate.Text = "Submit";
+        cmddel.Enabled = false;
+
+
+    }
+
+    protected void ddlexamtype_Tab4_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        //objFunc.FillDropdownlist(ddlexamname, "testName", "testId", "Select testId,testName from itestMaster where  testtypeId='" + ddlexamtype_Tab4.SelectedValue + "'", "--Select--");
+
+        if (ddlexamtype_Tab4.SelectedItem.Text == "Mid Semester (Full Credit Course)" || ddlexamtype_Tab4.SelectedItem.Text == "Mid Semester (Half Credit Course)" || ddlexamtype_Tab4.SelectedItem.Text == "Midsemester" || ddlexamtype_Tab4.SelectedItem.Text == "Quiz")
+        {
+            ddltime.Enabled = true;
+            //txttime.Text = "09:30  am to 12:30 pm";  
+
+        }
+        else
+        {
+            ddltime.SelectedIndex = 0;
+            //ddltime.Enabled = false;
+
+        }
+
+        objFunc.FillDropdownlist(ddlexamname, "testName", "testId", "select testId,shortName+'-'+CourseYear+'-'+testName as testName from TestTypeName_View where testtypeId=" + ddlexamtype_Tab4.SelectedValue + " and Semid in (Select SemesterID from facultysubjectchoice where FacultyId=" + Fid.Value + ") and SpclID in(Select SpecilizationID from facultysubjectchoice where FacultyId=" + Fid.Value + ") and ExamCategory_ID=" + RadioButtonList1.SelectedValue + "", "--Select--");
+        ddlexamname.SelectedIndex = 0;
+        //ddlexamtype.Focus();
+
+    }
+    protected void ddlexamname_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        objFunc.FillDropdownlist(ddlsubject, "subjectName", "SubjectId", "select SUbjectID,SubjectName+'('+SubjectCode+')' as subjectName from Subject_Vw where SUbjectID in ( select SubjectID  from facultysubjectchoice where FacultyId=" + Fid.Value + " and SpecilizationID in(Select SpclID from itestMaster where testId=" + ddlexamname.SelectedValue + ") and SemesterID in(Select Semid from itestMaster where testId=" + ddlexamname.SelectedValue + ") and InstituteID=" + Convert.ToInt32(Session["instID"].ToString()) + " and SessionID='" + Session["sesnID"].ToString() + "')", "--Select--");
+        string strtdate = objFunc.Get_details("select StartDate from Week where WeekID in(Select fromDate from itestMaster where testId=" + ddlexamname.SelectedValue + " and testtypeId=" + ddlexamtype_Tab4.SelectedValue + ")");
+        string enddate = objFunc.Get_details("select EndDate from Week where WeekID in(Select toDate from itestMaster where testId=" + ddlexamname.SelectedValue + " and testtypeId=" + ddlexamtype_Tab4.SelectedValue + ")");
+
+        if (strtdate != "" && enddate != "")
+        {
+            List<string> allDates = new List<string>();
+            allDates.Add("--Select--");
+            for (DateTime date = Convert.ToDateTime(strtdate); date <= Convert.ToDateTime(enddate); date = date.AddDays(1))
+            {
+                string day = date.Day.ToString();
+                string mon = date.Month.ToString();
+                string year = date.Year.ToString();
+                string nonday = objFunc.Get_details("select date from NonTeachingDay where DAY='" + day + "' and MONTH='" + mon + "' and Year='" + year + "'");
+                if (nonday == string.Empty)
+                {
+                    allDates.Add(date.ToString("yyyy-MM-dd"));
+                }
+            }
+
+            txtdate.DataSource = allDates;
+            txtdate.DataBind();
+        }
+       
+    }
+    protected void GrdExamSchedule_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+
+        int index = GrdExamSchedule.SelectedIndex;
+        hdID.Value = GrdExamSchedule.DataKeys[index].Values[0].ToString();
+
+        LinkButton lnkid = (LinkButton)GrdExamSchedule.Rows[index].FindControl("LinkButton3");
+        int testschId = Convert.ToInt32(GrdExamSchedule.DataKeys[index].Values[0].ToString());
+        DateTime TestDate = Convert.ToDateTime(objFunc.Get_details("Select testDate from itestSchedule where subjectId=" + ddlsubject.SelectedValue + " and testschId=" + testschId + ""));
+        txtdate.SelectedValue =TestDate.ToString("yyyy-MM-dd");
+      
+        string UnitID = objFunc.Get_details("Select Unit_Id from itestSchedule where subjectId=" + ddlsubject.SelectedValue + " and testschId=" + testschId + " ");
+        string[] UNITID = UnitID.Split(',');
+        foreach (string Val1 in UNITID)
+        {
+            for (int i = 0; i < gvTopic.Rows.Count; i++)
+            {
+                int id = Convert.ToInt32(gvTopic.DataKeys[i].Values[0].ToString());
+                CheckBox chk = (CheckBox)gvTopic.Rows[i].FindControl("Chk");
+                if (Convert.ToInt32(Val1) == id)
+                {
+                    chk.Checked = true;
+                }
+                  
+            }
+        }
+        string FromTime = GrdExamSchedule.Rows[index].Cells[8].Text;
+        string[] Time = FromTime.Split(':');
+        Boolean t = false;
+        foreach (string T in Time)
+        {
+            if (t == false)
+            {
+                ddltime.SelectedValue = T;
+                t = true;
+            }
+            else
+            {
+                ddltime0.SelectedValue = T;
+            }
+        }
+        string ToTime = GrdExamSchedule.Rows[index].Cells[9].Text;
+        string[] Time1 = ToTime.Split(':');
+        Boolean t1 = false;
+        foreach (string T in Time1)
+        {
+            if (t1 == false)
+            {
+                ddltime3.SelectedValue = T;
+                t1 = true;
+            }
+            else
+            {
+                ddltime4.SelectedValue = T;
+            }
+        }
+        division.Visible = true;
+        division1.Visible = true;
+        DateTime selectdate = Convert.ToDateTime(txtdate.SelectedItem.ToString());
+        int day = Convert.ToInt32(selectdate.Day.ToString());
+        int month = Convert.ToInt32(selectdate.Month.ToString());
+        int year = Convert.ToInt32(selectdate.Year.ToString());
+
+        DateTime dt = new DateTime(year, month, day);
+        cal0.VisibleDate = dt;
+        cmdCreate_Tab4.Text = "Update";
+    }
+    protected void ddlsubject_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        
+        DataTable dt = new DataTable();
+        dt = objFunc.FillDataTable("Select SubjectName,sem,shortname,testName,UnitName,specId,SubjectCode,Subjectid,convert(nvarchar,testdate,106) as testdate,Remark,Status,testschId,testId,TimeFrom ,TimeTO from Itestschedule_View where InstituteID='" + int.Parse(Session["instID"].ToString()) + "' and testId='" + ddlexamname.SelectedValue + "' and sessionId='" + Session["sesnID"].ToString() + "' and subjectId=" + ddlsubject.SelectedValue + " and testId=" + ddlexamname.SelectedValue + "");//SubjectType='1'
+        if (dt.Rows.Count > 0)
+        {
+            GrdExamSchedule.Visible = true;
+            GrdExamSchedule.DataSource = dt;
+            GrdExamSchedule.DataBind();
+        }
+        else
+        {
+            GrdExamSchedule.Visible = false;
+        }
+
+        gvTopic.DataSource = new Int32[0];
+        gvTopic.DataBind();
+       
+
+        //gvUnitobjective.DataSource = new Int32[0];
+        //gvUnitobjective.DataBind();
+        List<SyllabusM.GetTopicDM> objFill = new List<SyllabusM.GetTopicDM>();
+        Syllabus objSelect = new Syllabus();
+        //System.Array arr;
+        //arr = Microsoft.VisualBasic.Strings.Split(ddlSubject.SelectedValue, "^", -1, 0);
+        objFill = objSelect.GetTopicBysubjectID(Int32.Parse(ddlsubject.SelectedValue), Int32.Parse(Fid.Value));
+        gvTopic.DataSource = objFill;
+        gvTopic.DataBind();
+        if (gvTopic.Rows.Count > 0)
+        {
+            Label37.Visible = true;
+            Div1.Visible = true;
+        }
+         
+
+        ddlsubject.Focus();
+    }
+
+
+    protected void ddltime_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+    protected void rdbExamCate_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        objFunc.FillDropdownlist(ddlfromweek, "WeekName", "WeekID", "select WeekName,WeekID from Week where SessionYear='" + Session["sesnID"].ToString() + "' and Inst_ID=" + Convert.ToInt32(Session["instID"].ToString()) + " and CourseId=" + ddlCourse.SelectedValue + " and semid=" + ddlYear.SelectedValue + "", "--Select--");
+
+        //objFunc.FillDropdownlist(, "Exam", "Exam_CategotyID", "Select * from Exam_type where Exam_CategotyID = " + rdbExamCate.SelectedValue + " and FacultyID =" + Fid.Value + " and instituteId='" + Int32.Parse(Session["InstID"].ToString()) + "' and sessionYear='" + Session["sesnID"].ToString() + "'", "--Select--");
+        objFunc.FillDropdownlist(ddlexamtype, "test", "testtypeid", "select testtypeid, shortname+'-'+Courseyear+'-'+testtypename as test from testtypename_view  where examcategory_id=" + rdbExamCate.SelectedValue + " and FacultyID=" + Fid.Value + " and instituteId=" + Convert.ToInt32(Session["instID"].ToString()) + " and sessionId='" + Session["sesnID"].ToString() + "'", "--Select--");
+
+        //objFunc.FillDropdownlist(ddlexamtype, "testtypeName", "testtypeId", "Select testtypeName,testtypeId from iTestType where instituteId='" + Int32.Parse(Session["instID"].ToString()) + "' and sessionId='" + Session["sesnID"].ToString() + "' and ExamCategory_ID = '"+rdbExamCate.SelectedValue+"' and FacultyID = '" + Fid.Value + "'", "--Select--");
+
+    }
+    protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        // objFunc.FillDropdownlist(ddlexamtype_Tab4, "testtypeName", "testtypeId", "Select testtypeName,testtypeId from iTestType where instituteId='" + int.Parse(Session["instID"].ToString()) + "' and sessionId='" + Session["sesnID"].ToString() + "' and ExamCategory_ID = '" + RadioButtonList1.SelectedValue + "' and FacultyId='" + Fid.Value + "'", "--Select--");
+        objFunc.FillDropdownlist(ddlexamtype_Tab4, "testtypeName", "testtypeId", " SELECT distinct testtypeId, testtypeName FROM itestType where ExamCategory_ID=" + RadioButtonList1.SelectedValue + " and SpecializationID in (Select SpecilizationID from facultysubjectchoice where FacultyId=" + Fid.Value + ") and SemesterID in (Select SemesterID from facultysubjectchoice where FacultyId=" + Fid.Value + ") and FacultyID=" + Fid.Value + "", "--Select--");
+
+    }
+
+    protected void ddlexamtype_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+        Div4.Visible = true;
+        objFunc.FillGridVIew1(grdExamMaster, "Select * from TestMaster_View where testtypeId=" + ddlexamtype.SelectedValue + " and Semid='" + ddlYear.SelectedValue + "' and SpclID=" + ddlSpecialization.SelectedValue + " ");
+        txttestname.Text = string.Empty;
+        txtmaxmark.Text = string.Empty;
+
+
+
+    }
+    protected void ddlSpecialization_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        objFunc.FillDropdownlist(ddlfromweek, "WeekName", "WeekID", "select distinct WeekID,WeekName  from Week where courseid in (select distinct courseid from facultysubjectchoice where FacultyId=" + Fid.Value + " and SessionID='" + Session["sesnID"].ToString() + "' and InstituteID=" + Convert.ToInt32(Session["instId"].ToString()) + ")  and sessionyear='" + Session["sesnid"].ToString() + "' and Inst_ID=" + Convert.ToInt32(Session["instid"].ToString()) + " and semid=" + ddlYear.SelectedValue + " and  SplId=" + ddlSpecialization.SelectedValue + "", "---Select---");
+
+        if (rdbExamCate.SelectedValue == "")
+        {
+            objFunc.MsgBox("Please select exam category..!!", this);
+            rdbExamCate.Focus();
+            return;
+        }
+
+        if (ddlYear.SelectedIndex == 0)
+        {
+            objFunc.MsgBox("Please select semester..!!", this);
+            ddlYear.Focus();
+            return;
+        }
+        objFunc.FillDropdownlist(ddlexamtype, "testtypeName", "testtypeId", "SELECT testtypeId, testtypeName FROM itestType where ExamCategory_ID=" + rdbExamCate.SelectedValue + " and SpecializationID=" + ddlSpecialization.SelectedValue + " and SemesterID=" + ddlYear.SelectedValue + " and FacultyID=" + Fid.Value + "", "--Select--");
+    }
+    protected void ddltime4_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (ddlexamtype_Tab4.SelectedIndex == 0)
+        {
+            objFunc.MsgBox1("Please select TestType name", UpdatePanel1);
+            ddlexamtype_Tab4.Focus();
+            return;
+        }
+        if (ddlexamname.SelectedIndex == 0)
+        {
+            objFunc.MsgBox1("Please select Test name", UpdatePanel1);
+            ddlexamname.Focus();
+            return;
+        }
+        if (ddltime.SelectedIndex == 0)
+        {
+            objFunc.MsgBox1("Please select Time from hours ", UpdatePanel1);
+            ddltime.Focus();
+            return;
+        }
+        if (ddltime0.SelectedIndex == 0)
+        {
+            objFunc.MsgBox1("Please select Time from Minutes ", UpdatePanel1);
+            ddltime0.Focus();
+            return;
+        }
+        if (ddltime3.SelectedIndex == 0)
+        {
+            objFunc.MsgBox1("Please select Time To Hours ", UpdatePanel1);
+            ddltime3.Focus();
+            return;
+        }
+        string TimeDuration = objFunc.Get_details("select testDuration from itestMaster where testtypeId=" + ddlexamtype_Tab4.SelectedValue + " and Semid in(Select Semid from itestMaster where testId=" + ddlexamname.SelectedValue + ") and SpclID in(Select SpclID from itestMaster where testId=" + ddlexamname.SelectedValue + ")");
+        int FromHr = Convert.ToInt32(ddltime.SelectedItem.ToString()) * 60 + Convert.ToInt32(ddltime0.SelectedItem.ToString());
+        int ToHr = Convert.ToInt32(ddltime3.SelectedItem.ToString()) * 60 + Convert.ToInt32(ddltime4.SelectedItem.ToString());
+        int res = ToHr - FromHr;
+
+        if (res != Convert.ToInt32(TimeDuration.ToString()))
+        {
+            objFunc.MsgBox1(" Scheduled time period for " + ddlexamtype_Tab4.SelectedItem.Text + " is  " + TimeDuration + "minutes, Give time duration accordingly..!!", UpdatePanel1);
+        }
+
+    }
+    protected void ddlSem_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        objFunc.FillDropdownlist(ddlSpcl, "shortName", "SpecilisationID", "SELECT shortName,SpecilisationID FROM  dbo.Specilisation where SpecilisationID in (select distinct SpecilizationID from FacultySubjectChoice where FacultyId="+Fid.Value+" and courseid="+ddlCourse.SelectedValue+" and SemesterID="+ddlSem.SelectedValue+" and Approvalstatus='Approved' and SessionID='" + Session["sesnID"].ToString() + "' and InstituteID=" + Convert.ToInt32(Session["instID"].ToString()) + ")", "--Select--");
+        ddlExamCat.SelectedIndex = 0;
+    }
+    protected void txttestname_TextChanged(object sender, EventArgs e)
+    {
+
+
+        if (ddlYear.SelectedIndex == 0)
+        {
+            objFunc.MsgBox("Please select semester..!!", this);
+            ddlYear.Focus();
+            return;
+        }
+        if (rdbExamCate.SelectedValue == "")
+        {
+            objFunc.MsgBox("Please select exam category..!!", this);
+            rdbExamCate.Focus();
+            return;
+        }
+
+        if (ddlexamtype.SelectedIndex == 0)
+        {
+            objFunc.MsgBox("Select Test Name", this);
+            ddlexamtype.Focus();
+            return;
+        }
+
+        string testname = objFunc.Get_details("select testId from itestMaster where testName='"+txttestname.Text+"' and Semid="+ddlYear.SelectedValue+" and SpclID="+ddlSpecialization.SelectedValue+" and testtypeId="+ddlexamtype.SelectedValue+"");
+        if (testname != string.Empty)
+        {
+            objFunc.MsgBox1("TestName Already Defined for " + ddlSpecialization.SelectedItem.ToString() + " Specialization," + ddlYear.SelectedItem.ToString() + " year  and " + ddlexamtype.SelectedItem.ToString() + " Testtype",UpdatePanel1);
+            txttestname.Text = "";
+            txttestname.Focus();
+            return;
+        }
+    }
+
+    protected void RowSelector_CheckedChanged(object sender, EventArgs e)
+    {
+        for (int i = 0; i < grdTestType.Rows.Count; i++)
+        {
+            RadioButton rdb = (RadioButton)grdTestType.Rows[i].FindControl("RowSelector");
+            Label sts = (Label)grdTestType.Rows[i].FindControl("LblStatus");
+            if (rdb.Checked == true && sts.Text == "Scheduled")
+            {
+                string test = grdTestType.Rows[i].Cells[1].Text;
+                  objFunc.MsgBox1(""+test+"  Already Defined for " + ddlSpcl.SelectedItem.ToString() + " Specialization and "+ddlSem.SelectedItem.ToString()+" Semester ", UpdatePanel1);
+                  rdb.Checked = false;
+                  return;
+            }
+        }
+    }
+    protected void ddlSpcl_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        ddlExamCat.SelectedIndex = 0;
+    }
+    protected void Chkall1_CheckedChanged(object sender, EventArgs e)
+    {
+        if (Chkall1.Checked == true)
+        {
+            Div3.Visible = true;
+            if (ddlCourse.SelectedIndex == 0)
+            {
+                objFunc.MsgBox1("Select Course..", UpdatePanel1);
+                ddlCourse.Focus();
+                Chkall1.Checked = false;
+                return;
+            }
+            objFunc.FillGridVIew1(grdExamParameter, "Select * from TestParameter_View where instituteId='" + Int32.Parse(Session["InstID"].ToString()) + "' and sessionId='" + Session["sesnID"].ToString() + "' and courseId='" + ddlCourse.SelectedValue + "' ");
+        }
+        else
+        {
+            Div3.Visible = false;
+        }
+    }
+    protected void Chkall2_CheckedChanged(object sender, EventArgs e)
+    {
+        objFunc.FillGridVIew1(grdExamMaster, "Select * from itestmaster where testtypeId='" + ddlexamtype.SelectedValue + "' and Semid='" + ddlYear.SelectedValue + "' ");
+
+    }
+    protected void gvTopic_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        int index = gvTopic.SelectedIndex;
+       
+        objFunc.FillGridVIew1(GridView1, "select distinct * from unit_view where subjectid=" +Convert.ToInt32( gvTopic.DataKeys[index].Values[1].ToString()) + " and Topicid=" +Convert.ToInt32( gvTopic.DataKeys[index].Values[0].ToString()) + "");
+        ModalPopupExtender1.Show();
+    }
+    protected void cmdCreate_Tab5_Click(object sender, EventArgs e)
+    {
+        ModalPopupExtender3.Show();
+        
+    }
+    protected void HiddenField3_ValueChanged(object sender, EventArgs e)
+    {
+
+    }
+    protected void cal0_DayRender(object sender, DayRenderEventArgs e)
+    {
+        DateTime selectdate =Convert.ToDateTime( txtdate.SelectedItem.Text);
+        string year = selectdate.Year.ToString();
+        string date1 = e.Day.Date.Date.ToString("dd-MM-yyyy");
+        DataTable dt1 = objFunc.FillDataTable("select LeaveName,Date from NonTeachingDay where YEAR="+year+" and DayName not in('sun')");
+        DataTable dt = objFunc.FillDataTable("select activity_name,fromdate,todate from academic_calendar_entry_view");
+        DataTable dt2 = objFunc.FillDataTable("select testDate from itestSchedule where semId in(select Semid from itestMaster where testId=" + ddlexamname.SelectedValue + ") and specId in(select SpclID from itestMaster where testId="+ddlexamname.SelectedValue+" )");
+        DataTable cal = objFunc.FillDataTable("select * from calendar_view");
+        string activitydate = "";
+        string todate1 = "";
+        DateTime todate = new DateTime();
+        DateTime Actdate = new DateTime();
+        DateTime holiday = new DateTime();
+        DateTime test = new DateTime();
+        for (int i = 0; i < cal.Rows.Count;i++)
+        {
+            todate = Convert.ToDateTime(cal.Rows[i]["todate"].ToString());
+            Actdate = Convert.ToDateTime(cal.Rows[i]["fromdate"].ToString());
+            holiday = Convert.ToDateTime(cal.Rows[i]["leavedate"].ToString());
+            string hoday = holiday.ToString("dd-MM-yyyy");
+            test = Convert.ToDateTime(cal.Rows[i]["testDate"].ToString());
+            string testSchedate = test.ToString("dd-MM-yyyy");
+            for (DateTime date = Convert.ToDateTime(Actdate); date <= Convert.ToDateTime(todate); date = date.AddDays(1))
+            {
+                activitydate = date.Date.ToString("dd-MM-yyyy");
+                if (date1 == activitydate && date1 == hoday && date1 == testSchedate)
+                {
+                    if (e.Cell.BackColor != System.Drawing.Color.Red && e.Cell.BackColor != System.Drawing.Color.Blue && e.Cell.BackColor != System.Drawing.Color.DarkGreen)
+                    {
+                        LiteralControl l = new LiteralControl();
+                        e.Cell.Text = "";
+
+                        l.Text = "<br />" + cal.Rows[i]["activity_name"].ToString() + "<br/>" + "Activity";
+                        e.Cell.BackColor = System.Drawing.Color.Blue;
+                        e.Cell.Font.Name = "Courier New";
+                        e.Cell.Font.Size = 5;
+                        e.Cell.ForeColor = System.Drawing.Color.Black;
+                        e.Cell.Controls.Add(l);
+                        e.Cell.Attributes["onmouseover"] = "this.style.backgroundColor='AliceBlue';";
+                        e.Cell.ToolTip = cal.Rows[i]["activity_name"].ToString() + Environment.NewLine + "Already Test Schedule" + Environment.NewLine + cal.Rows[i]["LeaveName"].ToString();
+                        e.Cell.Attributes["onmouseout"] = "this.style.backgroundColor='Blue';";
+
+                        break;
+                    }
+
+                }
+                
+                    if (date1 == activitydate && date1 == hoday)
+                    {
+                        if (e.Cell.BackColor != System.Drawing.Color.Blue && e.Cell.BackColor != System.Drawing.Color.Red && e.Cell.BackColor != System.Drawing.Color.DarkGreen)
+                        {
+
+                            LiteralControl l = new LiteralControl();
+                            l.Text = "<br />" + cal.Rows[i]["activity_name"].ToString() + "<br/>" + "Activity";
+                            e.Cell.BackColor = System.Drawing.Color.Red;
+                            e.Cell.Font.Name = "Courier New";
+                            e.Cell.Font.Size = 5;
+                            e.Cell.ForeColor = System.Drawing.Color.Black;
+                            e.Cell.Controls.Add(l);
+                            e.Cell.Attributes["onmouseover"] = "this.style.backgroundColor='AliceBlue';";
+                            e.Cell.ToolTip = cal.Rows[i]["activity_name"].ToString() + Environment.NewLine + cal.Rows[i]["LeaveName"].ToString();
+                            e.Cell.Attributes["onmouseout"] = "this.style.backgroundColor='Red';";
+                        }
+
+                    }
+                    if (date1 == activitydate && date1 == testSchedate)
+                    {
+                        if (e.Cell.BackColor != System.Drawing.Color.Blue && e.Cell.BackColor != System.Drawing.Color.Red && e.Cell.BackColor != System.Drawing.Color.DarkGreen)
+                        {
+
+                            LiteralControl l = new LiteralControl();
+                            l.Text = "<br />" + cal.Rows[i]["activity_name"].ToString() + "<br/>" + "Activity";
+                            e.Cell.BackColor = System.Drawing.Color.Red;
+                            e.Cell.Font.Name = "Courier New";
+                            e.Cell.Font.Size = 5;
+                            e.Cell.ForeColor = System.Drawing.Color.Black;
+                            e.Cell.Controls.Add(l);
+                            e.Cell.Attributes["onmouseover"] = "this.style.backgroundColor='AliceBlue';";
+                            e.Cell.ToolTip = cal.Rows[i]["activity_name"].ToString() + Environment.NewLine + "Already Test Schedule";
+                            e.Cell.Attributes["onmouseout"] = "this.style.backgroundColor='Red';";
+                        }
+
+                    }
+                    if (date1 == hoday && date1 == testSchedate)
+                    {
+                        if (e.Cell.BackColor != System.Drawing.Color.Blue && e.Cell.BackColor != System.Drawing.Color.Red && e.Cell.BackColor != System.Drawing.Color.DarkGreen)
+                        {
+                            LiteralControl l = new LiteralControl();
+                            l.Text = "<br />" + cal.Rows[i]["LeaveName"].ToString();
+                            e.Cell.BackColor = System.Drawing.Color.Red;
+                            e.Cell.Font.Name = "Courier New";
+                            e.Cell.Font.Size = 5;
+                            e.Cell.ForeColor = System.Drawing.Color.Black;
+                            e.Cell.Controls.Add(l);
+                            e.Cell.Attributes["onmouseover"] = "this.style.backgroundColor='AliceBlue';";
+                            e.Cell.ToolTip = cal.Rows[i]["LeaveName"].ToString() + Environment.NewLine + "Already Test Schedule";
+                            e.Cell.Attributes["onmouseout"] = "this.style.backgroundColor='Red';";
+                        }
+                    }
+
+            }
+
+        }
+
+        for (int i = 0; i < dt1.Rows.Count; i++)
+        {
+            DateTime Leavedate = Convert.ToDateTime(dt1.Rows[i]["Date"].ToString());
+            string leaveDate1 = Leavedate.ToString("dd-MM-yyyy");
+
+            if (date1 == leaveDate1)
+            {
+                if (e.Cell.BackColor!=System.Drawing.Color.Blue && e.Cell.BackColor!=System.Drawing.Color.Red && e.Cell.BackColor!=System.Drawing.Color.DarkGreen)
+                {
+                    LiteralControl l = new LiteralControl();
+                    l.Text = "<br />" + dt1.Rows[i]["LeaveName"].ToString();
+                    e.Cell.BackColor = System.Drawing.Color.DarkGreen;
+                    e.Cell.Font.Name = "Courier New";
+                    e.Cell.Font.Size = 5;
+                    e.Cell.ForeColor = System.Drawing.Color.Black;
+                    e.Cell.Controls.Add(l);
+                    e.Cell.Attributes["onmouseover"] = "this.style.backgroundColor='AliceBlue';";
+                    e.Cell.ToolTip = dt1.Rows[i]["LeaveName"].ToString() ;
+                    e.Cell.Attributes["onmouseout"] = "this.style.backgroundColor='DarkGreen';";
+
+                    break;
+                }
+
+            }
+
+        }
+        for (int i = 0; i < dt.Rows.Count; i++)
+        {
+            todate = Convert.ToDateTime(dt.Rows[i]["todate"].ToString());
+            Actdate = Convert.ToDateTime(dt.Rows[i]["fromdate"].ToString());
+
+            for (DateTime date = Convert.ToDateTime(Actdate); date <= Convert.ToDateTime(todate); date = date.AddDays(1))
+            {
+                activitydate = date.Date.ToString("dd-MM-yyyy");
+
+
+                if (date1 == activitydate)
+                {
+                    if (e.Cell.BackColor != System.Drawing.Color.Blue && e.Cell.BackColor != System.Drawing.Color.Red && e.Cell.BackColor != System.Drawing.Color.DarkGreen)
+                    {
+                        LiteralControl l = new LiteralControl();
+                        l.Text = "<br />" + dt.Rows[i]["activity_name"].ToString();
+                        e.Cell.BackColor = System.Drawing.Color.DarkGreen;
+                        e.Cell.Font.Name = "Courier New";
+                        e.Cell.Font.Size = 5;
+                        e.Cell.ForeColor = System.Drawing.Color.Black;
+                        e.Cell.Controls.Add(l);
+                        e.Cell.Attributes["onmouseover"] = "this.style.backgroundColor='AliceBlue';";
+                        e.Cell.ToolTip = dt.Rows[i]["activity_name"].ToString();
+                        e.Cell.Attributes["onmouseout"] = "this.style.backgroundColor='DarkGreen';";
+
+                        break;
+                    }
+
+                }
+            }
+
+        }
+
+        for (int i = 0; i < dt2.Rows.Count; i++)
+        {
+            test = Convert.ToDateTime(dt2.Rows[i]["testDate"].ToString());
+            string testSchedate = test.ToString("dd-MM-yyyy");
+
+            if (date1 == testSchedate)
+            {
+                if (e.Cell.BackColor != System.Drawing.Color.Blue && e.Cell.BackColor != System.Drawing.Color.Red && e.Cell.BackColor != System.Drawing.Color.DarkGreen)
+                {
+                    LiteralControl l = new LiteralControl();
+                    l.Text = "<br />" + "Test Schedule";
+                    e.Cell.BackColor = System.Drawing.Color.DarkGreen;
+                    e.Cell.Font.Name = "Courier New";
+                    e.Cell.Font.Size = 5;
+                    e.Cell.ForeColor = System.Drawing.Color.Black;
+                    e.Cell.Controls.Add(l);
+                    e.Cell.Attributes["onmouseover"] = "this.style.backgroundColor='AliceBlue';";
+                    e.Cell.ToolTip = "Already Test Schedule";
+                    e.Cell.Attributes["onmouseout"] = "this.style.backgroundColor='DarkGreen';";
+
+                    break;
+                }
+
+            }
+
+        }
+       
+    }
+    protected void fillcalendar()
+    {
+
+    }
+    protected void txtdate_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        //division.Visible = true;
+    }
+
+    protected void txtdate_SelectedIndexChanged1(object sender, EventArgs e)
+    {
+        division.Visible = true;
+        division1.Visible = true;
+        DateTime selectdate = Convert.ToDateTime(txtdate.SelectedItem.ToString());
+        int day=Convert.ToInt32(selectdate.Day.ToString());
+        int month=Convert.ToInt32( selectdate.Month.ToString());
+        int year=Convert.ToInt32( selectdate.Year.ToString());
+
+        DateTime dt = new DateTime(year,month,day);
+        cal0.VisibleDate = dt;
+    }
+    protected void ddlfromweek_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        objFunc.FillDropdownlist(ddltoweek, "WeekName", "WeekID", "select distinct WeekID,WeekName  from Week where courseid in(select distinct courseid from facultysubjectchoice where FacultyId=" + Fid.Value + " and SessionID='" + Session["sesnId"].ToString() + "' and InstituteID=" + Convert.ToInt32(Session["instId"].ToString()) + ")  and sessionyear='" + Session["sesnId"].ToString() + "' and Inst_ID=" + Convert.ToInt32(Session["instId"].ToString()) + " and semid=" + ddlYear.SelectedValue + " and SplId="+ddlSpecialization.SelectedValue+" and  WeekID>=" + ddlfromweek.SelectedValue + "", "--Select--");
+    }
+    protected void tab_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Seating_plan.aspx");
+    }
+   
+}

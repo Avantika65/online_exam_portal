@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="Edusuite" Class="AcademicDBMDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.;Initial Catalog=Edusuite;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="EdusuiteConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Department" Member="Departments">
+    <Type Name="Department">
+      <Column Name="DepartmentID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DepartmentName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="ShortName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Active" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="InstituteID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Course" Member="Courses">
+    <Type Name="Course">
+      <Column Name="CourseId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CourseName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ShortName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CourseNature" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CourseDuration" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SpecialisationID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="InstituteID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SessionID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="UName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="UEntDt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Active" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="Type" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="DepartmentID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NOS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EXS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Type Name="Course_Child">
+        <Column Name="CourseID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+        <Column Name="CastCategory" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+        <Column Name="Max_Age" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+        <Column Name="Min_Age" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+        <Column Name="Min_Per" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      </Type>
+    </Type>
+  </Table>
+  <Function Name="dbo.FillDepartment" Method="FillDepartment">
+    <Parameter Name="InstituteID" Parameter="instituteID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="FillDepartmentResult">
+      <Column Name="DepartmentID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DepartmentName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="ShortName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Active" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="InstituteID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetCourse" Method="GetCourse">
+    <Parameter Name="InstituteID" Parameter="instituteID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetCourseResult">
+      <Column Name="courseid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="coursename" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+</Database>

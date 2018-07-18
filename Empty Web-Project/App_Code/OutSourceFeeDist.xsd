@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="OutSourceFeeDist" targetNamespace="http://tempuri.org/OutSourceFeeDist.xsd" xmlns:mstns="http://tempuri.org/OutSourceFeeDist.xsd" xmlns="http://tempuri.org/OutSourceFeeDist.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="OutSourceFDReportVWTableAdapter" GeneratorDataComponentClassName="OutSourceFDReportVWTableAdapter" Name="OutSourceFDReportVW" UserDataComponentName="OutSourceFDReportVWTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectName="Test.dbo.OutSourceFDReportVW" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT     StudentName, FatherName, StudentID, OrgFeeDisID, Organization, DisAmt, DisAmtPaid, DisAmtBalance, SCategory, CourseName, shortName, Sid, 
+                      YrSem, SessionID, SName, RollNo
+FROM         OutSourceFDReportVW</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="StudentName" DataSetColumn="StudentName" />
+              <Mapping SourceColumn="FatherName" DataSetColumn="FatherName" />
+              <Mapping SourceColumn="StudentID" DataSetColumn="StudentID" />
+              <Mapping SourceColumn="OrgFeeDisID" DataSetColumn="OrgFeeDisID" />
+              <Mapping SourceColumn="Organization" DataSetColumn="Organization" />
+              <Mapping SourceColumn="DisAmt" DataSetColumn="DisAmt" />
+              <Mapping SourceColumn="DisAmtPaid" DataSetColumn="DisAmtPaid" />
+              <Mapping SourceColumn="DisAmtBalance" DataSetColumn="DisAmtBalance" />
+              <Mapping SourceColumn="SCategory" DataSetColumn="SCategory" />
+              <Mapping SourceColumn="CourseName" DataSetColumn="CourseName" />
+              <Mapping SourceColumn="shortName" DataSetColumn="shortName" />
+              <Mapping SourceColumn="Sid" DataSetColumn="Sid" />
+              <Mapping SourceColumn="YrSem" DataSetColumn="YrSem" />
+              <Mapping SourceColumn="SessionID" DataSetColumn="SessionID" />
+              <Mapping SourceColumn="SName" DataSetColumn="SName" />
+              <Mapping SourceColumn="RollNo" DataSetColumn="RollNo" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="OutSourceFeeDist" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="OutSourceFeeDist" msprop:Generator_UserDSName="OutSourceFeeDist">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="OutSourceFDReportVW" msprop:Generator_TableClassName="OutSourceFDReportVWDataTable" msprop:Generator_TableVarName="tableOutSourceFDReportVW" msprop:Generator_TablePropName="OutSourceFDReportVW" msprop:Generator_RowDeletingName="OutSourceFDReportVWRowDeleting" msprop:Generator_UserTableName="OutSourceFDReportVW" msprop:Generator_RowChangingName="OutSourceFDReportVWRowChanging" msprop:Generator_RowEvHandlerName="OutSourceFDReportVWRowChangeEventHandler" msprop:Generator_RowDeletedName="OutSourceFDReportVWRowDeleted" msprop:Generator_RowEvArgName="OutSourceFDReportVWRowChangeEvent" msprop:Generator_RowChangedName="OutSourceFDReportVWRowChanged" msprop:Generator_RowClassName="OutSourceFDReportVWRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="StudentName" msprop:Generator_ColumnVarNameInTable="columnStudentName" msprop:Generator_ColumnPropNameInRow="StudentName" msprop:Generator_ColumnPropNameInTable="StudentNameColumn" msprop:Generator_UserColumnName="StudentName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FatherName" msprop:Generator_ColumnVarNameInTable="columnFatherName" msprop:Generator_ColumnPropNameInRow="FatherName" msprop:Generator_ColumnPropNameInTable="FatherNameColumn" msprop:Generator_UserColumnName="FatherName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="StudentID" msprop:Generator_ColumnVarNameInTable="columnStudentID" msprop:Generator_ColumnPropNameInRow="StudentID" msprop:Generator_ColumnPropNameInTable="StudentIDColumn" msprop:Generator_UserColumnName="StudentID" type="xs:int" />
+              <xs:element name="OrgFeeDisID" msprop:Generator_ColumnVarNameInTable="columnOrgFeeDisID" msprop:Generator_ColumnPropNameInRow="OrgFeeDisID" msprop:Generator_ColumnPropNameInTable="OrgFeeDisIDColumn" msprop:Generator_UserColumnName="OrgFeeDisID" type="xs:int" />
+              <xs:element name="Organization" msprop:Generator_ColumnVarNameInTable="columnOrganization" msprop:Generator_ColumnPropNameInRow="Organization" msprop:Generator_ColumnPropNameInTable="OrganizationColumn" msprop:Generator_UserColumnName="Organization" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DisAmt" msprop:Generator_ColumnVarNameInTable="columnDisAmt" msprop:Generator_ColumnPropNameInRow="DisAmt" msprop:Generator_ColumnPropNameInTable="DisAmtColumn" msprop:Generator_UserColumnName="DisAmt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DisAmtPaid" msprop:Generator_ColumnVarNameInTable="columnDisAmtPaid" msprop:Generator_ColumnPropNameInRow="DisAmtPaid" msprop:Generator_ColumnPropNameInTable="DisAmtPaidColumn" msprop:Generator_UserColumnName="DisAmtPaid" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DisAmtBalance" msprop:Generator_ColumnVarNameInTable="columnDisAmtBalance" msprop:Generator_ColumnPropNameInRow="DisAmtBalance" msprop:Generator_ColumnPropNameInTable="DisAmtBalanceColumn" msprop:Generator_UserColumnName="DisAmtBalance" type="xs:decimal" minOccurs="0" />
+              <xs:element name="SCategory" msprop:Generator_ColumnVarNameInTable="columnSCategory" msprop:Generator_ColumnPropNameInRow="SCategory" msprop:Generator_ColumnPropNameInTable="SCategoryColumn" msprop:Generator_UserColumnName="SCategory" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CourseName" msprop:Generator_ColumnVarNameInTable="columnCourseName" msprop:Generator_ColumnPropNameInRow="CourseName" msprop:Generator_ColumnPropNameInTable="CourseNameColumn" msprop:Generator_UserColumnName="CourseName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="shortName" msprop:Generator_ColumnVarNameInTable="columnshortName" msprop:Generator_ColumnPropNameInRow="shortName" msprop:Generator_ColumnPropNameInTable="shortNameColumn" msprop:Generator_UserColumnName="shortName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Sid" msprop:Generator_ColumnVarNameInTable="columnSid" msprop:Generator_ColumnPropNameInRow="Sid" msprop:Generator_ColumnPropNameInTable="SidColumn" msprop:Generator_UserColumnName="Sid" type="xs:int" minOccurs="0" />
+              <xs:element name="YrSem" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnYrSem" msprop:Generator_ColumnPropNameInRow="YrSem" msprop:Generator_ColumnPropNameInTable="YrSemColumn" msprop:Generator_UserColumnName="YrSem" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="101" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SessionID" msprop:Generator_ColumnVarNameInTable="columnSessionID" msprop:Generator_ColumnPropNameInRow="SessionID" msprop:Generator_ColumnPropNameInTable="SessionIDColumn" msprop:Generator_UserColumnName="SessionID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SName" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSName" msprop:Generator_ColumnPropNameInRow="SName" msprop:Generator_ColumnPropNameInTable="SNameColumn" msprop:Generator_UserColumnName="SName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="317" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RollNo" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnRollNo" msprop:Generator_ColumnPropNameInRow="RollNo" msprop:Generator_ColumnPropNameInTable="RollNoColumn" msprop:Generator_UserColumnName="RollNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:OutSourceFDReportVW" />
+      <xs:field xpath="mstns:StudentID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

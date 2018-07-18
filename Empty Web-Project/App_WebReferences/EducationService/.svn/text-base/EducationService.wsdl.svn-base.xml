@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="IsSessionExp">
+        <s:complexType />
+      </s:element>
+      <s:element name="IsSessionExpResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IsSessionExpResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PostDateChequeEntry">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="qry" type="tns:ArrayOfAnyType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfAnyType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="PostDateChequeEntryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PostDateChequeEntryResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFaculty">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="qry" type="tns:ArrayOfAnyType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFacultyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFacultyResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTopic">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="qry" type="tns:ArrayOfAnyType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTopicResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTopicResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StudentPromote">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="qry" type="tns:ArrayOfAnyType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StudentPromoteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StudentPromoteResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CourseMaster">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="qry" type="tns:ArrayOfAnyType" />
+            <s:element minOccurs="0" maxOccurs="1" name="qry1" type="tns:ArrayOfAnyType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CourseMasterResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CourseMasterResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="IsSessionExpSoapIn">
+    <wsdl:part name="parameters" element="tns:IsSessionExp" />
+  </wsdl:message>
+  <wsdl:message name="IsSessionExpSoapOut">
+    <wsdl:part name="parameters" element="tns:IsSessionExpResponse" />
+  </wsdl:message>
+  <wsdl:message name="PostDateChequeEntrySoapIn">
+    <wsdl:part name="parameters" element="tns:PostDateChequeEntry" />
+  </wsdl:message>
+  <wsdl:message name="PostDateChequeEntrySoapOut">
+    <wsdl:part name="parameters" element="tns:PostDateChequeEntryResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFacultySoapIn">
+    <wsdl:part name="parameters" element="tns:GetFaculty" />
+  </wsdl:message>
+  <wsdl:message name="GetFacultySoapOut">
+    <wsdl:part name="parameters" element="tns:GetFacultyResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTopicSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTopic" />
+  </wsdl:message>
+  <wsdl:message name="GetTopicSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTopicResponse" />
+  </wsdl:message>
+  <wsdl:message name="StudentPromoteSoapIn">
+    <wsdl:part name="parameters" element="tns:StudentPromote" />
+  </wsdl:message>
+  <wsdl:message name="StudentPromoteSoapOut">
+    <wsdl:part name="parameters" element="tns:StudentPromoteResponse" />
+  </wsdl:message>
+  <wsdl:message name="CourseMasterSoapIn">
+    <wsdl:part name="parameters" element="tns:CourseMaster" />
+  </wsdl:message>
+  <wsdl:message name="CourseMasterSoapOut">
+    <wsdl:part name="parameters" element="tns:CourseMasterResponse" />
+  </wsdl:message>
+  <wsdl:portType name="EducationServiceSoap">
+    <wsdl:operation name="IsSessionExp">
+      <wsdl:input message="tns:IsSessionExpSoapIn" />
+      <wsdl:output message="tns:IsSessionExpSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PostDateChequeEntry">
+      <wsdl:input message="tns:PostDateChequeEntrySoapIn" />
+      <wsdl:output message="tns:PostDateChequeEntrySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFaculty">
+      <wsdl:input message="tns:GetFacultySoapIn" />
+      <wsdl:output message="tns:GetFacultySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTopic">
+      <wsdl:input message="tns:GetTopicSoapIn" />
+      <wsdl:output message="tns:GetTopicSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StudentPromote">
+      <wsdl:input message="tns:StudentPromoteSoapIn" />
+      <wsdl:output message="tns:StudentPromoteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CourseMaster">
+      <wsdl:input message="tns:CourseMasterSoapIn" />
+      <wsdl:output message="tns:CourseMasterSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="EducationServiceSoap" type="tns:EducationServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="IsSessionExp">
+      <soap:operation soapAction="http://tempuri.org/IsSessionExp" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostDateChequeEntry">
+      <soap:operation soapAction="http://tempuri.org/PostDateChequeEntry" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFaculty">
+      <soap:operation soapAction="http://tempuri.org/GetFaculty" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTopic">
+      <soap:operation soapAction="http://tempuri.org/GetTopic" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StudentPromote">
+      <soap:operation soapAction="http://tempuri.org/StudentPromote" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CourseMaster">
+      <soap:operation soapAction="http://tempuri.org/CourseMaster" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="EducationServiceSoap12" type="tns:EducationServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="IsSessionExp">
+      <soap12:operation soapAction="http://tempuri.org/IsSessionExp" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostDateChequeEntry">
+      <soap12:operation soapAction="http://tempuri.org/PostDateChequeEntry" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFaculty">
+      <soap12:operation soapAction="http://tempuri.org/GetFaculty" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTopic">
+      <soap12:operation soapAction="http://tempuri.org/GetTopic" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StudentPromote">
+      <soap12:operation soapAction="http://tempuri.org/StudentPromote" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CourseMaster">
+      <soap12:operation soapAction="http://tempuri.org/CourseMaster" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="EducationService">
+    <wsdl:port name="EducationServiceSoap" binding="tns:EducationServiceSoap">
+      <soap:address location="http://localhost:1073/EDU-SUITE/EducationService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="EducationServiceSoap12" binding="tns:EducationServiceSoap12">
+      <soap12:address location="http://localhost:1073/EDU-SUITE/EducationService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

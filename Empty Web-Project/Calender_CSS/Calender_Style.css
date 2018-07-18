@@ -1,0 +1,140 @@
+﻿.button {
+  font: bold 10px Arial,sans-serif;
+  color: rgba(0, 0, 0, 0.8);
+  text-shadow: 0 0.1em 0 rgba(255, 255, 255, 0.5);
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  padding: 0.4em 2em 0.5em;
+  -moz-border-radius: 0.3em;
+  -webkit-border-radius: 0.3em;
+  border-radius: 0.3em;
+  border: 1px solid;
+  border-color: #bbbbbb #a2a2a2 #888888;
+  background-color: #eeeeee;
+  background-image: -moz-linear-gradient(#eeeeee, #d4d4d4);
+  background-image: -webkit-linear-gradient(#eeeeee, #d4d4d4);
+  background-image: linear-gradient(#eeeeee, #d4d4d4);
+  -moz-box-shadow: 0 0.1em 0.5em rgba(0, 0, 0, 0.1), 0 0.1em 0.2em rgba(0, 0, 0, 0.3), 0 -0.1em 0.07em rgba(0, 0, 0, 0.3) inset, 0 0.1em 0.07em rgba(255, 255, 255, 0.2) inset;
+  -webkit-box-shadow: 0 0.1em 0.5em rgba(0, 0, 0, 0.1), 0 0.1em 0.2em rgba(0, 0, 0, 0.3), 0 -0.1em 0.07em rgba(0, 0, 0, 0.3) inset, 0 0.1em 0.07em rgba(255, 255, 255, 0.2) inset;
+  box-shadow: 0 0.1em 0.5em rgba(0, 0, 0, 0.1), 0 0.1em 0.2em rgba(0, 0, 0, 0.3), 0 -0.1em 0.07em rgba(0, 0, 0, 0.3) inset, 0 0.1em 0.07em rgba(255, 255, 255, 0.2) inset;
+  -moz-transition: all 100ms;
+  -o-transition: all 100ms;
+  -webkit-transition: all 100ms;
+  transition: all 100ms;
+}
+
+
+.button:hover {
+  -moz-box-shadow: 0 0.1em 0.5em rgba(0, 0, 0, 0.4), 0 0.1em 0.2em rgba(0, 0, 0, 0.4), 0 -0.1em 0.07em rgba(0, 0, 0, 0.3) inset, 0 0.1em 0.07em rgba(255, 255, 255, 0.2) inset;
+  -webkit-box-shadow: 0 0.1em 0.5em rgba(0, 0, 0, 0.4), 0 0.1em 0.2em rgba(0, 0, 0, 0.4), 0 -0.1em 0.07em rgba(0, 0, 0, 0.3) inset, 0 0.1em 0.07em rgba(255, 255, 255, 0.2) inset;
+  box-shadow: 0 0.1em 0.5em rgba(0, 0, 0, 0.4), 0 0.1em 0.2em rgba(0, 0, 0, 0.4), 0 -0.1em 0.07em rgba(0, 0, 0, 0.3) inset, 0 0.1em 0.07em rgba(255, 255, 255, 0.2) inset;
+}
+.button:active {
+  padding: 0.4em 2em 0.4em;
+  margin-top: 0.1em;
+  border-color: #a2a2a2 #bbbbbb #eeeeee;
+  background-image: -moz-linear-gradient(#e1e1e1, #eeeeee);
+  background-image: -webkit-linear-gradient(#e1e1e1, #eeeeee);
+  background-image: linear-gradient(#e1e1e1, #eeeeee);
+  -moz-box-shadow: 0 0.1em 0.2em rgba(0, 0, 0, 0.1) inset, 0 0.1em 0.1em rgba(0, 0, 0, 0.2) inset, 0.05em 0 0.07em rgba(0, 0, 0, 0.2) inset, -0.05em 0 0.07em rgba(0, 0, 0, 0.2) inset;
+  -webkit-box-shadow: 0 0.1em 0.2em rgba(0, 0, 0, 0.1) inset, 0 0.1em 0.1em rgba(0, 0, 0, 0.2) inset, 0.05em 0 0.07em rgba(0, 0, 0, 0.2) inset, -0.05em 0 0.07em rgba(0, 0, 0, 0.2) inset;
+  box-shadow: 0 0.1em 0.2em rgba(0, 0, 0, 0.1) inset, 0 0.1em 0.1em rgba(0, 0, 0, 0.2) inset, 0.05em 0 0.07em rgba(0, 0, 0, 0.2) inset, -0.05em 0 0.07em rgba(0, 0, 0, 0.2) inset;
+  -moz-transition: all 10ms;
+  -o-transition: all 10ms;
+  -webkit-transition: all 10ms;
+  transition: all 10ms;
+}
+
+.button1 {
+  font: bold 10px Arial;
+  color: rgba(0, 0, 0, 0.8);
+  text-shadow: 0 0.1em 0 rgba(255, 255, 255, 0.5);
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  padding: 0.4em 2em 0.5em;
+  -moz-border-radius: 0.3em;
+  -webkit-border-radius: 0.3em;
+  border-radius: 0.3em;
+  border: 1px solid;
+  border-color: #bbbbbb #a2a2a2 #888888;
+  background-color: #eeeeee;
+  background-image: -moz-linear-gradient(#eeeeee, #d4d4d4);
+  background-image: -webkit-linear-gradient(#eeeeee, #d4d4d4);
+  background-image: linear-gradient(#eeeeee, #d4d4d4);
+  -moz-box-shadow: 0 0.1em 0.5em rgba(0, 0, 0, 0.1), 0 0.1em 0.2em rgba(0, 0, 0, 0.3), 0 -0.1em 0.07em rgba(0, 0, 0, 0.3) inset, 0 0.1em 0.07em rgba(255, 255, 255, 0.2) inset;
+  -webkit-box-shadow: 0 0.1em 0.5em rgba(0, 0, 0, 0.1), 0 0.1em 0.2em rgba(0, 0, 0, 0.3), 0 -0.1em 0.07em rgba(0, 0, 0, 0.3) inset, 0 0.1em 0.07em rgba(255, 255, 255, 0.2) inset;
+  box-shadow: 0 0.1em 0.4em rgba(0, 0, 0, 0.1), 0 0.1em 0.2em rgba(0, 0, 0, 0.3), 0 -0.1em 0.07em rgba(0, 0, 0, 0.3) inset, 0 0.1em 0.07em rgba(255, 255, 255, 0.2) inset;
+  -moz-transition: all 80ms;
+  -o-transition: all 80ms;
+  -webkit-transition: all 80ms;
+  transition: all 80ms;
+}
+
+.button2 {
+  font: bold 10px Arial;
+  color: rgba(0, 0, 0, 0.8);
+  text-shadow: 0 0.1em 0 rgba(255, 255, 255, 0.5);
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  padding: 0.0em 0.5em 0.4em;
+  -moz-border-radius: 0.3em;
+  -webkit-border-radius: 0.3em;
+  border-radius: 0.3em;
+  border: 1px solid;
+  border-color: #bbbbbb #a2a2a2 #888888;
+  background-color: #eeeeee;
+  background-image: -moz-linear-gradient(#eeeeee, #d4d4d4);
+  background-image: -webkit-linear-gradient(#eeeeee, #d4d4d4);
+  background-image: linear-gradient(#eeeeee, #d4d4d4);
+  -moz-box-shadow: 0 0.1em 0.5em rgba(0, 0, 0, 0.1), 0 0.1em 0.2em rgba(0, 0, 0, 0.3), 0 -0.1em 0.07em rgba(0, 0, 0, 0.3) inset, 0 0.1em 0.07em rgba(255, 255, 255, 0.2) inset;
+  -webkit-box-shadow: 0 0.1em 0.5em rgba(0, 0, 0, 0.1), 0 0.1em 0.2em rgba(0, 0, 0, 0.3), 0 -0.1em 0.07em rgba(0, 0, 0, 0.3) inset, 0 0.1em 0.07em rgba(255, 255, 255, 0.2) inset;
+  box-shadow: 0 0.1em 0.4em rgba(0, 0, 0, 0.1), 0 0.1em 0.2em rgba(0, 0, 0, 0.3), 0 -0.1em 0.07em rgba(0, 0, 0, 0.3) inset, 0 0.1em 0.07em rgba(255, 255, 255, 0.2) inset;
+  -moz-transition: all 80ms;
+  -o-transition: all 80ms;
+  -webkit-transition: all 80ms;
+  transition: all 80ms;
+}
+
+.button1:hover {
+  -moz-box-shadow: 0 0.1em 0.5em rgba(0, 0, 0, 0.4), 0 0.1em 0.2em rgba(0, 0, 0, 0.4), 0 -0.1em 0.07em rgba(0, 0, 0, 0.3) inset, 0 0.1em 0.07em rgba(255, 255, 255, 0.2) inset;
+  -webkit-box-shadow: 0 0.1em 0.5em rgba(0, 0, 0, 0.4), 0 0.1em 0.2em rgba(0, 0, 0, 0.4), 0 -0.1em 0.07em rgba(0, 0, 0, 0.3) inset, 0 0.1em 0.07em rgba(255, 255, 255, 0.2) inset;
+  box-shadow: 0 0.1em 0.5em rgba(0, 0, 0, 0.4), 0 0.1em 0.2em rgba(0, 0, 0, 0.4), 0 -0.1em 0.07em rgba(0, 0, 0, 0.3) inset, 0 0.1em 0.07em rgba(255, 255, 255, 0.2) inset;
+}
+.button1:active {
+  padding: 0.4em 2em 0.4em;
+  margin-top: 0.1em;
+  border-color: #a2a2a2 #bbbbbb #eeeeee;
+  background-image: -moz-linear-gradient(#e1e1e1, #eeeeee);
+  background-image: -webkit-linear-gradient(#e1e1e1, #eeeeee);
+  background-image: linear-gradient(#e1e1e1, #eeeeee);
+  -moz-box-shadow: 0 0.1em 0.2em rgba(0, 0, 0, 0.1) inset, 0 0.1em 0.1em rgba(0, 0, 0, 0.2) inset, 0.05em 0 0.07em rgba(0, 0, 0, 0.2) inset, -0.05em 0 0.07em rgba(0, 0, 0, 0.2) inset;
+  -webkit-box-shadow: 0 0.1em 0.2em rgba(0, 0, 0, 0.1) inset, 0 0.1em 0.1em rgba(0, 0, 0, 0.2) inset, 0.05em 0 0.07em rgba(0, 0, 0, 0.2) inset, -0.05em 0 0.07em rgba(0, 0, 0, 0.2) inset;
+  box-shadow: 0 0.1em 0.1em rgba(0, 0, 0, 0.1) inset, 0 0.1em 0.1em rgba(0, 0, 0, 0.2) inset, 0.05em 0 0.07em rgba(0, 0, 0, 0.2) inset, -0.05em 0 0.07em rgba(0, 0, 0, 0.2) inset;
+  -moz-transition: all 10ms;
+  -o-transition: all 10ms;
+  -webkit-transition: all 10ms;
+  transition: all 10ms;
+}
+
+.month, .nav{ background-color: none; color: #9e3e07; font: 10pt sans-serif; font-weight:bold; padding-bottom: 1ex;}
+.nav{ cursor: pointer; cursor: hand; text-align:right; }
+.prevMon{ color: #9e3e07; font: 10pt sans-serif; cursor: pointer; cursor: hand; text-align:left; padding-left: 2ex; }
+.nextMon{ color: #9e3e07; font: 10pt sans-serif; cursor: pointer; cursor: hand; text-align:right; padding-left: 4ex; }
+.dayHeader{ color: black; font: 10pt sans-serif; border-bottom: none; color:#9e3e07; font-weight:bold }
+.empty{ background-color: none; border-bottom: none; }
+.days{ color: black; background-color: none; font: 10pt sans-serif; border-bottom: none; border-left: none; border-right: none; cursor: pointer; cursor: hand; text-align:center; }
+.date{ color: maroon; font: 10pt sans-serif; font-weight: bold; background: none; border-bottom: none; border-left: none; border-right: none; cursor: pointer; cursor: hand; text-align:center; }
+.area{ width:198px; height:131px; background:url(../images/fondo_calen.gif); margin:10px 10px 0 10px; }
+
+.month1, .nav{ background-color: none; color: #9e3e07; font: 7pt sans-serif; font-weight:bold; padding-bottom: 1ex;}
+.nav{ cursor: pointer; cursor: hand; text-align:right; }
+.prevMon{ color: #9e3e07; font: 10pt sans-serif; cursor: pointer; cursor: hand; text-align:left; padding-left: 2ex; }
+.nextMon{ color: #9e3e07; font: 10pt sans-serif; cursor: pointer; cursor: hand; text-align:right; padding-left: 4ex; }
+.dayHeader{ color: black; font: 10pt sans-serif; border-bottom: none; color:#9e3e07; font-weight:bold }
+.empty{ background-color: none; border-bottom: none; }
+.days{ color: black; background-color: none; font: 10pt sans-serif; border-bottom: none; border-left: none; border-right: none; cursor: pointer; cursor: hand; text-align:center; }
+.date{ color: maroon; font: 10pt sans-serif; font-weight: bold; background: none; border-bottom: none; border-left: none; border-right: none; cursor: pointer; cursor: hand; text-align:center; }
+.area{ width:198px; height:131px; background:url(../images/fondo_calen.gif); margin:10px 10px 0 10px; }

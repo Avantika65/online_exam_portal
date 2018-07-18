@@ -1,0 +1,304 @@
+﻿using System;
+using System.Collections;
+using System.Linq;
+using System.Web;
+using System.Web.Services;
+using System.Web.Services.Protocols;
+using System.Xml.Linq;
+using System.ComponentModel;
+using System.Configuration;
+using System.Net.Mail;
+using NewDAL;
+using System.Web.Script.Services;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using MSS;
+using System.Data;
+
+
+/// <summary>
+/// Summary description for EducationService
+/// </summary>
+[WebService(Namespace = "http://tempuri.org/")]
+[WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+[ToolboxItem(false)]
+[System.Web.Script.Services.ScriptService]
+public class EducationService : System.Web.Services.WebService
+{
+    DBManager objDB;
+    DbFunctions objFunc = new DbFunctions();
+    public EducationService()
+    {
+
+    }
+    /// <summary>
+    /// Check IsSession Expired
+    /// </summary>
+    /// <returns></returns>
+    [WebMethod(EnableSession = true), ScriptMethod]
+    public bool IsSessionExp()
+    {
+
+        bool flag = true;
+        if (Session["instId"] == null)
+        {
+            flag = false;
+        }
+        else if (Session["instId"].ToString() == "")
+        {
+            flag = false;
+        }
+        return flag;
+    }
+    [WebMethod(EnableSession = true), ScriptMethod]
+    public string PostDateChequeEntry(object[] qry)
+    {
+        objDB = new DBManager();
+        objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+        objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+        objDB.Open();
+        objDB.BeginTransaction();
+        string returnValue = string.Empty;
+        try
+        {
+            foreach (object value in qry)
+            {
+                Dictionary<string, object> dicValues = new Dictionary<string, object>();
+                dicValues = (Dictionary<string, object>)value;
+                objDB.CreateParameters(11);
+                objDB.AddParameters(0, "StudentID", Convert.ToInt32(dicValues["studentid"].ToString()), DbType.Int32);
+                objDB.AddParameters(1, "Curr_Sess", dicValues["Curr_Sess"].ToString(), DbType.String);
+                objDB.AddParameters(2, "InstituteID", Convert.ToInt32(dicValues["InstituteID"].ToString()), DbType.Int32);
+                objDB.AddParameters(3, "ChequeNo", dicValues["ChequeNo"].ToString(), DbType.String);
+                objDB.AddParameters(4, "Cheque_Date", dicValues["Cheque_Date"].ToString(), DbType.DateTime);
+                objDB.AddParameters(5, "Cheque_Session", dicValues["Cheque_Session"].ToString(), DbType.String);
+                objDB.AddParameters(6, "Cheque_Amt", Convert.ToDouble(dicValues["Cheque_Amt"].ToString()), DbType.Double);
+                objDB.AddParameters(7, "U_Name", HttpContext.Current.Session["U_Name"].ToString(), DbType.String);
+                objDB.AddParameters(8, "Entry_Date", DateTime.Now, DbType.DateTime);
+                objDB.AddParameters(9, "flag", dicValues["flag"].ToString(), DbType.String);
+                objDB.AddParameters(10, "ChqStatus", "xxxxxxxxxx", DbType.String, ParameterDirection.Output);
+                objDB.ExecuteNonQuery(CommandType.StoredProcedure, "PDC");
+                if (objDB.Parameters[10].Value.ToString() == "I")
+                {
+                    returnValue = "Record saved successfully.";
+                }
+                else if(objDB.Parameters[10].Value.ToString() == "U")
+                {
+                    returnValue = "Record Update Successfully.";
+                }
+                else if (objDB.Parameters[10].Value.ToString() == "D")
+                {
+                    returnValue = "Duplicate Cheque Entry";
+                }
+            }
+            objDB.Transaction.Commit();
+        }
+        catch (Exception ex)
+        {
+            objDB.Transaction.Rollback();
+            returnValue = ex.Message.ToString();
+        }
+        finally
+        {
+
+            objDB.Connection.Close();
+            objDB.Dispose();
+        }
+
+        return returnValue;
+    }
+    [WebMethod(EnableSession = true), ScriptMethod]
+    public string GetFaculty(object[] qry)
+    {
+        objDB = new DBManager();
+        objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+        objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+        objDB.Open();
+        DataTable dt = new DataTable();
+        Dictionary<string, object> dicValues = new Dictionary<string, object>();
+        if (qry[1].ToString() == "F")
+        {
+            dt = objFunc.FillDataTable("select FacultyID,Salutation +''+Rtrim(FirstName)+''+Rtrim(MiddleName)+''+Rtrim(LastName) as name from facultyNew  WHERE InstituteID='" + qry[0].ToString() + "' order by FirstName");
+        }
+        else if (qry[1].ToString() == "V")
+        {
+            dt = objFunc.FillDataTable("select venue_id,Venue_name   from Venue_list  WHERE InstituteID='" + qry[0].ToString() + "' order by Venue_name");
+        }
+        else if (qry[1].ToString() == "S")
+        {
+            dt = objFunc.FillDataTable("Select  SubTopicName, SubTopicID,SubjectName,SubjectID, TopicName, TopicID from get_topic where SubTopicID='" + qry[0].ToString() + "'");
+        }
+        else if (qry[1].ToString() == "S1")
+        {
+            dt = objFunc.FillDataTable("Select SubjectID,SubjectName from Subject where subjectid='" + qry[0].ToString() + "' and sessionid='"+ HttpContext.Current.Session["sesnID"].ToString() +"'");
+        }
+        string rtvalue = "";
+        if (dt.Rows.Count > 0)
+        {
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (rtvalue.ToString() == String.Empty)
+                    rtvalue = dt.Rows[i].ItemArray[0].ToString().Trim() + "^" + dt.Rows[i].ItemArray[1].ToString();
+                else
+                    rtvalue = rtvalue + "^" + dt.Rows[i].ItemArray[0].ToString().Trim() + "^" + dt.Rows[i].ItemArray[1].ToString();
+
+            }
+            if (qry[1].ToString() == "S")
+            {
+                rtvalue = dt.Rows[0].ItemArray[0].ToString() + "^" + dt.Rows[0].ItemArray[1].ToString() + "^" + dt.Rows[0].ItemArray[2].ToString() + "^" + dt.Rows[0].ItemArray[3].ToString() + "^" + dt.Rows[0].ItemArray[4].ToString() + "^" + dt.Rows[0].ItemArray[5].ToString();
+            }
+        }
+        return rtvalue;
+    }
+    [WebMethod(EnableSession = true), ScriptMethod]
+    public string GetTopic(object[] qry)
+    {
+        objDB = new DBManager();
+        objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+        objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+        objDB.Open();
+        DataTable dt = new DataTable();
+        Dictionary<string, object> dicValues = new Dictionary<string, object>();
+        if (qry[1].ToString() == "T")
+        {
+            dt = objFunc.FillDataTable("select TopicID,TopicName from Topic where subjectID='" + qry[0].ToString() + "'");
+        }
+        else if (qry[1].ToString() == "ST")
+        {
+            dt = objFunc.FillDataTable("select SubTopicID,SubTopicName from SubTopic where TopicID='" + qry[0].ToString() + "'");
+        }
+        string rtvalue = "";
+        if (dt.Rows.Count > 0)
+        {
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (rtvalue.ToString() == String.Empty)
+                    rtvalue = dt.Rows[i].ItemArray[0].ToString().Trim() + "^" + dt.Rows[i].ItemArray[1].ToString();
+                else
+                    rtvalue = rtvalue + "^" + dt.Rows[i].ItemArray[0].ToString().Trim() + "^" + dt.Rows[i].ItemArray[1].ToString();
+
+            }
+        }
+        return rtvalue + "|" + qry[1].ToString();
+    }
+    [WebMethod(EnableSession = true), ScriptMethod]
+    public string StudentPromote(object[] qry)
+    {
+        objDB = new DBManager();
+        objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+        objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+        objDB.Open();
+        objDB.BeginTransaction();
+        string returnValue = string.Empty;
+        try
+        {
+            foreach (object value in qry)
+            {
+                Dictionary<string, object> dicValues = new Dictionary<string, object>();
+                dicValues = (Dictionary<string, object>)value;
+                objDB.CreateParameters(15);
+                if (dicValues["Prom_Type"].ToString() != "Admission")
+                {
+                    objDB.AddParameters(0, "StudentID", Convert.ToInt32(dicValues["studentid"].ToString()), DbType.Int32);
+                    objDB.AddParameters(1, "CourseID", Convert.ToInt32(dicValues["CourseID"].ToString()), DbType.Int32);
+                    objDB.AddParameters(2, "YearID", Convert.ToInt32(dicValues["YearID"].ToString()), DbType.Int32);
+                    objDB.AddParameters(3, "SemesterID", Convert.ToInt32(dicValues["SemesterID"].ToString()), DbType.Int32);
+                    objDB.AddParameters(4, "InstituteID", Convert.ToInt32(dicValues["InstituteID"].ToString()), DbType.Int32);
+                    objDB.AddParameters(5, "Session", dicValues["Session"].ToString(), DbType.String);
+                    objDB.AddParameters(6, "Prom_Type", dicValues["Prom_Type"].ToString(), DbType.String);
+                    objDB.AddParameters(7, "From_Year", dicValues["From_Year"].ToString(), DbType.String);
+                    objDB.AddParameters(8, "From_Semester", Convert.ToInt32(dicValues["From_Semester"].ToString()), DbType.Int32);
+                    objDB.AddParameters(9, "From_Session", dicValues["From_Session"].ToString(), DbType.String);
+                    objDB.AddParameters(10, "Prom_Order", Convert.ToInt32(dicValues["Prom_Order"].ToString()), DbType.Int32);
+                    objDB.AddParameters(11, "Current_Status", dicValues["Current_Status"].ToString(), DbType.String);
+                    objDB.AddParameters(12, "Promoted_By", "AA", DbType.String);
+                    objDB.AddParameters(13, "Promoted_Date", DateTime.Now, DbType.DateTime);
+                    objDB.AddParameters(14, "Batch", dicValues["Batch"].ToString(), DbType.String);
+                }
+                else
+                {
+                    objDB.AddParameters(0, "StudentID", Convert.ToInt32(dicValues["studentid"].ToString()), DbType.Int32);
+                    objDB.AddParameters(1, "CourseID", Convert.ToInt32(dicValues["CourseID"].ToString()), DbType.Int32);
+                    objDB.AddParameters(2, "YearID", Convert.ToInt32(dicValues["From_Year"].ToString()), DbType.Int32);
+                    objDB.AddParameters(3, "SemesterID", Convert.ToInt32(dicValues["From_Semester"].ToString()), DbType.Int32);
+                    objDB.AddParameters(4, "InstituteID", Convert.ToInt32(dicValues["InstituteID"].ToString()), DbType.Int32);
+                    objDB.AddParameters(5, "Session", dicValues["From_Session"].ToString(), DbType.String);
+                    objDB.AddParameters(6, "Prom_Type", dicValues["Prom_Type"].ToString(), DbType.String);
+                    objDB.AddParameters(7, "From_Year", "0", DbType.String);
+                    objDB.AddParameters(8, "From_Semester", 0, DbType.Int32);
+                    objDB.AddParameters(9, "From_Session", "0", DbType.String);
+                    objDB.AddParameters(10, "Prom_Order", Convert.ToInt32(dicValues["Prom_Order"].ToString()), DbType.Int32);
+                    objDB.AddParameters(11, "Current_Status", dicValues["Current_Status"].ToString(), DbType.String);
+                    objDB.AddParameters(12, "Promoted_By", "AA", DbType.String);
+                    objDB.AddParameters(13, "Promoted_Date", DateTime.Now, DbType.DateTime);
+                    objDB.AddParameters(14, "Batch", dicValues["Batch"].ToString(), DbType.String);
+                }
+                objDB.ExecuteNonQuery(CommandType.StoredProcedure, "StudentPromotion");
+                returnValue = "Record saved successfully.";
+            }
+            objDB.Transaction.Commit();
+        }
+        catch (Exception ex)
+        {
+            objDB.Transaction.Rollback();
+            objDB.Connection.Close();
+            returnValue = ex.Message.ToString();
+        }
+        finally
+        {
+
+            objDB.Connection.Close();
+            objDB.Dispose();
+        }
+
+        return returnValue;
+    }
+    [WebMethod(EnableSession = true), ScriptMethod]
+    public string CourseMaster(object[] qry, object[] qry1)
+    {
+        objDB = new DBManager();
+        objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+        objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+        objDB.Open();
+        objDB.BeginTransaction();
+        string returnValue = string.Empty;
+        try
+        {
+            foreach (object value in qry)
+            {
+                Dictionary<string, object> dicValues = new Dictionary<string, object>();
+                dicValues = (Dictionary<string, object>)value;
+                objDB.CreateParameters(12);
+                objDB.AddParameters(0, "CourseId", Convert.ToInt32(dicValues["studentid"].ToString()), DbType.Int32);
+                objDB.AddParameters(1, "CourseName", Convert.ToInt32(dicValues["CourseID"].ToString()), DbType.Int32);
+                objDB.AddParameters(2, "ShortName", Convert.ToInt32(dicValues["YearID"].ToString()), DbType.Int32);
+                objDB.AddParameters(3, "CourseNature", Convert.ToInt32(dicValues["SemesterID"].ToString()), DbType.Int32);
+                objDB.AddParameters(4, "SpecialisationID", Convert.ToInt32(dicValues["InstituteID"].ToString()), DbType.Int32);
+                objDB.AddParameters(5, "InstituteID", dicValues["Session"].ToString(), DbType.String);
+                objDB.AddParameters(6, "SessionID", dicValues["Prom_Type"].ToString(), DbType.String);
+                objDB.AddParameters(7, "UName", dicValues["From_Year"].ToString(), DbType.String);
+                objDB.AddParameters(8, "UEntDt", Convert.ToInt32(dicValues["From_Semester"].ToString()), DbType.Int32);
+                objDB.AddParameters(9, "Active", dicValues["From_Session"].ToString(), DbType.String);
+                objDB.AddParameters(10, "Type", Convert.ToInt32(dicValues["Prom_Order"].ToString()), DbType.Int32);
+                objDB.AddParameters(11, "DepartmentID", dicValues["Current_Status"].ToString(), DbType.String);
+                objDB.ExecuteNonQuery(CommandType.StoredProcedure, "CourseMaster");
+                returnValue = "Record saved successfully.";
+            }
+            objDB.Transaction.Commit();
+        }
+        catch (Exception ex)
+        {
+            objDB.Transaction.Rollback();
+            returnValue = ex.Message.ToString();
+        }
+        finally
+        {
+            
+            objDB.Connection.Close();
+            objDB.Dispose();
+        }
+
+        return returnValue;
+    }
+}
+

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="internal_marks_summary1" targetNamespace="http://tempuri.org/internal_marks_summary1.xsd" xmlns:mstns="http://tempuri.org/internal_marks_summary1.xsd" xmlns="http://tempuri.org/internal_marks_summary1.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="internal_marks_summary1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="internal_marks_summary1" msprop:Generator_UserDSName="internal_marks_summary1">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="internal_mrk_sum" msprop:Generator_TableClassName="internal_mrk_sumDataTable" msprop:Generator_TableVarName="tableinternal_mrk_sum" msprop:Generator_RowChangedName="internal_mrk_sumRowChanged" msprop:Generator_TablePropName="internal_mrk_sum" msprop:Generator_RowDeletingName="internal_mrk_sumRowDeleting" msprop:Generator_RowChangingName="internal_mrk_sumRowChanging" msprop:Generator_RowEvHandlerName="internal_mrk_sumRowChangeEventHandler" msprop:Generator_RowDeletedName="internal_mrk_sumRowDeleted" msprop:Generator_RowClassName="internal_mrk_sumRow" msprop:Generator_UserTableName="internal_mrk_sum" msprop:Generator_RowEvArgName="internal_mrk_sumRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="UniversityRollNo" msprop:Generator_ColumnVarNameInTable="columnUniversityRollNo" msprop:Generator_ColumnPropNameInRow="UniversityRollNo" msprop:Generator_ColumnPropNameInTable="UniversityRollNoColumn" msprop:Generator_UserColumnName="UniversityRollNo" type="xs:string" minOccurs="0" />
+              <xs:element name="StudentName" msprop:Generator_ColumnVarNameInTable="columnStudentName" msprop:Generator_ColumnPropNameInRow="StudentName" msprop:Generator_ColumnPropNameInTable="StudentNameColumn" msprop:Generator_UserColumnName="StudentName" type="xs:string" minOccurs="0" />
+              <xs:element name="head_name" msprop:Generator_ColumnVarNameInTable="columnhead_name" msprop:Generator_ColumnPropNameInRow="head_name" msprop:Generator_ColumnPropNameInTable="head_nameColumn" msprop:Generator_UserColumnName="head_name" type="xs:string" minOccurs="0" />
+              <xs:element name="marks_obtain" msprop:Generator_ColumnVarNameInTable="columnmarks_obtain" msprop:Generator_ColumnPropNameInRow="marks_obtain" msprop:Generator_ColumnPropNameInTable="marks_obtainColumn" msprop:Generator_UserColumnName="marks_obtain" type="xs:string" minOccurs="0" />
+              <xs:element name="logo" msprop:Generator_ColumnVarNameInTable="columnlogo" msprop:Generator_ColumnPropNameInRow="logo" msprop:Generator_ColumnPropNameInTable="logoColumn" msprop:Generator_UserColumnName="logo" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="collegename" msprop:Generator_ColumnVarNameInTable="columncollegename" msprop:Generator_ColumnPropNameInRow="collegename" msprop:Generator_ColumnPropNameInTable="collegenameColumn" msprop:Generator_UserColumnName="collegename" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

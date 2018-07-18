@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="BankReconcilation" targetNamespace="http://tempuri.org/BankReconcilation.xsd" xmlns:mstns="http://tempuri.org/BankReconcilation.xsd" xmlns="http://tempuri.org/BankReconcilation.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="BankReconcillationVWTableAdapter" GeneratorDataComponentClassName="BankReconcillationVWTableAdapter" Name="BankReconcillationVW" UserDataComponentName="BankReconcillationVWTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectName="Edu.dbo.BankReconcillationVW" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT StudentName, RegNo, DateP, DDNO, dr, cr, StudentID, BankID, DateP1, TransactionState FROM BankReconcillationVW</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="StudentName" DataSetColumn="StudentName" />
+              <Mapping SourceColumn="RegNo" DataSetColumn="RegNo" />
+              <Mapping SourceColumn="DateP" DataSetColumn="DateP" />
+              <Mapping SourceColumn="DDNO" DataSetColumn="DDNO" />
+              <Mapping SourceColumn="dr" DataSetColumn="dr" />
+              <Mapping SourceColumn="cr" DataSetColumn="cr" />
+              <Mapping SourceColumn="StudentID" DataSetColumn="StudentID" />
+              <Mapping SourceColumn="BankID" DataSetColumn="BankID" />
+              <Mapping SourceColumn="DateP1" DataSetColumn="DateP1" />
+              <Mapping SourceColumn="TransactionState" DataSetColumn="TransactionState" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="BankReconcilation" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="BankReconcilation" msprop:Generator_UserDSName="BankReconcilation">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="BankReconcillationVW" msprop:Generator_TableClassName="BankReconcillationVWDataTable" msprop:Generator_TableVarName="tableBankReconcillationVW" msprop:Generator_TablePropName="BankReconcillationVW" msprop:Generator_RowDeletingName="BankReconcillationVWRowDeleting" msprop:Generator_UserTableName="BankReconcillationVW" msprop:Generator_RowChangingName="BankReconcillationVWRowChanging" msprop:Generator_RowEvHandlerName="BankReconcillationVWRowChangeEventHandler" msprop:Generator_RowDeletedName="BankReconcillationVWRowDeleted" msprop:Generator_RowEvArgName="BankReconcillationVWRowChangeEvent" msprop:Generator_RowChangedName="BankReconcillationVWRowChanged" msprop:Generator_RowClassName="BankReconcillationVWRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="StudentName" msprop:Generator_ColumnVarNameInTable="columnStudentName" msprop:Generator_ColumnPropNameInRow="StudentName" msprop:Generator_ColumnPropNameInTable="StudentNameColumn" msprop:Generator_UserColumnName="StudentName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RegNo" msprop:Generator_ColumnVarNameInTable="columnRegNo" msprop:Generator_ColumnPropNameInRow="RegNo" msprop:Generator_ColumnPropNameInTable="RegNoColumn" msprop:Generator_UserColumnName="RegNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DateP" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDateP" msprop:Generator_ColumnPropNameInRow="DateP" msprop:Generator_ColumnPropNameInTable="DatePColumn" msprop:Generator_UserColumnName="DateP" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DDNO" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDDNO" msprop:Generator_ColumnPropNameInRow="DDNO" msprop:Generator_ColumnPropNameInTable="DDNOColumn" msprop:Generator_UserColumnName="DDNO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="6" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="dr" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columndr" msprop:Generator_ColumnPropNameInRow="dr" msprop:Generator_ColumnPropNameInTable="drColumn" msprop:Generator_UserColumnName="dr" type="xs:decimal" minOccurs="0" />
+              <xs:element name="cr" msprop:Generator_ColumnVarNameInTable="columncr" msprop:Generator_ColumnPropNameInRow="cr" msprop:Generator_ColumnPropNameInTable="crColumn" msprop:Generator_UserColumnName="cr" type="xs:decimal" minOccurs="0" />
+              <xs:element name="StudentID" msprop:Generator_ColumnVarNameInTable="columnStudentID" msprop:Generator_ColumnPropNameInRow="StudentID" msprop:Generator_ColumnPropNameInTable="StudentIDColumn" msprop:Generator_UserColumnName="StudentID" type="xs:int" minOccurs="0" />
+              <xs:element name="BankID" msprop:Generator_ColumnVarNameInTable="columnBankID" msprop:Generator_ColumnPropNameInRow="BankID" msprop:Generator_ColumnPropNameInTable="BankIDColumn" msprop:Generator_UserColumnName="BankID" type="xs:int" minOccurs="0" />
+              <xs:element name="DateP1" msprop:Generator_ColumnVarNameInTable="columnDateP1" msprop:Generator_ColumnPropNameInRow="DateP1" msprop:Generator_ColumnPropNameInTable="DateP1Column" msprop:Generator_UserColumnName="DateP1" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="TransactionState" msprop:Generator_ColumnVarNameInTable="columnTransactionState" msprop:Generator_ColumnPropNameInRow="TransactionState" msprop:Generator_ColumnPropNameInTable="TransactionStateColumn" msprop:Generator_UserColumnName="TransactionState" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ChqBAmt" msprop:Generator_ColumnVarNameInTable="columnChqBAmt" msprop:Generator_ColumnPropNameInRow="ChqBAmt" msprop:Generator_ColumnPropNameInTable="ChqBAmtColumn" msprop:Generator_UserColumnName="ChqBAmt" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

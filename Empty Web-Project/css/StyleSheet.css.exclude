@@ -1,0 +1,212 @@
+﻿body {
+}
+
+.font1
+{
+     font-size:10pt; font-weight:bold; font-family:Verdana;
+}
+.font6
+{
+     font-size:6pt; font-weight:bold; font-family:Verdana; text-align:left
+}
+.font7
+{
+     font-size:7pt; font-weight:bold; font-family:Verdana;
+}
+.font8
+{
+     font-size:8pt; font-weight:bold; font-family:Verdana;
+}
+.font12
+{
+     font-size:12pt; font-weight:bold; font-family:Verdana;
+}
+.fonttd
+{
+     font-size:7pt; font-family:Verdana;
+}
+.tbxfont
+{
+     font-size:10pt; font-weight:bold; font-family:Verdana;
+}
+
+.tddttext
+{
+    color:#000000; font-size:8pt; font-weight:bold; font-family:Verdana;
+}
+.tdhdtext
+{
+    color:#000000; font-size:10pt; font-weight:bold; font-family:Verdana;
+}
+.cpd
+{
+    text-align:center;
+    padding-left:5px;
+    padding-right:5px;
+}
+
+.lpd
+{
+    text-align:left;
+    padding-left:5px;
+}
+.rpd
+{
+    text-align:right;
+    padding-right:5px;
+}
+
+.lbl
+{
+	font-size :12px;
+	font-family :Verdana ;
+	color :#993333;
+	
+	}
+	.header
+	{		
+     font-size:10pt; font-weight:bold; font-family:Verdana;     
+     border-width :0px;		
+	}
+		
+		.btn
+		{		
+     font-size:8pt; font-weight:bold; font-family:Verdana;
+     	height: 19px;
+}
+		.txtBox
+		{		
+			border-style:solid; 
+			border-width :1px;
+			font-size :9pt;
+	        font-family:Arial;
+	width: 151px;
+}
+
+
+
+.ddl
+{
+	border: solid 1px #202020;
+	font-size: 7pt;
+	font-family: Verdana;	
+	display: list-item;
+}
+			
+			
+/*   DIV Section*/
+
+
+#box {
+	PADDING-RIGHT: 0px; MARGIN-TOP: 1em; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN-LEFT: auto; WIDTH: 20em; MARGIN-RIGHT: auto; PADDING-TOP: 0px; POSITION: relative; BACKGROUND-COLOR: #eeeeee; TEXT-ALIGN: left
+}
+
+#content {
+	PADDING-RIGHT: 1em; PADDING-LEFT: 1em; PADDING-BOTTOM: 1em; PADDING-TOP: 1em
+}
+
+
+.hmouseout
+{
+	background:'#CCFFCC'; font-size: 8pt; font-family: Verdana;  font-weight: bolder
+	}
+	
+	.hmouseover
+{
+	background:'#CCFFCC'; font-size: 8pt; font-weight: bolder
+	}
+	
+.highlight 
+{
+	font-family: Verdana; background: #ffd700; color: #c60000; font-size: 14pt; font-weight: bolder
+}
+
+
+/*  GRID   */
+
+div.ModalPopup {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-style: normal;
+	background-color: #CCCCCC;
+	position:absolute;
+	/* set z-index higher than possible */
+	z-index:10000;
+	visibility: hidden;
+	 color: Black;
+	border-style: solid;
+	border-color: #999999;
+	border-width: 1px;
+    width: 400px;
+    height :auto;
+}
+.jjj{
+
+	font-size :12px;
+	text-align:right;
+	font-family :Verdana ;
+	color :Green ;
+	background :000000;
+	}
+
+.Header
+{
+	background-color:#E0DFC5;
+	color:White;
+	font-weight:bold;
+	text-align:right;
+	vertical-align:middle;
+}
+
+.Footer
+{
+	background-color:#0053E1;
+	height:25px;
+}
+
+.Row
+{
+	background-color:#d4d4ff;
+	text-align:left ;
+	vertical-align:middle;
+
+}
+
+.AlternateRow
+{
+	background-color:#d4e4ff;
+	text-align:left ;
+	vertical-align:middle;
+}
+
+.Grid
+{
+	background-color:White;
+}
+.normalRow
+{
+background-color:white;/* You can update the background Color to normal Gridview Back Color */
+cursor:pointer;/* You can change cursor pointer to default, Pointer etc */
+}
+
+.highlightRow
+{
+background-color:#C1DAD9;/* You can change the background Color of the row to whatever color you want. You can also give Hexadecimal color code also */
+cursor:pointer;/* You can change cursor pointer to default, Pointer etc */
+}
+
+.error { 
+	CLEAR: both; PADDING-RIGHT: 0px; MARGIN-TOP: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; FONT: 10px arial; MARGIN-LEFT: 0px; COLOR: #de0101; PADDING-TOP: 0px
+}
+.mGrid { width: 100%; background-color: #fff; margin: 5px 0 4px 0; border: solid 1px #525252; border-collapse:collapse;font:arial;font-size:12px;font-weight:normal;text-align:left; }
+    .mGrid td { padding: 2px; border: solid 1px #c1c1c1; color: #717171;font:Arial; }
+    .mGrid th { padding: 4px 2px; color: #fff; background: #424242 url(grd_head.gif) repeat-x top; border-left: solid 1px #525252; font-size: 0.5em;font:arial;font-size:12px;font-weight:normal;text-align:left; }
+.mGrid .alt { background: #fcfcfc url(grd_alt.gif) repeat-x top;font:Arial; }
+.mGrid .pgr {background: #424242 url(grd_pgr.png) repeat-x top;font:Arial; }
+    .mGrid .pgr table { margin: 2px 0; }
+    .mGrid .pgr td { border-width: 0; padding: 0 6px; border-left: solid 1px #666; font-weight: bold; color: #fff; line-height: 12px; }   
+    .mGrid .pgr a { color: #666; text-decoration: none; }
+    .mGrid .pgr a:hover { color: #000; text-decoration: none; }
+
+
+

@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ChqDraft_DefaultR" targetNamespace="http://tempuri.org/ChqDraft_DefaultR.xsd" xmlns:mstns="http://tempuri.org/ChqDraft_DefaultR.xsd" xmlns="http://tempuri.org/ChqDraft_DefaultR.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable1TableAdapter" GeneratorDataComponentClassName="DataTable1TableAdapter" Name="DataTable1" UserDataComponentName="DataTable1TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT     Chq_Draft_Default_N.StudentID, Student_Registration.StudentName + ' ' + Student_Registration.MName + ' ' + Student_Registration.LName AS SName, 
+                      Chq_Draft_Default_N.PMode, Payment_Mode.PaymentMode, Chq_Draft_Default_N.PaidAmt, Chq_Draft_Default_N.ChqNo, 
+                      Chq_Draft_Default_N.ChqDate, Chq_Draft_Default_N.ChqAmt, Chq_Draft_Default_N.ChqDDNo, Chq_Draft_Default_N.DefID, 
+                      Chq_Draft_Default_N.SessionID, Chq_Draft_Default_N.InstituteID, Chq_Draft_Default_N.IBank, Bank_Details.BankName
+FROM         Chq_Draft_Default_N INNER JOIN
+                      Student_Registration ON Chq_Draft_Default_N.StudentID = Student_Registration.StudentID INNER JOIN
+                      Payment_Mode ON Chq_Draft_Default_N.PMode = Payment_Mode.PMID LEFT OUTER JOIN
+                      Bank_Details ON Chq_Draft_Default_N.IBank = Bank_Details.BankID</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="StudentID" DataSetColumn="StudentID" />
+              <Mapping SourceColumn="SName" DataSetColumn="SName" />
+              <Mapping SourceColumn="PMode" DataSetColumn="PMode" />
+              <Mapping SourceColumn="PaymentMode" DataSetColumn="PaymentMode" />
+              <Mapping SourceColumn="PaidAmt" DataSetColumn="PaidAmt" />
+              <Mapping SourceColumn="ChqNo" DataSetColumn="ChqNo" />
+              <Mapping SourceColumn="ChqDate" DataSetColumn="ChqDate" />
+              <Mapping SourceColumn="ChqAmt" DataSetColumn="ChqAmt" />
+              <Mapping SourceColumn="ChqDDNo" DataSetColumn="ChqDDNo" />
+              <Mapping SourceColumn="DefID" DataSetColumn="DefID" />
+              <Mapping SourceColumn="SessionID" DataSetColumn="SessionID" />
+              <Mapping SourceColumn="InstituteID" DataSetColumn="InstituteID" />
+              <Mapping SourceColumn="IBank" DataSetColumn="IBank" />
+              <Mapping SourceColumn="BankName" DataSetColumn="BankName" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ChqDraft_DefaultR" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="ChqDraft_DefaultR" msprop:Generator_DataSetName="ChqDraft_DefaultR">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DataTable1" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowClassName="DataTable1Row" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_TablePropName="DataTable1" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="StudentID" msprop:Generator_UserColumnName="StudentID" msprop:Generator_ColumnPropNameInRow="StudentID" msprop:Generator_ColumnVarNameInTable="columnStudentID" msprop:Generator_ColumnPropNameInTable="StudentIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="SName" msdata:ReadOnly="true" msprop:Generator_UserColumnName="SName" msprop:Generator_ColumnPropNameInRow="SName" msprop:Generator_ColumnVarNameInTable="columnSName" msprop:Generator_ColumnPropNameInTable="SNameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="152" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PMode" msprop:Generator_UserColumnName="PMode" msprop:Generator_ColumnPropNameInRow="PMode" msprop:Generator_ColumnVarNameInTable="columnPMode" msprop:Generator_ColumnPropNameInTable="PModeColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="PaymentMode" msprop:Generator_UserColumnName="PaymentMode" msprop:Generator_ColumnPropNameInRow="PaymentMode" msprop:Generator_ColumnVarNameInTable="columnPaymentMode" msprop:Generator_ColumnPropNameInTable="PaymentModeColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PaidAmt" msprop:Generator_UserColumnName="PaidAmt" msprop:Generator_ColumnPropNameInRow="PaidAmt" msprop:Generator_ColumnVarNameInTable="columnPaidAmt" msprop:Generator_ColumnPropNameInTable="PaidAmtColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ChqNo" msprop:Generator_UserColumnName="ChqNo" msprop:Generator_ColumnPropNameInRow="ChqNo" msprop:Generator_ColumnVarNameInTable="columnChqNo" msprop:Generator_ColumnPropNameInTable="ChqNoColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="ChqDate" msprop:Generator_UserColumnName="ChqDate" msprop:Generator_ColumnPropNameInRow="ChqDate" msprop:Generator_ColumnVarNameInTable="columnChqDate" msprop:Generator_ColumnPropNameInTable="ChqDateColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ChqAmt" msprop:Generator_UserColumnName="ChqAmt" msprop:Generator_ColumnPropNameInRow="ChqAmt" msprop:Generator_ColumnVarNameInTable="columnChqAmt" msprop:Generator_ColumnPropNameInTable="ChqAmtColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ChqDDNo" msprop:Generator_UserColumnName="ChqDDNo" msprop:Generator_ColumnPropNameInRow="ChqDDNo" msprop:Generator_ColumnVarNameInTable="columnChqDDNo" msprop:Generator_ColumnPropNameInTable="ChqDDNoColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="DefID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="DefID" msprop:Generator_ColumnPropNameInRow="DefID" msprop:Generator_ColumnVarNameInTable="columnDefID" msprop:Generator_ColumnPropNameInTable="DefIDColumn" type="xs:int" />
+              <xs:element name="SessionID" msprop:Generator_UserColumnName="SessionID" msprop:Generator_ColumnPropNameInRow="SessionID" msprop:Generator_ColumnVarNameInTable="columnSessionID" msprop:Generator_ColumnPropNameInTable="SessionIDColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="InstituteID" msprop:Generator_UserColumnName="InstituteID" msprop:Generator_ColumnPropNameInRow="InstituteID" msprop:Generator_ColumnVarNameInTable="columnInstituteID" msprop:Generator_ColumnPropNameInTable="InstituteIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="IBank" msprop:Generator_UserColumnName="IBank" msprop:Generator_ColumnPropNameInRow="IBank" msprop:Generator_ColumnVarNameInTable="columnIBank" msprop:Generator_ColumnPropNameInTable="IBankColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="BankName" msprop:Generator_UserColumnName="BankName" msprop:Generator_ColumnPropNameInRow="BankName" msprop:Generator_ColumnVarNameInTable="columnBankName" msprop:Generator_ColumnPropNameInTable="BankNameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

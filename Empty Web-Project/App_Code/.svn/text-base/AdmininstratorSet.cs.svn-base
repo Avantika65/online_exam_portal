@@ -1,0 +1,798 @@
+﻿using System;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.ServiceModel.Activation;
+using System.ServiceModel.Web;
+using NewDAL;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data;
+[ServiceContract(Namespace = "")]
+[AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
+public class AdmininstratorSet
+{
+    DBManager objDB;
+    [OperationContract]
+    public List<Admin.AdministratorData.AppsettingDM > searchCustomers(string searchText)
+    {
+        objDB = new DBManager();
+        objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+        objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+        objDB.Open();
+        //objDB.CreateParameters(1);
+        //objDB.AddParameters(0, "ID", Int32.Parse(searchText), DbType.Int32);
+        IDataReader dr = (IDataReader)objDB.ExecuteReader(CommandType.Text, "Select * from College where collegeid='" + searchText + "'");
+        var listOfCustomerItems = new List<Admin.AdministratorData.AppsettingDM>();
+        try
+        {
+
+            if (dr.Read())
+            {
+                var item = new Admin.AdministratorData.AppsettingDM();
+                item.CollegeID = int.Parse(Education.DataHelper.GetString(dr, "CollegeID"));
+                item.CollegeName = Education.DataHelper.GetString(dr, "CollegeName");
+                item.ShortName = dr[2].ToString();
+                item.Location = dr[3].ToString();
+                item.Phone1 = dr[4].ToString();
+                item.Phone2 = dr[5].ToString();
+                item.Phone3 = dr[6].ToString();
+                item.Fax = dr[7].ToString();
+                item.Mobile = dr[8].ToString();
+                item.EmailID1 = dr[9].ToString();
+                item.Email2 = dr[10].ToString();
+                item.Website = dr[11].ToString();
+                item.Description = dr[12].ToString();
+                if (dr[14] != System.DBNull.Value)
+                {
+                    item.InstLogo = (byte[])dr[14];
+                }
+                else
+                {
+                    item.InstLogo = null;
+                }
+                item.Acd_Session = dr[14].ToString();
+                item.PrincipalName = dr[15].ToString();
+                item.ProxyAddress = dr[16].ToString();
+                item.ProxyUser = dr[17].ToString();
+                item.ProxyPwd = dr[18].ToString();
+                item.Salt = dr[19].ToString();
+                item.IsMailActive = dr[20].ToString();
+                item.IsLog = dr[21].ToString();
+
+                listOfCustomerItems.Add(item);
+            }
+        }
+        finally
+        {
+
+            objDB.Connection.Close();
+            objDB.Dispose();
+        }
+        return listOfCustomerItems;
+    }
+
+    [OperationContract]
+    public List<Admin.AdministratorData.EgroupDM> SearchGroup(string ID)
+    {
+        objDB = new DBManager();
+        objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+        objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+        objDB.Open();
+        //objDB.CreateParameters(1);
+        //objDB.AddParameters(0, "ID", Int32.Parse(searchText), DbType.Int32);
+        SqlDataReader dr = (SqlDataReader)objDB.ExecuteReader(CommandType.Text, "Select * from Egroup where EgroupID='" + ID + "'");
+        var listOfCustomerItems = new List<Admin.AdministratorData.EgroupDM>();
+        try
+        {
+
+            if (dr.Read())
+            {
+                var item = new Admin.AdministratorData.EgroupDM();
+                item.EgroupID = int.Parse(dr[0].ToString());
+                item.Egroupname = dr[1].ToString();
+                listOfCustomerItems.Add(item);
+            }
+        }
+        finally
+        {
+
+            objDB.Connection.Close();
+            objDB.Dispose();
+        }
+        return listOfCustomerItems;
+    }
+
+    [OperationContract]
+    public List<Admin.AdministratorData.InstituteDM> SearchInstitute(string ID)
+    {
+        objDB = new DBManager();
+        objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+        objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+        objDB.Open();
+        SqlDataReader dr = (SqlDataReader)objDB.ExecuteReader(CommandType.Text, "Select * from Institute where id_inst='" + ID + "'");
+        var listOfCustomerItems = new List<Admin.AdministratorData.InstituteDM>();
+        try
+        {
+            if (dr.Read())
+            {
+                var item = new Admin.AdministratorData.InstituteDM();
+                item.id_inst = int.Parse(dr[0].ToString());
+                item.INSTITUTE_NAME = dr[1].ToString();
+                item.SHORT_NAME = dr[2].ToString();
+                item.EgroupID = int.Parse(dr[3].ToString());
+                listOfCustomerItems.Add(item);
+            }
+        }
+        finally
+        {
+
+            objDB.Connection.Close();
+            objDB.Dispose();
+        }
+        return listOfCustomerItems;
+    }
+
+    [OperationContract]
+    public string InsertGroup(Admin.AdministratorData.EgroupDM tsv)
+    {
+        NewDAL.DBManager objDB = new DBManager();
+        objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+        objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+        objDB.Open();
+        objDB.BeginTransaction();
+        string retv = "";
+        try
+        {
+            string query="";
+            if (tsv.flag == "N")
+            {
+                query = "insert into Egroup (EgroupName) values('" + tsv.Egroupname + "')";
+            }
+            else
+            {
+                query = "update Egroup set EgroupName='" + tsv.Egroupname + "' where egroupid='"+ tsv.EgroupID +"'";
+            }
+            objDB.ExecuteNonQuery(CommandType.Text, query);
+            objDB.Transaction.Commit();
+            if (tsv.flag == "N")
+            {
+                retv = "Record saved.";
+            }
+            else if (tsv.flag == "U")
+            {
+                retv = "Record Updated Successfully.";
+            }
+            else
+            {
+                retv ="Record deleted Successfully.";
+            }
+        }
+        catch (Exception ex)
+        {
+            objDB.Transaction.Rollback();
+            retv = "Unable to save record :-" + ex.Message.ToString();
+        }
+        finally
+        {
+
+            objDB.Connection.Close();
+            objDB.Dispose();
+        }
+        return retv;
+    }
+
+    [OperationContract]
+    public string InsertCollege(Admin.AdministratorData.CollegeDM tsv,Admin.AdministratorData.AuditDM audit)
+    {
+        NewDAL.DBManager objDB = new DBManager();
+        objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+        objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+        objDB.Open();
+        objDB.BeginTransaction();
+        string retv = "";
+        try
+        {
+            objDB.CreateParameters(19);
+             objDB.AddParameters(0, "CollegeID", tsv.CollegeID, DbType.Int32);
+            objDB.AddParameters(1, "CollegeName", tsv.CollegeName, DbType.String);
+            objDB.AddParameters(2, "ShortName", tsv.ShortName, DbType.String);
+            objDB.AddParameters(3, "Location", tsv.Location, DbType.String);
+            objDB.AddParameters(4, "Phone1", tsv.Phone1, DbType.String);
+            objDB.AddParameters(5, "Phone2", tsv.Phone2, DbType.String);
+            objDB.AddParameters(6, "Phone3", tsv.Phone3, DbType.String);
+            objDB.AddParameters(7, "Fax", tsv.Fax, DbType.String);
+            objDB.AddParameters(8, "Mobile", tsv.Mobile, DbType.String);
+            objDB.AddParameters(9, "EmailID1", tsv.EmailID1, DbType.String);
+            objDB.AddParameters(10, "EmailID2", tsv.EmailID2, DbType.String);
+            objDB.AddParameters(11, "WebSite", tsv.WebSite, DbType.String);
+            objDB.AddParameters(12, "Description", tsv.Description, DbType.String);
+            objDB.AddParameters(13, "InstLogo",  tsv.InstLogo , DbType.Binary);
+            objDB.AddParameters(14, "IsMailActive", tsv.IsMailActive, DbType.String);
+            objDB.AddParameters(15, "PrincipalName", tsv.PrincipalName, DbType.String);
+            objDB.AddParameters(16, "Flag", tsv.flag, DbType.String);
+            objDB.AddParameters(17, "Auto_PPSNO", tsv.Auto_PPSNO, DbType.String);
+            objDB.AddParameters(18, "Auto_RECNO", tsv.Auto_RECNO, DbType.String);
+            objDB.ExecuteNonQuery(CommandType.StoredProcedure, "CollegeSP");
+            objDB.Command.Parameters.Clear();
+            objDB.CreateParameters(9);
+            objDB.AddParameters(0, "ID", 0, DbType.Int32);
+            objDB.AddParameters(1, "Form_Name", audit.Form_Name, DbType.String);
+            objDB.AddParameters(2, "Action", audit.Action, DbType.String);
+            objDB.AddParameters(3, "User_ID", audit.User_ID, DbType.String);
+            objDB.AddParameters(4, "Entry_Date", audit.Entry_Date, DbType.String);
+            objDB.AddParameters(5, "Record_ID", audit.Record_ID, DbType.String);
+            objDB.AddParameters(6, "Entry_Time", audit.Entry_Time, DbType.String);
+            objDB.AddParameters(7, "InstituteID", audit.InstituteID, DbType.Int32);
+            objDB.AddParameters(8, "SessionID", audit.SessionID, DbType.String);
+            objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Audit_Insert");
+            objDB.Transaction.Commit();
+     
+            if (tsv.flag == "N")
+            {
+                retv = "Record saved.";
+            }
+            else if (tsv.flag == "U")
+            {
+                retv = "Record Updated Successfully.";
+            }
+            else
+            {
+                retv = "Record deleted Successfully.";
+            }
+        }
+        catch (Exception ex)
+        {
+            objDB.Transaction.Rollback();
+            retv = "Unable to save record :-" + ex.Message.ToString();
+        }
+        finally
+        {
+
+            objDB.Connection.Close();
+            objDB.Dispose();
+        }
+        return retv;
+    }
+
+    [OperationContract]
+    public string InsertInstitute( Admin.AdministratorData.InstituteDM  tsv)
+    {
+        NewDAL.DBManager objDB = new DBManager();
+        objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+        objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+        objDB.Open();
+        objDB.BeginTransaction();
+        string retv = "";
+        string f = "";
+        try
+        {
+            objDB.CreateParameters(5);
+            objDB.AddParameters(0, "id_inst", tsv.id_inst, DbType.Int32);
+            objDB.AddParameters(1, "EgroupID", tsv.EgroupID, DbType.String);
+            objDB.AddParameters(2, "INSTITUTE_NAME", tsv.INSTITUTE_NAME, DbType.String);
+            objDB.AddParameters(3, "SHORT_NAME", tsv.SHORT_NAME, DbType.String);
+            objDB.AddParameters(4, "Flag", tsv.flag, DbType.String);
+            objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Insert_Institute");
+            objDB.Transaction.Commit();
+          
+            if (f == "N")
+            {
+                retv = "0";
+            }
+            else if (f == "U")
+            {
+                retv = "0";
+            }
+            else
+            {
+                retv = "0";
+            }
+        }
+        catch (Exception ex)
+        {
+            objDB.Transaction.Rollback();
+            retv = "-1";
+        }
+        finally
+        {
+
+            objDB.Connection.Close();
+            objDB.Dispose();
+        }
+        return retv;
+    }
+
+    [OperationContract]
+    public string InsertProxy(Admin.AdministratorData.CollegeDM tsv)
+    {
+        NewDAL.DBManager objDB = new DBManager();
+        objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+        objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+        objDB.Open();
+        objDB.BeginTransaction();
+        string retv = "";
+        try
+        {
+            objDB.CreateParameters(6);
+            objDB.AddParameters(0, "CollegeID", tsv.CollegeID, DbType.Int32);
+            objDB.AddParameters(1, "ProxyAddress", tsv.ProxyAddress, DbType.String);
+            objDB.AddParameters(2, "ProxyUser", tsv.ProxyAddress, DbType.String);
+            objDB.AddParameters(3, "ProxyPwd", tsv.ProxyPwd, DbType.String);
+            objDB.AddParameters(4, "Salt", tsv.Salt, DbType.String);
+            objDB.AddParameters(5, "Flag", tsv.flag, DbType.String);
+            objDB.ExecuteNonQuery(CommandType.StoredProcedure, "SUID_College");
+            objDB.Transaction.Commit();
+            if (tsv.flag == "N")
+            {
+                retv = "Record saved.";
+            }
+            else if (tsv.flag == "U")
+            {
+                retv = "Record Updated Successfully.";
+            }
+            else
+            {
+                retv = "Record deleted Successfully.";
+            }
+        }
+        catch (Exception ex)
+        {
+            objDB.Transaction.Rollback();
+            retv = "Unable to save record :-" + ex.Message.ToString();
+        }
+        finally
+        {
+
+            objDB.Connection.Close();
+            objDB.Dispose();
+        }
+        return retv;
+    }
+
+    [OperationContract]
+    public string InsertSession(Admin.AdministratorData.SessionDM tsv)
+    {
+        NewDAL.DBManager objDB = new DBManager();
+        objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+        objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+        objDB.Open();
+        objDB.BeginTransaction();
+        string retv = "";
+        try
+        {
+            objDB.CreateParameters(6);
+            objDB.AddParameters(0, "sessionid", tsv.SessionID, DbType.Int32);
+            objDB.AddParameters(1, "session", tsv.Session, DbType.String);
+            objDB.AddParameters(2, "startdate", tsv.StartDate, DbType.String);
+            objDB.AddParameters(3, "enddate", tsv.EndDate, DbType.String);
+            objDB.AddParameters(4, "Active", tsv.Active, DbType.String);
+            objDB.AddParameters(5, "Flag", tsv.Flag, DbType.String);
+            objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Session_Insert");
+            objDB.Transaction.Commit();
+            if (tsv.Flag == "N")
+            {
+                retv = "Record saved.";
+            }
+            else if (tsv.Flag == "U")
+            {
+                retv = "Record Updated Successfully.";
+            }
+            else
+            {
+                retv = "Record deleted Successfully.";
+            }
+        }
+        catch (Exception ex)
+        {
+            objDB.Transaction.Rollback();
+            retv = "Unable to save record :-" + ex.Message.ToString();
+        }
+        finally
+        {
+
+            objDB.Connection.Close();
+            objDB.Dispose();
+        }
+        return retv;
+    }
+
+    [OperationContract]
+    public List<Admin.AdministratorData.SessionDM> SearchSession(string ID)
+    {
+        objDB = new DBManager();
+        objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+        objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+        objDB.Open();
+        IDataReader dr = (IDataReader)objDB.ExecuteReader(CommandType.Text, "Select * from Session where sessionid='" + ID + "'");
+        var listOfCustomerItems = new List<Admin.AdministratorData.SessionDM>();
+        try
+        {
+            if (dr.Read())
+            {
+                var item = new Admin.AdministratorData.SessionDM();
+                item.SessionID = int.Parse(dr[0].ToString());
+                item.StartDate = Convert.ToDateTime(dr[1].ToString());
+                item.EndDate = Convert.ToDateTime(dr[2].ToString());
+                item.Active = dr[3].ToString();
+                listOfCustomerItems.Add(item);
+            }
+        }
+        finally
+        {
+
+            objDB.Connection.Close();
+            objDB.Dispose();
+        }
+        return listOfCustomerItems;
+    }
+
+    [OperationContract]
+    public List<Admin.AdministratorData.YearSemDM> SearchYearSem(string ID)
+    {
+        objDB = new DBManager();
+        objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+        objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+        objDB.Open();
+        IDataReader dr = (IDataReader)objDB.ExecuteReader(CommandType.Text, "Select * from Session where sessionid='" + ID + "'");
+        var listOfCustomerItems = new List<Admin.AdministratorData.YearSemDM>();
+        try
+        {
+            if (dr.Read())
+            {
+                var item = new Admin.AdministratorData.YearSemDM();
+                //item.SessionID = int.Parse(dr[0].ToString());
+                //item.StartDate = Convert.ToDateTime(dr[1].ToString());
+                //item.EndDate = Convert.ToDateTime(dr[2].ToString());
+                //item.Active = dr[3].ToString();
+                //listOfCustomerItems.Add(item);
+            }
+        }
+        finally
+        {
+
+            objDB.Connection.Close();
+            objDB.Dispose();
+        }
+        return listOfCustomerItems;
+    }
+
+    [OperationContract]
+    public string InsertYearSem(List<Admin.AdministratorData.YearSemDM> tsv)
+    {
+        NewDAL.DBManager objDB = new DBManager();
+        objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+        objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+        objDB.Open();
+        objDB.BeginTransaction();
+        string retv = "";
+        string f = "";
+        try
+        {
+            foreach (Admin.AdministratorData.YearSemDM ry in tsv)
+            {
+                objDB.CreateParameters(16);
+                objDB.AddParameters(0, "CID", ry.CID, DbType.Int32);
+                objDB.AddParameters(1, "CourseID", ry.CourseID, DbType.Int32);
+                objDB.AddParameters(2, "CourseYear", ry.CourseYear , DbType.String);
+                objDB.AddParameters(3, "SpecialisationID", ry.SpecialisationID, DbType.Int32);
+                objDB.AddParameters(4, "Description", ry.Description, DbType.String);
+                objDB.AddParameters(5, "inst_ID", ry.inst_ID, DbType.Int32);
+                objDB.AddParameters(6, "SessionID", ry.SessionID, DbType.String);
+                objDB.AddParameters(7, "startdate", ry.StartDate, DbType.DateTime);
+                objDB.AddParameters(8, "enddate", ry.endDate, DbType.DateTime);
+                objDB.AddParameters(9, "SessionName", ry.SessionName, DbType.String);
+                objDB.AddParameters(10, "SessionYear", ry.sessionyear, DbType.String);
+                objDB.AddParameters(11, "SemYear", ry.SemYear, DbType.Int32);
+                objDB.AddParameters(12, "Active", ry.Active, DbType.String);
+                objDB.AddParameters(13, "Batch", ry.Batch, DbType.String);
+                objDB.AddParameters(14, "Flag", ry.flag, DbType.String);//@Year
+                objDB.AddParameters(15, "Year", ry.Year, DbType.String);
+                f = ry.flag;
+                objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Semester_M_sp"); 
+            }
+            objDB.Transaction.Commit();
+            if (f == "N")
+            {
+                retv = "Record saved.";
+            }
+            else if (f == "U")
+            {
+                retv = "Record Updated Successfully.";
+            }
+            else
+            {
+                retv = "Record deleted Successfully.";
+            }
+        }
+        catch (Exception ex)
+        {
+            objDB.Transaction.Rollback();
+            retv = "Unable to save record :-" + ex.Message.ToString();
+        }
+        finally
+        {
+
+            objDB.Connection.Close();
+            objDB.Dispose();
+        }
+        return retv;
+    }
+
+    [OperationContract]
+    public string DeleteYearSem(string del)
+    {
+        NewDAL.DBManager objDB = new DBManager();
+        objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+        objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+        objDB.Open();
+        objDB.BeginTransaction();
+        string retv = "";
+        string f = "";
+        try
+        {
+            objDB.ExecuteNonQuery(CommandType.Text , "delete from Yearwisecourse where cid in("+ del +")");
+            objDB.ExecuteNonQuery(CommandType.Text, "delete from sessiondates where semyear in(" + del + ")");
+            objDB.Transaction.Commit();
+        }
+        catch (Exception ex)
+        {
+            objDB.Transaction.Rollback();
+            retv = "Unable to save record :-" + ex.Message.ToString();
+        }
+        finally
+        {
+
+            objDB.Connection.Close();
+            objDB.Dispose();
+        }
+        return retv;
+    }
+
+    [OperationContract]
+    public string InsertLoginDetail( Admin.AdministratorData.LoginDM  tsv)
+    {
+        NewDAL.DBManager objDB = new DBManager();
+        objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+        objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+        objDB.Open();
+        objDB.BeginTransaction();
+        string retv = "";
+        string f = "";
+        try
+        {
+            objDB.CreateParameters(10);
+            objDB.AddParameters(0, "ID", tsv.ID, DbType.Int32);
+            objDB.AddParameters(1, "Login_Date", tsv.Login_Date, DbType.String);
+            objDB.AddParameters(2, "Login_Time", tsv.Login_Time, DbType.String);
+            objDB.AddParameters(3, "InstituteID", tsv.InstituteID, DbType.String);
+            objDB.AddParameters(4, "SessionID", tsv.SessionID, DbType.String);
+            objDB.AddParameters(5, "Logout_Time", tsv.Logout_Time, DbType.String);
+            objDB.AddParameters(6, "Logout_Date", tsv.Logout_Date, DbType.String);
+            objDB.AddParameters(7, "Is_Login", tsv.Is_Login, DbType.String);
+            objDB.AddParameters(8, "Flag", tsv.Flag, DbType.String);
+            objDB.AddParameters(9, "User_ID", tsv.User_ID, DbType.String);
+            objDB.ExecuteNonQuery(CommandType.StoredProcedure, "LoginedUser_Insert");
+
+            objDB.Transaction.Commit();
+            if (f == "N")
+            {
+                retv = "Record saved.";
+            }
+            else if (f == "U")
+            {
+                retv = "Record Updated Successfully.";
+            }
+            else
+            {
+                retv = "Record deleted Successfully.";
+            }
+        }
+        catch (Exception ex)
+        {
+            objDB.Transaction.Rollback();
+            retv = "Unable to save record :-" + ex.Message.ToString();
+        }
+        finally
+        {
+            objDB.Command.Dispose();
+            objDB.Connection.Close();
+            objDB.Connection.Dispose();
+            objDB.Dispose();
+        }
+        return retv;
+    }
+
+    [OperationContract]
+    public string InsertCreateUser(Admin.AdministratorData.CreateUserDM tsv, Admin.AdministratorData.AuditDM audit)
+    {
+        NewDAL.DBManager objDB = new DBManager();
+        objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+        objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+        objDB.Open();
+        objDB.BeginTransaction();
+        string retv = "";
+        string f = "";
+        try
+        {
+            objDB.CreateParameters(12);
+            objDB.AddParameters(0, "UserID", tsv.UserID, DbType.Int32);
+            objDB.AddParameters(1, "UserName", tsv.UserName, DbType.String);
+            objDB.AddParameters(2, "Password", tsv.Password, DbType.String);
+            objDB.AddParameters(3, "Salt", tsv.Salt, DbType.String);
+            objDB.AddParameters(4, "InstituteID", tsv.InstituteID, DbType.Int32);
+            objDB.AddParameters(5, "Active", tsv.Active, DbType.String);
+            objDB.AddParameters(6, "UName", tsv.UName, DbType.String);
+            objDB.AddParameters(7, "UEntDt", tsv.UEntDt, DbType.String);
+            objDB.AddParameters(8, "Emp_id", tsv.Emp_id, DbType.Int32);
+            objDB.AddParameters(9, "User_Type", tsv.User_Type, DbType.String);
+            objDB.AddParameters(10, "Flag", tsv.Flag, DbType.String);
+            objDB.AddParameters(11, "EmailID", tsv.EmailID, DbType.String);
+            objDB.ExecuteNonQuery(CommandType.StoredProcedure, "UserCreation_Insert");
+            objDB.CreateParameters(9);
+            objDB.AddParameters(0, "ID", 0, DbType.Int32);
+            objDB.AddParameters(1, "Form_Name", audit.Form_Name, DbType.String);
+            objDB.AddParameters(2, "Action", audit.Action, DbType.String);
+            objDB.AddParameters(3, "User_ID", audit.User_ID, DbType.String);
+            objDB.AddParameters(4, "Entry_Date", audit.Entry_Date, DbType.String);
+            objDB.AddParameters(5, "Record_ID", audit.Record_ID, DbType.String);
+            objDB.AddParameters(6, "Entry_Time", audit.Entry_Time, DbType.String);
+            objDB.AddParameters(7, "InstituteID", audit.InstituteID, DbType.Int32);
+            objDB.AddParameters(8, "SessionID", audit.SessionID, DbType.String);
+            objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Audit_Insert");
+            objDB.Transaction.Commit();
+            if (tsv.Flag == "N")
+            {
+                retv = "Record saved.";
+            }
+            else if (tsv.Flag == "U")
+            {
+                retv = "Record Updated Successfully.";
+            }
+            else
+            {
+                retv = "Record deleted Successfully.";
+            }
+        }
+        catch (Exception ex)
+        {
+            objDB.Transaction.Rollback();
+            retv = "Unable to save record :-" + ex.Message.ToString();
+        }
+        finally
+        {
+
+            objDB.Connection.Close();
+            objDB.Dispose();
+        }
+        return retv;
+    }
+
+
+    [OperationContract]
+    public string InsertFormPermission(Admin.AdministratorData.FormPermissionDM tsv, Admin.AdministratorData.AuditDM audit)
+    {
+        NewDAL.DBManager objDB = new DBManager();
+        objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+        objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+        objDB.Open();
+        objDB.BeginTransaction();
+        string retv = "";
+        string f = "";
+        try
+        {
+            objDB.CreateParameters(10);
+            objDB.AddParameters(0, "flag", tsv.Flag, DbType.String);
+            objDB.AddParameters(1, "RetSuccess", tsv.RetSuccess, DbType.String);
+            objDB.AddParameters(2, "fields", tsv.fields, DbType.String);
+            objDB.AddParameters(3, "where", tsv.where, DbType.String);
+            objDB.AddParameters(4, "InstId", tsv.InstId, DbType.Int32);
+            objDB.AddParameters(5, "FieldId", tsv.FieldId, DbType.Int32);
+            objDB.AddParameters(6, "FieldName", tsv.FieldName, DbType.String);
+            objDB.AddParameters(7, "ValueField", tsv.ValueField, DbType.String);
+            objDB.AddParameters(8, "TableName", tsv.TableName, DbType.String);
+            objDB.AddParameters(9, "MenuId", tsv.MenuId, DbType.Int32);
+
+            objDB.ExecuteNonQuery(CommandType.StoredProcedure, "menuFieldStruct_Insert");
+            objDB.CreateParameters(9);
+            objDB.AddParameters(0, "ID", 0, DbType.Int32);
+            objDB.AddParameters(1, "Form_Name", audit.Form_Name, DbType.String);
+            objDB.AddParameters(2, "Action", audit.Action, DbType.String);
+            objDB.AddParameters(3, "User_ID", audit.User_ID, DbType.String);
+            objDB.AddParameters(4, "Entry_Date", audit.Entry_Date, DbType.String);
+            objDB.AddParameters(5, "Record_ID", audit.Record_ID, DbType.String);
+            objDB.AddParameters(6, "Entry_Time", audit.Entry_Time, DbType.String);
+            objDB.AddParameters(7, "InstituteID", audit.InstituteID, DbType.Int32);
+            objDB.AddParameters(8, "SessionID", audit.SessionID, DbType.String);
+            objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Audit_Insert");
+
+            objDB.Transaction.Commit();
+            if (f == "N")
+            {
+                retv = "Record saved.";
+            }
+            else if (f == "U")
+            {
+                retv = "Record Updated Successfully.";
+            }
+            else
+            {
+                retv = "Record deleted Successfully.";
+            }
+        }
+        catch (Exception ex)
+        {
+            objDB.Transaction.Rollback();
+            retv = "Unable to save record :-" + ex.Message.ToString();
+        }
+        finally
+        {
+
+            objDB.Connection.Close();
+            objDB.Dispose();
+        }
+        return retv;
+    }
+
+    [OperationContract]
+    public string InsertIDTemplate(Admin.AdministratorData.IDCardTemplateDM tsv, Admin.AdministratorData.AuditDM audit)
+    {
+        NewDAL.DBManager objDB = new DBManager();
+        objDB.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+        objDB.DBManager(DataAccessLayer.DataProvider.SqlServer, objDB.ConnectionString);
+        objDB.Open();
+        objDB.BeginTransaction();
+        string retv = "";
+        string f = "";
+        try
+        {
+            objDB.CreateParameters(6);
+            objDB.AddParameters(0, "TemplateID", tsv.TemplateID, DbType.String);
+            objDB.AddParameters(1, "CourseID", tsv.CourseID, DbType.String);
+            objDB.AddParameters(2, "HeaderImage", tsv.HeaderImage, DbType.Binary);
+            objDB.AddParameters(3, "Aus", tsv.Aus, DbType.Binary);
+            objDB.AddParameters(4, "Desgin_String", tsv.Desgin_String, DbType.String);
+            objDB.AddParameters(5, "Flag", tsv.Flag, DbType.String);
+
+
+            objDB.ExecuteNonQuery(CommandType.StoredProcedure, "IDCardTemplate_Insert");
+            objDB.CreateParameters(9);
+            objDB.AddParameters(0, "ID", 0, DbType.Int32);
+            objDB.AddParameters(1, "Form_Name", audit.Form_Name, DbType.String);
+            objDB.AddParameters(2, "Action", audit.Action, DbType.String);
+            objDB.AddParameters(3, "User_ID", audit.User_ID, DbType.String);
+            objDB.AddParameters(4, "Entry_Date", audit.Entry_Date, DbType.String);
+            objDB.AddParameters(5, "Record_ID", audit.Record_ID, DbType.String);
+            objDB.AddParameters(6, "Entry_Time", audit.Entry_Time, DbType.String);
+            objDB.AddParameters(7, "InstituteID", audit.InstituteID, DbType.Int32);
+            objDB.AddParameters(8, "SessionID", audit.SessionID, DbType.String);
+            objDB.ExecuteNonQuery(CommandType.StoredProcedure, "Audit_Insert");
+
+            objDB.Transaction.Commit();
+            if (tsv.Flag == "N")
+            {
+                retv = "Record saved.";
+            }
+            else if (tsv.Flag == "U")
+            {
+                retv = "Record Updated Successfully.";
+            }
+            else
+            {
+                retv = "Record deleted Successfully.";
+            }
+        }
+        catch (Exception ex)
+        {
+            objDB.Transaction.Rollback();
+            retv = "Unable to save record :-" + ex.Message.ToString();
+        }
+        finally
+        {
+
+            objDB.Connection.Close();
+            objDB.Dispose();
+        }
+        return retv;
+    }
+}

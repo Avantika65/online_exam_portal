@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Shift_Plan" targetNamespace="http://tempuri.org/Shift_Plan.xsd" xmlns:mstns="http://tempuri.org/Shift_Plan.xsd" xmlns="http://tempuri.org/Shift_Plan.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Shift_PlanTableAdapter" GeneratorDataComponentClassName="Shift_PlanTableAdapter" Name="Shift_Plan" UserDataComponentName="Shift_PlanTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectName="FeesManagement.dbo.Shift_Plan" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT     Shift_Plan.*
+FROM         Shift_Plan</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="EmpId" DataSetColumn="EmpId" />
+              <Mapping SourceColumn="ShiftId" DataSetColumn="ShiftId" />
+              <Mapping SourceColumn="Allot_Id" DataSetColumn="Allot_Id" />
+              <Mapping SourceColumn="Attend_Date" DataSetColumn="Attend_Date" />
+              <Mapping SourceColumn="InDateTime" DataSetColumn="InDateTime" />
+              <Mapping SourceColumn="OutDateTime" DataSetColumn="OutDateTime" />
+              <Mapping SourceColumn="PresentStatus" DataSetColumn="PresentStatus" />
+              <Mapping SourceColumn="InEarly_Hrs" DataSetColumn="InEarly_Hrs" />
+              <Mapping SourceColumn="InLate_Hrs" DataSetColumn="InLate_Hrs" />
+              <Mapping SourceColumn="OutEarly_Hrs" DataSetColumn="OutEarly_Hrs" />
+              <Mapping SourceColumn="OutLate_Hrs" DataSetColumn="OutLate_Hrs" />
+              <Mapping SourceColumn="Working_Hrs" DataSetColumn="Working_Hrs" />
+              <Mapping SourceColumn="Worked_Hrs" DataSetColumn="Worked_Hrs" />
+              <Mapping SourceColumn="Shift_Name" DataSetColumn="Shift_Name" />
+              <Mapping SourceColumn="empName" DataSetColumn="empName" />
+              <Mapping SourceColumn="DepartmentName" DataSetColumn="DepartmentName" />
+              <Mapping SourceColumn="empCode" DataSetColumn="empCode" />
+              <Mapping SourceColumn="SG_Name" DataSetColumn="SG_Name" />
+              <Mapping SourceColumn="InstId" DataSetColumn="InstId" />
+              <Mapping SourceColumn="InTime" DataSetColumn="InTime" />
+              <Mapping SourceColumn="OutTime" DataSetColumn="OutTime" />
+              <Mapping SourceColumn="wrokhrs" DataSetColumn="wrokhrs" />
+              <Mapping SourceColumn="hour" DataSetColumn="hour" />
+              <Mapping SourceColumn="minute" DataSetColumn="minute" />
+              <Mapping SourceColumn="sec" DataSetColumn="sec" />
+              <Mapping SourceColumn="Remark" DataSetColumn="Remark" />
+              <Mapping SourceColumn="DepartmentID" DataSetColumn="DepartmentID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Shift_Plan" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="Shift_Plan" msprop:Generator_DataSetName="Shift_Plan">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Shift_Plan" msprop:Generator_UserTableName="Shift_Plan" msprop:Generator_RowDeletedName="Shift_PlanRowDeleted" msprop:Generator_RowChangedName="Shift_PlanRowChanged" msprop:Generator_RowClassName="Shift_PlanRow" msprop:Generator_RowChangingName="Shift_PlanRowChanging" msprop:Generator_RowEvArgName="Shift_PlanRowChangeEvent" msprop:Generator_RowEvHandlerName="Shift_PlanRowChangeEventHandler" msprop:Generator_TableClassName="Shift_PlanDataTable" msprop:Generator_TableVarName="tableShift_Plan" msprop:Generator_RowDeletingName="Shift_PlanRowDeleting" msprop:Generator_TablePropName="_Shift_Plan">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="EmpId" msprop:Generator_UserColumnName="EmpId" msprop:Generator_ColumnVarNameInTable="columnEmpId" msprop:Generator_ColumnPropNameInRow="EmpId" msprop:Generator_ColumnPropNameInTable="EmpIdColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="25" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ShiftId" msprop:Generator_UserColumnName="ShiftId" msprop:Generator_ColumnVarNameInTable="columnShiftId" msprop:Generator_ColumnPropNameInRow="ShiftId" msprop:Generator_ColumnPropNameInTable="ShiftIdColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Allot_Id" msprop:Generator_UserColumnName="Allot_Id" msprop:Generator_ColumnVarNameInTable="columnAllot_Id" msprop:Generator_ColumnPropNameInRow="Allot_Id" msprop:Generator_ColumnPropNameInTable="Allot_IdColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Attend_Date" msprop:Generator_UserColumnName="Attend_Date" msprop:Generator_ColumnVarNameInTable="columnAttend_Date" msprop:Generator_ColumnPropNameInRow="Attend_Date" msprop:Generator_ColumnPropNameInTable="Attend_DateColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="InDateTime" msprop:Generator_UserColumnName="InDateTime" msprop:Generator_ColumnVarNameInTable="columnInDateTime" msprop:Generator_ColumnPropNameInRow="InDateTime" msprop:Generator_ColumnPropNameInTable="InDateTimeColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="OutDateTime" msprop:Generator_UserColumnName="OutDateTime" msprop:Generator_ColumnVarNameInTable="columnOutDateTime" msprop:Generator_ColumnPropNameInRow="OutDateTime" msprop:Generator_ColumnPropNameInTable="OutDateTimeColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="PresentStatus" msprop:Generator_UserColumnName="PresentStatus" msprop:Generator_ColumnVarNameInTable="columnPresentStatus" msprop:Generator_ColumnPropNameInRow="PresentStatus" msprop:Generator_ColumnPropNameInTable="PresentStatusColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="InEarly_Hrs" msprop:Generator_UserColumnName="InEarly_Hrs" msprop:Generator_ColumnVarNameInTable="columnInEarly_Hrs" msprop:Generator_ColumnPropNameInRow="InEarly_Hrs" msprop:Generator_ColumnPropNameInTable="InEarly_HrsColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="InLate_Hrs" msprop:Generator_UserColumnName="InLate_Hrs" msprop:Generator_ColumnVarNameInTable="columnInLate_Hrs" msprop:Generator_ColumnPropNameInRow="InLate_Hrs" msprop:Generator_ColumnPropNameInTable="InLate_HrsColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="OutEarly_Hrs" msprop:Generator_UserColumnName="OutEarly_Hrs" msprop:Generator_ColumnVarNameInTable="columnOutEarly_Hrs" msprop:Generator_ColumnPropNameInRow="OutEarly_Hrs" msprop:Generator_ColumnPropNameInTable="OutEarly_HrsColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="OutLate_Hrs" msprop:Generator_UserColumnName="OutLate_Hrs" msprop:Generator_ColumnVarNameInTable="columnOutLate_Hrs" msprop:Generator_ColumnPropNameInRow="OutLate_Hrs" msprop:Generator_ColumnPropNameInTable="OutLate_HrsColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Working_Hrs" msprop:Generator_UserColumnName="Working_Hrs" msprop:Generator_ColumnVarNameInTable="columnWorking_Hrs" msprop:Generator_ColumnPropNameInRow="Working_Hrs" msprop:Generator_ColumnPropNameInTable="Working_HrsColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="25" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Worked_Hrs" msprop:Generator_UserColumnName="Worked_Hrs" msprop:Generator_ColumnVarNameInTable="columnWorked_Hrs" msprop:Generator_ColumnPropNameInRow="Worked_Hrs" msprop:Generator_ColumnPropNameInTable="Worked_HrsColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Shift_Name" msprop:Generator_UserColumnName="Shift_Name" msprop:Generator_ColumnVarNameInTable="columnShift_Name" msprop:Generator_ColumnPropNameInRow="Shift_Name" msprop:Generator_ColumnPropNameInTable="Shift_NameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="25" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="empName" msprop:Generator_UserColumnName="empName" msprop:Generator_ColumnVarNameInTable="columnempName" msprop:Generator_ColumnPropNameInRow="empName" msprop:Generator_ColumnPropNameInTable="empNameColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DepartmentName" msprop:Generator_UserColumnName="DepartmentName" msprop:Generator_ColumnVarNameInTable="columnDepartmentName" msprop:Generator_ColumnPropNameInRow="DepartmentName" msprop:Generator_ColumnPropNameInTable="DepartmentNameColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="empCode" msprop:Generator_UserColumnName="empCode" msprop:Generator_ColumnVarNameInTable="columnempCode" msprop:Generator_ColumnPropNameInRow="empCode" msprop:Generator_ColumnPropNameInTable="empCodeColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SG_Name" msprop:Generator_UserColumnName="SG_Name" msprop:Generator_ColumnVarNameInTable="columnSG_Name" msprop:Generator_ColumnPropNameInRow="SG_Name" msprop:Generator_ColumnPropNameInTable="SG_NameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="25" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="InstId" msprop:Generator_UserColumnName="InstId" msprop:Generator_ColumnVarNameInTable="columnInstId" msprop:Generator_ColumnPropNameInRow="InstId" msprop:Generator_ColumnPropNameInTable="InstIdColumn" type="xs:int" />
+              <xs:element name="InTime" msprop:Generator_UserColumnName="InTime" msprop:Generator_ColumnPropNameInRow="InTime" msprop:Generator_ColumnVarNameInTable="columnInTime" msprop:Generator_ColumnPropNameInTable="InTimeColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="24" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="OutTime" msprop:Generator_UserColumnName="OutTime" msprop:Generator_ColumnPropNameInRow="OutTime" msprop:Generator_ColumnVarNameInTable="columnOutTime" msprop:Generator_ColumnPropNameInTable="OutTimeColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="24" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="wrokhrs" msprop:Generator_UserColumnName="wrokhrs" msprop:Generator_ColumnVarNameInTable="columnwrokhrs" msprop:Generator_ColumnPropNameInRow="wrokhrs" msprop:Generator_ColumnPropNameInTable="wrokhrsColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="25" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="hour" msprop:Generator_UserColumnName="hour" msprop:Generator_ColumnPropNameInRow="hour" msprop:Generator_ColumnVarNameInTable="columnhour" msprop:Generator_ColumnPropNameInTable="hourColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="minute" msprop:Generator_UserColumnName="minute" msprop:Generator_ColumnPropNameInRow="minute" msprop:Generator_ColumnVarNameInTable="columnminute" msprop:Generator_ColumnPropNameInTable="minuteColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="sec" msprop:Generator_UserColumnName="sec" msprop:Generator_ColumnPropNameInRow="sec" msprop:Generator_ColumnVarNameInTable="columnsec" msprop:Generator_ColumnPropNameInTable="secColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Remark" msprop:Generator_UserColumnName="Remark" msprop:Generator_ColumnVarNameInTable="columnRemark" msprop:Generator_ColumnPropNameInRow="Remark" msprop:Generator_ColumnPropNameInTable="RemarkColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="300" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DepartmentID" msprop:Generator_UserColumnName="DepartmentID" msprop:Generator_ColumnPropNameInRow="DepartmentID" msprop:Generator_ColumnVarNameInTable="columnDepartmentID" msprop:Generator_ColumnPropNameInTable="DepartmentIDColumn" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

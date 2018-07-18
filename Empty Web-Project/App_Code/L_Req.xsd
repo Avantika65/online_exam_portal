@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="L_Req" targetNamespace="http://tempuri.org/L_Req.xsd" xmlns:mstns="http://tempuri.org/L_Req.xsd" xmlns="http://tempuri.org/L_Req.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Leave_ReqTableAdapter" GeneratorDataComponentClassName="Leave_ReqTableAdapter" Name="Leave_Req" UserDataComponentName="Leave_ReqTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectName="FeesManagement.dbo.Leave_Req" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT     regID, applID, eName, empCode, deptID, empID, DepartmentName, Designation, desigID, leaveID, leaveFrom, leaveTo, noODays, leaveName, 
+                      leavestatus, InstituteID, SessionID, localAdd, lMobile, repAuth, Substitute, appDate, reason, status, StatusRA, StatusHA, ApprByAuth
+FROM         Leave_Req</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="regID" DataSetColumn="regID" />
+              <Mapping SourceColumn="applID" DataSetColumn="applID" />
+              <Mapping SourceColumn="eName" DataSetColumn="eName" />
+              <Mapping SourceColumn="empCode" DataSetColumn="empCode" />
+              <Mapping SourceColumn="deptID" DataSetColumn="deptID" />
+              <Mapping SourceColumn="empID" DataSetColumn="empID" />
+              <Mapping SourceColumn="DepartmentName" DataSetColumn="DepartmentName" />
+              <Mapping SourceColumn="Designation" DataSetColumn="Designation" />
+              <Mapping SourceColumn="desigID" DataSetColumn="desigID" />
+              <Mapping SourceColumn="leaveID" DataSetColumn="leaveID" />
+              <Mapping SourceColumn="leaveFrom" DataSetColumn="leaveFrom" />
+              <Mapping SourceColumn="leaveTo" DataSetColumn="leaveTo" />
+              <Mapping SourceColumn="noODays" DataSetColumn="noODays" />
+              <Mapping SourceColumn="leaveName" DataSetColumn="leaveName" />
+              <Mapping SourceColumn="leavestatus" DataSetColumn="leavestatus" />
+              <Mapping SourceColumn="InstituteID" DataSetColumn="InstituteID" />
+              <Mapping SourceColumn="SessionID" DataSetColumn="SessionID" />
+              <Mapping SourceColumn="localAdd" DataSetColumn="localAdd" />
+              <Mapping SourceColumn="lMobile" DataSetColumn="lMobile" />
+              <Mapping SourceColumn="repAuth" DataSetColumn="repAuth" />
+              <Mapping SourceColumn="Substitute" DataSetColumn="Substitute" />
+              <Mapping SourceColumn="appDate" DataSetColumn="appDate" />
+              <Mapping SourceColumn="reason" DataSetColumn="reason" />
+              <Mapping SourceColumn="status" DataSetColumn="status" />
+              <Mapping SourceColumn="StatusRA" DataSetColumn="StatusRA" />
+              <Mapping SourceColumn="StatusHA" DataSetColumn="StatusHA" />
+              <Mapping SourceColumn="ApprByAuth" DataSetColumn="ApprByAuth" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="L_Req" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="L_Req" msprop:Generator_DataSetName="L_Req">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Leave_Req" msprop:Generator_UserTableName="Leave_Req" msprop:Generator_RowDeletedName="Leave_ReqRowDeleted" msprop:Generator_RowChangedName="Leave_ReqRowChanged" msprop:Generator_RowClassName="Leave_ReqRow" msprop:Generator_RowChangingName="Leave_ReqRowChanging" msprop:Generator_RowEvArgName="Leave_ReqRowChangeEvent" msprop:Generator_RowEvHandlerName="Leave_ReqRowChangeEventHandler" msprop:Generator_TableClassName="Leave_ReqDataTable" msprop:Generator_TableVarName="tableLeave_Req" msprop:Generator_RowDeletingName="Leave_ReqRowDeleting" msprop:Generator_TablePropName="Leave_Req">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="regID" msprop:Generator_UserColumnName="regID" msprop:Generator_ColumnVarNameInTable="columnregID" msprop:Generator_ColumnPropNameInRow="regID" msprop:Generator_ColumnPropNameInTable="regIDColumn" type="xs:int" />
+              <xs:element name="applID" msprop:Generator_UserColumnName="applID" msprop:Generator_ColumnVarNameInTable="columnapplID" msprop:Generator_ColumnPropNameInRow="applID" msprop:Generator_ColumnPropNameInTable="applIDColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="eName" msdata:ReadOnly="true" msprop:Generator_UserColumnName="eName" msprop:Generator_ColumnVarNameInTable="columneName" msprop:Generator_ColumnPropNameInRow="eName" msprop:Generator_ColumnPropNameInTable="eNameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="101" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="empCode" msprop:Generator_UserColumnName="empCode" msprop:Generator_ColumnVarNameInTable="columnempCode" msprop:Generator_ColumnPropNameInRow="empCode" msprop:Generator_ColumnPropNameInTable="empCodeColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="deptID" msprop:Generator_UserColumnName="deptID" msprop:Generator_ColumnVarNameInTable="columndeptID" msprop:Generator_ColumnPropNameInRow="deptID" msprop:Generator_ColumnPropNameInTable="deptIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="empID" msprop:Generator_UserColumnName="empID" msprop:Generator_ColumnVarNameInTable="columnempID" msprop:Generator_ColumnPropNameInRow="empID" msprop:Generator_ColumnPropNameInTable="empIDColumn" type="xs:int" />
+              <xs:element name="DepartmentName" msprop:Generator_UserColumnName="DepartmentName" msprop:Generator_ColumnVarNameInTable="columnDepartmentName" msprop:Generator_ColumnPropNameInRow="DepartmentName" msprop:Generator_ColumnPropNameInTable="DepartmentNameColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Designation" msprop:Generator_UserColumnName="Designation" msprop:Generator_ColumnVarNameInTable="columnDesignation" msprop:Generator_ColumnPropNameInRow="Designation" msprop:Generator_ColumnPropNameInTable="DesignationColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="desigID" msprop:Generator_UserColumnName="desigID" msprop:Generator_ColumnVarNameInTable="columndesigID" msprop:Generator_ColumnPropNameInRow="desigID" msprop:Generator_ColumnPropNameInTable="desigIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="leaveID" msprop:Generator_UserColumnName="leaveID" msprop:Generator_ColumnVarNameInTable="columnleaveID" msprop:Generator_ColumnPropNameInRow="leaveID" msprop:Generator_ColumnPropNameInTable="leaveIDColumn" type="xs:int" />
+              <xs:element name="leaveFrom" msprop:Generator_UserColumnName="leaveFrom" msprop:Generator_ColumnVarNameInTable="columnleaveFrom" msprop:Generator_ColumnPropNameInRow="leaveFrom" msprop:Generator_ColumnPropNameInTable="leaveFromColumn" type="xs:dateTime" />
+              <xs:element name="leaveTo" msprop:Generator_UserColumnName="leaveTo" msprop:Generator_ColumnVarNameInTable="columnleaveTo" msprop:Generator_ColumnPropNameInRow="leaveTo" msprop:Generator_ColumnPropNameInTable="leaveToColumn" type="xs:dateTime" />
+              <xs:element name="noODays" msprop:Generator_UserColumnName="noODays" msprop:Generator_ColumnVarNameInTable="columnnoODays" msprop:Generator_ColumnPropNameInRow="noODays" msprop:Generator_ColumnPropNameInTable="noODaysColumn" type="xs:decimal" />
+              <xs:element name="leaveName" msprop:Generator_UserColumnName="leaveName" msprop:Generator_ColumnVarNameInTable="columnleaveName" msprop:Generator_ColumnPropNameInRow="leaveName" msprop:Generator_ColumnPropNameInTable="leaveNameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="leavestatus" msprop:Generator_UserColumnName="leavestatus" msprop:Generator_ColumnVarNameInTable="columnleavestatus" msprop:Generator_ColumnPropNameInRow="leavestatus" msprop:Generator_ColumnPropNameInTable="leavestatusColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="InstituteID" msprop:Generator_UserColumnName="InstituteID" msprop:Generator_ColumnVarNameInTable="columnInstituteID" msprop:Generator_ColumnPropNameInRow="InstituteID" msprop:Generator_ColumnPropNameInTable="InstituteIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="SessionID" msprop:Generator_UserColumnName="SessionID" msprop:Generator_ColumnVarNameInTable="columnSessionID" msprop:Generator_ColumnPropNameInRow="SessionID" msprop:Generator_ColumnPropNameInTable="SessionIDColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="localAdd" msprop:Generator_UserColumnName="localAdd" msprop:Generator_ColumnPropNameInRow="localAdd" msprop:Generator_ColumnVarNameInTable="columnlocalAdd" msprop:Generator_ColumnPropNameInTable="localAddColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="lMobile" msprop:Generator_UserColumnName="lMobile" msprop:Generator_ColumnPropNameInRow="lMobile" msprop:Generator_ColumnVarNameInTable="columnlMobile" msprop:Generator_ColumnPropNameInTable="lMobileColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="repAuth" msdata:ReadOnly="true" msprop:Generator_UserColumnName="repAuth" msprop:Generator_ColumnPropNameInRow="repAuth" msprop:Generator_ColumnVarNameInTable="columnrepAuth" msprop:Generator_ColumnPropNameInTable="repAuthColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="101" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Substitute" msdata:ReadOnly="true" msprop:Generator_UserColumnName="Substitute" msprop:Generator_ColumnPropNameInRow="Substitute" msprop:Generator_ColumnVarNameInTable="columnSubstitute" msprop:Generator_ColumnPropNameInTable="SubstituteColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="101" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="appDate" msprop:Generator_UserColumnName="appDate" msprop:Generator_ColumnPropNameInRow="appDate" msprop:Generator_ColumnVarNameInTable="columnappDate" msprop:Generator_ColumnPropNameInTable="appDateColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="reason" msprop:Generator_UserColumnName="reason" msprop:Generator_ColumnVarNameInTable="columnreason" msprop:Generator_ColumnPropNameInRow="reason" msprop:Generator_ColumnPropNameInTable="reasonColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="status" msdata:ReadOnly="true" msprop:Generator_UserColumnName="status" msprop:Generator_ColumnPropNameInRow="status" msprop:Generator_ColumnVarNameInTable="columnstatus" msprop:Generator_ColumnPropNameInTable="statusColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="84" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="StatusRA" msprop:Generator_UserColumnName="StatusRA" msprop:Generator_ColumnPropNameInRow="StatusRA" msprop:Generator_ColumnVarNameInTable="columnStatusRA" msprop:Generator_ColumnPropNameInTable="StatusRAColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="StatusHA" msprop:Generator_UserColumnName="StatusHA" msprop:Generator_ColumnPropNameInRow="StatusHA" msprop:Generator_ColumnVarNameInTable="columnStatusHA" msprop:Generator_ColumnPropNameInTable="StatusHAColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ApprByAuth" msdata:ReadOnly="true" msprop:Generator_UserColumnName="ApprByAuth" msprop:Generator_ColumnPropNameInRow="ApprByAuth" msprop:Generator_ColumnVarNameInTable="columnApprByAuth" msprop:Generator_ColumnPropNameInTable="ApprByAuthColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="101" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Leave_Req" />
+      <xs:field xpath="mstns:regID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

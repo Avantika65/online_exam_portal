@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Refund" targetNamespace="http://tempuri.org/Refund.xsd" xmlns:mstns="http://tempuri.org/Refund.xsd" xmlns="http://tempuri.org/Refund.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable1TableAdapter" GeneratorDataComponentClassName="DataTable1TableAdapter" Name="DataTable1" UserDataComponentName="DataTable1TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT     Payment_Mode.PaymentMode, Refund.PID, Refund.StudentID, 
+                      Student_Registration.StudentName + ' ' + Student_Registration.MName + ' ' + Student_Registration.LName AS SName, Refund.PaidAmt, 
+                      Refund.PaidDate, Refund.DDNo, Refund.DDate, CASE WHEN Refund.Status = 1 THEN 'Approved' ELSE 'Not approved' END AS Status, 
+                      Refund.InstituteID, Refund.Session, Refund.CourseID, Refund.RefundID, Student_Registration.BatchCode, Course.CourseName
+FROM         Student_Registration INNER JOIN
+                      Refund ON Student_Registration.StudentID = Refund.StudentID INNER JOIN
+                      Payment_Mode ON Refund.PID = Payment_Mode.PMID INNER JOIN
+                      Course ON Refund.CourseID = Course.CourseId</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="PaymentMode" DataSetColumn="PaymentMode" />
+              <Mapping SourceColumn="PID" DataSetColumn="PID" />
+              <Mapping SourceColumn="StudentID" DataSetColumn="StudentID" />
+              <Mapping SourceColumn="SName" DataSetColumn="SName" />
+              <Mapping SourceColumn="PaidAmt" DataSetColumn="PaidAmt" />
+              <Mapping SourceColumn="PaidDate" DataSetColumn="PaidDate" />
+              <Mapping SourceColumn="DDNo" DataSetColumn="DDNo" />
+              <Mapping SourceColumn="DDate" DataSetColumn="DDate" />
+              <Mapping SourceColumn="Status" DataSetColumn="Status" />
+              <Mapping SourceColumn="InstituteID" DataSetColumn="InstituteID" />
+              <Mapping SourceColumn="Session" DataSetColumn="Session" />
+              <Mapping SourceColumn="CourseID" DataSetColumn="CourseID" />
+              <Mapping SourceColumn="RefundID" DataSetColumn="RefundID" />
+              <Mapping SourceColumn="BatchCode" DataSetColumn="BatchCode" />
+              <Mapping SourceColumn="CourseName" DataSetColumn="CourseName" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Refund" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="Refund" msprop:Generator_DataSetName="Refund">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DataTable1" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowClassName="DataTable1Row" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_TablePropName="DataTable1" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PaymentMode" msprop:Generator_UserColumnName="PaymentMode" msprop:Generator_ColumnPropNameInRow="PaymentMode" msprop:Generator_ColumnVarNameInTable="columnPaymentMode" msprop:Generator_ColumnPropNameInTable="PaymentModeColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PID" msprop:Generator_UserColumnName="PID" msprop:Generator_ColumnPropNameInRow="PID" msprop:Generator_ColumnVarNameInTable="columnPID" msprop:Generator_ColumnPropNameInTable="PIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="StudentID" msprop:Generator_UserColumnName="StudentID" msprop:Generator_ColumnPropNameInRow="StudentID" msprop:Generator_ColumnVarNameInTable="columnStudentID" msprop:Generator_ColumnPropNameInTable="StudentIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="SName" msdata:ReadOnly="true" msprop:Generator_UserColumnName="SName" msprop:Generator_ColumnPropNameInRow="SName" msprop:Generator_ColumnVarNameInTable="columnSName" msprop:Generator_ColumnPropNameInTable="SNameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="152" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PaidAmt" msprop:Generator_UserColumnName="PaidAmt" msprop:Generator_ColumnPropNameInRow="PaidAmt" msprop:Generator_ColumnVarNameInTable="columnPaidAmt" msprop:Generator_ColumnPropNameInTable="PaidAmtColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PaidDate" msprop:Generator_UserColumnName="PaidDate" msprop:Generator_ColumnPropNameInRow="PaidDate" msprop:Generator_ColumnVarNameInTable="columnPaidDate" msprop:Generator_ColumnPropNameInTable="PaidDateColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="DDNo" msprop:Generator_UserColumnName="DDNo" msprop:Generator_ColumnPropNameInRow="DDNo" msprop:Generator_ColumnVarNameInTable="columnDDNo" msprop:Generator_ColumnPropNameInTable="DDNoColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="DDate" msprop:Generator_UserColumnName="DDate" msprop:Generator_ColumnPropNameInRow="DDate" msprop:Generator_ColumnVarNameInTable="columnDDate" msprop:Generator_ColumnPropNameInTable="DDateColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Status" msdata:ReadOnly="true" msprop:Generator_UserColumnName="Status" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInTable="StatusColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="12" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="InstituteID" msprop:Generator_UserColumnName="InstituteID" msprop:Generator_ColumnPropNameInRow="InstituteID" msprop:Generator_ColumnVarNameInTable="columnInstituteID" msprop:Generator_ColumnPropNameInTable="InstituteIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Session" msprop:Generator_UserColumnName="Session" msprop:Generator_ColumnPropNameInRow="Session" msprop:Generator_ColumnVarNameInTable="columnSession" msprop:Generator_ColumnPropNameInTable="SessionColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CourseID" msprop:Generator_UserColumnName="CourseID" msprop:Generator_ColumnPropNameInRow="CourseID" msprop:Generator_ColumnVarNameInTable="columnCourseID" msprop:Generator_ColumnPropNameInTable="CourseIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="RefundID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="RefundID" msprop:Generator_ColumnPropNameInRow="RefundID" msprop:Generator_ColumnVarNameInTable="columnRefundID" msprop:Generator_ColumnPropNameInTable="RefundIDColumn" type="xs:int" />
+              <xs:element name="BatchCode" msprop:Generator_UserColumnName="BatchCode" msprop:Generator_ColumnPropNameInRow="BatchCode" msprop:Generator_ColumnVarNameInTable="columnBatchCode" msprop:Generator_ColumnPropNameInTable="BatchCodeColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CourseName" msprop:Generator_UserColumnName="CourseName" msprop:Generator_ColumnPropNameInRow="CourseName" msprop:Generator_ColumnVarNameInTable="columnCourseName" msprop:Generator_ColumnPropNameInTable="CourseNameColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="VisitorGatePass" targetNamespace="http://tempuri.org/VisitorGatePass.xsd" xmlns:mstns="http://tempuri.org/VisitorGatePass.xsd" xmlns="http://tempuri.org/VisitorGatePass.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable1TableAdapter" GeneratorDataComponentClassName="DataTable1TableAdapter" Name="DataTable1" UserDataComponentName="DataTable1TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        GatePass_Entry.GPSNO, GatePass_Entry.GPSID, GatePass_Entry.GPSDate, GatePass_Entry.GPSTime, GatePass_Entry.EnteredBY, GatePass_Entry.PassType, 
+                         GatePass_Entry.Purpose, GatePass_Entry.FirstName, GatePass_Entry.MiddleName, GatePass_Entry.LastName, GatePass_Entry.ContactNo, 
+                         GatePass_Entry.Address, GatePass_Entry.VehicalNo, GatePass_Entry.Visit_Department, GatePass_Entry.DestinationID, GatePass_Entry.Visit_Purpose, 
+                         GatePass_Entry.AppointmentID, GatePass_Entry.PassEntryFrom, GatePass_Entry.PersonTo_Meet, City.CityName
+FROM            GatePass_Entry INNER JOIN
+                         City ON GatePass_Entry.City = City.CityId INNER JOIN
+                         State ON City.StateID = State.StateId CROSS JOIN
+                         Country</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="GPSNO" DataSetColumn="GPSNO" />
+              <Mapping SourceColumn="GPSID" DataSetColumn="GPSID" />
+              <Mapping SourceColumn="GPSDate" DataSetColumn="GPSDate" />
+              <Mapping SourceColumn="GPSTime" DataSetColumn="GPSTime" />
+              <Mapping SourceColumn="EnteredBY" DataSetColumn="EnteredBY" />
+              <Mapping SourceColumn="PassType" DataSetColumn="PassType" />
+              <Mapping SourceColumn="Purpose" DataSetColumn="Purpose" />
+              <Mapping SourceColumn="FirstName" DataSetColumn="FirstName" />
+              <Mapping SourceColumn="MiddleName" DataSetColumn="MiddleName" />
+              <Mapping SourceColumn="LastName" DataSetColumn="LastName" />
+              <Mapping SourceColumn="ContactNo" DataSetColumn="ContactNo" />
+              <Mapping SourceColumn="Address" DataSetColumn="Address" />
+              <Mapping SourceColumn="VehicalNo" DataSetColumn="VehicalNo" />
+              <Mapping SourceColumn="Visit_Department" DataSetColumn="Visit_Department" />
+              <Mapping SourceColumn="DestinationID" DataSetColumn="DestinationID" />
+              <Mapping SourceColumn="Visit_Purpose" DataSetColumn="Visit_Purpose" />
+              <Mapping SourceColumn="AppointmentID" DataSetColumn="AppointmentID" />
+              <Mapping SourceColumn="PassEntryFrom" DataSetColumn="PassEntryFrom" />
+              <Mapping SourceColumn="PersonTo_Meet" DataSetColumn="PersonTo_Meet" />
+              <Mapping SourceColumn="CityName" DataSetColumn="CityName" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="VisitorGatePass" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="VisitorGatePass" msprop:Generator_DataSetName="VisitorGatePass">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowClassName="DataTable1Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="GPSNO" msprop:Generator_ColumnVarNameInTable="columnGPSNO" msprop:Generator_ColumnPropNameInRow="GPSNO" msprop:Generator_ColumnPropNameInTable="GPSNOColumn" msprop:Generator_UserColumnName="GPSNO">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="GPSID" msprop:Generator_ColumnVarNameInTable="columnGPSID" msprop:Generator_ColumnPropNameInRow="GPSID" msprop:Generator_ColumnPropNameInTable="GPSIDColumn" msprop:Generator_UserColumnName="GPSID" type="xs:int" minOccurs="0" />
+              <xs:element name="GPSDate" msprop:Generator_ColumnVarNameInTable="columnGPSDate" msprop:Generator_ColumnPropNameInRow="GPSDate" msprop:Generator_ColumnPropNameInTable="GPSDateColumn" msprop:Generator_UserColumnName="GPSDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="GPSTime" msprop:Generator_ColumnVarNameInTable="columnGPSTime" msprop:Generator_ColumnPropNameInRow="GPSTime" msprop:Generator_ColumnPropNameInTable="GPSTimeColumn" msprop:Generator_UserColumnName="GPSTime">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EnteredBY" msprop:Generator_ColumnVarNameInTable="columnEnteredBY" msprop:Generator_ColumnPropNameInRow="EnteredBY" msprop:Generator_ColumnPropNameInTable="EnteredBYColumn" msprop:Generator_UserColumnName="EnteredBY" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PassType" msprop:Generator_ColumnVarNameInTable="columnPassType" msprop:Generator_ColumnPropNameInRow="PassType" msprop:Generator_ColumnPropNameInTable="PassTypeColumn" msprop:Generator_UserColumnName="PassType" type="xs:int" minOccurs="0" />
+              <xs:element name="Purpose" msprop:Generator_ColumnVarNameInTable="columnPurpose" msprop:Generator_ColumnPropNameInRow="Purpose" msprop:Generator_ColumnPropNameInTable="PurposeColumn" msprop:Generator_UserColumnName="Purpose">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FirstName" msprop:Generator_ColumnVarNameInTable="columnFirstName" msprop:Generator_ColumnPropNameInRow="FirstName" msprop:Generator_ColumnPropNameInTable="FirstNameColumn" msprop:Generator_UserColumnName="FirstName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MiddleName" msprop:Generator_ColumnVarNameInTable="columnMiddleName" msprop:Generator_ColumnPropNameInRow="MiddleName" msprop:Generator_ColumnPropNameInTable="MiddleNameColumn" msprop:Generator_UserColumnName="MiddleName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LastName" msprop:Generator_ColumnVarNameInTable="columnLastName" msprop:Generator_ColumnPropNameInRow="LastName" msprop:Generator_ColumnPropNameInTable="LastNameColumn" msprop:Generator_UserColumnName="LastName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ContactNo" msprop:Generator_ColumnVarNameInTable="columnContactNo" msprop:Generator_ColumnPropNameInRow="ContactNo" msprop:Generator_ColumnPropNameInTable="ContactNoColumn" msprop:Generator_UserColumnName="ContactNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Address" msprop:Generator_ColumnVarNameInTable="columnAddress" msprop:Generator_ColumnPropNameInRow="Address" msprop:Generator_ColumnPropNameInTable="AddressColumn" msprop:Generator_UserColumnName="Address" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="VehicalNo" msprop:Generator_ColumnVarNameInTable="columnVehicalNo" msprop:Generator_ColumnPropNameInRow="VehicalNo" msprop:Generator_ColumnPropNameInTable="VehicalNoColumn" msprop:Generator_UserColumnName="VehicalNo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Visit_Department" msprop:Generator_ColumnVarNameInTable="columnVisit_Department" msprop:Generator_ColumnPropNameInRow="Visit_Department" msprop:Generator_ColumnPropNameInTable="Visit_DepartmentColumn" msprop:Generator_UserColumnName="Visit_Department" type="xs:int" minOccurs="0" />
+              <xs:element name="DestinationID" msprop:Generator_ColumnVarNameInTable="columnDestinationID" msprop:Generator_ColumnPropNameInRow="DestinationID" msprop:Generator_ColumnPropNameInTable="DestinationIDColumn" msprop:Generator_UserColumnName="DestinationID" type="xs:int" minOccurs="0" />
+              <xs:element name="Visit_Purpose" msprop:Generator_ColumnVarNameInTable="columnVisit_Purpose" msprop:Generator_ColumnPropNameInRow="Visit_Purpose" msprop:Generator_ColumnPropNameInTable="Visit_PurposeColumn" msprop:Generator_UserColumnName="Visit_Purpose" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AppointmentID" msprop:Generator_ColumnVarNameInTable="columnAppointmentID" msprop:Generator_ColumnPropNameInRow="AppointmentID" msprop:Generator_ColumnPropNameInTable="AppointmentIDColumn" msprop:Generator_UserColumnName="AppointmentID" type="xs:int" minOccurs="0" />
+              <xs:element name="PassEntryFrom" msprop:Generator_ColumnVarNameInTable="columnPassEntryFrom" msprop:Generator_ColumnPropNameInRow="PassEntryFrom" msprop:Generator_ColumnPropNameInTable="PassEntryFromColumn" msprop:Generator_UserColumnName="PassEntryFrom" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PersonTo_Meet" msprop:Generator_ColumnVarNameInTable="columnPersonTo_Meet" msprop:Generator_ColumnPropNameInRow="PersonTo_Meet" msprop:Generator_ColumnPropNameInTable="PersonTo_MeetColumn" msprop:Generator_UserColumnName="PersonTo_Meet" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CityName" msprop:Generator_ColumnVarNameInTable="columnCityName" msprop:Generator_ColumnPropNameInRow="CityName" msprop:Generator_ColumnPropNameInTable="CityNameColumn" msprop:Generator_UserColumnName="CityName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

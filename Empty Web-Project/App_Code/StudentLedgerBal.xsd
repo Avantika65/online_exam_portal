@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="StudentLedgerBal" targetNamespace="http://tempuri.org/StudentLedgerBal.xsd" xmlns:mstns="http://tempuri.org/StudentLedgerBal.xsd" xmlns="http://tempuri.org/StudentLedgerBal.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="StudentLedgerBal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="StudentLedgerBal" msprop:Generator_UserDSName="StudentLedgerBal">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="FeeBalRpt" msprop:Generator_TableClassName="FeeBalRptDataTable" msprop:Generator_TableVarName="tableFeeBalRpt" msprop:Generator_TablePropName="FeeBalRpt" msprop:Generator_RowDeletingName="FeeBalRptRowDeleting" msprop:Generator_UserTableName="FeeBalRpt" msprop:Generator_RowChangingName="FeeBalRptRowChanging" msprop:Generator_RowEvHandlerName="FeeBalRptRowChangeEventHandler" msprop:Generator_RowDeletedName="FeeBalRptRowDeleted" msprop:Generator_RowEvArgName="FeeBalRptRowChangeEvent" msprop:Generator_RowChangedName="FeeBalRptRowChanged" msprop:Generator_RowClassName="FeeBalRptRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Studentid" msprop:Generator_ColumnVarNameInTable="columnStudentid" msprop:Generator_ColumnPropNameInRow="Studentid" msprop:Generator_ColumnPropNameInTable="StudentidColumn" msprop:Generator_UserColumnName="Studentid" type="xs:string" minOccurs="0" />
+              <xs:element name="StudentName" msprop:Generator_ColumnVarNameInTable="columnStudentName" msprop:Generator_ColumnPropNameInRow="StudentName" msprop:Generator_ColumnPropNameInTable="StudentNameColumn" msprop:Generator_UserColumnName="StudentName" type="xs:string" minOccurs="0" />
+              <xs:element name="Regno" msprop:Generator_ColumnVarNameInTable="columnRegno" msprop:Generator_ColumnPropNameInRow="Regno" msprop:Generator_ColumnPropNameInTable="RegnoColumn" msprop:Generator_UserColumnName="Regno" type="xs:string" minOccurs="0" />
+              <xs:element name="Rollno" msprop:Generator_ColumnVarNameInTable="columnRollno" msprop:Generator_ColumnPropNameInRow="Rollno" msprop:Generator_ColumnPropNameInTable="RollnoColumn" msprop:Generator_UserColumnName="Rollno" type="xs:string" minOccurs="0" />
+              <xs:element name="Spl" msprop:Generator_ColumnVarNameInTable="columnSpl" msprop:Generator_ColumnPropNameInRow="Spl" msprop:Generator_ColumnPropNameInTable="SplColumn" msprop:Generator_UserColumnName="Spl" type="xs:string" minOccurs="0" />
+              <xs:element name="TotalDue" msprop:Generator_ColumnVarNameInTable="columnTotalDue" msprop:Generator_ColumnPropNameInRow="TotalDue" msprop:Generator_ColumnPropNameInTable="TotalDueColumn" msprop:Generator_UserColumnName="TotalDue" type="xs:decimal" minOccurs="0" />
+              <xs:element name="FeeBalance" msprop:Generator_ColumnVarNameInTable="columnFeeBalance" msprop:Generator_ColumnPropNameInRow="FeeBalance" msprop:Generator_ColumnPropNameInTable="FeeBalanceColumn" msprop:Generator_UserColumnName="FeeBalance" type="xs:decimal" minOccurs="0" />
+              <xs:element name="NetBalance" msprop:Generator_ColumnVarNameInTable="columnNetBalance" msprop:Generator_ColumnPropNameInRow="NetBalance" msprop:Generator_ColumnPropNameInTable="NetBalanceColumn" msprop:Generator_UserColumnName="NetBalance" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Approval" targetNamespace="http://tempuri.org/Approval.xsd" xmlns:mstns="http://tempuri.org/Approval.xsd" xmlns="http://tempuri.org/Approval.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Approval" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="Approval" msprop:Generator_DataSetName="Approval">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="dtapproval" msprop:Generator_UserTableName="dtapproval" msprop:Generator_RowDeletedName="dtapprovalRowDeleted" msprop:Generator_RowChangedName="dtapprovalRowChanged" msprop:Generator_RowClassName="dtapprovalRow" msprop:Generator_RowChangingName="dtapprovalRowChanging" msprop:Generator_RowEvArgName="dtapprovalRowChangeEvent" msprop:Generator_RowEvHandlerName="dtapprovalRowChangeEventHandler" msprop:Generator_TableClassName="dtapprovalDataTable" msprop:Generator_TableVarName="tabledtapproval" msprop:Generator_RowDeletingName="dtapprovalRowDeleting" msprop:Generator_TablePropName="dtapproval">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="empcode" msprop:Generator_UserColumnName="empcode" msprop:Generator_ColumnVarNameInTable="columnempcode" msprop:Generator_ColumnPropNameInRow="empcode" msprop:Generator_ColumnPropNameInTable="empcodeColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="ename" msprop:Generator_UserColumnName="ename" msprop:Generator_ColumnVarNameInTable="columnename" msprop:Generator_ColumnPropNameInRow="ename" msprop:Generator_ColumnPropNameInTable="enameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="lfrom" msprop:Generator_UserColumnName="lfrom" msprop:Generator_ColumnPropNameInRow="lfrom" msprop:Generator_ColumnVarNameInTable="columnlfrom" msprop:Generator_ColumnPropNameInTable="lfromColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="lto" msprop:Generator_UserColumnName="lto" msprop:Generator_ColumnPropNameInRow="lto" msprop:Generator_ColumnVarNameInTable="columnlto" msprop:Generator_ColumnPropNameInTable="ltoColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="rep_auth_status" msprop:Generator_UserColumnName="rep_auth_status" msprop:Generator_ColumnPropNameInRow="rep_auth_status" msprop:Generator_ColumnVarNameInTable="columnrep_auth_status" msprop:Generator_ColumnPropNameInTable="rep_auth_statusColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="deptid" msprop:Generator_UserColumnName="deptid" msprop:Generator_ColumnPropNameInRow="deptid" msprop:Generator_ColumnVarNameInTable="columndeptid" msprop:Generator_ColumnPropNameInTable="deptidColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="SessionID" msprop:Generator_UserColumnName="SessionID" msprop:Generator_ColumnPropNameInRow="SessionID" msprop:Generator_ColumnVarNameInTable="columnSessionID" msprop:Generator_ColumnPropNameInTable="SessionIDColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="InstituteID" msprop:Generator_UserColumnName="InstituteID" msprop:Generator_ColumnPropNameInRow="InstituteID" msprop:Generator_ColumnVarNameInTable="columnInstituteID" msprop:Generator_ColumnPropNameInTable="InstituteIDColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

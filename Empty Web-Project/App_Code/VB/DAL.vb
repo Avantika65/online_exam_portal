@@ -1,0 +1,55 @@
+Imports Microsoft.VisualBasic
+
+Imports System
+Imports System.Data
+Imports System.Data.Odbc
+Imports System.Data.SqlClient
+Imports System.Data.OleDb
+Namespace DataAccessLayer
+    Public Enum DataProvider
+        Oracle
+        SqlServer
+        OleDb
+        Odbc
+    End Enum
+    Public Enum IsError
+        Yes
+        No
+    End Enum
+    Public Interface IDBManager
+        Property ProviderType() As DataProvider
+        Property ConnectionString() As String
+        ReadOnly Property Connection() As IDbConnection
+        ReadOnly Property Transaction() As IDbTransaction
+        Property DataReader() As IDataReader
+        ReadOnly Property Command() As IDbCommand
+        ReadOnly Property Parameters() As IDbDataParameter()
+        ' ReadOnly Property CommandType() As String
+        ReadOnly Property DBtype() As DbType
+        ReadOnly Property p() As ParameterDirection
+        ' ReadOnly Property co() As id
+        Property GetDetail() As String
+        Property GetDetailI() As Integer
+        Sub Open()
+        Sub BeginTransaction()
+        Sub CommitTransaction()
+        Sub CreateParameters(ByVal paramsCount As Integer)
+        Sub AddParameters(ByVal index As Integer, ByVal paramName As String, ByVal objValue As Object, ByVal dbtype As DbType)
+        Sub AddParameters(ByVal index As Integer, ByVal paramName As String, ByVal objValue As Object, ByVal dbtype As DbType, ByVal p As ParameterDirection)
+        Sub AddParametersout(ByVal index As Integer, ByVal paramName As String, ByVal objValue As Object, ByVal dbtype As DbType, Optional ByVal commandParameters As Object = Nothing)
+        'Function ExecuteReader(ByVal CommandType As IDbCommand, ByVal commandText As String) As IDataReader
+        Function ExecuteReader(ByVal commandType As CommandType, ByVal commandText As String) As IDataReader
+        Function ExecuteTable(ByVal commandType As CommandType, ByVal commandText As String) As DataTable
+        Function ExecuteDataSet(ByVal commandType As CommandType, ByVal commandText As String) As DataSet
+        Function ExecuteScalar(ByVal commandType As CommandType, ByVal commandText As String) As Object
+        Function ExecuteNonQuery(ByVal commandType As CommandType, ByVal commandText As String) As Integer
+        Function ExecuteNonQueryHR(ByVal commandType As CommandType, ByVal commandText As String) As Integer
+        Function Get_Detail(ByVal str As String) As String
+        Function Get_DetailI(ByVal str As String, ByVal ty As Int16) As Integer
+        Sub CloseReader()
+        Sub Close()
+        Sub Dispose()
+    End Interface
+End Namespace
+
+

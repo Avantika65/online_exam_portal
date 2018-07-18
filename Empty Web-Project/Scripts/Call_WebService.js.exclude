@@ -1,0 +1,4 @@
+﻿function Exchange_Rate(CurrencyID)
+{
+    //RCSService
+}

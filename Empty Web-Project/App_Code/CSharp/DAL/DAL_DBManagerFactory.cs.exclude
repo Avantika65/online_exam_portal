@@ -1,0 +1,202 @@
+﻿using Microsoft.VisualBasic;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Data;
+using System.Diagnostics;
+using DataAccessLayer;
+using System.Data.SqlClient;
+using System.Data.OleDb;
+using System.Data.Odbc;
+using System.Data.Common;
+namespace DataAccessLayer
+{
+    public sealed class DBManagerFactory_
+    {
+        private DBManagerFactory_()
+        {
+        }
+        public static IDbConnection GetConnection(DataAccessLayer.DataProvider providerType)
+        {
+            System.Data.IDbConnection iDbConnection = null;
+            switch (providerType)
+            {
+                case DataProvider.SqlServer:
+                    iDbConnection = new SqlConnection();
+                    break; // TODO: might not be correct. Was : Exit Select
+
+                case DataProvider.OleDb:
+                    iDbConnection = new OleDbConnection();
+                    break; // TODO: might not be correct. Was : Exit Select
+
+                case DataProvider.Odbc:
+                    iDbConnection = new OdbcConnection();
+                    break; // TODO: might not be correct. Was : Exit Select
+
+                case DataProvider.Oracle:
+                    // iDbConnection = New OracleConnection()
+                    break; // TODO: might not be correct. Was : Exit Select
+
+                default:
+                    return null;
+            }
+            return iDbConnection;
+        }
+
+        public static IDbCommand GetCommand(DataProvider providerType)
+        {
+            IDbCommand IDbCom = null;
+            switch (providerType)
+            {
+                case DataProvider.SqlServer:
+                    IDbCom= new SqlCommand();
+                    break;
+                case DataProvider.OleDb:
+                    IDbCom= new OleDbCommand();
+                    break;
+                case DataProvider.Odbc:
+                    IDbCom= new OdbcCommand();
+                    break;
+                case DataProvider.Oracle:
+                    break;
+                //Return New OracleCommand()
+                default:
+                    return null;
+            }
+            return IDbCom;
+
+        }
+
+        public static DbDataAdapter GetDataAdapter(DataProvider providerType)
+        {
+            DbDataAdapter DBAd = null;
+            switch (providerType)
+            {
+                case DataProvider.SqlServer:
+                    DBAd= new SqlDataAdapter();
+                    break;
+                case DataProvider.OleDb:
+                    DBAd = new OleDbDataAdapter();
+                    break;
+                case DataProvider.Odbc:
+                    DBAd = new OdbcDataAdapter();
+                    break;
+                case DataProvider.Oracle:
+                    break;
+                //Return New OracleDataAdapter()
+                default:
+                    return null;
+            }
+            return DBAd;
+        }
+        public static IDataReader GetDataReader(DataProvider providerType)
+        {
+            System.Data.IDataReader iDbConnection = null;
+            switch (providerType)
+            {
+                case DataProvider.SqlServer:
+                    SqlDataReader dr = null;
+                    iDbConnection = dr;
+                    break;
+                case DataProvider.OleDb:
+                    OleDbDataReader OleDbdr = null;
+                    iDbConnection = OleDbdr;
+                    break;
+                    //return new OleDbDataAdapter();
+                case DataProvider.Odbc:
+                    OdbcDataReader Odbcdr=null;
+                    iDbConnection = Odbcdr;
+                    break;
+                case DataProvider.Oracle:
+                    Odbcdr = null;                    
+                    break;
+                //Return New OracleDataAdapter()
+                default:
+                    return null;
+            }
+            return iDbConnection;
+        }
+
+
+        public static IDbTransaction GetTransaction(DataProvider providerType, IDbConnection conn)
+        {
+            //Dim iDbConnection As System.Data.IDbConnection = GetConnection(providerType)
+            System.Data.IDbTransaction iDbTransaction = conn.BeginTransaction(IsolationLevel.Serializable);
+            return iDbTransaction;
+        }
+
+
+        public static IDataParameter GetParameter(DataProvider providerType)
+        {
+            System.Data.IDataParameter iDataParameter = null;
+            switch (providerType)
+            {
+                case DataProvider.SqlServer:
+                    iDataParameter = new SqlParameter();
+                    break; // TODO: might not be correct. Was : Exit Select
+
+                case DataProvider.OleDb:
+                    iDataParameter = new OleDbParameter();
+                    break; // TODO: might not be correct. Was : Exit Select
+
+                case DataProvider.Odbc:
+                    iDataParameter = new OdbcParameter();
+                    break; // TODO: might not be correct. Was : Exit Select
+
+                case DataProvider.Oracle:
+                    // iDataParameter = newOracleParameter()
+                    break; // TODO: might not be correct. Was : Exit Select
+
+            }
+            return iDataParameter;
+        }
+
+
+        public static System.Data.IDbDataParameter[] GetParameters(DataProvider providerType, int paramsCount)
+        {
+            //Dim idbParams As System.Data.IDbDataParameter = New IDGetParameter(providerType)
+            IDbDataParameter[] idbParams = new IDbDataParameter[paramsCount];
+
+            switch (providerType)
+            {
+                case DataProvider.SqlServer:
+                    for (int i = 0; i <= paramsCount - 1; i++)
+                    {
+                        idbParams[i] = new SqlParameter();
+                    }
+
+                    break; // TODO: might not be correct. Was : Exit Select
+
+                case DataProvider.OleDb:
+                    for (int i = 0; i <= paramsCount - 1; i++)
+                    {
+                        idbParams[i] = new OleDbParameter();
+
+                    }
+
+                    break; // TODO: might not be correct. Was : Exit Select
+
+                case DataProvider.Odbc:
+                    for (int i = 0; i <= paramsCount - 1; i++)
+                    {
+                        idbParams[i] = new OdbcParameter();
+                    }
+
+                    break; // TODO: might not be correct. Was : Exit Select
+
+                case DataProvider.Oracle:
+                    break;
+                //For i As Integer = 0 To intParamsLength - 1
+                //    idbParams(i) = newOracleParameter()
+                //Next
+                //Exit Select
+                default:
+                    idbParams = null;
+                    break; // TODO: might not be correct. Was : Exit Select
+
+            }
+            return idbParams;
+        }
+    }
+
+}

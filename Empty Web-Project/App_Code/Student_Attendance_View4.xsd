@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Student_Attendance_View4" targetNamespace="http://tempuri.org/Student_Attendance_View4.xsd" xmlns:mstns="http://tempuri.org/Student_Attendance_View4.xsd" xmlns="http://tempuri.org/Student_Attendance_View4.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Student_Attendance_View4TableAdapter" GeneratorDataComponentClassName="Student_Attendance_View4TableAdapter" Name="Student_Attendance_View4" UserDataComponentName="Student_Attendance_View4TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectName="SRMESIM.dbo.Student_Attendance_View4" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Student_Attendance_View4.*
+FROM            Student_Attendance_View4</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Inst_ID" DataSetColumn="Inst_ID" />
+              <Mapping SourceColumn="SessionID" DataSetColumn="SessionID" />
+              <Mapping SourceColumn="DateA" DataSetColumn="DateA" />
+              <Mapping SourceColumn="RollNo" DataSetColumn="RollNo" />
+              <Mapping SourceColumn="StudentID" DataSetColumn="StudentID" />
+              <Mapping SourceColumn="StudentName" DataSetColumn="StudentName" />
+              <Mapping SourceColumn="Semester" DataSetColumn="Semester" />
+              <Mapping SourceColumn="Batch_Name" DataSetColumn="Batch_Name" />
+              <Mapping SourceColumn="SubjectCode" DataSetColumn="SubjectCode" />
+              <Mapping SourceColumn="SubjectName" DataSetColumn="SubjectName" />
+              <Mapping SourceColumn="Tol" DataSetColumn="Tol" />
+              <Mapping SourceColumn="Pre" DataSetColumn="Pre" />
+              <Mapping SourceColumn="UniversityRollNo" DataSetColumn="UniversityRollNo" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Student_Attendance_View4" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="Student_Attendance_View4" msprop:Generator_UserDSName="Student_Attendance_View4">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Student_Attendance_View4" msprop:Generator_TableClassName="Student_Attendance_View4DataTable" msprop:Generator_TableVarName="tableStudent_Attendance_View4" msprop:Generator_TablePropName="_Student_Attendance_View4" msprop:Generator_RowDeletingName="Student_Attendance_View4RowDeleting" msprop:Generator_UserTableName="Student_Attendance_View4" msprop:Generator_RowChangingName="Student_Attendance_View4RowChanging" msprop:Generator_RowEvHandlerName="Student_Attendance_View4RowChangeEventHandler" msprop:Generator_RowDeletedName="Student_Attendance_View4RowDeleted" msprop:Generator_RowEvArgName="Student_Attendance_View4RowChangeEvent" msprop:Generator_RowChangedName="Student_Attendance_View4RowChanged" msprop:Generator_RowClassName="Student_Attendance_View4Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Inst_ID" msprop:Generator_ColumnVarNameInTable="columnInst_ID" msprop:Generator_ColumnPropNameInRow="Inst_ID" msprop:Generator_ColumnPropNameInTable="Inst_IDColumn" msprop:Generator_UserColumnName="Inst_ID" type="xs:int" minOccurs="0" />
+              <xs:element name="SessionID" msprop:Generator_ColumnVarNameInTable="columnSessionID" msprop:Generator_ColumnPropNameInRow="SessionID" msprop:Generator_ColumnPropNameInTable="SessionIDColumn" msprop:Generator_UserColumnName="SessionID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DateA" msprop:Generator_ColumnVarNameInTable="columnDateA" msprop:Generator_ColumnPropNameInRow="DateA" msprop:Generator_ColumnPropNameInTable="DateAColumn" msprop:Generator_UserColumnName="DateA" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="RollNo" msprop:Generator_ColumnVarNameInTable="columnRollNo" msprop:Generator_ColumnPropNameInRow="RollNo" msprop:Generator_ColumnPropNameInTable="RollNoColumn" msprop:Generator_UserColumnName="RollNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="StudentID" msprop:Generator_ColumnVarNameInTable="columnStudentID" msprop:Generator_ColumnPropNameInRow="StudentID" msprop:Generator_ColumnPropNameInTable="StudentIDColumn" msprop:Generator_UserColumnName="StudentID" type="xs:int" minOccurs="0" />
+              <xs:element name="StudentName" msprop:Generator_ColumnVarNameInTable="columnStudentName" msprop:Generator_ColumnPropNameInRow="StudentName" msprop:Generator_ColumnPropNameInTable="StudentNameColumn" msprop:Generator_UserColumnName="StudentName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Semester" msprop:Generator_ColumnVarNameInTable="columnSemester" msprop:Generator_ColumnPropNameInRow="Semester" msprop:Generator_ColumnPropNameInTable="SemesterColumn" msprop:Generator_UserColumnName="Semester" type="xs:int" minOccurs="0" />
+              <xs:element name="Batch_Name" msprop:Generator_ColumnVarNameInTable="columnBatch_Name" msprop:Generator_ColumnPropNameInRow="Batch_Name" msprop:Generator_ColumnPropNameInTable="Batch_NameColumn" msprop:Generator_UserColumnName="Batch_Name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SubjectCode" msprop:Generator_ColumnVarNameInTable="columnSubjectCode" msprop:Generator_ColumnPropNameInRow="SubjectCode" msprop:Generator_ColumnPropNameInTable="SubjectCodeColumn" msprop:Generator_UserColumnName="SubjectCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SubjectName" msprop:Generator_ColumnVarNameInTable="columnSubjectName" msprop:Generator_ColumnPropNameInRow="SubjectName" msprop:Generator_ColumnPropNameInTable="SubjectNameColumn" msprop:Generator_UserColumnName="SubjectName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Tol" msprop:Generator_ColumnVarNameInTable="columnTol" msprop:Generator_ColumnPropNameInRow="Tol" msprop:Generator_ColumnPropNameInTable="TolColumn" msprop:Generator_UserColumnName="Tol" type="xs:int" minOccurs="0" />
+              <xs:element name="Pre" msprop:Generator_ColumnVarNameInTable="columnPre" msprop:Generator_ColumnPropNameInRow="Pre" msprop:Generator_ColumnPropNameInTable="PreColumn" msprop:Generator_UserColumnName="Pre" type="xs:int" minOccurs="0" />
+              <xs:element name="UniversityRollNo" msprop:Generator_ColumnVarNameInTable="columnUniversityRollNo" msprop:Generator_ColumnPropNameInRow="UniversityRollNo" msprop:Generator_ColumnPropNameInTable="UniversityRollNoColumn" msprop:Generator_UserColumnName="UniversityRollNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

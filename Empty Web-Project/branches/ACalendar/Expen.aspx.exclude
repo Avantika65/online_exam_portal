@@ -1,0 +1,875 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Expen.aspx.cs" EnableTheming="true" Theme="BasicBlue" StylesheetTheme="BasicBlue" Inherits="Expense_master" %>
+<%@ Register assembly="CalendarExtenderPlus" namespace="AjaxControlToolkitPlus" tagprefix="CC11" %>
+<%@ Register assembly="CommonClassLibrary" namespace="CommonClassLibrary" tagprefix="cc2" %>
+<%@ Register TagPrefix="FH1" TagName="TopImageControl" Src="~/UserControls/FormHeader.ascx" %>
+<%@ Register Assembly="Flan.Controls" Namespace="Flan.Controls" TagPrefix="cc2" %>
+<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="cc1" %>
+<%@ Register Assembly="Flan.Controls" Namespace="Flan.Controls" TagPrefix="cc1" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+  <script type="text/javascript" language="javascript">
+
+      function comboValidation(sender, args)
+       {
+          if (args.Value == "Select Option") {
+              args.IsValid = false;
+              return;
+          }
+
+          if (args.Value == "0") 
+          {
+              args.IsValid = false;
+              return;
+          }
+          else
+           {
+              args.IsValid = true;
+           }
+       }
+
+       function Blink(controlId)
+       {
+          var control = document.getElementById(controlId);
+          control.style.display = control.style.display == 'block' ? 'none' : 'block';
+      }
+
+      function CallBlink(controlId)
+       {
+          setInterval(function () { Blink(controlId); }, 500);
+      }
+
+      function GridSelection(objType) {
+          
+          var oItem = objType.children;
+          var SelectedCtrl = (objType.type == "radio") ? objType : objType.children.item[0];
+          bChecked = SelectedCtrl.checked;
+          arrRButtons = SelectedCtrl.form.elements;
+          for (i = 0; i < arrRButtons.length; i++)
+              if (arrRButtons[i].type == "radio" && arrRButtons[i].id != SelectedCtrl.id)
+                  arrRButtons[i].checked = !bChecked;
+      }
+
+      function Confirm() {
+          var confirm_value = document.createElement("INPUT");
+          
+          confirm_value.name = "confirm_value";
+          if (confirm("Activity Already Schedule on that Timming and date?You Want to Schedule on that Timming?")) {
+              confirm_value.value = "Yes";
+          } else {
+              confirm_value.value = "NO";
+          }
+          document.forms[0].appendChild(confirm_value);
+      }
+      var specialKeys = new Array();
+      specialKeys.push(8); //Backspace
+      function IsNumeric(e) {
+          var keyCode = e.which ? e.which : e.keyCode
+          var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
+          document.getElementById("error").style.display = ret ? "none" : "inline";
+          return ret;
+      }
+   
+</script>
+
+
+  <script src="../FeeJScript.js" type="text/javascript"></script>
+
+
+  <style type="text/css">
+        .style2
+        {
+        }
+         .modalBackground {
+	background:#000;
+	filter:alpha(opacity=80);
+	opacity:0.8;
+}
+</style>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>Wage_TypWage_Type_Master</title>
+        <link type="text/css" rel="Stylesheet" href="../Account.css"/>
+            <link href="../PagingGridView.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="../css_Admin/cloud-admin.css" >
+	<link rel="stylesheet" type="text/css"  href="../css_Admin/themes/default.css">
+	<link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../font-awesome/css/font-awesome.css" rel="stylesheet">
+	<!-- DATE RANGE PICKER -->
+	<link rel="stylesheet" type="text/css" href="../js_admin/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+	<!-- UNIFORM -->
+	<link rel="stylesheet" type="text/css" href="../js_admin/uniform/css/uniform.default.min.css" />
+	<!-- ANIMATE -->
+	<link rel="stylesheet" type="text/css" href="../css_Admin/animatecss/animate.min.css" />
+	<!-- FONTS -->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+
+     <link type="text/css" rel="Stylesheet" href="../Account.css"/>
+
+      <link rel="stylesheet" href="../codebase/style.css" type="text/css" media="screen" />
+        <link rel="STYLESHEET" type="text/css" href="../codebase/dhtmlxtabbar.css"/>
+	    <script type="text/javascript" src="../codebase/dhtmlxcommon.js"></script>
+	    <script type="text/javascript"  src="../codebase/dhtmlxcommon.js"></script>
+	     <script type="text/javascript"  src="../codebase/dhtmlxtabbar.js"></script>
+	     <script src="../js/calender_show.js" type="text/javascript"></script>
+          <link href="../Calender_CSS/Calender_Style.css" rel="stylesheet" type="text/css" />
+     <script language="javascript" type="text/javascript">
+        
+     </script>
+    <style type="text/css">
+        
+        .fancy-green .ajax__tab_header
+{
+background:url("../img_admin/green_bg_Tab.gif") repeat;
+cursor:pointer;
+}
+.fancy-green .ajax__tab_hover .ajax__tab_outer, .fancy-green .ajax__tab_active .ajax__tab_outer
+{
+background: url("../img_admin/green_left_Tab.gif") no-repeat left top;
+}
+.fancy-green .ajax__tab_hover .ajax__tab_inner, .fancy-green .ajax__tab_active .ajax__tab_inner
+{
+background: url("../img_admin/green_right_Tab.gif") no-repeat right top;
+}
+.fancy .ajax__tab_header
+{
+font-size: 12px;
+color:DarkGray;
+font-family: sans-serif;
+}
+.fancy .ajax__tab_active .ajax__tab_outer, .fancy .ajax__tab_header .ajax__tab_outer, .fancy .ajax__tab_hover .ajax__tab_outer
+{
+height: 46px;
+}
+.fancy .ajax__tab_active .ajax__tab_inner, .fancy .ajax__tab_header .ajax__tab_inner, .fancy .ajax__tab_hover .ajax__tab_inner
+{
+height: 46px;
+margin-left: 16px; /* offset the width of the left image */
+}
+.fancy .ajax__tab_active .ajax__tab_tab, .fancy .ajax__tab_hover .ajax__tab_tab, .fancy .ajax__tab_header .ajax__tab_tab
+{
+margin: 16px 16px 0px 0px;
+}
+.fancy .ajax__tab_hover .ajax__tab_tab, .fancy .ajax__tab_active .ajax__tab_tab
+{
+color: #fff;
+}
+.fancy .ajax__tab_body
+{
+font-family: Arial;
+font-size: 10pt;
+border-top: 0;
+border:1px solid #999999;
+padding: 8px;
+background-color: #ffffff;
+}
+        .style2
+        {
+            width: 207px;
+        }
+        .style3
+        {
+        }
+        </style>
+   </head>
+<body>
+    <form id="form1" runat="server">
+     <ajaxToolkit:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
+     <Services>
+     <asp:ServiceReference Path="~/Calender_details.asmx" />
+     </Services>
+    </ajaxToolkit:ToolkitScriptManager>                   
+    
+            
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            
+     <ContentTemplate>
+           
+<div id="content">
+    <div class="left">
+               <table width="100%">
+               
+             <%--  <img id="img1" alt="" src="../add.gif" />
+            	<input id="Button1" type="button" value="Blink" onclick="CallBlink('img1');" />
+	--%>
+               
+               <tr>
+                            <td>
+                                <div class="box border primary">
+            <div class="box-title">
+            <h4><i class="fa fa-bars"></i>Exam Master</h4>
+            </div>           
+           </div>
+
+                           </td>
+                        </tr>
+                        <tr>
+                        <td>
+                         <cc1:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="3" 
+                                Width="100%" CssClass="fancy fancy-green" AutoPostBack="True">
+               
+                <cc1:TabPanel ID="TabPanel1" runat="server" HeaderText="TabPanel1" ><HeaderTemplate>Add Exam Types</HeaderTemplate>
+                <ContentTemplate>
+                <asp:UpdatePanel ID="updatePanel2" runat="server">
+                <ContentTemplate>
+                <div id='divExamType'>
+                    <table width="100%" style="table-layout: fixed">
+                    <tr>
+                        <td  align="left" class="style2" >
+                            &nbsp;</td>
+                        <td align="left">
+                            &nbsp;</td>
+                    </tr>
+                                  <tr>
+                                      <td class="style2">
+                                          <asp:Label ID="Label2" runat="server" Text="Exam Category"></asp:Label>
+                                      </td>
+                                      <td>
+                                          <asp:DropDownList ID="ddlExam_Category" runat="server" Width="250px">
+                                          </asp:DropDownList>
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                      <td class="style2">
+                                          <asp:Label ID="Label1" runat="server" Text="Exam Type"></asp:Label>
+                                          *
+                                          <input id="Id" type="hidden" runat="server" />
+                                          <input id="Hidden1" type="hidden" runat ="server" />
+                                          <input id ="hdcontp" type="hidden" runat="server" />
+                                          <input id="hdID" type="hidden" runat="server"/>
+                                      </td>
+                                      <td>
+                                          <asp:TextBox ID="txtexp" runat="server" CssClass="rdginputbox" Width="250px"></asp:TextBox>
+                                      </td>
+                                  </tr>
+                    <tr>
+                        <td colspan="2" align="center" style="text-align:center">
+                            <asp:Button ID="btnsubmit" runat="server" AccessKey="s"
+                               onclick="btnsubmit_Click" Text="Submit" CssClass="btn btn-primary" Width="100px"/>
+                            <asp:Button ID="Btnreset" runat="server" AccessKey="r" CausesValidation="False" 
+                                onclick="Btnreset_Click" Text="Reset" 
+                                CssClass="btn btn-inverse" Width="100px"/>
+                            <asp:Button ID="Btndelete" runat="server" AccessKey="x" 
+                                 onclick="Btndelete_Click" Text="Delete" CssClass="btn btn-danger" Width="100px"/>
+                        </td>
+                    </tr>
+                   <tr>
+                       <td align="left"  colspan="2">
+                           <asp:CheckBox ID="Chkall" runat="server" AutoPostBack="True" Text="View All" 
+                               oncheckedchanged="Chkall_CheckedChanged" />
+                       </td>
+                   </tr>
+                   <tr>
+                   <div id="Div2" runat="server" visible="false">
+                       <td align="left" colspan="2">
+                       <fieldset style="width:1000px">
+                                <legend class="rdgrowL">View Exam Type</legend>
+                           <cc2:GroupedGridView ID="grdexpense" runat="server" CssClass="mGrid"  AutoGenerateColumns="False" 
+                               onselectedindexchanged="grdexpense_SelectedIndexChanged" Width="100%" 
+                               DataKeyNames="Id" GroupedDepth="1" 
+                              >
+                               <Columns>
+                                   <asp:BoundField DataField="Exam_Category" HeaderText="Exam Category " />
+                                   <asp:TemplateField HeaderText="Exam" SortExpression="Exam">
+                                      
+                                       <ItemTemplate>
+                                           <asp:LinkButton ID="LinkExam" runat="server" CausesValidation="False" Text='<%# Bind("Exam") %>'
+                                               CommandName="Select"></asp:LinkButton>
+                                       </ItemTemplate>
+                                   </asp:TemplateField>
+                               </Columns>
+                          </cc2:GroupedGridView>
+                          <br />
+                          </fieldset>
+                          </td>
+                          </div>
+                   </tr>
+                </table>
+                </div>
+
+                </ContentTemplate>                
+               </asp:UpdatePanel>
+                </ContentTemplate>
+                </cc1:TabPanel>
+               
+                <cc1:TabPanel ID="TabPanel2" runat="server" HeaderText="TabPanel2" ><HeaderTemplate>Define Exam Parameter</HeaderTemplate>
+                 <ContentTemplate>
+       
+                <div id='divExamParameters'>
+                <table class="nav-justified" style="table-layout: fixed">
+                      <tr>
+                          <td>
+                              &nbsp;</td>
+                          <td>
+                              &nbsp;</td>
+                          <td></td>
+                          <td>
+                              &nbsp;</td>
+                          <td colspan="2">
+                              &nbsp;</td>
+                      </tr>
+                      <tr>
+                          <td >
+                              <asp:Label ID="Label5" runat="server" Text="Course" Font-Bold="False"></asp:Label>
+                              <span class="mandatoryfields">*</span></td>
+                          <td colspan="2">
+                              <asp:DropDownList ID="ddlCourse" runat="server" AutoPostBack="True" 
+                                  onselectedindexchanged="ddlCourse_SelectedIndexChanged" TabIndex="1" 
+                                  Width="200px">
+                              </asp:DropDownList>
+                          </td>
+                          <td style="text-align:center">
+                              <span class="mandatoryfields">
+                              <asp:Label ID="LclSpcl0" runat="server" Text="Semester" Font-Bold="False"></asp:Label>
+                              *</span></td>
+                          <td colspan="2">
+                              <asp:DropDownList ID="ddlSem" runat="server" AutoPostBack="True" 
+                                  OnSelectedIndexChanged="ddlSem_SelectedIndexChanged" TabIndex="2" 
+                                  Width="200px">
+                              </asp:DropDownList>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              &nbsp;</td>
+                          <td colspan="2">
+                              &nbsp;</td>
+                          <td style="text-align:center">
+                              &nbsp;</td>
+                          <td colspan="2">
+                              &nbsp;</td>
+                      </tr>
+                      <tr>
+                          <td >
+                              <span class="mandatoryfields">*<asp:Label ID="LclSpcl" runat="server" 
+                                  Text="Specialization" Font-Bold="False"></asp:Label>
+                              </span></td>
+                          <td colspan="2">
+                              <asp:DropDownList ID="ddlSpcl" runat="server" AutoPostBack="True" TabIndex="3" 
+                                  Width="200px" onselectedindexchanged="ddlSpcl_SelectedIndexChanged">
+                              </asp:DropDownList>
+                          </td>
+                          <td style="text-align:center">
+                              <asp:Label ID="lblexam_cat" runat="server" Text="Exam Category" 
+                                  Font-Bold="False"></asp:Label>
+                              <span class="mandatoryfields">*</span>
+                          </td>
+                          <td colspan="2">
+                              <asp:DropDownList ID="ddlExamCat" runat="server" AutoPostBack="True" 
+                                  OnSelectedIndexChanged="ddlExamCat_SelectedIndexChanged" Width="200px" 
+                                  TabIndex="4">
+                              </asp:DropDownList>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              &nbsp;</td>
+                          
+                          
+                          <td colspan="4">
+                              &nbsp;</td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <asp:Label ID="Label6" runat="server" Text="Test Type Name" Visible="False"></asp:Label>
+                              <span class="mandatoryfields">*</span></td>
+                          <td colspan="4">
+                              <asp:GridView ID="grdTestType" runat="server" AutoGenerateColumns="False" 
+                                  DataKeyNames="id" TabIndex="5" Width="269px">
+                                  <Columns>
+                                      <asp:TemplateField>
+                                          <ItemTemplate>
+                                              <asp:RadioButton ID="RowSelector" runat="server" AutoPostBack="True" 
+                                                  GroupName="SelectGroup" oncheckedchanged="RowSelector_CheckedChanged" 
+                                                  onclick="javascript:GridSelection(this);" />
+                                          </ItemTemplate>
+                                      </asp:TemplateField>
+                                      <asp:BoundField DataField="Exam" HeaderText="TestName" />
+                                      <asp:TemplateField HeaderText="Status">
+                                          <ItemTemplate>
+                                              <asp:Label ID="LblStatus" runat="server" CommandName="Select"></asp:Label>
+                                          </ItemTemplate>
+                                      </asp:TemplateField>
+                                  </Columns>
+                              </asp:GridView>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              &nbsp;</td>
+                          <td colspan="4">
+                              &nbsp;</td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <asp:Label ID="Label8" runat="server" Font-Bold="False" Text="Weightage(%)"></asp:Label>
+                              <br />
+                              <span class="mandatoryfields">*</span>
+                          </td>
+                          <td colspan="2">
+                              <asp:TextBox ID="TxtWeightage" runat="server" MaxLength="3" 
+                                  onkeypress="IntegerNumber();" TabIndex="6" Width="200px">0</asp:TextBox>
+                          </td>
+                          <td>
+                              &nbsp;</td>
+                          <td colspan="2">
+                              &nbsp;</td>
+                      </tr>
+                      <tr>
+                          <td>
+                              &nbsp;</td>
+                          <td colspan="2">
+                              &nbsp;</td>
+                          <td>
+                              &nbsp;</td>
+                          <td colspan="2">
+                              &nbsp;</td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <asp:Label ID="Label9" runat="server" Text="No. Of Tests" Font-Bold="False"></asp:Label>
+                          </td>
+                          <td colspan="2">
+                              <asp:TextBox ID="Txttests" runat="server" MaxLength="3" 
+                                  onkeypress="IntegerNumber();" TabIndex="7" Width="200px">0</asp:TextBox>
+                          </td>
+                          <td>
+                              <asp:Label ID="Label10" runat="server" 
+                                  Text="Best Count (Excluding comp. tests)" Width="126px" Font-Bold="False"></asp:Label>
+                          </td>
+                          <td colspan="2">
+                              <asp:TextBox ID="Txtbcount" runat="server" MaxLength="3" 
+                                  onkeypress="IntegerNumber();" TabIndex="8" Width="200px">0</asp:TextBox>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              &nbsp;</td>
+                          <td colspan="2">
+                              &nbsp;</td>
+                          <td>
+                              &nbsp;</td>
+                          <td colspan="2">
+                              &nbsp;</td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <asp:Label ID="Label11" runat="server" Text="Que.Paper Submission Days" 
+                                  Font-Bold="False"></asp:Label>
+                          </td>
+                          <td colspan="2">
+                              <asp:TextBox ID="TxtQsubm" runat="server" MaxLength="3" 
+                                  onkeypress="IntegerNumber();" TabIndex="9" Width="200px">0</asp:TextBox>
+                              <span class="mandatoryfields">Days before test schedule date</span></td>
+                          <td>
+                              <asp:Label ID="Label12" runat="server" Text="Marks Submission Days" 
+                                  Font-Bold="False"></asp:Label>
+                          </td>
+                          <td colspan="2">
+                              <asp:TextBox ID="Txtmarkssub" runat="server" MaxLength="3" 
+                                  onkeypress="IntegerNumber();" TabIndex="10" Width="200px">0</asp:TextBox>
+                              <span class="mandatoryfields">Days after conduct of exam</span></td>
+                      </tr>
+                      <tr>
+                          <td>
+                              &nbsp;</td>
+                          <td colspan="2">
+                              &nbsp;</td>
+                          <td>
+                              &nbsp;</td>
+                          <td colspan="2">
+                              &nbsp;</td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <asp:Label ID="Label13" runat="server" Text="Day Priority To Conduct Exam" 
+                                  Font-Bold="False"></asp:Label>
+                              <span class="mandatoryfields">*</span></td>
+                          <td colspan="2">
+                              <asp:CheckBoxList ID="cbldays" runat="server" RepeatColumns="6" 
+                                  RepeatDirection="Horizontal" TabIndex="11">
+                                  <asp:ListItem Value="1">Mon</asp:ListItem>
+                                  <asp:ListItem Value="2">Tue</asp:ListItem>
+                                  <asp:ListItem Value="3">Wed</asp:ListItem>
+                                  <asp:ListItem Value="4">Thu</asp:ListItem>
+                                  <asp:ListItem Value="5">Fri</asp:ListItem>
+                                  <asp:ListItem Value="6">Sat</asp:ListItem>
+                              </asp:CheckBoxList>
+                          </td>
+                          <td>
+                              <asp:Label ID="Label14" runat="server" Text="Periods Priority To Conduct Exam" 
+                                  Font-Bold="False"></asp:Label>
+                          </td>
+                          <td colspan="2">
+                              <asp:CheckBoxList ID="cblperiods" runat="server" RepeatColumns="7" 
+                                  RepeatDirection="Horizontal" TabIndex="12">
+                                  <asp:ListItem Text="P1" Value="1"></asp:ListItem>
+                                  <asp:ListItem Text="P2" Value="2"></asp:ListItem>
+                                  <asp:ListItem Text="P3" Value="3"></asp:ListItem>
+                                  <asp:ListItem Text="P5" Value="5"></asp:ListItem>
+                                  <asp:ListItem Text="P6" Value="6"></asp:ListItem>
+                                  <asp:ListItem Text="P7" Value="7"></asp:ListItem>
+                                  <asp:ListItem Text="P8" Value="8"></asp:ListItem>
+                              </asp:CheckBoxList>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              &nbsp;</td>
+                          <td colspan="2">
+                              &nbsp;</td>
+                          <td>
+                              &nbsp;</td>
+                          <td>
+                              &nbsp;</td>
+                          <td>
+                              &nbsp;</td>
+                      </tr>
+                      <tr>
+                          <td>
+                             <asp:HiddenField ID="hid" runat="server"/></td>
+                          <td>
+                              &nbsp;</td>
+                          <td>
+                              &nbsp;</td>
+                          <td>
+                              &nbsp;</td>
+                          <td>
+                              &nbsp;</td>
+                          <td>
+                              &nbsp;</td>
+                      </tr>
+                      <tr>
+                          <td colspan="6" align="center" style="text-align:center">
+                              <asp:Button ID="cmdCreate" runat="server" onclick="cmdCreate_Click" 
+                                  TabIndex="13" Text="Submit" CssClass="btn btn-primary" Width="100px"/>
+                              <asp:Button ID="cmdReset" runat="server" 
+                                  onclick="cmdReset_Click" TabIndex="14" Text="Reset" 
+                                  CssClass="btn btn-inverse" Width="100px"/>
+                              <asp:Button ID="cmddel" runat="server" Enabled="False" onclick="cmddel_Click" 
+                                  Text="Delete" CssClass="btn btn-danger" Width="100px"/>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <asp:CheckBox ID="Chkall1" runat="server" AutoPostBack="True" 
+                                  oncheckedchanged="Chkall1_CheckedChanged" Text="View All" />
+                          </td>
+                          <td align="center" colspan="5">
+                              &nbsp;</td>
+                      </tr>
+                      <tr>
+                      <div id="Div3" runat="server" visible="False">
+                      <td colspan="6" >
+                       <fieldset style="width:100%">
+                                <legend class="rdgrowL">View Exam Type Para</legend>
+                      <cc2:GroupedGridView ID="grdExamParameter" runat="server" AutoGenerateColumns="False" 
+                             DataKeyNames="testtypeid,periodNo,quepapersubBdays,marksubAdays,dayNoPriority,courseId,SemesterID,ExamCategory_ID,SpecializationID" 
+                             onselectedindexchanged="grdExamParameter_SelectedIndexChanged" TabIndex="13" GroupedDepth="3" >
+                             <Columns>
+                             <asp:BoundField DataField="testtypename" HeaderText="Test Name" />
+                                   <asp:BoundField DataField="CourseName" HeaderText="Course" />
+                                   <asp:BoundField DataField="Year" HeaderText="Semester" />
+                                   <asp:TemplateField HeaderText="Specialization">
+                                     <ItemTemplate>
+                                         <asp:LinkButton ID="LinkButton1" runat="server" CommandName="Select" 
+                                             Text='<%# Bind("Spcl") %>' Font-Underline="true"></asp:LinkButton>
+                                     </ItemTemplate>
+                                 </asp:TemplateField>
+                                    
+                              
+                                 <asp:BoundField DataField="weightage" HeaderText="Weightage" />
+                                 <asp:BoundField DataField="noofTests" HeaderText="No of Test" />
+                                 <asp:BoundField DataField="bestcount" HeaderText="Best Count" />
+                                  <asp:BoundField DataField="quepapersubBdays" HeaderText="Question Paper Submission" />
+                                   <asp:BoundField DataField="marksubAdays" HeaderText="Marks Submission" />
+                                 
+                             </Columns>
+                         </cc2:GroupedGridView>
+                         </fieldset>
+                      </td>
+                      </div>
+                      </tr>
+                      
+                      <tr>
+                          <td colspan="6">
+                              &nbsp;</td>
+                      </tr>
+                      
+                  </table>
+                </div>
+
+                 </ContentTemplate>
+                </cc1:TabPanel>
+
+                <cc1:TabPanel ID="TabPanel3" runat="server" HeaderText="TabPanel3" ><HeaderTemplate>Exam Master</HeaderTemplate>
+                 
+                
+                 <ContentTemplate>
+                   <asp:UpdatePanel ID="updatePanel3" runat="server">
+                <ContentTemplate>
+                <div id='ExamMaster'>
+                <table class="nav-justified" style="table-layout: fixed">
+                      <tr>
+                          <td class="style3">
+                              &nbsp;</td>
+                          <td colspan="5">
+                              &nbsp;</td>
+                      </tr>
+                      <tr>
+                          <td class="style3">
+                              <asp:Label ID="Label34" runat="server" Text="Exam Category"></asp:Label>
+                              <span class="mandatoryfields">*</span></td>
+                          <td colspan="2">
+                              <asp:RadioButtonList ID="rdbExamCate" runat="server" AutoPostBack="True" 
+                                  RepeatDirection="Horizontal" Width="250px">
+                              </asp:RadioButtonList>
+                          </td>
+                          <td>
+                              &nbsp;</td>
+                          <td colspan="2">
+                              &nbsp;</td>
+                      </tr>
+                      <tr>
+                          <td class="style3">
+                              <asp:Label ID="lblYS" runat="server" Text="Year/Sem"></asp:Label>
+                              <span class="mandatoryfields">*</span></td>
+                          <td colspan="2"class="style3">
+                              <asp:DropDownList ID="ddlYear" runat="server" AccessKey="Y" AutoPostBack="True" 
+                                  onselectedindexchanged="ddlYear_SelectedIndexChanged" Width="200px" 
+                                  TabIndex="1">
+                              </asp:DropDownList>
+                          </td>
+                          <td>
+                             <asp:Label ID="lbl1" runat="server" Text="Specialization"></asp:Label> <span class="mandatoryfields">*</span></td>
+                          <td colspan="2">
+                              <asp:DropDownList ID="ddlSpecialization" runat="server" AccessKey="Y" 
+                                  AutoPostBack="True" onselectedindexchanged="ddlSpecialization_SelectedIndexChanged" 
+                                  Width="200px" TabIndex="2">
+                              </asp:DropDownList>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td class="style3">
+                              &nbsp;</td>
+                          <td class="style3" colspan="2">
+                              &nbsp;</td>
+                          <td>
+                              &nbsp;</td>
+                          <td colspan="2">
+                              &nbsp;</td>
+                      </tr>
+                      <tr>
+                          <td class="style3">
+                              <asp:Label ID="Label18" runat="server" Text="Test Type Name"></asp:Label>
+                              <span class="mandatoryfields">*</span></td>
+                          <td colspan="2" class="style3">
+                              <asp:DropDownList ID="ddlexamtype" runat="server"
+                                  onselectedindexchanged="ddlexamtype_SelectedIndexChanged" Width="200px" 
+                                  AutoPostBack="true" TabIndex="3">
+                              </asp:DropDownList>
+                          </td>
+                          <td>
+                              <asp:Label ID="Label19" runat="server" Text="Test Name"></asp:Label>
+                              <span class="mandatoryfields">*</span></td>
+                          <td colspan="2">
+                              <asp:TextBox ID="txttestname" runat="server" Width="200px" AutoPostBack="True" 
+                                  ontextchanged="txttestname_TextChanged" TabIndex="4"></asp:TextBox>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td class="style3">
+                              &nbsp;</td>
+                          <td class="style3" colspan="2">
+                              &nbsp;</td>
+                          <td>
+                              &nbsp;</td>
+                          <td colspan="2">
+                              &nbsp;</td>
+                      </tr>
+                      <tr>
+                          <td class="style3">
+                              <asp:Label ID="Label20" runat="server" Text="Max Marks"></asp:Label>
+                              <span class="mandatoryfields">*</span></td>
+                          <td colspan="2" class="style3">
+                              <asp:TextBox ID="txtmaxmark" runat="server" MaxLength="3" 
+                                  Width="200px" TabIndex="5"></asp:TextBox>
+                                                               
+
+                                  <asp:RegularExpressionValidator ID="vldNumber1" ControlToValidate="txtmaxmark"  
+Display="Dynamic" ErrorMessage="Enter number.." ValidationExpression="(^([0-9]*\d*\d{1}?\d*)$)" 
+                                  Runat="server" style="color: Red;" /> 
+                          </td>
+                          <td><asp:Label ID="lbl2" runat="server" Text="Test Duration(in minutes)"></asp:Label> 
+                              <span class="mandatoryfields">*</span></td>
+                          <td>
+                              <asp:TextBox ID="txtduration" runat="server" MaxLength="3" 
+                                  onkeypress="IntegerNumber();" TabIndex="6" Width="200px">0</asp:TextBox>
+                          </td>
+                          <td>
+                              &nbsp;</td>
+                      </tr>
+                      <tr>
+                          <td class="style3">
+                              &nbsp;</td>
+                          <td class="style3" colspan="2">
+                              &nbsp;</td>
+                          <td>
+                              &nbsp;</td>
+                          <td>
+                              &nbsp;</td>
+                          <td>
+                              &nbsp;</td>
+                      </tr>
+                      <tr>
+                          <td class="style3">
+                              <asp:Label ID="Label22" runat="server" 
+                                  Text="Test Duration(from week)"></asp:Label>
+                              <span class="mandatoryfields">*</span></td>
+                          <td colspan="2" class="style3">
+                              <asp:DropDownList ID="ddlfromweek" runat="server" Width="200px" 
+                                  AutoPostBack="True" 
+                                  onselectedindexchanged="ddlfromweek_SelectedIndexChanged" TabIndex="7">
+                              </asp:DropDownList>
+                          </td>
+                          <td>
+                              <asp:Label ID="Label32" runat="server" Text="To Week"></asp:Label>
+                              <span class="mandatoryfields">*</span></td>
+                          <td>
+                              <asp:DropDownList ID="ddltoweek" runat="server" Width="200px" TabIndex="8">
+                              </asp:DropDownList>
+                          </td>
+                          <td>
+                              &nbsp;</td>
+                      </tr>
+                      <tr>
+                          <td class="style3">
+                              &nbsp;</td>
+                          <td colspan="2">
+                              &nbsp;</td>
+                          <td>
+                              &nbsp;</td>
+                          <td colspan="2">
+                              &nbsp;</td>
+                      </tr>
+                      <tr>
+                          <td class="style3">
+                              <asp:Label ID="Label21" runat="server" Text="Is Compulsory??"></asp:Label>
+                          </td>
+                          <td>
+                              <asp:RadioButtonList ID="rdbIsComp" runat="server" RepeatDirection="Horizontal" 
+                                  TabIndex="9">
+                                  <asp:ListItem Value="1">Yes</asp:ListItem>
+                                  <asp:ListItem Value="2">No</asp:ListItem>
+                              </asp:RadioButtonList>
+                          </td>
+                          <td>
+                              &nbsp;</td>
+                          <td>
+                              &nbsp;</td>
+                          <td>
+                              &nbsp;</td>
+                          <td>
+                              &nbsp;</td>
+                      </tr>
+                      <tr>
+                          <td class="style3">
+                              &nbsp;</td>
+                          <td>
+                              &nbsp;</td>
+                          <td>
+                              &nbsp;</td>
+                          <td>
+                              &nbsp;</td>
+                          <td>
+                              &nbsp;</td>
+                          <td>
+                              &nbsp;</td>
+                      </tr>
+                      <tr>
+                      <div id="Div4" runat="server" visible="False">
+                      <td colspan="6" >
+                       <fieldset style="width:100%">
+                                <legend class="rdgrowL">View Test Marks</legend>
+                          
+                              <cc2:GroupedGridView ID="grdExamMaster" runat="server" AutoGenerateColumns="False" 
+                                  DataKeyNames="testId,testtypeId,fromDate,toDate,isCompulsory,Semid,SpclID" 
+                                  onselectedindexchanged="grdExamMaster_SelectedIndexChanged" GroupedDepth="3">
+                                  <Columns>
+                                  <asp:BoundField DataField="shortName" HeaderText="Specialization" />
+                                   <asp:BoundField DataField="sem" HeaderText="Semester" />
+                                    <asp:BoundField DataField="Exam" HeaderText="Test Type" />
+                                      <asp:TemplateField HeaderText="Test Name">
+                                          <ItemTemplate>
+                                              <asp:LinkButton ID="LinkButton2" runat="server" CommandName="Select" 
+                                                  Text='<%# Bind("testname") %>' Font-Underline="true"></asp:LinkButton>
+                                          </ItemTemplate>
+                                      </asp:TemplateField>
+                                      <asp:BoundField DataField="mMarks" HeaderText="Maximum Marks" />
+                                      <asp:BoundField DataField="testduration" HeaderText="Exam Duration" />
+                                      <asp:BoundField DataField="fromWeek" HeaderText="From Week" />
+                                      <asp:BoundField DataField="ToWeek" HeaderText="To Week" />
+                                  </Columns>
+                              </cc2:GroupedGridView>
+                              </fieldset>
+                          </td>
+                          </div>
+                      </tr>
+                      <tr>
+                          <td colspan="6" align="center" style="text-align:center">
+                              <asp:Button ID="cmdCreate_Tab3" runat="server" onclick="cmdCreate_Tab3_Click" 
+                                  Text="Submit" CssClass="btn btn-primary" Width="100px" TabIndex="11"/>
+                              <asp:Button ID="cmdReset_tab3" runat="server" onclick="cmdReset_tab3_Click" 
+                                  Text="Reset" CssClass="btn btn-inverse" Width="100px"/>
+                              <asp:Button ID="cmddel_Tab3" runat="server" Enabled="False" onclick="cmddel_Tab3_Click" 
+                                   Text="Delete" CssClass="btn btn-danger" Width="100px"/>
+                          </td>
+                      </tr>
+                  </table>
+                </div>
+                
+                 </ContentTemplate>                
+               </asp:UpdatePanel>
+                </ContentTemplate>
+                </cc1:TabPanel>
+
+
+                 <cc1:TabPanel ID="TabPanel4" runat="server" HeaderText="TabPanel4" ><HeaderTemplate>Exam Scheduling</HeaderTemplate>
+                 <ContentTemplate>
+
+                
+
+                </ContentTemplate>
+                </cc1:TabPanel>
+                 </cc1:TabContainer>
+                </div>
+               
+                        </td>
+                        </tr>
+                        
+                </table>
+                </div>
+                </div>
+               
+            </ContentTemplate>
+
+            
+        </asp:UpdatePanel>       
+     <asp:UpdateProgress ID="UpdateProgress3" runat="server" AssociatedUpdatePanelID="UpdatePanel1"
+        DisplayAfter="0">
+        <ProgressTemplate>
+            <div class="ProgressMsg">
+                <img src="../images/wait.gif" alt="Wait"  />
+            </div>
+        </ProgressTemplate>
+    </asp:UpdateProgress>
+    <cc1:updateprogressoverlayextender ID="UpdateProgressOverlayExtender3" runat="server"
+        CssClass="updateProgress" TargetControlID="UpdateProgress3" 
+         OverlayType="Browser" /> 
+        
+
+    </form>
+</body>
+</html>

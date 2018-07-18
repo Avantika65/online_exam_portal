@@ -1,0 +1,467 @@
+using System;
+using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
+using System.Security.Cryptography;
+using System.Text;
+
+/// <summary>
+/// Summary description for Permission
+/// </summary>
+public class Permission
+{   //By Jeetendra Prajapati
+    SqlCommand cmd = null;
+    SqlConnection cn = null;
+    protected string ReturnConString()
+    {
+        return ConfigurationManager.ConnectionStrings["FeesManagementConn"].ConnectionString;
+    }
+	public Permission()
+	{   	
+	}
+    public Permission(String constring)
+    {
+        cn = new SqlConnection(constring);
+    }
+    public bool Add_edit_deletemenuPerm(string roleID, string menuID, string permission, string insertOp, string updateOp, string deleteOp, string flag, SqlCommand objCom)
+    {
+        bool returnFlag = true;
+
+        objCom.CommandText = "menuPermissionSP";
+        objCom.CommandType = CommandType.StoredProcedure;
+        objCom.Parameters.Add(new SqlParameter("@roleID", SqlDbType.Int));
+        objCom.Parameters["@roleID"].Value = roleID;
+
+        objCom.Parameters.Add(new SqlParameter("@menuID", SqlDbType.Int));
+        objCom.Parameters["@menuID"].Value = menuID;
+
+        objCom.Parameters.Add(new SqlParameter("@permission", SqlDbType.Int));
+        objCom.Parameters["@permission"].Value = permission;
+
+        objCom.Parameters.Add(new SqlParameter("@insertOp", SqlDbType.Int));
+        objCom.Parameters["@insertOp"].Value = insertOp;
+
+        objCom.Parameters.Add(new SqlParameter("@updateOp", SqlDbType.Int));
+        objCom.Parameters["@updateOp"].Value = updateOp;
+
+        objCom.Parameters.Add(new SqlParameter("@deleteOp", SqlDbType.Int));
+        objCom.Parameters["@deleteOp"].Value = deleteOp;
+
+        //objCom.Parameters.Add(new SqlParameter("@masterOp", OleDbType.Integer));
+        //objCom.Parameters["@masterOp"].Value = masterOp;
+
+        //objCom.Parameters.Add(new SqlParameter("@slaveOp", OleDbType.Integer));
+        //objCom.Parameters["@slaveOp"].Value = slaveOp;
+
+        objCom.Parameters.Add(new SqlParameter("@flag", SqlDbType.NVarChar));
+        objCom.Parameters["@flag"].Value = flag;
+
+        //Try
+        objCom.ExecuteNonQuery();
+        objCom.Parameters.Clear();
+        //Catch ex As Exception
+        //    returnFlag = False
+        //    Dim p As String
+        //    p = ex.Message
+        //End Try
+
+        return returnFlag;
+    }
+    public void Reset_Permission(String flag, Int32 Child_MenuId, Int32 RoleID)
+    {
+        using (SqlConnection con = new SqlConnection(ReturnConString()))
+        {
+            try
+            {
+                cmd = new SqlCommand();
+                cmd.CommandTimeout = 320;
+                cmd.Parameters.AddWithValue("@flag", flag);
+                //cmd.Parameters.AddWithValue("@Permission", Permission);           
+                cmd.Parameters.AddWithValue("@Child_MenuId", Child_MenuId);
+                cmd.Parameters.AddWithValue("@RoleID", RoleID);
+
+
+                con.Open();
+                cmd.Connection = con;
+                cmd.CommandText = "[SPChangePermission]";
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.ExecuteNonQuery();
+                //RetSuccess = cmd.Parameters["@RetSuccess"].Value.ToString();
+            }
+            catch
+            {
+                //RetSuccess = "0";
+            }
+            finally
+            {
+                cmd.Dispose();
+                con.Close();
+                con.Dispose();
+            }
+        }
+    }
+    public int AssignRole(int id, int roleID, int instId, int sessionId, int deptId, int Prg_Desig_Id, int Yr_Sem_Id, string IndividualId, string flag, SqlCommand ObjCom)
+    {
+        int RetSuccess = 0;
+
+
+        ObjCom.CommandType = CommandType.StoredProcedure;
+        ObjCom.CommandText = "Insert_AssignRole";
+        ObjCom.Parameters.Add("@id_1", SqlDbType.Int).Value = id;
+        //ObjCom.Parameters.Add("@MGId_2", SqlDbType.Int).Value = MajorGroupID;
+        ObjCom.Parameters.Add("@roleID_3", SqlDbType.Int).Value = roleID;
+        ObjCom.Parameters.Add("@instId_4", SqlDbType.Int).Value = instId;
+        ObjCom.Parameters.Add("@sessionId_5", SqlDbType.Int).Value = sessionId;
+        ObjCom.Parameters.Add("@deptId_6", SqlDbType.Int).Value = deptId;
+        ObjCom.Parameters.Add("@Prg_Desig_Id_7", SqlDbType.Int).Value = Prg_Desig_Id;
+        ObjCom.Parameters.Add("@Yr_Sem_Id_8", SqlDbType.Int).Value = Yr_Sem_Id;
+        ObjCom.Parameters.Add("@IndividualId_9", SqlDbType.VarChar).Value = IndividualId;
+        ObjCom.Parameters.Add("@flag_10", SqlDbType.VarChar).Value = flag;
+        ObjCom.Parameters.Add("@RetSuccess", SqlDbType.Int).Direction = ParameterDirection.Output;
+
+        try
+        {
+            ObjCom.ExecuteNonQuery();
+
+            int isSuccess = Int32.Parse(ObjCom.Parameters["@RetSuccess"].Value.ToString());
+            RetSuccess = isSuccess;
+            if (isSuccess == 1)
+            {
+                //RetSuccess = true;
+            }
+            else
+            {
+                //RetSuccess = false;
+            }
+        }
+        catch (Exception ex)
+        {
+            string ms = ex.Message.ToString();
+            //RetSuccess = false;
+        }
+        finally { }
+        return RetSuccess;
+    }
+
+    #region Module Permission System
+    //-----------------------------------------------------------------------------------------------------
+    public void ModuleIN_Save(string flag, int ID, int ParentId, string Title, string Href, ref string RetSuccess)
+    {
+        try
+        {
+            cmd = new SqlCommand();
+
+            cmd.Parameters.AddWithValue("@flag", flag);
+            cmd.Parameters.AddWithValue("@RetSuccess", 0).Direction = ParameterDirection.Output;
+            cmd.Parameters.AddWithValue("@fields", null);
+            cmd.Parameters.AddWithValue("@where", null);
+            cmd.Parameters.AddWithValue("@ID", ID);
+            cmd.Parameters.AddWithValue("@ParentId", ParentId);
+            cmd.Parameters.AddWithValue("@Title", Title);
+            cmd.Parameters.AddWithValue("@Href", Href);
+
+            cn.Open();
+            cmd.Connection = cn;
+            cmd.CommandText = "[SUID_AddModule]";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.ExecuteNonQuery();
+            RetSuccess = cmd.Parameters["@RetSuccess"].Value.ToString();
+        }
+        catch
+        {
+
+        }
+        finally
+        {
+            cmd.Dispose();
+            cn.Close();
+            cn.Dispose();
+        }
+
+    }
+    //-----------------------------------------------------------------------------------------------------
+    public void ModuleIN_Delete(string flag, int ID, ref string RetSuccess)
+    {
+        try
+        {
+            cmd = new SqlCommand();
+
+            cmd.Parameters.AddWithValue("@flag", flag);
+            cmd.Parameters.AddWithValue("@RetSuccess", 0);
+            cmd.Parameters.AddWithValue("@fields", null);
+            cmd.Parameters.AddWithValue("@where", null);
+            cmd.Parameters.AddWithValue("@ID", ID);
+
+            cn.Open();
+            cmd.Connection = cn;
+            cmd.CommandText = "[SUID_AddModule]";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.ExecuteNonQuery();
+            RetSuccess = cmd.Parameters["@RetSuccess"].Value.ToString();
+
+        }
+        catch { RetSuccess = "0"; }
+        finally
+        {
+            cmd.Dispose();
+            cn.Close();
+            cn.Dispose();
+        }
+    }
+    //-----------------------------------------------------------------------------------------------------
+    public void FormField_Entry(String flag, Int32 InstId, Int32 FieldId, String FieldName,String ValueField,String TableName,  Int32 MenuId, ref String RetSuccess)
+    {
+        try
+        {
+            cmd = new SqlCommand();
+
+            cmd.Parameters.AddWithValue("@flag", flag);
+            cmd.Parameters.AddWithValue("@RetSuccess", 0).Direction = ParameterDirection.Output;
+            cmd.Parameters.AddWithValue("@fields", null);
+            cmd.Parameters.AddWithValue("@where", null);
+            cmd.Parameters.AddWithValue("@InstId", InstId);
+            cmd.Parameters.AddWithValue("@FieldId", FieldId);
+            cmd.Parameters.AddWithValue("@FieldName", FieldName);
+            cmd.Parameters.AddWithValue("@ValueField", ValueField);
+            cmd.Parameters.AddWithValue("@TableName", TableName);
+            cmd.Parameters.AddWithValue("@MenuId", MenuId);
+
+            cn.Open();
+            cmd.Connection = cn;
+            cmd.CommandText = "[SUID_FormField]";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.ExecuteNonQuery();
+            RetSuccess = cmd.Parameters["@RetSuccess"].Value.ToString();
+        }
+        catch
+        {
+
+        }
+        finally
+        {
+            cmd.Dispose();
+            cn.Close();
+            cn.Dispose();
+        }
+    }
+    public void FormField_Delete(Int32 InstId, Int32 FieldId, ref String RetSuccess)
+    {
+        try
+        {
+            cmd = new SqlCommand();
+
+            cmd.Parameters.AddWithValue("@flag", "D");
+            cmd.Parameters.AddWithValue("@RetSuccess", 0).Direction = ParameterDirection.Output;
+            cmd.Parameters.AddWithValue("@fields", null);
+            cmd.Parameters.AddWithValue("@where", null);
+            cmd.Parameters.AddWithValue("@InstId", InstId);
+            cmd.Parameters.AddWithValue("@FieldId", FieldId);
+            cmd.Parameters.AddWithValue("@FieldName", null);
+            cmd.Parameters.AddWithValue("@MenuId", null);
+
+            cn.Open();
+            cmd.Connection = cn;
+            cmd.CommandText = "[SUID_FormField]";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.ExecuteNonQuery();
+            RetSuccess = cmd.Parameters["@RetSuccess"].Value.ToString();
+        }
+        catch
+        {
+
+        }
+        finally
+        {
+            cmd.Dispose();
+            cn.Close();
+            cn.Dispose();
+        }
+    }
+    #endregion
+
+    #region Assign Permission
+    public void Assign_Permission(String flag, Int32 InstId, Int32 AssignId,Int32 ARCID, Int32 RoleId, Int32 FieldId, String FieldIdData, Int32 EmployeeId, ref String RetSuccess)
+    {
+        try
+        {
+            cmd = new SqlCommand();
+
+            cmd.Parameters.AddWithValue("@flag", flag);
+            cmd.Parameters.AddWithValue("@RetSuccess", 0).Direction = ParameterDirection.Output;
+            cmd.Parameters.AddWithValue("@id", AssignId);
+            cmd.Parameters.AddWithValue("@ARCID", ARCID);
+            cmd.Parameters.AddWithValue("@roleID", RoleId);
+            cmd.Parameters.AddWithValue("@FieldId", FieldId);
+            cmd.Parameters.AddWithValue("@FieldDataId", FieldIdData);
+            cmd.Parameters.AddWithValue("@IndividualId", EmployeeId);
+            cmd.Parameters.AddWithValue("@instId", InstId);
+            cmd.Parameters.AddWithValue("@sessionId",0);
+
+            cn.Open();
+            cmd.Connection = cn;
+            cmd.CommandText = "[Insert_AssignRole]";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.ExecuteNonQuery();
+            RetSuccess = cmd.Parameters["@RetSuccess"].Value.ToString();
+        }
+        catch
+        {
+            RetSuccess = "0";
+        }
+        finally
+        {
+            cmd.Dispose();
+            cn.Close();
+            cn.Dispose();
+        }
+    }
+    #endregion
+
+    #region  Create role
+    public void Roll_Default_Perm_Save(string flag, int Roll_Id, string RollName, string InstituteID, string SessionID, string User_Name, ref string RetSuccess)
+    {
+        try
+        {
+            cmd = new SqlCommand();
+
+
+            cmd.Parameters.AddWithValue("@flag", flag);
+            cmd.Parameters.AddWithValue("@RetSuccess", 0).Direction=ParameterDirection.Output;
+            cmd.Parameters.AddWithValue("@fields", null);
+            cmd.Parameters.AddWithValue("@where", null);
+            cmd.Parameters.AddWithValue("@RollID", Roll_Id);
+
+            cmd.Parameters.AddWithValue("@RollName", RollName);
+            cmd.Parameters.AddWithValue("@InstituteID", InstituteID);
+            cmd.Parameters.AddWithValue("@SessionID", SessionID);
+            cmd.Parameters.AddWithValue("@UName", User_Name);
+            cmd.Parameters.AddWithValue("@UEntDt", DateTime.Now.Date.ToShortDateString());
+
+
+            cn.Open();
+            cmd.Connection = cn;
+            cmd.CommandText = "[SUID_Role_Perm]";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.ExecuteNonQuery();
+            RetSuccess = cmd.Parameters["@RetSuccess"].Value.ToString();
+        }
+        catch
+        {
+            RetSuccess = "0";
+        }
+        finally
+        {
+            cmd.Dispose();
+            cn.Close();
+            cn.Dispose();
+        }
+    }
+    public void Roll_Default_Perm_Delete(string Delete_flag, int Roll_Id, ref string RetSuccess)
+    {
+        try
+        {
+            cmd = new SqlCommand();
+
+
+            cmd.Parameters.AddWithValue("@flag", Delete_flag);
+            cmd.Parameters.AddWithValue("@RetSuccess", 0).Direction = ParameterDirection.Output;
+            cmd.Parameters.AddWithValue("@fields", null);
+            cmd.Parameters.AddWithValue("@where", null);
+            cmd.Parameters.AddWithValue("@RollID", Roll_Id);
+            
+            cn.Open();
+
+            cmd.Connection = cn;
+            cmd.CommandText = "[SUID_Role_Perm]";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.ExecuteNonQuery();
+            RetSuccess = cmd.Parameters["@RetSuccess"].Value.ToString();          
+
+        }
+        catch
+        {
+            RetSuccess = "0";
+        }
+        finally
+        {
+            cmd.Dispose();
+            cn.Close();
+            cn.Dispose();
+        }
+    }
+    #endregion
+
+    #region Add Forms To Favorite
+    public void Save_Favorite(String flag, Int32 Id, Int32 MenuID, Int32 RoleID, byte[] Fav_logo, ref String RetSuccess)
+    {
+        RetSuccess = "1";
+        try
+        {
+            cmd = new SqlCommand();
+
+            cmd.Parameters.AddWithValue("@flag", flag);
+            cmd.Parameters.AddWithValue("@RetSuccess", 0).Direction = ParameterDirection.Output;
+            cmd.Parameters.AddWithValue("@Id", Id);
+            cmd.Parameters.AddWithValue("@MenuID", MenuID);
+            cmd.Parameters.AddWithValue("@RoleID", RoleID);
+            cmd.Parameters.AddWithValue("@Fav_logo", Fav_logo);            
+
+            cn.Open();
+            cmd.Connection = cn;
+            cmd.CommandText = "[SUID_MenuFavorite]";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.ExecuteNonQuery();
+           RetSuccess = cmd.Parameters["@RetSuccess"].Value.ToString();
+        }
+        catch
+        {
+            RetSuccess = "0";
+        }
+        finally
+        {
+            cmd.Dispose();
+            cn.Close();
+            cn.Dispose();
+        }
+    }
+
+    public void Delete_Favorite(String flag, Int32 Id, ref String RetSuccess)
+    {
+        RetSuccess = "1";
+        try
+        {
+            cmd = new SqlCommand();
+
+            cmd.Parameters.AddWithValue("@flag", flag);
+           // cmd.Parameters.AddWithValue("@RetSuccess", 0).Direction = ParameterDirection.Output;
+            cmd.Parameters.AddWithValue("@Id", Id);
+            
+            cn.Open();
+            cmd.Connection = cn;
+            cmd.CommandText = "[SUID_MenuFavorite]";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.ExecuteNonQuery();
+            //RetSuccess = cmd.Parameters["@RetSuccess"].Value.ToString();
+        }
+        catch
+        {
+            RetSuccess = "0";
+        }
+        finally
+        {
+            cmd.Dispose();
+            cn.Close();
+            cn.Dispose();
+        }
+    }
+    #endregion
+}

@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DepartmentalElective" targetNamespace="http://tempuri.org/DepartmentalElective.xsd" xmlns:mstns="http://tempuri.org/DepartmentalElective.xsd" xmlns="http://tempuri.org/DepartmentalElective.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable1TableAdapter" GeneratorDataComponentClassName="DataTable1TableAdapter" Name="DataTable1" UserDataComponentName="DataTable1TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT '' as EgroupId,'' as  subjectcode, '' AS Batch_Name, '' AS no_of_student,'' as SessionName,'' as CourseYear,'' as SubjectCat_Name,'' as coursename,'' as elective FROM  avanish2 </CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="EgroupId" DataSetColumn="EgroupId" />
+              <Mapping SourceColumn="subjectcode" DataSetColumn="subjectcode" />
+              <Mapping SourceColumn="Batch_Name" DataSetColumn="Batch_Name" />
+              <Mapping SourceColumn="no_of_student" DataSetColumn="no_of_student" />
+              <Mapping SourceColumn="SessionName" DataSetColumn="SessionName" />
+              <Mapping SourceColumn="CourseYear" DataSetColumn="CourseYear" />
+              <Mapping SourceColumn="SubjectCat_Name" DataSetColumn="SubjectCat_Name" />
+              <Mapping SourceColumn="coursename" DataSetColumn="coursename" />
+              <Mapping SourceColumn="elective" DataSetColumn="elective" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DepartmentalElective" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="DepartmentalElective" msprop:Generator_DataSetName="DepartmentalElective">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowClassName="DataTable1Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="EgroupId" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnEgroupId" msprop:Generator_ColumnPropNameInRow="EgroupId" msprop:Generator_ColumnPropNameInTable="EgroupIdColumn" msprop:Generator_UserColumnName="EgroupId" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="subjectcode" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnsubjectcode" msprop:Generator_ColumnPropNameInRow="subjectcode" msprop:Generator_ColumnPropNameInTable="subjectcodeColumn" msprop:Generator_UserColumnName="subjectcode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Batch_Name" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnBatch_Name" msprop:Generator_ColumnPropNameInRow="Batch_Name" msprop:Generator_ColumnPropNameInTable="Batch_NameColumn" msprop:Generator_UserColumnName="Batch_Name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="no_of_student" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnno_of_student" msprop:Generator_ColumnPropNameInRow="no_of_student" msprop:Generator_ColumnPropNameInTable="no_of_studentColumn" msprop:Generator_UserColumnName="no_of_student" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SessionName" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSessionName" msprop:Generator_ColumnPropNameInRow="SessionName" msprop:Generator_ColumnPropNameInTable="SessionNameColumn" msprop:Generator_UserColumnName="SessionName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CourseYear" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCourseYear" msprop:Generator_ColumnPropNameInRow="CourseYear" msprop:Generator_ColumnPropNameInTable="CourseYearColumn" msprop:Generator_UserColumnName="CourseYear" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SubjectCat_Name" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSubjectCat_Name" msprop:Generator_ColumnPropNameInRow="SubjectCat_Name" msprop:Generator_ColumnPropNameInTable="SubjectCat_NameColumn" msprop:Generator_UserColumnName="SubjectCat_Name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="coursename" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columncoursename" msprop:Generator_ColumnPropNameInRow="coursename" msprop:Generator_ColumnPropNameInTable="coursenameColumn" msprop:Generator_UserColumnName="coursename" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="elective" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnelective" msprop:Generator_ColumnPropNameInRow="elective" msprop:Generator_ColumnPropNameInTable="electiveColumn" msprop:Generator_UserColumnName="elective" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

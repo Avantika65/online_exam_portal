@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="PlacedStudSearch" targetNamespace="http://tempuri.org/PlacedStudSearch.xsd" xmlns:mstns="http://tempuri.org/PlacedStudSearch.xsd" xmlns="http://tempuri.org/PlacedStudSearch.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Placed_Stud_SearchTableAdapter" GeneratorDataComponentClassName="Placed_Stud_SearchTableAdapter" Name="Placed_Stud_Search" UserDataComponentName="Placed_Stud_SearchTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectName="FeesManagement.dbo.Placed_Stud_Search" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT     *
+FROM         Placed_Stud_Search</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="comName" DataSetColumn="comName" />
+              <Mapping SourceColumn="stName" DataSetColumn="stName" />
+              <Mapping SourceColumn="pkg" DataSetColumn="pkg" />
+              <Mapping SourceColumn="plcmDate" DataSetColumn="plcmDate" />
+              <Mapping SourceColumn="compID" DataSetColumn="compID" />
+              <Mapping SourceColumn="status" DataSetColumn="status" />
+              <Mapping SourceColumn="CourseYear" DataSetColumn="CourseYear" />
+              <Mapping SourceColumn="Course" DataSetColumn="Course" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="PlacedStudSearch" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="PlacedStudSearch" msprop:Generator_DataSetName="PlacedStudSearch">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Placed_Stud_Search" msprop:Generator_UserTableName="Placed_Stud_Search" msprop:Generator_RowDeletedName="Placed_Stud_SearchRowDeleted" msprop:Generator_TableClassName="Placed_Stud_SearchDataTable" msprop:Generator_RowChangedName="Placed_Stud_SearchRowChanged" msprop:Generator_RowClassName="Placed_Stud_SearchRow" msprop:Generator_RowChangingName="Placed_Stud_SearchRowChanging" msprop:Generator_RowEvArgName="Placed_Stud_SearchRowChangeEvent" msprop:Generator_RowEvHandlerName="Placed_Stud_SearchRowChangeEventHandler" msprop:Generator_TablePropName="Placed_Stud_Search" msprop:Generator_TableVarName="tablePlaced_Stud_Search" msprop:Generator_RowDeletingName="Placed_Stud_SearchRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="comName" msprop:Generator_UserColumnName="comName" msprop:Generator_ColumnPropNameInRow="comName" msprop:Generator_ColumnVarNameInTable="columncomName" msprop:Generator_ColumnPropNameInTable="comNameColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="stName" msdata:ReadOnly="true" msprop:Generator_UserColumnName="stName" msprop:Generator_ColumnPropNameInRow="stName" msprop:Generator_ColumnVarNameInTable="columnstName" msprop:Generator_ColumnPropNameInTable="stNameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="180" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="pkg" msprop:Generator_UserColumnName="pkg" msprop:Generator_ColumnPropNameInRow="pkg" msprop:Generator_ColumnVarNameInTable="columnpkg" msprop:Generator_ColumnPropNameInTable="pkgColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="plcmDate" msprop:Generator_UserColumnName="plcmDate" msprop:Generator_ColumnPropNameInRow="plcmDate" msprop:Generator_ColumnVarNameInTable="columnplcmDate" msprop:Generator_ColumnPropNameInTable="plcmDateColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="compID" msprop:Generator_UserColumnName="compID" msprop:Generator_ColumnPropNameInRow="compID" msprop:Generator_ColumnVarNameInTable="columncompID" msprop:Generator_ColumnPropNameInTable="compIDColumn" type="xs:int" />
+              <xs:element name="status" msdata:ReadOnly="true" msprop:Generator_UserColumnName="status" msprop:Generator_ColumnPropNameInRow="status" msprop:Generator_ColumnVarNameInTable="columnstatus" msprop:Generator_ColumnPropNameInTable="statusColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CourseYear" msprop:Generator_UserColumnName="CourseYear" msprop:Generator_ColumnPropNameInRow="CourseYear" msprop:Generator_ColumnVarNameInTable="columnCourseYear" msprop:Generator_ColumnPropNameInTable="CourseYearColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Course" msprop:Generator_UserColumnName="Course" msprop:Generator_ColumnPropNameInRow="Course" msprop:Generator_ColumnVarNameInTable="columnCourse" msprop:Generator_ColumnPropNameInTable="CourseColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="BPOFallowup" targetNamespace="http://tempuri.org/BPOFallowup.xsd" xmlns:mstns="http://tempuri.org/BPOFallowup.xsd" xmlns="http://tempuri.org/BPOFallowup.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Bpo_vw1TableAdapter" GeneratorDataComponentClassName="Bpo_vw1TableAdapter" Name="Bpo_vw1" UserDataComponentName="Bpo_vw1TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectName="BPOLive2011.dbo.Bpo_vw1" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Earlier_Ref, DateApplied, Name, Mno, Course, Remark, Next_Date, FDate, Ftime, TimeApplied, ForwardPerson
+FROM            Bpo_vw1</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Earlier_Ref" DataSetColumn="Earlier_Ref" />
+              <Mapping SourceColumn="DateApplied" DataSetColumn="DateApplied" />
+              <Mapping SourceColumn="Name" DataSetColumn="Name" />
+              <Mapping SourceColumn="Mno" DataSetColumn="Mno" />
+              <Mapping SourceColumn="Course" DataSetColumn="Course" />
+              <Mapping SourceColumn="Remark" DataSetColumn="Remark" />
+              <Mapping SourceColumn="FDate" DataSetColumn="FDate" />
+              <Mapping SourceColumn="Ftime" DataSetColumn="Ftime" />
+              <Mapping SourceColumn="Next_Date" DataSetColumn="Next_Date" />
+              <Mapping SourceColumn="TimeApplied" DataSetColumn="TimeApplied" />
+              <Mapping SourceColumn="ForwardPerson" DataSetColumn="ForwardPerson" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="BPOFallowup" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="BPOFallowup" msprop:Generator_UserDSName="BPOFallowup">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Bpo_vw1" msprop:Generator_TableClassName="Bpo_vw1DataTable" msprop:Generator_TableVarName="tableBpo_vw1" msprop:Generator_TablePropName="Bpo_vw1" msprop:Generator_RowDeletingName="Bpo_vw1RowDeleting" msprop:Generator_UserTableName="Bpo_vw1" msprop:Generator_RowChangingName="Bpo_vw1RowChanging" msprop:Generator_RowEvHandlerName="Bpo_vw1RowChangeEventHandler" msprop:Generator_RowDeletedName="Bpo_vw1RowDeleted" msprop:Generator_RowEvArgName="Bpo_vw1RowChangeEvent" msprop:Generator_RowChangedName="Bpo_vw1RowChanged" msprop:Generator_RowClassName="Bpo_vw1Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Earlier_Ref" msprop:Generator_ColumnVarNameInTable="columnEarlier_Ref" msprop:Generator_ColumnPropNameInRow="Earlier_Ref" msprop:Generator_ColumnPropNameInTable="Earlier_RefColumn" msprop:Generator_UserColumnName="Earlier_Ref" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DateApplied" msprop:Generator_ColumnVarNameInTable="columnDateApplied" msprop:Generator_ColumnPropNameInRow="DateApplied" msprop:Generator_ColumnPropNameInTable="DateAppliedColumn" msprop:Generator_UserColumnName="DateApplied" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Name" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="152" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Mno" msprop:Generator_ColumnVarNameInTable="columnMno" msprop:Generator_ColumnPropNameInRow="Mno" msprop:Generator_ColumnPropNameInTable="MnoColumn" msprop:Generator_UserColumnName="Mno" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Course" msprop:Generator_ColumnVarNameInTable="columnCourse" msprop:Generator_ColumnPropNameInRow="Course" msprop:Generator_ColumnPropNameInTable="CourseColumn" msprop:Generator_UserColumnName="Course">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Remark" msprop:Generator_ColumnVarNameInTable="columnRemark" msprop:Generator_ColumnPropNameInRow="Remark" msprop:Generator_ColumnPropNameInTable="RemarkColumn" msprop:Generator_UserColumnName="Remark" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="300" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FDate" msprop:Generator_ColumnVarNameInTable="columnFDate" msprop:Generator_ColumnPropNameInRow="FDate" msprop:Generator_ColumnPropNameInTable="FDateColumn" msprop:Generator_UserColumnName="FDate" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Ftime" msprop:Generator_ColumnVarNameInTable="columnFtime" msprop:Generator_ColumnPropNameInRow="Ftime" msprop:Generator_ColumnPropNameInTable="FtimeColumn" msprop:Generator_UserColumnName="Ftime" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Next_Date" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnNext_Date" msprop:Generator_ColumnPropNameInRow="Next_Date" msprop:Generator_ColumnPropNameInTable="Next_DateColumn" msprop:Generator_UserColumnName="Next_Date" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TimeApplied" msprop:Generator_ColumnVarNameInTable="columnTimeApplied" msprop:Generator_ColumnPropNameInRow="TimeApplied" msprop:Generator_ColumnPropNameInTable="TimeAppliedColumn" msprop:Generator_UserColumnName="TimeApplied" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ForwardPerson" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnForwardPerson" msprop:Generator_ColumnPropNameInRow="ForwardPerson" msprop:Generator_ColumnPropNameInTable="ForwardPersonColumn" msprop:Generator_UserColumnName="ForwardPerson" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="203" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

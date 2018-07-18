@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="QuizStudent" targetNamespace="http://tempuri.org/QuizStudent.xsd" xmlns:mstns="http://tempuri.org/QuizStudent.xsd" xmlns="http://tempuri.org/QuizStudent.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Student_Quiz_vwTableAdapter" GeneratorDataComponentClassName="Student_Quiz_vwTableAdapter" Name="Student_Quiz_vw" UserDataComponentName="Student_Quiz_vwTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectName="ESIM.dbo.Student_Quiz_vw" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT     Student_Quiz_vw.*
+FROM         Student_Quiz_vw</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="testName" DataSetColumn="testName" />
+              <Mapping SourceColumn="testtypeName" DataSetColumn="testtypeName" />
+              <Mapping SourceColumn="testId" DataSetColumn="testId" />
+              <Mapping SourceColumn="Expr2" DataSetColumn="Expr2" />
+              <Mapping SourceColumn="testtypeId" DataSetColumn="testtypeId" />
+              <Mapping SourceColumn="SubjectID" DataSetColumn="SubjectID" />
+              <Mapping SourceColumn="CourseID" DataSetColumn="CourseID" />
+              <Mapping SourceColumn="DateA" DataSetColumn="DateA" />
+              <Mapping SourceColumn="InstituteID" DataSetColumn="InstituteID" />
+              <Mapping SourceColumn="SpecilizationID" DataSetColumn="SpecilizationID" />
+              <Mapping SourceColumn="Batch_Name" DataSetColumn="Batch_Name" />
+              <Mapping SourceColumn="BatchID" DataSetColumn="BatchID" />
+              <Mapping SourceColumn="Status" DataSetColumn="Status" />
+              <Mapping SourceColumn="StudentName" DataSetColumn="StudentName" />
+              <Mapping SourceColumn="SubjectName1" DataSetColumn="SubjectName1" />
+              <Mapping SourceColumn="SubjectCode" DataSetColumn="SubjectCode" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="QuizStudent" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="QuizStudent" msprop:Generator_UserDSName="QuizStudent">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Student_Quiz_vw" msprop:Generator_TableClassName="Student_Quiz_vwDataTable" msprop:Generator_TableVarName="tableStudent_Quiz_vw" msprop:Generator_TablePropName="Student_Quiz_vw" msprop:Generator_RowDeletingName="Student_Quiz_vwRowDeleting" msprop:Generator_UserTableName="Student_Quiz_vw" msprop:Generator_RowChangingName="Student_Quiz_vwRowChanging" msprop:Generator_RowEvHandlerName="Student_Quiz_vwRowChangeEventHandler" msprop:Generator_RowDeletedName="Student_Quiz_vwRowDeleted" msprop:Generator_RowEvArgName="Student_Quiz_vwRowChangeEvent" msprop:Generator_RowChangedName="Student_Quiz_vwRowChanged" msprop:Generator_RowClassName="Student_Quiz_vwRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="testName" msprop:Generator_ColumnVarNameInTable="columntestName" msprop:Generator_ColumnPropNameInRow="testName" msprop:Generator_ColumnPropNameInTable="testNameColumn" msprop:Generator_UserColumnName="testName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="testtypeName" msprop:Generator_ColumnVarNameInTable="columntesttypeName" msprop:Generator_ColumnPropNameInRow="testtypeName" msprop:Generator_ColumnPropNameInTable="testtypeNameColumn" msprop:Generator_UserColumnName="testtypeName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="testId" msprop:Generator_ColumnVarNameInTable="columntestId" msprop:Generator_ColumnPropNameInRow="testId" msprop:Generator_ColumnPropNameInTable="testIdColumn" msprop:Generator_UserColumnName="testId" type="xs:short" />
+              <xs:element name="Expr2" msprop:Generator_ColumnVarNameInTable="columnExpr2" msprop:Generator_ColumnPropNameInRow="Expr2" msprop:Generator_ColumnPropNameInTable="Expr2Column" msprop:Generator_UserColumnName="Expr2" type="xs:short" />
+              <xs:element name="testtypeId" msprop:Generator_ColumnVarNameInTable="columntesttypeId" msprop:Generator_ColumnPropNameInRow="testtypeId" msprop:Generator_ColumnPropNameInTable="testtypeIdColumn" msprop:Generator_UserColumnName="testtypeId" type="xs:short" />
+              <xs:element name="SubjectID" msprop:Generator_ColumnVarNameInTable="columnSubjectID" msprop:Generator_ColumnPropNameInRow="SubjectID" msprop:Generator_ColumnPropNameInTable="SubjectIDColumn" msprop:Generator_UserColumnName="SubjectID" type="xs:int" />
+              <xs:element name="CourseID" msprop:Generator_ColumnVarNameInTable="columnCourseID" msprop:Generator_ColumnPropNameInRow="CourseID" msprop:Generator_ColumnPropNameInTable="CourseIDColumn" msprop:Generator_UserColumnName="CourseID" type="xs:int" minOccurs="0" />
+              <xs:element name="DateA" msprop:Generator_ColumnVarNameInTable="columnDateA" msprop:Generator_ColumnPropNameInRow="DateA" msprop:Generator_ColumnPropNameInTable="DateAColumn" msprop:Generator_UserColumnName="DateA" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="InstituteID" msprop:Generator_ColumnVarNameInTable="columnInstituteID" msprop:Generator_ColumnPropNameInRow="InstituteID" msprop:Generator_ColumnPropNameInTable="InstituteIDColumn" msprop:Generator_UserColumnName="InstituteID" type="xs:int" minOccurs="0" />
+              <xs:element name="SpecilizationID" msprop:Generator_ColumnVarNameInTable="columnSpecilizationID" msprop:Generator_ColumnPropNameInRow="SpecilizationID" msprop:Generator_ColumnPropNameInTable="SpecilizationIDColumn" msprop:Generator_UserColumnName="SpecilizationID" type="xs:int" minOccurs="0" />
+              <xs:element name="Batch_Name" msprop:Generator_ColumnVarNameInTable="columnBatch_Name" msprop:Generator_ColumnPropNameInRow="Batch_Name" msprop:Generator_ColumnPropNameInTable="Batch_NameColumn" msprop:Generator_UserColumnName="Batch_Name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BatchID" msprop:Generator_ColumnVarNameInTable="columnBatchID" msprop:Generator_ColumnPropNameInRow="BatchID" msprop:Generator_ColumnPropNameInTable="BatchIDColumn" msprop:Generator_UserColumnName="BatchID" type="xs:int" minOccurs="0" />
+              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="StudentName" msprop:Generator_ColumnVarNameInTable="columnStudentName" msprop:Generator_ColumnPropNameInRow="StudentName" msprop:Generator_ColumnPropNameInTable="StudentNameColumn" msprop:Generator_UserColumnName="StudentName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SubjectName1" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSubjectName1" msprop:Generator_ColumnPropNameInRow="SubjectName1" msprop:Generator_ColumnPropNameInTable="SubjectName1Column" msprop:Generator_UserColumnName="SubjectName1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="553" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SubjectCode" msprop:Generator_ColumnVarNameInTable="columnSubjectCode" msprop:Generator_ColumnPropNameInRow="SubjectCode" msprop:Generator_ColumnPropNameInTable="SubjectCodeColumn" msprop:Generator_UserColumnName="SubjectCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Present" msprop:Generator_ColumnVarNameInTable="columnPresent" msprop:Generator_ColumnPropNameInRow="Present" msprop:Generator_ColumnPropNameInTable="PresentColumn" msprop:Generator_UserColumnName="Present" type="xs:string" minOccurs="0" />
+              <xs:element name="Absent" msprop:Generator_ColumnVarNameInTable="columnAbsent" msprop:Generator_ColumnPropNameInRow="Absent" msprop:Generator_ColumnPropNameInTable="AbsentColumn" msprop:Generator_UserColumnName="Absent" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

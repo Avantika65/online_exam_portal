@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Doc_Verify" targetNamespace="http://tempuri.org/Doc_Verify.xsd" xmlns:mstns="http://tempuri.org/Doc_Verify.xsd" xmlns="http://tempuri.org/Doc_Verify.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="FeesManagementConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FeesManagementConn (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.FeesManagementConn.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="VeriDocTableAdapter" GeneratorDataComponentClassName="VeriDocTableAdapter" Name="VeriDoc" UserDataComponentName="VeriDocTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FeesManagementConn (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT     TOP (100) PERCENT dbo.Emp_Leave_Record_dtls.LStart_dt, dbo.Emp_Leave_Record_dtls.LEnd_Dt, dbo.Emp_Leave_Record_dtls.NoofL, 
+                      dbo.Emp_Leave_Record_dtls.Leave_Type, dbo.Emp_Leave_Record_dtls.HFType, dbo.Emp_Leave_Record_dtls.LeaveId,
+                          (SELECT     empName + ' ' + lastName AS Empname
+                            FROM          dbo.Employee_Master
+                            WHERE      (dbo.Emp_Leave_Record_dtls.LAuthorityId = empId)) AS RepName,
+                          (SELECT     empName + ' ' + lastName AS Expr1
+                            FROM          dbo.Employee_Master AS Employee_Master_2
+                            WHERE      (dbo.Emp_Leave_Record_dtls.LeaveHead = empId)) AS LName, dbo.Emp_Leave_Record_dtls.ReasonofL, dbo.Emp_Leave_Record_dtls.EmpCode, 
+                      dbo.Emp_Leave_Record_dtls.EmpId, Employee_Master_1.empName + ' ' + Employee_Master_1.lastName AS EmpName, Employee_Master_1.CardNo, 
+                      Employee_Master_1.InstituteID, dbo.Emp_Leave_Record_dtls.Doc_Submit
+FROM         dbo.Emp_Leave_Record_dtls INNER JOIN
+                      dbo.Employee_Master AS Employee_Master_1 ON dbo.Emp_Leave_Record_dtls.EmpId = Employee_Master_1.empId AND 
+                      dbo.Emp_Leave_Record_dtls.InstituteId = Employee_Master_1.InstituteID
+ORDER BY Employee_Master_1.empName</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="LStart_dt" DataSetColumn="LStart_dt" />
+              <Mapping SourceColumn="LEnd_Dt" DataSetColumn="LEnd_Dt" />
+              <Mapping SourceColumn="NoofL" DataSetColumn="NoofL" />
+              <Mapping SourceColumn="Leave_Type" DataSetColumn="Leave_Type" />
+              <Mapping SourceColumn="HFType" DataSetColumn="HFType" />
+              <Mapping SourceColumn="LeaveId" DataSetColumn="LeaveId" />
+              <Mapping SourceColumn="RepName" DataSetColumn="RepName" />
+              <Mapping SourceColumn="LName" DataSetColumn="LName" />
+              <Mapping SourceColumn="ReasonofL" DataSetColumn="ReasonofL" />
+              <Mapping SourceColumn="EmpCode" DataSetColumn="EmpCode" />
+              <Mapping SourceColumn="EmpId" DataSetColumn="EmpId" />
+              <Mapping SourceColumn="EmpName" DataSetColumn="EmpName" />
+              <Mapping SourceColumn="CardNo" DataSetColumn="CardNo" />
+              <Mapping SourceColumn="InstituteID" DataSetColumn="InstituteID" />
+              <Mapping SourceColumn="Doc_Submit" DataSetColumn="Doc_Submit" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Doc_Verify" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="Doc_Verify" msprop:Generator_DataSetName="Doc_Verify">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="VeriDoc" msprop:Generator_TableClassName="VeriDocDataTable" msprop:Generator_TableVarName="tableVeriDoc" msprop:Generator_TablePropName="VeriDoc" msprop:Generator_RowDeletingName="VeriDocRowDeleting" msprop:Generator_UserTableName="VeriDoc" msprop:Generator_RowChangingName="VeriDocRowChanging" msprop:Generator_RowEvHandlerName="VeriDocRowChangeEventHandler" msprop:Generator_RowDeletedName="VeriDocRowDeleted" msprop:Generator_RowEvArgName="VeriDocRowChangeEvent" msprop:Generator_RowChangedName="VeriDocRowChanged" msprop:Generator_RowClassName="VeriDocRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="LStart_dt" msprop:Generator_ColumnVarNameInTable="columnLStart_dt" msprop:Generator_ColumnPropNameInRow="LStart_dt" msprop:Generator_ColumnPropNameInTable="LStart_dtColumn" msprop:Generator_UserColumnName="LStart_dt" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="LEnd_Dt" msprop:Generator_ColumnVarNameInTable="columnLEnd_Dt" msprop:Generator_ColumnPropNameInRow="LEnd_Dt" msprop:Generator_ColumnPropNameInTable="LEnd_DtColumn" msprop:Generator_UserColumnName="LEnd_Dt" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="NoofL" msprop:Generator_ColumnVarNameInTable="columnNoofL" msprop:Generator_ColumnPropNameInRow="NoofL" msprop:Generator_ColumnPropNameInTable="NoofLColumn" msprop:Generator_UserColumnName="NoofL" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Leave_Type" msprop:Generator_ColumnVarNameInTable="columnLeave_Type" msprop:Generator_ColumnPropNameInRow="Leave_Type" msprop:Generator_ColumnPropNameInTable="Leave_TypeColumn" msprop:Generator_UserColumnName="Leave_Type" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="HFType" msprop:Generator_ColumnVarNameInTable="columnHFType" msprop:Generator_ColumnPropNameInRow="HFType" msprop:Generator_ColumnPropNameInTable="HFTypeColumn" msprop:Generator_UserColumnName="HFType" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LeaveId" msprop:Generator_ColumnVarNameInTable="columnLeaveId" msprop:Generator_ColumnPropNameInRow="LeaveId" msprop:Generator_ColumnPropNameInTable="LeaveIdColumn" msprop:Generator_UserColumnName="LeaveId" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RepName" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnRepName" msprop:Generator_ColumnPropNameInRow="RepName" msprop:Generator_ColumnPropNameInTable="RepNameColumn" msprop:Generator_UserColumnName="RepName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="101" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LName" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnLName" msprop:Generator_ColumnPropNameInRow="LName" msprop:Generator_ColumnPropNameInTable="LNameColumn" msprop:Generator_UserColumnName="LName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="101" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ReasonofL" msprop:Generator_ColumnVarNameInTable="columnReasonofL" msprop:Generator_ColumnPropNameInRow="ReasonofL" msprop:Generator_ColumnPropNameInTable="ReasonofLColumn" msprop:Generator_UserColumnName="ReasonofL" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EmpCode" msprop:Generator_ColumnVarNameInTable="columnEmpCode" msprop:Generator_ColumnPropNameInRow="EmpCode" msprop:Generator_ColumnPropNameInTable="EmpCodeColumn" msprop:Generator_UserColumnName="EmpCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EmpId" msprop:Generator_ColumnVarNameInTable="columnEmpId" msprop:Generator_ColumnPropNameInRow="EmpId" msprop:Generator_ColumnPropNameInTable="EmpIdColumn" msprop:Generator_UserColumnName="EmpId" type="xs:int" minOccurs="0" />
+              <xs:element name="EmpName" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnEmpName" msprop:Generator_ColumnPropNameInRow="EmpName" msprop:Generator_ColumnPropNameInTable="EmpNameColumn" msprop:Generator_UserColumnName="EmpName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="101" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CardNo" msprop:Generator_ColumnVarNameInTable="columnCardNo" msprop:Generator_ColumnPropNameInRow="CardNo" msprop:Generator_ColumnPropNameInTable="CardNoColumn" msprop:Generator_UserColumnName="CardNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="InstituteID" msprop:Generator_ColumnVarNameInTable="columnInstituteID" msprop:Generator_ColumnPropNameInRow="InstituteID" msprop:Generator_ColumnPropNameInTable="InstituteIDColumn" msprop:Generator_UserColumnName="InstituteID" type="xs:int" minOccurs="0" />
+              <xs:element name="Doc_Submit" msprop:Generator_ColumnVarNameInTable="columnDoc_Submit" msprop:Generator_ColumnPropNameInRow="Doc_Submit" msprop:Generator_ColumnPropNameInTable="Doc_SubmitColumn" msprop:Generator_UserColumnName="Doc_Submit" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
